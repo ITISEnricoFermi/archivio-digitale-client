@@ -10,6 +10,7 @@
     overflow-y: scroll;
     border-radius: 0px 0px 3px 3px;
     position: absolute;
+    z-index: 1000;
 
     ul {
       padding: 0px;
@@ -18,7 +19,6 @@
 
     li {
       padding: 9px 8px;
-      color: #FFFFFF;
       background: #FFFFFF;
       width: 100%;
       border-color: #DBDBDB;

@@ -73,14 +73,14 @@ export default {
   },
   methods: {
     createCollection() {
-      axios.put("/upload/createCollection", this.collection)
-      .then((collection) => {
+      axios.put("/collections/", this.collection)
+      .then((response) => {
 
         this.collection.documentCollection = "";
         this.collection.permissions = undefined;
         this.collection.authorizations = [];
 
-        this.$emit("collectionMessage", "Collezione create correttamente.");
+        this.$emit("collectionMessage", response.data);
       })
       .catch((e) => {
         this.$emit("collectionMessage", e.respone.data);

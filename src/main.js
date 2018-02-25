@@ -6,6 +6,14 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+export const eventBus = new Vue({
+  methods: {
+    documentDeleted() {
+      this.$emit("documentDeleted");
+    }
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

@@ -12,14 +12,23 @@
   display: block;
   cursor: pointer;
 
+  span:nth-child(1) {
+    margin: 0.5rem;
+  }
+
+  span:nth-child(2) {
+    @include respond(tab-por) {
+      display: none;
+    }
+  }
+
   &--green {
     background-color: $color-button-green;
     border: 1px solid darken($color-button-green, 3%);
 
     &:focus {
-      box-shadow: 0rem 0rem 0.75rem rgba($color-button-green, 0.7);
+      box-shadow: 0 0 0.75rem rgba($color-button-green, 0.7);
     }
-
   }
 
   &--blue {
@@ -27,9 +36,8 @@
     border: 1px solid darken($color-button-blue, 3%);
 
     &:focus {
-      box-shadow: 0rem 0rem 0.75rem rgba($color-button-blue, 0.7);
+      box-shadow: 0 0 0.75rem rgba($color-button-blue, 0.7);
     }
-
   }
 
   &--red {
@@ -37,9 +45,16 @@
     border: 1px solid darken($color-button-red, 3%);
 
     &:focus {
-      box-shadow: 0rem 0rem 0.75rem rgba($color-button-red, 0.7);
+      box-shadow: 0 0 0.75rem rgba($color-button-red, 0.7);
     }
-
   }
 
+  &--yellow {
+    background-color: $color-button-yellow;
+    border: 1px solid darken($color-button-yellow, 3%);
+
+    &:focus {
+      box-shadow: 0 0 0.75rem rgba($color-button-yellow, 0.7);
+    }
+  }
 }

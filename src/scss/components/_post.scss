@@ -1,0 +1,135 @@
+.document-box {
+  display: grid;
+  grid-template-columns: auto 4rem;
+  grid-template-rows: auto 2fr auto;
+  grid-template-areas: "header left" "info left" "footer left";
+  grid-gap: 2vh;
+
+  &-header {
+    grid-area: header;
+    text-align: left;
+    display: table;
+    width: 100%;
+
+    &__img {
+      display: inline-block;
+      height: 5rem;
+      width: 5rem;
+      border-radius: 100%;
+      overflow: hidden;
+      vertical-align: middle;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    &__info {
+      display: inline-block;
+      vertical-align: middle;
+      width: calc(100% - 5rem);
+      padding-left: 1.5rem;
+
+      &--head {
+        vertical-align: middle;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: 0.5rem;
+
+        span {
+          font-weight: 400;
+        }
+      }
+
+      &--date {
+        display: inline-block;
+        vertical-align: middle;
+        color: $color-grey-1;
+      }
+    }
+  }
+
+  &-info {
+    grid-area: info;
+    text-align: justify;
+
+    &__description {
+      color: $color-grey-1;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      height: $font-default-2*$line-height-default*$lines-to-show;
+      font-size: $font-default-2;
+      line-height: $line-height-default;
+      -webkit-line-clamp: $lines-to-show;
+      -webkit-box-orient: vertical;
+      padding-right: 2rem;
+      padding-left: 6.5rem;
+      @include respond(phone) {
+        padding-left: 0;
+      }
+      @include respond(tab-lan) {
+        height: auto;
+      }
+    }
+  }
+
+  &-footer {
+    grid-area: footer;
+
+    &__info {
+      text-align: left;
+      padding-left: 6.5rem;
+      @include respond(phone) {
+        padding-left: 0;
+      }
+
+      li {
+        padding: 0.5rem 1rem;
+        border-radius: 10rem;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 30%;
+        white-space: nowrap;
+        color: $color-white;
+
+        &:not(:first-child) {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+
+  &-left {
+    grid-area: left;
+
+    ul {
+      li {
+        display: block;
+
+        &:not(:last-child) {
+          margin-bottom: 1.5vh;
+        }
+
+        a {
+          display: block;
+          text-decoration: none;
+          color: $color-tertiary;
+          text-align: center;
+          width: 100%;
+          padding: 1rem;
+          border-radius: 0.3rem;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          box-shadow: 0 0 0.5rem rgba($color-black, 0.2);
+
+          &:hover {
+            box-shadow: 0 0 0.7rem rgba($color-black, 0.3);
+          }
+        }
+      }
+    }
+  }
+}

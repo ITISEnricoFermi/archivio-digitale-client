@@ -38,7 +38,9 @@ export default {
       response: false,
       responseMessage: "",
       documentResponse: "",
-      collectionResponse: ""
+      collectionResponse: "",
+      uploading: false,
+      progress: ""
     };
   },
   methods: {

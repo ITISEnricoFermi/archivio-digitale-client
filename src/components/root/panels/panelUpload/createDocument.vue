@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.type">
+        <select class="module-input-select" v-model="documentToUpload.type" required>
           <option class="module-input-option" value="" disabled selected>Tipo</option>
           <option class="module-input-option" v-bind:value="type._id" v-for="type in types">
             {{ type.type }}
@@ -20,19 +20,21 @@
         </select>
       </div>
       <div class="col-1-of-3">
-        <select class="module-input-select" @change="changeFaculty" v-model="documentToUpload.faculty">
+        <select class="module-input-select" v-model="documentToUpload.faculty">
           <option class="module-input-option" value="" disabled selected>Specializzazione</option>
-          <option class="module-input-option" v-bind:value="faculty._id" v-for="faculty in faculties">
+          <option class="module-input-option" :value="faculty._id" v-for="faculty in faculties">
             {{ faculty.faculty }}
           </option>
         </select>
       </div>
       <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.subject">
+        <select class="module-input-select" v-model="documentToUpload.subject" required>
           <option class="module-input-option" value="" disabled selected>Materia</option>
-            <option class="module-input-option" v-bind:value="subject._id" v-for="subject in subjects">
+          <optgroup :label="faculty.faculty" v-for="faculty in faculties">
+            <option class="module-input-option" :value="subject._id" v-for="subject in faculty.subjects">
               {{ subject.subject }}
             </option>
+          </optgroup>
         </select>
       </div>
     </div>
@@ -81,7 +83,6 @@ export default {
   props: ["types", "faculties", "visibilities", "sections", "schoolClasses"],
   data: () => {
     return {
-      subjects: "",
       response: false,
       responseMessage: "",
       progress: 0,
@@ -99,16 +100,6 @@ export default {
     };
   },
   methods: {
-    changeFaculty() {
-      axios.get("/api/getSubjectsByFaculty/", {
-          _id: this.documentToUpload.faculty
-        })
-        .then((response) => {
-          this.subjects = response.data
-        }).catch((e) => {
-          this.errors.push(e)
-        });
-    },
     upload() {
 
       let formData = new FormData();
@@ -134,7 +125,7 @@ export default {
       formData.append("document", document);
       formData.append("fileToUpload", file);
 
-      axios.put("upload/createDocument", formData, config)
+      axios.put("/documents/", formData, config)
         .then((response) => {
           this.response = true;
           this.responseMessage = response.data;

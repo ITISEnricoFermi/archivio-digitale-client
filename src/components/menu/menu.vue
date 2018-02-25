@@ -19,7 +19,7 @@
   			<span>Inserisci</span>
   			<span class="menu-left__li-tag u-bg-color-red">Disattivo</span>
   		</li>
-  		<li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')">
+  		<li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges == 'admin'">
   			<span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
   			<span>Admin</span>
   			<span class="menu-left__li-tag u-bg-color-yellow">Beta</span>
@@ -50,11 +50,8 @@
 
 <script>
   export default {
-    data: () => {
-      return {
-
-      };
-    },
+    name: "menuLeft",
+    props: ["privileges"],
     methods: {
       changePanel(panel) {
 

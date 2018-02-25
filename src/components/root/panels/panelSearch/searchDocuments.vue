@@ -25,9 +25,11 @@
       <div class="col-1-of-3">
         <select class="module-input-select" v-model="query.subject">
             <option class="module-input-option" value="" selected>Materia</option>
-              <option class="module-input-option" v-bind:value="subject._id" v-for="subject in subjects">
+            <optgroup :label="faculty.faculty" v-for="faculty in faculties">
+              <option class="module-input-option" :value="subject._id" v-for="subject in faculty.subjects">
                 {{ subject.subject }}
               </option>
+            </optgroup>
           </select>
       </div>
     </div>

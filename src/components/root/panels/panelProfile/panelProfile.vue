@@ -2,73 +2,137 @@
 <div class="panel panel__profile" id="panel-profile">
   <div class="profile">
     <div class="profile-cover">
-      <div class="profile-cover__content">
-        <div class="profile-cover__pic" v-bind:style="'background-image: url(pics/' + user.img + ');'"></div>
-        <div class="profile-cover__info">
-          <p class="profile-cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
+      <div class="profile-img">
+        <div class="profile-cover__content">
+          <div class="profile-cover__pic" v-bind:style="'background-image: url(pics/' + user.img + ');'"></div>
+          <div class="profile-cover__info">
+            <p class="profile-cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="profile-menu">
-      <ul class="profile-menu__ul">
-        <li class="profile-menu__li" @click="showTab('pubblico')">
-          <span class="profile-menu__li--value heading-tertiary">4</span>
-          <span class="profile-menu__li--tag heading-fifth">Documenti pubblici</span>
-        </li>
-        <li class="profile-menu__li" @click="showTab('areariservata')">
-          <span class="profile-menu__li--value heading-tertiary">4</span>
-          <span class="profile-menu__li--tag heading-fifth">Documenti in area riservata</span>
-        </li>
-        <li class="profile-menu__li" @click="showTab('materia')">
-          <span class="profile-menu__li--value heading-tertiary">4</span>
-          <span class="profile-menu__li--tag heading-fifth">Documenti per materia</span>
-        </li>
-      </ul>
-    </div>
-    <div class="profile-documents">
-      <div class="module" v-for="document in documents">
-        <p>{{document.name}}</p>
+      <div class="profile-menu">
+        <ul class="profile-menu__ul">
+          <li class="profile-menu__li" @click="showTab('pubblico')">
+            <span class="profile-menu__li--value heading-tertiary">{{ count.pubblico }}</span>
+            <span class="profile-menu__li--tag heading-fifth">Documenti pubblici</span>
+          </li>
+          <li class="profile-menu__li" @click="showTab('areariservata')">
+            <span class="profile-menu__li--value heading-tertiary">{{ count.areariservata }}</span>
+            <span class="profile-menu__li--tag heading-fifth">Documenti in area riservata</span>
+          </li>
+          <li class="profile-menu__li" @click="showTab('materia')">
+            <span class="profile-menu__li--value heading-tertiary">{{count.materia }}</span>
+            <span class="profile-menu__li--tag heading-fifth">Documenti per materia</span>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="profile-documents">
+      <div class="module" v-if="documents.length == 0">
+        <div class="row">
+          <div class="col-1-of-1">
+            <p>Nessun documento nella scheda selezioanata.</p>
+          </div>
+        </div>
+      </div>
+      <app-post :document="document" v-for="document in documents" :key="document._id" @editDocument="showPopUp($event)" v-else></app-post>
+    </div>
   </div>
+  <transition name="fade">
+    <app-popup @closePopUp="popup = false" v-if="popup" :width="'80%'">
+      <app-edit-document :id="documentToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses"></app-edit-document>
+    </app-popup>
+  </transition>
 </div>
 </template>
 
 <script>
 
+import Post from "@/components/post/post";
+import PopUp from "@/components/popup/popup";
+import EditDocument from "@/components/editDocument/editDocument";
+
 import axios from "axios";
 
 export default {
   name: "panelProfile",
-  props: ["user"],
+  props: ["user", "types", "faculties", "visibilities", "sections", "schoolClasses"],
   data: () => {
     return {
       tab: "pubblico",
       response: false,
       responseMessage: "",
-      documents: []
+      documents: [],
+      count: {
+        pubblico: "",
+        areariservata: "",
+        materia: ""
+      },
+      popup: false,
+      documentToEdit: ""
     };
   },
-  created: function() {
-    this.getDocuments();
+  created() {
+    this.getDocuments("pubblico");
+
+    axios.get("/user/me/documents/count/pubblico")
+    .then((response) => {
+      this.count.pubblico = response.data;
+    })
+    .catch((e) => {
+      this.response = true;
+      this.responseMessage = "";
+    });
+
+    axios.get("/user/me/documents/count/areariservata")
+    .then((response) => {
+      this.count.areariservata = response.data;
+    })
+    .catch((e) => {
+      this.response = true;
+      this.responseMessage = "";
+    });
+
+    axios.get("/user/me/documents/count/materia")
+    .then((response) => {
+      this.count.materia = response.data;
+    })
+    .catch((e) => {
+      this.response = true;
+      this.responseMessage = "";
+    });
   },
   methods: {
-    showTab: function(privileges) {
+    showTab(privileges) {
       this.tab = privileges;
-      this.getDocuments();
+      this.getDocuments(privileges);
     },
-    getDocuments: function() {
-      axios.post("/user/me/documents", {
-          visibility: this.tab
-        })
-        .then((documents) => {
-          this.documents = documents.data;
+    getDocuments(tab) {
+      axios.get("/user/me/documents/" + tab)
+        .then((response) => {
+          this.documents = response.data;
+
+          for (let i = 0; i < this.documents.length; i++) {
+            if (this.documents[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
+              this.documents[i].own = true;
+            }
+          }
+
         })
         .catch((e) => {
           this.response = true;
           this.responseMessage = e.response.data;
         });
+    },
+    showPopUp(id) {
+      this.popup = true;
+      this.documentToEdit = id;
     }
+  },
+  components: {
+    appPost: Post,
+    appPopup: PopUp,
+    appEditDocument: EditDocument
   }
 }
 </script>

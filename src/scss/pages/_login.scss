@@ -12,10 +12,18 @@ main {
   position: absolute;
   @include absCenter;
   width: 20vw;
+
+  @include respond(phone) {
+    width: 80vw;
+  }
 }
 
 .logo {
   width: 50%;
+
+  @include respond(phone) {
+    width: 40%;
+  }
 }
 
 .error {

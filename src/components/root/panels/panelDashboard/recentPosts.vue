@@ -3,41 +3,21 @@
   <div class="module document-box" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
-  <div class="module document-box" v-for="document in recentDocuments" v-else>
-    <div class="document-box-content">
-      <div class="document-box-content__header">
-        <div class="document-box-content__header--img">
-          <img v-bind:src="'pics/' + document.author.img" alt="Foto profilo utente">
-        </div>
-        <p class="document-box-content__header--heading heading-fourth">
-          <span>{{document.author.firstname}} {{document.author.lastname}}</span> ha pubblicato
-          <span>{{document.name}}</span>.
-        </p>
-        <a v-bind:href="'documents/' + document.directory" class="document-box-content__header--download" download>
-              <i class="fas fa-download"></i>
-          </a>
-      </div>
-      <div class="document-box-content__info">
-        <p class="document-box-content__info--description">{{document.description}}</p>
-      </div>
-      <div class="document-box-content__footer">
-        <ul class="document-box-content__footer--info">
-          <li>{{document.subject.subject}}</li>
-          <li>{{document.class.class}} {{document.section.section}}</li>
-          <li>{{document.type.type}}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <app-post :document="document" v-for="(document, key) in recentDocuments" :key="document._id" @editDocument="editDocument($event)"></app-post>
 </div>
 </template>
 
 <script>
+import {
+  eventBus
+} from "@/main";
+
+import Post from "@/components/post/post";
 
 import axios from "axios";
 
 export default {
-
+  name: "recentPosts",
   data: () => {
     return {
       recentDocuments: [],
@@ -47,37 +27,35 @@ export default {
   },
   created() {
     this.getRecentDocuments();
+
+    eventBus.$on("documentDeleted", () => {
+      this.getRecentDocuments();
+    });
   },
   methods: {
     getRecentDocuments() {
       return axios.post("/dashboard/recentPosts")
         .then((response) => {
+          this.recentDocuments = response.data;
 
-          let documents = response.data;
-
-          for (let i = 0; i < documents.length; i++) {
-            if (documents[i].class == null) {
-              documents[i].class = {
-                _id: "comune",
-                  class: "Comune"
-              }
-            }
-
-            if (documents[i].section == null) {
-              documents[i].section = {
-                _id: "comune",
-                section: "Comune"
-              }
+          for (let i = 0; i < this.recentDocuments.length; i++) {
+            if (this.recentDocuments[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
+              this.recentDocuments[i].own = true;
             }
           }
 
-          this.recentDocuments = documents;
         })
         .catch((e) => {
           this.response = true;
           this.responseMessage = e.response.data;
         });
+    },
+    editDocument(id) {
+      this.$emit("editDocument", id);
     }
+  },
+  components: {
+    appPost: Post
   }
 }
 </script>

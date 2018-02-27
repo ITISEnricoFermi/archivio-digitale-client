@@ -37,6 +37,11 @@ export default {
   created() {
     this.getRequests();
   },
+  sockets: {
+    newUser() {
+      this.getRequests();
+    }
+  },
   methods: {
     getRequests() {
       axios.post("/admin/getRequests")

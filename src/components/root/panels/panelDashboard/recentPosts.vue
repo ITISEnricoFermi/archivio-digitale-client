@@ -3,7 +3,7 @@
   <div class="module document-box" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
-  <app-post :document="document" v-for="(document, key) in recentDocuments" :key="document._id" @editDocument="editDocument($event)"></app-post>
+  <app-document :document="document" v-for="(document, key) in recentDocuments" :key="document._id" @editDocument="editDocument($event)"></app-document>
 </div>
 </template>
 
@@ -12,7 +12,7 @@ import {
   eventBus
 } from "@/main";
 
-import Post from "@/components/post/post";
+import Document from "@/components/document/document";
 
 import axios from "axios";
 
@@ -31,6 +31,17 @@ export default {
     eventBus.$on("documentDeleted", () => {
       this.getRecentDocuments();
     });
+  },
+  sockets: {
+    newDocument() {
+      this.getRecentDocuments();
+    },
+    documentDeleted() {
+      this.getRecentDocuments();
+    },
+    documentUpdated() {
+      this.getRecentDocuments();
+    }
   },
   methods: {
     getRecentDocuments() {
@@ -55,7 +66,7 @@ export default {
     }
   },
   components: {
-    appPost: Post
+    appDocument: Document
   }
 }
 </script>

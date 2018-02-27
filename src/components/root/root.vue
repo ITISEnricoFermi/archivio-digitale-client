@@ -110,20 +110,28 @@ export default {
         this.responseMessage = e.response.data;
       });
 
-    axios.get("/user/me")
-      .then((response) => {
-        this.user = response.data;
-      })
-      .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
+      this.getUser();
 
+  },
+  sockets: {
+    newDocument() {
+      this.getUser();
+    }
   },
   methods: {
     menuMobile(e) {
       this.panel = e;
       this.menu = false;
+    },
+    getUser() {
+      axios.get("/user/me")
+        .then((response) => {
+          this.user = response.data;
+        })
+        .catch((e) => {
+          this.response = true;
+          this.responseMessage = e.response.data;
+        });
     }
   },
   components: {

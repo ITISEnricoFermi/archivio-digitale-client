@@ -4,17 +4,17 @@
 		<li class="menu-header-container__li menu-header-container__li--active" data-tab="panel__dashboard" @click.stop="changePanel('appPanelDashboard')">
 			<span><i class="fas fa-tachometer-alt"></i></span>
 			<span>Dashboard</span>
-			<span class="menu-header-container__li-tag u-bg-color-yellow">BETA</span>
+			<span class="menu-header-container__li-tag u-bg-color-red">Disattivato</span>
 		</li>
 		<li class="menu-header-container__li" data-tab="panel__search" @click.stop="changePanel('appPanelSearch')">
 			<span><i class="fa fa-search" aria-hidden="true"></i></span>
 			<span>Ricerca</span>
-			<span class="menu-header-container__li-tag u-bg-color-green">Attivo</span>
+			<span class="menu-header-container__li-tag u-bg-color-red">Disattivato</span>
 		</li>
 		<li class="menu-header-container__li" data-tab="panel__upload" @click.stop="changePanel('appPanelUpload')">
 			<span><i class="fas fa-pencil-alt"></i></span>
 			<span>Inserisci</span>
-			<span class="menu-header-container__li-tag u-bg-color-green">Attivo</span>
+			<span class="menu-header-container__li-tag u-bg-color-red">Disattivato</span>
 		</li>
 		<li class="menu-header-container__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges == 'admin'">
 			<span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
@@ -24,7 +24,7 @@
 		<li class="menu-header-container__li" data-tab="panel__profile" @click.stop="changePanel('appPanelProfile')">
 			<span><i class="fa fa-user" aria-hidden="true"></i></span>
 			<span>Profilo</span>
-			<span class="menu-header-container__li-tag u-bg-color-blue">Alpha</span>
+			<span class="menu-header-container__li-tag u-bg-color-green">Attivo</span>
 		</li>
 		<li class="menu-header-container__li" data-tab="panel__settings" @click.stop="changePanel('appPanelSettings')">
 			<span><i class="fa fa-cog" aria-hidden="true"></i></span>

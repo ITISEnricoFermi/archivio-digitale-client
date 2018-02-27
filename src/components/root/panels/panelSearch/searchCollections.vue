@@ -43,9 +43,16 @@ export default {
         return false;
       }
 
-      axios.post("/search/searchCollections/", this.query)
+      axios.post("/collections/search/", this.query)
         .then((response) => {
           let collections = response.data;
+
+          for (let i = 0; i < collections.length; i++) {
+            if (collections[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
+              collections[i].own = true;
+            }
+          }
+
           this.$emit("searchCollections", collections);
         })
         .catch((e) => {

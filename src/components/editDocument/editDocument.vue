@@ -122,9 +122,9 @@ export default {
         type: document.type._id,
         faculty: document.faculty._id,
         subject: document.subject._id,
-        class: document.class,
-        section: document.section,
-        visibility: document.visibility,
+        class: document.class._id,
+        section: document.section._id,
+        visibility: document.visibility._id,
         description: document.description
       };
 
@@ -142,6 +142,7 @@ export default {
       axios.patch("/documents/" + id, this.documentToEdit)
       .then((response) => {
         this.closePopUp();
+        this.$socket.emit("documentUpdated");
       })
       .catch((e) => {
         this.response = true;
@@ -153,6 +154,7 @@ export default {
       .then((response) => {
         this.closePopUp();
         eventBus.documentDeleted();
+        this.$socket.emit("documentDeleted");
       })
       .catch((e) => {
         this.response = true;

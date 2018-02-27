@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <app-post :document="document" v-for="document in documents" :key="document._id" @editDocument="showPopUp($event)" v-else></app-post>
+      <app-document :document="document" v-for="document in documents" :key="document._id" @editDocument="showPopUp($event)" v-else></app-document>
     </div>
   </div>
   <transition name="fade">
@@ -48,7 +48,7 @@
 
 <script>
 
-import Post from "@/components/post/post";
+import Document from "@/components/document/document";
 import PopUp from "@/components/popup/popup";
 import EditDocument from "@/components/editDocument/editDocument";
 
@@ -71,6 +71,11 @@ export default {
       popup: false,
       documentToEdit: ""
     };
+  },
+  sockets: {
+    newDocument() {
+      this.getDocuments(this.tab);
+    }
   },
   created() {
     this.getDocuments("pubblico");
@@ -130,7 +135,7 @@ export default {
     }
   },
   components: {
-    appPost: Post,
+    appDocument: Document,
     appPopup: PopUp,
     appEditDocument: EditDocument
   }

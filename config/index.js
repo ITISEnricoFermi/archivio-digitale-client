@@ -11,7 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: [{
-      context: ["/api", "/dashboard", "/user", "/logout", "/pics", "/search", "/settings", "/admin", "/documents", "/collections"],
+      context: ["/api", "/dashboard", "/user", "/logout", "/pics", "/settings", "/admin", "/documents", "/collections"],
       target: "http://localhost:3000",
       changeOrigin: true
     }, {
@@ -24,35 +24,6 @@ module.exports = {
         }
       }
     }],
-
-    // {
-    //   "/api": {
-    //     target: "http://localhost:3000",
-    //     changeOrigin: true,
-    //   },
-    //   "/dashboard": {
-    //     target: "http://localhost:3000",
-    //     changeOrigin: true,
-    //   },
-    //   "/user": {
-    //     target: "http://localhost:3000",
-    //     changeOrigin: true,
-    //
-    //   },
-    //   "/logout": {
-    //     target: "http://localhost:3000",
-    //     changeOrigin: true,
-    //   },
-    //   "/login": {
-    //     target: "http://localhost:3000",
-    //     changeOrigin: true,
-    //     bypass: function(req, res, proxyOptions) {
-    //       if (req.method != 'POST') {
-    //         return "/";
-    //       }
-    //     }
-    //   }
-    // },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

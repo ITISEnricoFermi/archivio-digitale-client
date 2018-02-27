@@ -1,6 +1,7 @@
 .menu-left {
   background-color: $color-primary;
   position: relative;
+  box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
 
   @include respond(tab-lan) {
     display: none;
@@ -10,7 +11,6 @@
     display: table;
     width: 100%;
     padding: 5rem;
-
     .menu-left__logo {
       width: 90%;
       display: table-cell;
@@ -78,6 +78,7 @@
   width: 100%;
   top: 0;
   display: none;
+  box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
 
   @include respond(tab-lan) {
     display: block;

@@ -118,10 +118,12 @@ export default {
       axios.put("/signup", this.user)
         .then((user) => {
           if (user) {
+            this.$socket.emit("newUser");
             this.signedUp = true;
           }
         })
         .catch((e) => {
+          console.log(e);
           this.response = true;
           this.responseMessage = e.response.data;
         });

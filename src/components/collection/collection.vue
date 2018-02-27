@@ -1,0 +1,73 @@
+<template>
+  <div class="module collection-box">
+    <div class="collection-box-header">
+      <div class="collection-box-header__img">
+        <img v-bind:src="'pics/' + collection.author.img" alt="Foto profilo utente">
+      </div>
+      <div class="collection-box-header__info">
+        <p class="collection-box-header__info--head heading-fourth">
+          <span>{{collection.author.firstname}} {{collection.author.lastname}}</span> ha creato
+          <span>{{collection.documentCollection}}</span>.
+        </p>
+        <p class="collection-box-header__info--date heading-fifth">{{ this.date }}
+        </p>
+      </div>
+    </div>
+    <div class="collection-box-info">
+      <!-- <p class="collection-box-info__description">{{document.description}}</p> -->
+      <ul class="collection-box-info__documents">
+        <li v-if="collection.documents.length === 0">Nessun documento nella collezione.</li>
+        <li v-for="document in collection.documents" v-else>
+          <a :href="'/documents/' + document.directory" target="_blank">
+            <span>{{document.name}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="collection-box-footer">
+      <!-- <ul class="collection-box-footer__info">
+        <li v-if="document.subject" class="u-bg-color-blue">{{document.subject.subject}}</li>
+        <li v-if="document.class || document.section" class="u-bg-color-yellow">
+          <span v-if="document.class">{{document.class.class}}</span>
+          <span v-if="document.section">{{document.section.section}}</span>
+        </li>
+        <li v-if="document.type" class="u-bg-color-green">{{document.type.type}}</li>
+      </ul> -->
+    </div>
+    <div class="collection-box-left">
+      <ul>
+        <li class="u-noselect" v-if="collection.own">
+          <a @click.prevent="edit(collection._id)">
+            <i class="fas fa-edit"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "collection",
+  props: ["collection"],
+  data: () => {
+    return {
+
+    };
+  },
+  computed: {
+    date: function() {
+      let timestamp = this.collection._id.toString().substring(0,8);
+      return new Date(parseInt( timestamp, 16 ) * 1000 ).toUTCString();
+    }
+  },
+  methods: {
+    edit(id) {
+      this.$emit("editCollection", id);
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+</style>

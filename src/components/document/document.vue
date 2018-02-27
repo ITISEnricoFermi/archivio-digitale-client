@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: "post",
+  name: "document",
   props: ["document"],
   computed: {
     date: function() {

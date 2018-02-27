@@ -76,6 +76,8 @@
 
 <script>
 
+import {eventBus} from "@/main";
+
 import axios from "axios";
 
 export default {
@@ -85,8 +87,6 @@ export default {
     return {
       response: false,
       responseMessage: "",
-      progress: 0,
-      uploading: false,
       documentToUpload: {
         name: "",
         type: "",
@@ -104,19 +104,14 @@ export default {
 
       let formData = new FormData();
       let config = {
-        // onUploadProgress: function(progressEvent) {
-        //   let actualProgress = progressEvent.loaded;
-        //   let totalProgress = progressEvent.total;
-        //   let progress = Math.floor((actualProgress * 100) / totalProgress);
-        //   this.response = true;
-        //   this.uploading = true;
-        //   this.progress = progress;
-        //
-        //   if (progress === 100) {
-        //     this.uploading = false;
-        //   }
-        //
-        // }
+        onUploadProgress: function(progressEvent) {
+          let actualProgress = progressEvent.loaded;
+          let totalProgress = progressEvent.total;
+          let progress = Math.floor((actualProgress * 100) / totalProgress);
+
+          eventBus.uploading(progress);
+
+        }
       };
 
       let document = JSON.stringify(this.documentToUpload);
@@ -139,7 +134,7 @@ export default {
           this.documentToUpload.visibility = "pubblico";
           this.documentToUpload.description = "";
 
-          socket.emit("createDocument");
+          this.$socket.emit("newDocument");
 
           this.$emit("documentMessage", "Documento caricato con successo.");
 

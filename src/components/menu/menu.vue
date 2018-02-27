@@ -27,7 +27,7 @@
   		<li class="menu-left__li" data-tab="panel__profile" @click.stop="changePanel('appPanelProfile')">
   			<span><i class="fa fa-user" aria-hidden="true"></i></span>
   			<span>Profilo</span>
-  			<span class="menu-left__li-tag u-bg-color-red">Disattivo</span>
+  			<span class="menu-left__li-tag u-bg-color-green">Attivo</span>
   		</li>
   		<li class="menu-left__li" data-tab="panel__settings" @click.stop="changePanel('appPanelSettings')">
   			<span><i class="fa fa-cog" aria-hidden="true"></i></span>

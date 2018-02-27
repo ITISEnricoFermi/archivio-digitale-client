@@ -15,7 +15,7 @@
           </select>
       </div>
       <div class="col-1-of-3">
-        <select class="module-input-select" v-on:change="changeFaculty" v-model="query.faculty">
+        <select class="module-input-select" v-model="query.faculty">
             <option class="module-input-option" value="" selected>Specializzazione</option>
             <option class="module-input-option" v-bind:value="faculty._id" v-for="faculty in faculties">
               {{ faculty.faculty }}
@@ -88,27 +88,18 @@ export default {
       }
     };
   },
+  sockets: {
+    documentDeleted() {
+      this.search();
+    }
+  },
   methods: {
     search() {
-      axios.post("/search/searchDocuments/", this.query)
+      axios.post("/documents/search/", this.query)
         .then((response) => {
           let documents = response.data;
 
           for (let i = 0; i < documents.length; i++) {
-            if (documents[i].class == null) {
-              documents[i].class = {
-                _id: "comune",
-                  class: "Comune"
-              }
-            }
-
-            if (documents[i].section == null) {
-              documents[i].section = {
-                _id: "comune",
-                section: "Comune"
-              }
-            }
-
             if (documents[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
               documents[i].own = true;
             }
@@ -118,17 +109,6 @@ export default {
         })
         .catch((e) => {
           console.log(e.response.data);
-        });
-    },
-    changeFaculty() {
-      axios.get("/api/getSubjectsByFaculty/", {
-          _id: this.query.faculty
-        })
-        .then((response) => {
-          this.subjects = response.data
-        })
-        .catch((e) => {
-
         });
     }
   }

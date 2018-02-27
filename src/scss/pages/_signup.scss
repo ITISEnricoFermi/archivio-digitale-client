@@ -12,28 +12,28 @@ main {
 .signup-box {
   position: absolute;
   @include absCenter;
-  width: 20vw;
+  width: 20vw!important;
 
   @include respond(tab-por) {
-    width: 60vw;
+    width: 60vw!important;
   }
 
   @include respond(phone) {
-    width: 80vw;
+    width: 80vw!important;
   }
 }
 
 .success-box {
   position: absolute;
   @include absCenter;
-  width: 20vw;
+  width: 20vw!important;
 
   @include respond(tab-por) {
-    width: 60vw;
+    width: 60vw!important;
   }
 
   @include respond(phone) {
-    width: 80vw;
+    width: 80vw!important;
   }
 
   &__title {

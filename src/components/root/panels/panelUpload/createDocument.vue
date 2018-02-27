@@ -1,34 +1,34 @@
 <template>
-  <div class="module">
-    <div class="row">
-      <div class="col-1-of-1">
-        <input type="text" class="module-input-text" placeholder="Titolo" autocomplete="off" required v-model="documentToUpload.name">
-      </div>
+<div class="module">
+  <div class="row">
+    <div class="col-1-of-1">
+      <input type="text" class="module-input-text" placeholder="Titolo" autocomplete="off" required v-model="documentToUpload.name">
     </div>
-    <div class="row">
-      <div class="col-1-of-1">
-        <textarea class="module-input-textarea" placeholder="Descrizione" v-model="documentToUpload.description"></textarea>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-1-of-1">
+      <textarea class="module-input-textarea" placeholder="Descrizione" v-model="documentToUpload.description"></textarea>
     </div>
-    <div class="row">
-      <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.type" required>
+  </div>
+  <div class="row">
+    <div class="col-1-of-3">
+      <select class="module-input-select" v-model="documentToUpload.type" required>
           <option class="module-input-option" value="" disabled selected>Tipo</option>
           <option class="module-input-option" v-bind:value="type._id" v-for="type in types">
             {{ type.type }}
           </option>
         </select>
-      </div>
-      <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.faculty">
+    </div>
+    <div class="col-1-of-3">
+      <select class="module-input-select" v-model="documentToUpload.faculty">
           <option class="module-input-option" value="" disabled selected>Specializzazione</option>
           <option class="module-input-option" :value="faculty._id" v-for="faculty in faculties">
             {{ faculty.faculty }}
           </option>
         </select>
-      </div>
-      <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.subject" required>
+    </div>
+    <div class="col-1-of-3">
+      <select class="module-input-select" v-model="documentToUpload.subject" required>
           <option class="module-input-option" value="" disabled selected>Materia</option>
           <optgroup :label="faculty.faculty" v-for="faculty in faculties">
             <option class="module-input-option" :value="subject._id" v-for="subject in faculty.subjects">
@@ -36,47 +36,48 @@
             </option>
           </optgroup>
         </select>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.class">
+  </div>
+  <div class="row">
+    <div class="col-1-of-3">
+      <select class="module-input-select" v-model="documentToUpload.class">
           <option class="module-input-option" value="0" selected>Classe</option>
           <option class="module-input-option" :value="schoolClass._id" v-for="schoolClass in schoolClasses">
             {{ schoolClass.class }}
           </option>
         </select>
-      </div>
-      <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.section">
+    </div>
+    <div class="col-1-of-3">
+      <select class="module-input-select" v-model="documentToUpload.section">
           <option class="module-input-option" value="" selected>Sezione</option>
           <option class="module-input-option" v-for="section in sections" :value="section._id">
             {{ section.section }}
           </option>
         </select>
-      </div>
-      <div class="col-1-of-3">
-        <select class="module-input-select" v-model="documentToUpload.visibility">
+    </div>
+    <div class="col-1-of-3">
+      <select class="module-input-select" v-model="documentToUpload.visibility">
           <option class="module-input-option" value="pubblico" disabled selected>Visibilità</option>
           <option class="module-input-option" v-for="visibility in visibilities" :value="visibility._id">{{visibility.visibility}}</option>
         </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1-of-2">
-        <input type="file" class="module-input-file" id="upload-file" ref="uploadFile">
-        <label class="module-button module-button--blue" for="upload-file">Carica file</label>
-      </div>
-      <div class="col-1-of-2">
-        <button class="module-button module-button--green" @click="upload">Carica documento</button>
-      </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-1-of-2">
+      <input type="file" class="module-input-file" id="upload-file" ref="uploadFile">
+      <label class="module-button module-button--blue" for="upload-file">Carica file</label>
+    </div>
+    <div class="col-1-of-2">
+      <button class="module-button module-button--green" @click="upload">Carica documento</button>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-
-import {eventBus} from "@/main";
+import {
+  eventBus
+} from "@/main";
 
 import axios from "axios";
 
@@ -105,12 +106,8 @@ export default {
       let formData = new FormData();
       let config = {
         onUploadProgress: function(progressEvent) {
-          let actualProgress = progressEvent.loaded;
-          let totalProgress = progressEvent.total;
-          let progress = Math.floor((actualProgress * 100) / totalProgress);
-
+          let progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           eventBus.uploading(progress);
-
         }
       };
 

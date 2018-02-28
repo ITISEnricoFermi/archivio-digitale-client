@@ -1,5 +1,5 @@
 <template>
-<div class="panel panel__dashboard" id="panel-dashboard">
+<main class="panel panel__dashboard">
   <div class="panel__dashboard-box">
     <app-recent-posts @editDocument="showPopUp($event)"></app-recent-posts>
     <app-profile :user="user"></app-profile>
@@ -10,7 +10,7 @@
       </app-popup>
     </transition>
   </div>
-</div>
+</main>
 </template>
 
 <script>

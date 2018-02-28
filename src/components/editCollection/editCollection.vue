@@ -1,47 +1,47 @@
 <template>
-  <div class="editCollection">
-    <div class="row">
-      <div class="col-1-of-2">
-        <input type="text" class="module-input-text" placeholder="Titolo" v-model="collectionToEdit.documentCollection">
-      </div>
-      <div class="col-1-of-2">
-        <select class="module-input-select" v-model="collectionToEdit.permissions">
+<div class="editCollection">
+  <div class="row">
+    <div class="col-1-of-2">
+      <input type="text" class="module-input-text" placeholder="Titolo" v-model="collectionToEdit.documentCollection">
+    </div>
+    <div class="col-1-of-2">
+      <select class="module-input-select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" v-for="permission in collectionsPermissions" :value="permission._id">{{permission.permission}}</option>
         </select>
-      </div>
     </div>
-    <div class="row" v-if="toggleMultipleSelect">
-      <div class="col-1-of-1">
-        <app-multiple-select :placeholder="'Autorizzazioni'" :multipleSelectData="users" :dbElements="dbElements" @elementAdded="documentToEdit.authorizations = $event"></app-multiple-select>
-      </div>
+  </div>
+  <div class="row" v-if="toggleMultipleSelect">
+    <div class="col-1-of-1">
+      <app-multiple-select :placeholder="'Autorizzazioni'" :multipleSelectOutput="collectionToEdit.authorizations" :multipleSelectData="users" :dbElements="dbElements" @elementAdded="collectionToEdit.authorizations = $event"></app-multiple-select>
     </div>
-    <div class="row" v-if="collectionToEdit.authorizations.length !== 0 && toggleMultipleSelect">
-      <div class="col-1-of-1">
-        <app-multiple-select-results :multipleSelectOutput="collectionToEdit.authorizations" :dbElements="dbElements" @elementRemoved="documentToEdit.authorizations = $event"></app-multiple-select-results>
-      </div>
+  </div>
+  <div class="row" v-if="collectionToEdit.authorizations.length !== 0 && toggleMultipleSelect">
+    <div class="col-1-of-1">
+      <app-multiple-select-results :multipleSelectOutput="collectionToEdit.authorizations" :dbElements="dbElements" @elementRemoved="collectionToEdit.authorizations = $event"></app-multiple-select-results>
     </div>
-    <div class="row">
-      <div class="col-1-of-3">
-        <button class="module-button module-button--yellow" @click="closePopUp">
+  </div>
+  <div class="row">
+    <div class="col-1-of-3">
+      <button class="module-button module-button--yellow" @click="closePopUp">
           <span><i class="fas fa-ban"></i></span>
           <span>Annulla</span>
         </button>
-      </div>
-      <div class="col-1-of-3">
-        <button class="module-button module-button--red" @click="remove(id)">
+    </div>
+    <div class="col-1-of-3">
+      <button class="module-button module-button--red" @click="remove(id)">
           <span><i class="fas fa-trash-alt"></i></span>
           <span>Elimina la collezione</span>
         </button>
-      </div>
-      <div class="col-1-of-3">
-        <button class="module-button module-button--green" @click="edit(id)">
+    </div>
+    <div class="col-1-of-3">
+      <button class="module-button module-button--green" @click="edit(id)">
           <span><i class="fas fa-save"></i></span>
           <span>Salva collezione</span>
         </button>
-      </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     toggleMultipleSelect() {
-      if(this.collectionToEdit.permissions == "utenti") {
+      if (this.collectionToEdit.permissions == "utenti") {
         return true;
       }
       this.collectionToEdit.authorizations = [];
@@ -71,31 +71,31 @@ export default {
   },
   created() {
     axios.get("/api/getUsers/")
-    .then((response) => {
-      this.users = response.data;
-    })
-    .catch((e) => {
-      this.response = true;
-      this.responseMessage = e.response.data;
-    });
+      .then((response) => {
+        this.users = response.data;
+      })
+      .catch((e) => {
+        this.response = true;
+        this.responseMessage = e.response.data;
+      });
 
     axios.get("/collections/info/" + this.id)
-    .then((response) => {
+      .then((response) => {
 
-      let collection = response.data;
+        let collection = response.data;
 
-      this.collectionToEdit = {
-        documentCollection: collection.documentCollection,
-        permissions: collection.permissions._id,
-        authorizations: collection.authorizations,
-        documents: collection.documents
-      };
-
-    })
-    .catc((e) => {
-      this.response = true;
-      this.responseMessage = e.response.data;
-    });
+        this.collectionToEdit = {
+          documentCollection: collection.documentCollection,
+          permissions: collection.permissions._id,
+          authorizations: collection.authorizations,
+          documents: collection.documents
+        };
+        
+      })
+      .catch((e) => {
+        this.response = true;
+        this.responseMessage = e.response.data;
+      });
 
   },
   methods: {
@@ -107,15 +107,15 @@ export default {
     },
     remove(id) {
       axios.delete("/collections/" + id)
-      .then((response) => {
-        this.closePopUp();
-        eventBus.collectionDeleted();
-        this.socket.$emit("collectionDeleted");
-      })
-      .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.respose.data;
-      });
+        .then((response) => {
+          this.closePopUp();
+          eventBus.collectionDeleted();
+          this.socket.$emit("collectionDeleted");
+        })
+        .catch((e) => {
+          this.response = true;
+          this.responseMessage = e.respose.data;
+        });
     }
   },
   components: {

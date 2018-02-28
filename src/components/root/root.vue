@@ -6,17 +6,15 @@
   </keep-alive>
   <transition name="expand">
     <keep-alive>
-      <app-menu-mobile @panelChanged="menuMobile($event)" v-if="menu" :privileges="user.privileges"></app-menu-mobile>
+      <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
     </keep-alive>
   </transition>
-  <main>
     <transition name="panel">
       <keep-alive>
         <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
         </component>
       </keep-alive>
     </transition>
-  </main>
 </div>
 </template>
 
@@ -124,7 +122,7 @@ export default {
       this.menu = false;
     },
     getUser() {
-      axios.get("/user/me")
+      axios.get("/users/me")
         .then((response) => {
           this.user = response.data;
         })

@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     getRecentDocuments() {
-      return axios.post("/dashboard/recentPosts")
+      return axios.get("/documents/recent/")
         .then((response) => {
           this.recentDocuments = response.data;
 

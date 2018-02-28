@@ -6,7 +6,8 @@
       </div>
       <div class="collection-box-header__info">
         <p class="collection-box-header__info--head heading-fourth">
-          <span>{{collection.author.firstname}} {{collection.author.lastname}}</span> ha creato
+          <span>{{collection.author.firstname}} {{collection.author.lastname}}</span>
+          <span> ha creato</span>
           <span>{{collection.documentCollection}}</span>.
         </p>
         <p class="collection-box-header__info--date heading-fifth">{{ this.date }}

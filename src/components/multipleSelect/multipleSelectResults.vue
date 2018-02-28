@@ -2,7 +2,7 @@
 <div class="module-multiple-select-tag-box">
   <ul>
     <li v-bind:value="output._id" v-for="output in multipleSelectOutput" v-on:click="remove">
-      <span v-for="element in dbElements">
+      <span v-bind:value="output._id" v-for="element in dbElements">
         {{ output[element] }}
       </span>
     </li>
@@ -13,11 +13,14 @@
 <script>
 export default {
   name: "multipleSelectResults",
-  props: ["multipleSelectOutput", "dbElements"],
-  data: () => {
-    return {
-
-    };
+  props: {
+    multipleSelectOutput: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    },
+    dbElements: Array
   },
   methods: {
     remove: function(event) {
@@ -26,6 +29,7 @@ export default {
       var element = (this.multipleSelectOutput.filter(function(object) {
         return object._id == id;
       }))[0];
+
       var index = this.multipleSelectOutput.indexOf(element);
 
       this.multipleSelectOutput.splice(index, 1);

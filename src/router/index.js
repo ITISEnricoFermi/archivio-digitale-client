@@ -16,7 +16,7 @@ export default new Router({
     name: "Root",
     component: Root,
     beforeEnter: (to, from, next) => {
-      axios.post("/user/me/logged")
+      axios.post("/users/me/logged")
         .then((response) => next())
         .catch((e) => next({
           path: "/login"

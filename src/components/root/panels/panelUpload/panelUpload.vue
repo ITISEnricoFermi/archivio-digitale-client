@@ -1,5 +1,5 @@
 <template>
-<div class="panel panel__upload" id="panel-upload">
+<main class="panel panel__upload">
   <app-create-document :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @documentMessage="documentResponse = $event"></app-create-document>
   <div class="module" v-if="documentResponse">
     <div class="row" v-if="progress">
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-</div>
+</main>
 </template>
 
 <script>

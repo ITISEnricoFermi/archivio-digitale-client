@@ -1,28 +1,36 @@
 <template>
-  <div class="module-multiple-select">
-    <input type="text" class="module-input-text" :placeholder="placeholder" v-model="multipleSelectField" v-on:keyup="typing">
-    <div class="module-multiple-select__results">
-      <ul>
-        <li v-bind:value="result._id" v-for="result in multipleSelectResults" v-on:click="click">
-          <span v-for="element in dbElements">
+<div class="module-multiple-select">
+  <input type="text" class="module-input-text" :placeholder="placeholder" v-model="multipleSelectField" v-on:keyup="typing">
+  <div class="module-multiple-select__results">
+    <ul>
+      <li v-bind:value="result._id" v-for="result in multipleSelectResults" v-on:click="click">
+        <span v-for="element in dbElements">
             {{ result[element] }}
           </span>
-        </li>
-      </ul>
-    </div>
+      </li>
+    </ul>
   </div>
+</div>
 </template>
 
 <script>
-
 export default {
   name: "multipleSelect",
-  props: ["placeholder", "multipleSelectData", "dbElements"],
+  props: {
+    placeholder: String,
+    multipleSelectData: Array,
+    dbElements: Array,
+    multipleSelectOutput: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    }
+  },
   data: () => {
     return {
       multipleSelectField: "",
-      multipleSelectResults: [],
-      multipleSelectOutput: []
+      multipleSelectResults: []
     };
   },
   methods: {
@@ -45,11 +53,15 @@ export default {
       if (this.multipleSelectField) {
 
         this.multipleSelectData.forEach((element) => {
-          if (this.multipleSelectOutput.indexOf(element) != -1) {
+          // if (this.multipleSelectOutput.indexOf(element) != -1) {
+          //   return true;
+          // }
+
+          if((this.multipleSelectOutput.filter(el => el._id == element._id))[0]) {
             return true;
           }
 
-          for(var i = 0; i < this.dbElements.length; i++) {
+          for (var i = 0; i < this.dbElements.length; i++) {
             if ((new RegExp(this.multipleSelectField.toLowerCase())).test(element[this.dbElements[i]].toLowerCase())) {
               this.multipleSelectResults.push(element);
               i = this.dbElements.length;

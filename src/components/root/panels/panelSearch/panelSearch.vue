@@ -1,5 +1,5 @@
 <template>
-<div class="panel panel__search" id="panel-search">
+<main class="panel panel__search">
   <app-search-documents :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event"></app-search-documents>
   <app-document :document="document" v-for="document in documents" :key="document._id" @editDocument="showPopUp($event, 'appEditDocument')"></app-document>
   <app-search-collections :collectionsPermissions="collectionsPermissions" @searchCollections="collections  = $event"></app-search-collections>
@@ -13,7 +13,7 @@
     </app-popup>
   </transition>
 
-</div>
+</main>
 </template>
 
 <script>

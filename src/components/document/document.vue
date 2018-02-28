@@ -6,7 +6,8 @@
     </div>
     <div class="document-box-header__info">
       <p class="document-box-header__info--head heading-fourth">
-        <span>{{document.author.firstname}} {{document.author.lastname}}</span> ha pubblicato
+        <span>{{document.author.firstname}} {{document.author.lastname}}</span>
+        <span> ha pubblicato</span>
         <span>{{document.name}}</span>.
       </p>
       <p class="document-box-header__info--date heading-fifth">{{ this.date }}

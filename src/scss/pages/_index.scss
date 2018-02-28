@@ -1,41 +1,31 @@
-body #app{
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 25rem auto;
-  grid-template-areas: "menu main";
-  background-color: $color-white-2;
+body {
 
-  // @include respond(tab-lan) {
-  //   display: block;
-  // }
-
-  @include respond(tab-lan) {
-    grid-template-rows: 6rem auto;
-    grid-template-columns: 1fr;
-    grid-template-areas: "menuMobile" "main";
+  #app {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 25rem auto;
+    grid-template-areas: ". main";
+    min-height: 100vh;
+    background-color: $color-white-2;
+    @include respond(tab-lan) {
+      display: block;
+      margin-top: 6rem;
+    }
   }
 
-}
+  main {
+    grid-area: main;
+    font-size: 1.4rem;
+    padding: 3vh;
+    background-color: $color-white-2;
+    z-index: 9999;
 
-main {
-  grid-area: main;
-  overflow-y: scroll;
+  }
 
-  // @include respond(tab-lan) {
-  //   height: calc(100vh - 6rem);
-  //   margin-top: 6rem;
-  // }
-
-}
-
-.menu-left {
-  grid-area: menu;
-}
-
-.panel {
-  width: 100%;
-  font-size: 1.4rem;
-  padding: 3vh;
-  min-height: 100%;
-
+  .menu-left {
+    position: fixed;
+    width: 25rem;
+    height: 100%;
+    z-index: 9998;
+  }
 }

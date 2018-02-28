@@ -1,9 +1,6 @@
 <template>
 <div class="popup">
   <div class="popup__box" :style="'width: ' + width + ';'">
-    <!-- <div class="popup__header">
-      <p class="popup-header--close" @click="closePopUp"><i class="fa fa-times" aria-hidden="true"></i></p>
-    </div> -->
     <slot>
       Contenuto del popup
     </slot>

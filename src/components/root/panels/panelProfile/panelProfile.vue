@@ -1,5 +1,5 @@
 <template>
-<div class="panel panel__profile" id="panel-profile">
+<main class="panel panel__profile">
   <div class="profile">
     <div class="profile-cover">
       <div class="profile-img">
@@ -13,16 +13,22 @@
       <div class="profile-menu">
         <ul class="profile-menu__ul">
           <li class="profile-menu__li" @click="showTab('pubblico')">
-            <span class="profile-menu__li--value heading-tertiary">{{ count.pubblico }}</span>
-            <span class="profile-menu__li--tag heading-fifth">Documenti pubblici</span>
+            <div>
+              <span class="profile-menu__li--value heading-tertiary">{{ count.pubblico }}</span>
+              <span class="profile-menu__li--tag heading-fifth">Documenti pubblici</span>
+            </div>
           </li>
           <li class="profile-menu__li" @click="showTab('areariservata')">
-            <span class="profile-menu__li--value heading-tertiary">{{ count.areariservata }}</span>
-            <span class="profile-menu__li--tag heading-fifth">Documenti in area riservata</span>
+            <div>
+              <span class="profile-menu__li--value heading-tertiary">{{ count.areariservata }}</span>
+              <span class="profile-menu__li--tag heading-fifth">Documenti in area riservata</span>
+            </div>
           </li>
           <li class="profile-menu__li" @click="showTab('materia')">
-            <span class="profile-menu__li--value heading-tertiary">{{count.materia }}</span>
-            <span class="profile-menu__li--tag heading-fifth">Documenti per materia</span>
+            <div>
+              <span class="profile-menu__li--value heading-tertiary">{{count.materia }}</span>
+              <span class="profile-menu__li--tag heading-fifth">Documenti per materia</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -43,11 +49,10 @@
       <app-edit-document :id="documentToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses"></app-edit-document>
     </app-popup>
   </transition>
-</div>
+</main>
 </template>
 
 <script>
-
 import Document from "@/components/document/document";
 import PopUp from "@/components/popup/popup";
 import EditDocument from "@/components/editDocument/editDocument";
@@ -80,32 +85,32 @@ export default {
   created() {
     this.getDocuments("pubblico");
 
-    axios.get("/user/me/documents/count/pubblico")
-    .then((response) => {
-      this.count.pubblico = response.data;
-    })
-    .catch((e) => {
-      this.response = true;
-      this.responseMessage = "";
-    });
+    axios.get("/users/me/documents/count/pubblico")
+      .then((response) => {
+        this.count.pubblico = response.data;
+      })
+      .catch((e) => {
+        this.response = true;
+        this.responseMessage = "";
+      });
 
-    axios.get("/user/me/documents/count/areariservata")
-    .then((response) => {
-      this.count.areariservata = response.data;
-    })
-    .catch((e) => {
-      this.response = true;
-      this.responseMessage = "";
-    });
+    axios.get("/users/me/documents/count/areariservata")
+      .then((response) => {
+        this.count.areariservata = response.data;
+      })
+      .catch((e) => {
+        this.response = true;
+        this.responseMessage = "";
+      });
 
-    axios.get("/user/me/documents/count/materia")
-    .then((response) => {
-      this.count.materia = response.data;
-    })
-    .catch((e) => {
-      this.response = true;
-      this.responseMessage = "";
-    });
+    axios.get("/users/me/documents/count/materia")
+      .then((response) => {
+        this.count.materia = response.data;
+      })
+      .catch((e) => {
+        this.response = true;
+        this.responseMessage = "";
+      });
   },
   methods: {
     showTab(privileges) {
@@ -113,7 +118,7 @@ export default {
       this.getDocuments(privileges);
     },
     getDocuments(tab) {
-      axios.get("/user/me/documents/" + tab)
+      axios.get("/users/me/documents/" + tab)
         .then((response) => {
           this.documents = response.data;
 

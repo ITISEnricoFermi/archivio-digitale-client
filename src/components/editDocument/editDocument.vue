@@ -122,8 +122,8 @@ export default {
         type: document.type._id,
         faculty: document.faculty._id,
         subject: document.subject._id,
-        class: document.class._id,
-        section: document.section._id,
+        class: document.class ? document.class._id : 0,
+        section: document.section ? document.section._id : "",
         visibility: document.visibility._id,
         description: document.description
       };
@@ -132,6 +132,7 @@ export default {
     .catch((e) => {
       this.response = true;
       this.responseMessage = e.response.data;
+      console.log(this.responseMessage);
     })
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-<div class="panel panel__settings">
+<main class="panel panel__settings">
   <div class="module">
     <div class="row">
       <div class="col-1-of-2">
@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-</div>
+</main>
 
 </template>
 
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     saveSettings() {
-      axios.post("/settings/updateInformations", this.passwords)
+      axios.patch("/users/me/", this.passwords)
         .then(() => {
           window.location.replace("/login");
         })
@@ -78,7 +78,7 @@ export default {
 
     formData.append("picToUpload", profilePic);
 
-    axios.post("/settings/updateProfilePic", formData)
+    axios.patch("/users/me/pic/", formData)
       .then((message) => {
         this.response = true;
         this.responseMessage = message.data;
@@ -90,7 +90,7 @@ export default {
       });
   },
   disableAccount() {
-    axios.post("/settings/disableAccount")
+    axios.delete("/users/me/")
       .then(() => {
         window.location.replace("/");
       })

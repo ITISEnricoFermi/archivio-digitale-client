@@ -38,7 +38,7 @@
       box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
       margin: 0 auto;
       transition: transform 0.2s;
-      cursor:pointer;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.1);
@@ -47,7 +47,6 @@
 
     &__info {
       display: none;
-      &--name {}
     }
   }
 
@@ -58,6 +57,7 @@
     bottom: 0;
 
     &__ul {
+      width: 100%;
       padding: 0;
       text-align: center;
       margin: 0 auto;
@@ -65,20 +65,19 @@
     }
 
     &__li {
-      float: left;
-      display: inline-block;
-      padding: 2vh;
-      list-style: none;
-      width: calc(100% / 3);
-      cursor: pointer;
-      background-color: rgba($color-black, 0.5);
       background-size: 250%;
       transition: all 0.4s;
-      height: 9vh;
+      cursor: pointer;
+      background-color: rgba($color-black, 0.5);
+      padding: 2vh;
+      list-style: none;
+      display: inline-table;
+      float: left;
+      width: calc(100% / 3);
 
       @include respond(phone) {
-        min-height: 10vh;
-        padding-bottom: 1vh;
+        min-height: 12vh;
+        padding: 1vh;
       }
 
       &:hover {
@@ -86,13 +85,22 @@
         background-position: 100%;
       }
 
-      span {
-        display: block;
+      div {
+        vertical-align: middle;
+        display: table-cell;
+
+        span {
+          display: block;
+
+          &:not(:last-child) {
+            margin-bottom: 0.25rem;
+          }
+        }
       }
     }
   }
 
   .profile-documents {
-    padding: 3vh 0 0 0;
+    padding: 3vh 0 0;
   }
 }

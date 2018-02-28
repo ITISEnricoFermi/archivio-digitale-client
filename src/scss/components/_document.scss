@@ -11,6 +11,14 @@
     display: table;
     width: 100%;
 
+    span:nth-child(1), span:nth-child(2) {
+
+      @include respond(phone) {
+          display: none;
+      }
+
+    }
+
     &__img {
       display: inline-block;
       height: 5rem;

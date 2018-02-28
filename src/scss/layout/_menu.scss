@@ -2,6 +2,7 @@
   background-color: $color-primary;
   position: relative;
   box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+  z-index: 10000;
 
   @include respond(tab-lan) {
     display: none;
@@ -79,6 +80,7 @@
   top: 0;
   display: none;
   box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+  z-index: 10000;
 
   @include respond(tab-lan) {
     display: block;
@@ -106,9 +108,9 @@
   width: 100%;
   position: fixed;
   top: 6rem;
-  display: none;
-  z-index: 100;
+  z-index: 10000;
   overflow: hidden;
+  display: none;
 
   @include respond(tab-lan) {
     display: block;
@@ -117,6 +119,8 @@
   &__main {
     top: 0;
     width: 100%;
+    padding: 0;
+    margin: 0;
     text-align: center;
     position: absolute;
     @include absCenter;

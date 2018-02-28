@@ -5,6 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 20000;
 
   &__box {
     height: auto;
@@ -12,33 +13,11 @@
     background-color: $color-white;
     border: 1px solid $color-white-3;
     border-radius: 0.3rem;
-    // padding: 4rem 3rem 3rem 3rem;
     padding: 3vh;
     position: absolute;
     @include absCenter;
-
     @include respond(phone) {
       width: 90%!important;
     }
   }
-
-  // &__header {
-  //   height: 3rem;
-  //   position: absolute;
-  //   top: 0;
-  //   left:0;
-  //   width: 100%;
-  //   padding: 1rem;
-  //   text-align: right;
-  //
-  //   &--close {
-  //     display: block;
-  //     cursor: pointer;
-  //     font-size: 2rem;
-  //
-  //     i {
-  //       display: block;
-  //     }
-  //   }
-  // }
 }

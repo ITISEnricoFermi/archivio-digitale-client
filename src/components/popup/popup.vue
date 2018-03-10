@@ -10,6 +10,10 @@
 
 <script>
 
+import {
+  eventBus
+} from "@/main";
+
 export default {
   name: "popup",
   props: ["width"],
@@ -21,14 +25,9 @@ export default {
   created() {
     window.addEventListener('keyup', (e) => {
       if(e.keyCode == 27) {
-        this.closePopUp();
+        eventBus.closePopUp();
       }
     });
-  },
-  methods: {
-    closePopUp() {
-      this.$emit("closePopUp");
-    }
   }
 }
 </script>

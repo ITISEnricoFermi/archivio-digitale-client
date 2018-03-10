@@ -45,6 +45,10 @@
 </template>
 
 <script>
+import {
+  eventBus
+} from "@/main";
+
 import MultipleSelect from "@/components/multipleSelect/multipleSelect";
 import MultipleSelectResults from "@/components/multipleSelect/multipleSelectResults";
 
@@ -90,7 +94,7 @@ export default {
           authorizations: collection.authorizations,
           documents: collection.documents
         };
-        
+
       })
       .catch((e) => {
         this.response = true;
@@ -100,7 +104,7 @@ export default {
   },
   methods: {
     closePopUp() {
-      this.$parent.$emit("closePopUp");
+      eventBus.closePopUp();
     },
     edit(id) {
 
@@ -109,7 +113,6 @@ export default {
       axios.delete("/collections/" + id)
         .then((response) => {
           this.closePopUp();
-          eventBus.collectionDeleted();
           this.socket.$emit("collectionDeleted");
         })
         .catch((e) => {

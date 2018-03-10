@@ -85,7 +85,8 @@ export default {
         class: "",
         section: "",
         visibility: ""
-      }
+      },
+      help: undefined
     };
   },
   sockets: {
@@ -95,6 +96,13 @@ export default {
   },
   methods: {
     search() {
+
+      for(let i = 0; i < this.query.length; i++) {
+        if(Object.keys(this.query)[i] != "") {
+          return false;
+        }
+      }
+
       axios.post("/documents/search/", this.query)
         .then((response) => {
           let documents = response.data;
@@ -108,7 +116,10 @@ export default {
           this.$emit("searchDocuments", documents);
         })
         .catch((e) => {
-          console.log(e.response.data);
+          this.$emit("alert", {
+            message: e.response.data,
+            color: "alert--yellow"
+          });
         });
     }
   }

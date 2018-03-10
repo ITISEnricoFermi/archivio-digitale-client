@@ -39,11 +39,14 @@
       </div>
     </div>
   </div>
+  <transition name="fade">
+    <app-alert v-if="settingsAlert.message" :alert="settingsAlert" @alert="settingsAlert = $event"></app-alert>
+  </transition>
 </main>
-
 </template>
 
 <script>
+import Alert from "@/components/alert/alert";
 
 import axios from "axios";
 
@@ -51,13 +54,15 @@ export default {
   name: "panelSettings",
   data: () => {
     return {
-      response: false,
-      responseMessage: "",
       passwords: {
         new: "",
         old: ""
       },
-      profilePic: ""
+      profilePic: "",
+      settingsAlert: {
+        message: undefined,
+        color: undefined
+      }
     };
   },
   methods: {
@@ -67,43 +72,43 @@ export default {
           window.location.replace("/login");
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
+          this.settingsAlert = {
+            message: e.response.data,
+            color: "alert--red"
+          };
         });
     },
-  uploadProfilePic() {
-    let profilePic = this.$refs.settingsProfilePic.files[0];
+    uploadProfilePic() {
+      let profilePic = this.$refs.settingsProfilePic.files[0];
 
-    let formData = new FormData();
+      let formData = new FormData();
 
-    formData.append("picToUpload", profilePic);
+      formData.append("picToUpload", profilePic);
 
-    axios.patch("/users/me/pic/", formData)
-      .then((message) => {
-        this.response = true;
-        this.responseMessage = message.data;
-        window.location.reload();
-      })
-      .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
-  },
-  disableAccount() {
-    axios.delete("/users/me/")
-      .then(() => {
-        window.location.replace("/");
-      })
-      .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
+      axios.patch("/users/me/pic/", formData)
+        .then((message) => {
+          window.location.reload();
+        })
+        .catch((e) => {
+          this.settingsAlert = {
+            message: e.response.data,
+            color: "alert--red"
+          };
+        });
+    },
+    disableAccount() {
+      axios.delete("/users/me/")
+        .then(() => {
+          window.location.replace("/");
+        })
+        .catch((e) => {
+          this.settingsAlert = {
+            message: e.response.data,
+            color: "alert--red"
+          };
+        });
+    }
   }
-}
-
-
-
-
 }
 </script>
 

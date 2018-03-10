@@ -1,36 +1,35 @@
 <template>
-  <div class="module">
-    <div class="row">
-      <div class="col-1-of-2">
-        <input type="text" class="module-input-text" placeholder="Collezione" v-model="collection.documentCollection">
-      </div>
-      <div class="col-1-of-2">
-        <select class="module-input-select" v-model="collection.permissions">
+<div class="module">
+  <div class="row">
+    <div class="col-1-of-2">
+      <input type="text" class="module-input-text" placeholder="Collezione" v-model="collection.documentCollection">
+    </div>
+    <div class="col-1-of-2">
+      <select class="module-input-select" v-model="collection.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" v-for="permission in collectionsPermissions" :value="permission._id">{{permission.permission}}</option>
         </select>
-      </div>
-    </div>
-    <div class="row" v-if="toggleMultipleSelect">
-      <div class="col-1-of-1">
-        <app-multiple-select :placeholder="'Autorizzazioni'" :multipleSelectData="users" :dbElements="dbElements" @elementAdded="collection.authorizations = $event"></app-multiple-select>
-      </div>
-    </div>
-    <div class="row" v-if="collection.authorizations.length !== 0 && toggleMultipleSelect">
-      <div class="col-1-of-1">
-        <app-multiple-select-results :multipleSelectOutput="collection.authorizations" :dbElements="dbElements" @elementRemoved="collection.authorizations = $event"></app-multiple-select-results>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1-of-1">
-        <button class="module-button module-button--green" @click="createCollection">Crea collezione</button>
-      </div>
     </div>
   </div>
+  <div class="row" v-if="toggleMultipleSelect">
+    <div class="col-1-of-1">
+      <app-multiple-select :placeholder="'Autorizzazioni'" :multipleSelectData="users" :dbElements="dbElements" @elementAdded="collection.authorizations = $event"></app-multiple-select>
+    </div>
+  </div>
+  <div class="row" v-if="collection.authorizations.length !== 0 && toggleMultipleSelect">
+    <div class="col-1-of-1">
+      <app-multiple-select-results :multipleSelectOutput="collection.authorizations" :dbElements="dbElements" @elementRemoved="collection.authorizations = $event"></app-multiple-select-results>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1-of-1">
+      <button class="module-button module-button--green" @click="createCollection">Crea collezione</button>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-
 import multipleSelect from "@/components/multipleSelect/multipleSelect.vue";
 import multipleSelectResults from "@/components/multipleSelect/multipleSelectResults.vue";
 
@@ -47,14 +46,12 @@ export default {
         documentCollection: undefined,
         permissions: undefined,
         authorizations: []
-      },
-      response: false,
-      responseMessage: ""
+      }
     };
   },
   computed: {
     toggleMultipleSelect() {
-      if(this.collection.permissions == "utenti") {
+      if (this.collection.permissions == "utenti") {
         return true;
       }
       this.collection.authorizations = [];
@@ -63,28 +60,36 @@ export default {
   },
   created() {
     axios.get("/api/getUsers/")
-    .then((response) => {
-      this.users = response.data;
-    })
-    .catch((e) => {
-      this.response = true;
-      this.responseMessage = e.response.data;
-    });
+      .then((response) => {
+        this.users = response.data;
+      })
+      .catch((e) => {
+        this.$emit("alert", {
+          message: e.respone.data,
+          color: "alert--red"
+        });
+      });
   },
   methods: {
     createCollection() {
       axios.put("/collections/", this.collection)
-      .then((response) => {
+        .then((response) => {
 
-        this.collection.documentCollection = "";
-        this.collection.permissions = undefined;
-        this.collection.authorizations = [];
+          this.collection.documentCollection = "";
+          this.collection.permissions = undefined;
+          this.collection.authorizations = [];
 
-        this.$emit("collectionMessage", response.data);
-      })
-      .catch((e) => {
-        this.$emit("collectionMessage", e.respone.data);
-      });
+          this.$emit("alert", {
+            message: response.data,
+            color: "alert--blue"
+          });
+        })
+        .catch((e) => {
+          this.$emit("alert", {
+            message: e.respone.data,
+            color: "alert--red"
+          });
+        });
     }
   },
   components: {

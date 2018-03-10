@@ -6,29 +6,36 @@ import Root from "@/components/root/root";
 import Login from "@/components/login/login";
 import SignUp from "@/components/signup/signup";
 
+import NotFoundComponent from "@/components/404.error/404.error";
+
 Vue.use(Router)
 
 
 export default new Router({
   mode: 'history',
   routes: [{
-    path: "/",
-    name: "Root",
-    component: Root,
-    beforeEnter: (to, from, next) => {
-      axios.post("/users/me/logged")
-        .then((response) => next())
-        .catch((e) => next({
-          path: "/login"
-        }));
+      path: "/",
+      name: "Root",
+      component: Root,
+      beforeEnter: (to, from, next) => {
+        axios.post("/users/me/logged")
+          .then((response) => next())
+          .catch((e) => next({
+            path: "/login"
+          }));
+      }
+    }, {
+      path: "/login",
+      name: "Login",
+      component: Login
+    }, {
+      path: "/signup",
+      name: "SignUp",
+      component: SignUp
+    },
+    {
+      path: "*",
+      component: NotFoundComponent
     }
-  }, {
-    path: "/login",
-    name: "Login",
-    component: Login
-  }, {
-    path: "/signup",
-    name: "SignUp",
-    component: SignUp
-  }]
+  ]
 });

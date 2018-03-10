@@ -48,6 +48,11 @@
 </template>
 
 <script>
+
+import {
+  eventBus
+} from "@/main";
+
 export default {
   name: "collection",
   props: ["collection"],
@@ -64,7 +69,7 @@ export default {
   },
   methods: {
     edit(id) {
-      this.$emit("editCollection", id);
+      eventBus.editEntity(id, "appEditCollection");
     }
   }
 }

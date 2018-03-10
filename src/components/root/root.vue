@@ -9,17 +9,28 @@
       <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
     </keep-alive>
   </transition>
-    <transition name="panel">
-      <keep-alive>
-        <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
-        </component>
-      </keep-alive>
-    </transition>
+  <transition name="panel">
+    <keep-alive>
+      <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
+      </component>
+    </keep-alive>
+  </transition>
+  <transition name="fade">
+    <app-popup v-if="popup" :width="'80%'">
+      <component v-if="popup" :is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions">
+      </component>
+    </app-popup>
+  </transition>
 </div>
 </template>
 
 <script>
 import axios from "axios";
+
+
+import {
+  eventBus
+} from "@/main";
 
 // VUE
 import Menu from "@/components/menu/menu.vue";
@@ -31,6 +42,10 @@ import panelUpload from "./panels/panelUpload/panelUpload.vue";
 import panelAdmin from "./panels/panelAdmin/panelAdmin.vue";
 import panelProfile from "./panels/panelProfile/panelProfile.vue";
 import panelSettings from "./panels/panelSettings/panelSettings.vue";
+
+import PopUp from "@/components/popup/popup";
+import EditDocument from "@/components/editDocument/editDocument";
+import EditCollection from "@/components/editCollection/editCollection";
 
 export default {
   name: 'root',
@@ -50,10 +65,21 @@ export default {
         img: "../static/elements/profile.jpg"
       },
       errors: [],
-      menu: false
+      menu: false,
+      popup: false,
+      entityToEdit: undefined
     };
   },
   created() {
+
+    eventBus.$on("editEntity", (id, component) => {
+      this.showPopUp(id, component);
+    });
+
+    eventBus.$on("closePopUp", () => {
+      this.popup = false;
+    });
+
     axios.get("/api/getDocumentTypes/")
       .then((response) => {
         this.types = response.data
@@ -108,7 +134,7 @@ export default {
         this.responseMessage = e.response.data;
       });
 
-      this.getUser();
+    this.getUser();
 
   },
   sockets: {
@@ -130,6 +156,10 @@ export default {
           this.response = true;
           this.responseMessage = e.response.data;
         });
+    },
+    showPopUp(id, component) {
+      this.popup = component;
+      this.entityToEdit = id;
     }
   },
   components: {
@@ -141,7 +171,10 @@ export default {
     appPanelUpload: panelUpload,
     appPanelAdmin: panelAdmin,
     appPanelProfile: panelProfile,
-    appPanelSettings: panelSettings
+    appPanelSettings: panelSettings,
+    appPopup: PopUp,
+    appEditDocument: EditDocument,
+    appEditCollection: EditCollection
   }
 }
 </script>

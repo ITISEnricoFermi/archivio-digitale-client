@@ -3,7 +3,7 @@
   <div class="module document-box" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
-  <app-document :document="document" v-for="(document, key) in recentDocuments" :key="document._id" @editDocument="editDocument($event)"></app-document>
+  <app-document :document="document" v-for="(document, key) in recentDocuments" :key="document._id"></app-document>
 </div>
 </template>
 
@@ -62,7 +62,7 @@ export default {
         });
     },
     editDocument(id) {
-      this.$emit("editDocument", id);
+      eventBus.editEntity("editDocument", id, "appEditDocument");
     }
   },
   components: {

@@ -1,0 +1,19 @@
+.alert {
+
+  &--red {
+    @include alertColor($color-button-red);
+  }
+
+  &--green {
+    @include alertColor($color-button-green);
+  }
+
+  &--blue {
+    @include alertColor($color-button-blue);
+  }
+
+  &--yellow {
+    @include alertColor($color-button-yellow);
+  }
+
+}

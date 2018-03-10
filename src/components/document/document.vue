@@ -50,18 +50,22 @@
 </template>
 
 <script>
+import {
+  eventBus
+} from "@/main";
+
 export default {
   name: "document",
   props: ["document"],
   computed: {
     date: function() {
-      let timestamp = this.document._id.toString().substring(0,8);
-      return new Date(parseInt( timestamp, 16 ) * 1000 ).toUTCString();
+      let timestamp = this.document._id.toString().substring(0, 8);
+      return new Date(parseInt(timestamp, 16) * 1000).toUTCString();
     }
   },
   methods: {
     editDocument(id) {
-      this.$emit("editDocument", id);
+      eventBus.editEntity(id, "appEditDocument");
     }
   }
 }

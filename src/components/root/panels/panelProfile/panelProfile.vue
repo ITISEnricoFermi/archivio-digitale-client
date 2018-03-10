@@ -41,27 +41,20 @@
           </div>
         </div>
       </div>
-      <app-document :document="document" v-for="document in documents" :key="document._id" @editDocument="showPopUp($event)" v-else></app-document>
+      <app-document :document="document" v-for="document in documents" :key="document._id" v-else></app-document>
     </div>
   </div>
-  <transition name="fade">
-    <app-popup @closePopUp="popup = false" v-if="popup" :width="'80%'">
-      <app-edit-document :id="documentToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses"></app-edit-document>
-    </app-popup>
-  </transition>
 </main>
 </template>
 
 <script>
 import Document from "@/components/document/document";
-import PopUp from "@/components/popup/popup";
-import EditDocument from "@/components/editDocument/editDocument";
 
 import axios from "axios";
 
 export default {
   name: "panelProfile",
-  props: ["user", "types", "faculties", "visibilities", "sections", "schoolClasses"],
+  props: ["user"],
   data: () => {
     return {
       tab: "pubblico",
@@ -72,9 +65,7 @@ export default {
         pubblico: "",
         areariservata: "",
         materia: ""
-      },
-      popup: false,
-      documentToEdit: ""
+      }
     };
   },
   sockets: {
@@ -133,16 +124,10 @@ export default {
           this.response = true;
           this.responseMessage = e.response.data;
         });
-    },
-    showPopUp(id) {
-      this.popup = true;
-      this.documentToEdit = id;
     }
   },
   components: {
-    appDocument: Document,
-    appPopup: PopUp,
-    appEditDocument: EditDocument
+    appDocument: Document
   }
 }
 </script>

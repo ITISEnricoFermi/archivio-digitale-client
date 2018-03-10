@@ -1,14 +1,10 @@
 <template>
 <main class="panel panel__admin">
   <app-signup-requests></app-signup-requests>
-  <app-create-account :privileges="privileges" :subjects="subjects" @creatorMessage="response = $event"></app-create-account>
-  <div class="module" v-if="response">
-    <div class="row">
-      <div class="col-1-of-1">
-        <p>{{response}}</p>
-      </div>
-    </div>
-  </div>
+  <app-create-account :privileges="privileges" :subjects="subjects" @alert="userAlert = $event"></app-create-account>
+  <transition name="fade">
+    <app-alert v-if="userAlert.message" :alert="userAlert" @alert="userAlert = $event"></app-alert>
+  </transition>
   <app-search-users></app-search-users>
 </main>
 </template>
@@ -19,13 +15,18 @@ import axios from "axios";
 import signupRequests from "./signupRequests.vue";
 import createAccount from "./createAccount.vue";
 import searchUsers from "./searchUsers.vue";
+import Alert from "@/components/alert/alert";
 
 export default {
   props: ["privileges"],
   data: () => {
     return {
       response: false,
-      subjects: []
+      subjects: [],
+      userAlert: {
+        message: undefined,
+        color: undefined
+      }
     };
   },
   created() {
@@ -33,13 +34,17 @@ export default {
       .then((response) => {
         this.subjects = response.data;
       }).catch((e) => {
-        this.response = e.response.data;
+        this.userAlert = {
+          message: e.response.data,
+          color: "alert--red"
+        };
       });
   },
   components: {
     appSignupRequests: signupRequests,
     appCreateAccount: createAccount,
-    appSearchUsers: searchUsers
+    appSearchUsers: searchUsers,
+    appAlert: Alert
   }
 }
 </script>

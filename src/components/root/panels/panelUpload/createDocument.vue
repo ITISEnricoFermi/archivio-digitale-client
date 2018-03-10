@@ -75,10 +75,6 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from "@/main";
-
 import axios from "axios";
 
 export default {
@@ -86,8 +82,6 @@ export default {
   props: ["types", "faculties", "visibilities", "sections", "schoolClasses"],
   data: () => {
     return {
-      response: false,
-      responseMessage: "",
       documentToUpload: {
         name: "",
         type: "",
@@ -103,11 +97,15 @@ export default {
   methods: {
     upload() {
 
+      let self = this;
       let formData = new FormData();
       let config = {
         onUploadProgress: function(progressEvent) {
           let progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          eventBus.uploading(progress);
+          if (progress == 100) {
+            progress = 0;
+          }
+          self.$emit("progress", progress);
         }
       };
 
@@ -119,8 +117,6 @@ export default {
 
       axios.put("/documents/", formData, config)
         .then((response) => {
-          this.response = true;
-          this.responseMessage = response.data;
 
           this.documentToUpload.name = "";
           this.documentToUpload.type = "";
@@ -133,11 +129,17 @@ export default {
 
           this.$socket.emit("newDocument");
 
-          this.$emit("documentMessage", "Documento caricato con successo.");
+          this.$emit("alert", {
+            message: "Documento caricato con successo.",
+            color: "alert--blue"
+          });
 
         })
         .catch((e) => {
-          this.$emit("documentMessage", e.response.data);
+          this.$emit("alert", {
+            message: e.response.data,
+            color: "alert--red"
+          });
         });
     }
   }

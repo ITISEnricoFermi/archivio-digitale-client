@@ -1,30 +1,24 @@
 <template>
 <main class="panel panel__search">
-  <app-search-documents :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event"></app-search-documents>
-  <app-document :document="document" v-for="document in documents" :key="document._id" @editDocument="showPopUp($event, 'appEditDocument')"></app-document>
-  <app-search-collections :collectionsPermissions="collectionsPermissions" @searchCollections="collections  = $event"></app-search-collections>
-  <app-collection :collection="collection" v-for="collection in collections" :key="collection._id"  @editCollection="showPopUp($event, 'appEditCollection')"></app-collection>
-
+  <app-search-documents :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
+  <app-document :document="document" v-for="document in documents" :key="document._id"></app-document>
   <transition name="fade">
-
-    <app-popup @closePopUp="popup = false" v-if="popup" :width="'80%'">
-      <component v-if="popup ":is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions">
-      </component>
-    </app-popup>
+    <app-alert v-if="documentsAlert.message" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
   </transition>
-
+  <app-search-collections :collectionsPermissions="collectionsPermissions" @searchCollections="collections  = $event" @alert="collectionsAlert = $event"></app-search-collections>
+  <app-collection :collection="collection" v-for="collection in collections" :key="collection._id"></app-collection>
+  <transition name="fade">
+    <app-alert v-if="collectionsAlert.message" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
+  </transition>
 </main>
 </template>
 
 <script>
-
 import searchDocuments from "./searchDocuments";
 import searchCollections from "./searchCollections";
 import Document from "@/components/document/document";
 import Collection from "@/components/collection/collection";
-import PopUp from "@/components/popup/popup";
-import EditDocument from "@/components/editDocument/editDocument";
-import EditCollection from "@/components/editCollection/editCollection";
+import Alert from "@/components/alert/alert";
 
 import axios from "axios";
 
@@ -34,7 +28,14 @@ export default {
     return {
       documents: undefined,
       collections: undefined,
-      popup: false
+      documentsAlert: {
+        message: undefined,
+        color: undefined
+      },
+      collectionsAlert: {
+        message: undefined,
+        color: undefined
+      },
     };
   },
   components: {
@@ -42,15 +43,7 @@ export default {
     appSearchCollections: searchCollections,
     appDocument: Document,
     appCollection: Collection,
-    appPopup: PopUp,
-    appEditDocument: EditDocument,
-    appEditCollection: EditCollection
-  },
-  methods: {
-    showPopUp(id, component) {
-      this.popup = component;
-      this.entityToEdit = id;
-    }
+    appAlert: Alert
   }
 }
 </script>

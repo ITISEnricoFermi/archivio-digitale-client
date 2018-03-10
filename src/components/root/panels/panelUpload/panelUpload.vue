@@ -1,26 +1,14 @@
 <template>
 <main class="panel panel__upload">
-  <app-create-document :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @documentMessage="documentResponse = $event"></app-create-document>
-  <div class="module" v-if="documentResponse">
-    <div class="row" v-if="progress">
-      <div class="col-1-of-1">
-        <app-progress :value="progress" :isStripped="true" :isAnimated="true"></app-progress>
-      </div>
-    </div>
-    <div class="row" v-else>
-      <div class="col-1-of-1">
-        <p>{{documentResponse}}</p>
-      </div>
-    </div>
-  </div>
-  <app-create-collection :collectionsPermissions="collectionsPermissions" @collectionMessage="collectionResponse = $event"></app-create-collection>
-  <div class="module" v-if="collectionResponse">
-    <div class="row">
-      <div class="col-1-of-1">
-        <p>{{collectionResponse}}</p>
-      </div>
-    </div>
-  </div>
+  <app-create-document :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @alert="documentsAlert = $event" @progress="documentsProgress = $event"></app-create-document>
+  <app-progress v-if="documentsProgress" :value="documentsProgress" :isStripped="true" :isAnimated="true"></app-progress>
+  <transition name="fade">
+    <app-alert v-if="documentsAlert.message" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
+  </transition>
+  <app-create-collection :collectionsPermissions="collectionsPermissions" @alert="collectionsAlert = $event"></app-create-collection>
+  <transition name="fade">
+    <app-alert v-if="collectionsAlert.message" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
+  </transition>
 </main>
 </template>
 
@@ -28,42 +16,32 @@
 import createDocument from "./createDocument";
 import createCollection from "./createCollection";
 import Progress from "@/components/progress/progress";
-
+import Alert from "@/components/alert/alert";
 
 import axios from "axios";
-
-import {
-  eventBus
-} from "@/main";
 
 export default {
   props: ["types", "faculties", "visibilities", "sections", "schoolClasses", "collectionsPermissions"],
   data: () => {
     return {
-      response: false,
-      responseMessage: "",
-      documentResponse: "",
+      documentsProgress: undefined,
       collectionResponse: "",
-      progress: ""
-    };
-  },
-  created() {
-    eventBus.$on("uploading", (progress) => {
-      this.progress = progress;
-
-      if (this.progress === 100) {
-        this.progress = 0;
+      progress: "",
+      documentsAlert: {
+        message: undefined,
+        color: undefined
+      },
+      collectionsAlert: {
+        message: undefined,
+        color: undefined
       }
-
-    });
-  },
-  methods: {
-
+    };
   },
   components: {
     appCreateDocument: createDocument,
     appCreateCollection: createCollection,
-    appProgress: Progress
+    appProgress: Progress,
+    appAlert: Alert
   }
 }
 </script>

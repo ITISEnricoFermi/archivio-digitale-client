@@ -11,11 +11,11 @@ export const SocketInstance = socketio('http://localhost:3000');
 
 export const eventBus = new Vue({
   methods: {
-    documentDeleted() {
-      this.$emit("documentDeleted");
+    editEntity(id, component) {
+      this.$emit("editEntity", id, component);
     },
-    collectionDeleted() {
-      this.$emit("collectionDeleted");
+    closePopUp() {
+      this.$emit("closePopUp");
     },
     uploading(progress) {
       this.$emit("uploading", progress);
@@ -23,7 +23,7 @@ export const eventBus = new Vue({
   }
 });
 
-Vue.use(VueSocketIO, SocketInstance)
+Vue.use(VueSocketIO, SocketInstance);
 Vue.config.productionTip = false;
 
 
@@ -31,9 +31,8 @@ Vue.config.productionTip = false;
 new Vue({
   el: "#app",
   router,
-  template: "<App/>",
   components: {
     App
   },
-  // render: h => h(App)
+  template: "<App/>"
 });

@@ -13,20 +13,20 @@
 </template>
 
 <script>
-import createDocument from "./createDocument";
-import createCollection from "./createCollection";
-import Progress from "@/components/progress/progress";
-import Alert from "@/components/alert/alert";
+import createDocument from './createDocument'
+import createCollection from './createCollection'
+import Progress from '@/components/progress/progress'
+import Alert from '@/components/alert/alert'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  props: ["types", "faculties", "visibilities", "sections", "schoolClasses", "collectionsPermissions"],
+  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses', 'collectionsPermissions'],
   data: () => {
     return {
       documentsProgress: undefined,
-      collectionResponse: "",
-      progress: "",
+      collectionResponse: '',
+      progress: '',
       documentsAlert: {
         message: undefined,
         color: undefined
@@ -35,7 +35,7 @@ export default {
         message: undefined,
         color: undefined
       }
-    };
+    }
   },
   components: {
     appCreateDocument: createDocument,

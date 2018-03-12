@@ -47,78 +47,75 @@
 <script>
 import {
   eventBus
-} from "@/main";
+} from '@/main'
 
-import MultipleSelect from "@/components/multipleSelect/multipleSelect";
-import MultipleSelectResults from "@/components/multipleSelect/multipleSelectResults";
+import MultipleSelect from '@/components/multipleSelect/multipleSelect'
+import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "editCollection",
-  props: ["id", "collectionsPermissions"],
+  name: 'editCollection',
+  props: ['id', 'collectionsPermissions'],
   data: () => {
     return {
       collectionToEdit: {},
       users: [],
-      dbElements: ["firstname", "lastname"]
-    };
-  },
-  computed: {
-    toggleMultipleSelect() {
-      if (this.collectionToEdit.permissions == "utenti") {
-        return true;
-      }
-      this.collectionToEdit.authorizations = [];
-      return false;
+      dbElements: ['firstname', 'lastname']
     }
   },
-  created() {
-    axios.get("/api/getUsers/")
+  computed: {
+    toggleMultipleSelect () {
+      if (this.collectionToEdit.permissions == 'utenti') {
+        return true
+      }
+      this.collectionToEdit.authorizations = []
+      return false
+    }
+  },
+  created () {
+    axios.get('/api/getUsers/')
       .then((response) => {
-        this.users = response.data;
+        this.users = response.data
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
+        this.response = true
+        this.responseMessage = e.response.data
+      })
 
-    axios.get("/collections/info/" + this.id)
+    axios.get('/collections/info/' + this.id)
       .then((response) => {
-
-        let collection = response.data;
+        let collection = response.data
 
         this.collectionToEdit = {
           documentCollection: collection.documentCollection,
           permissions: collection.permissions._id,
           authorizations: collection.authorizations,
           documents: collection.documents
-        };
-
+        }
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
-
+        this.response = true
+        this.responseMessage = e.response.data
+      })
   },
   methods: {
-    closePopUp() {
-      eventBus.closePopUp();
+    closePopUp () {
+      eventBus.closePopUp()
     },
-    edit(id) {
+    edit (id) {
 
     },
-    remove(id) {
-      axios.delete("/collections/" + id)
+    remove (id) {
+      axios.delete('/collections/' + id)
         .then((response) => {
-          this.closePopUp();
-          this.socket.$emit("collectionDeleted");
+          this.closePopUp()
+          this.socket.$emit('collectionDeleted')
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.respose.data;
-        });
+          this.response = true
+          this.responseMessage = e.respose.data
+        })
     }
   },
   components: {

@@ -63,7 +63,7 @@ exports.cssLoaders = function(options) {
       indentedSyntax: true
     }),
     scss: generateLoaders('sass').concat({
-      loader: "sass-resources-loader",
+      loader: 'sass-resources-loader',
       options: {
         resources: path.resolve(__dirname, '../src/scss/main.scss')
       }

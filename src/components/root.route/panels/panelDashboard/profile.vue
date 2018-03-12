@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "profile",
-  props: ["user"],
+  name: 'profile',
+  props: ['user'],
   data: () => {
     return {
       response: false,
-      responseMessage: ""
-    };
+      responseMessage: ''
+    }
   }
 }
 </script>

@@ -11,22 +11,22 @@
 <script>
 import {
   eventBus
-} from "@/main";
+} from '@/main'
 
 export default {
-  name: "popup",
-  props: ["width"],
+  name: 'popup',
+  props: ['width'],
   data: () => {
     return {
 
-    };
+    }
   },
-  created() {
+  created () {
     window.addEventListener('keyup', (e) => {
       if (e.keyCode == 27) {
-        eventBus.closePopUp();
+        eventBus.closePopUp()
       }
-    });
+    })
   }
 }
 </script>

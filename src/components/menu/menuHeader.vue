@@ -7,10 +7,10 @@
 
 <script>
 export default {
-  name: "menuHeader",
+  name: 'menuHeader',
   methods: {
-    changeMenu() {
-      this.$emit("changeMenu");
+    changeMenu () {
+      this.$emit('changeMenu')
     }
   }
 }

@@ -50,23 +50,23 @@
 <script>
 import {
   eventBus
-} from "@/main";
+} from '@/main'
 
 export default {
-  name: "collection",
-  props: ["collection"],
-  created() {
-    console.log(this.collection.documents);
+  name: 'collection',
+  props: ['collection'],
+  created () {
+    console.log(this.collection.documents)
   },
   computed: {
-    date: function() {
-      let timestamp = this.collection._id.toString().substring(0, 8);
-      return new Date(parseInt(timestamp, 16) * 1000).toUTCString();
+    date: function () {
+      let timestamp = this.collection._id.toString().substring(0, 8)
+      return new Date(parseInt(timestamp, 16) * 1000).toUTCString()
     }
   },
   methods: {
-    edit(id) {
-      eventBus.editEntity(id, "appEditCollection");
+    edit (id) {
+      eventBus.editEntity(id, 'appEditCollection')
     }
   }
 }

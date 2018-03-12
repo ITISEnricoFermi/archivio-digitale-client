@@ -46,67 +46,67 @@
 </template>
 
 <script>
-import Alert from "@/components/alert/alert";
+import Alert from '@/components/alert/alert'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "panelSettings",
+  name: 'panelSettings',
   data: () => {
     return {
       passwords: {
-        new: "",
-        old: ""
+        new: '',
+        old: ''
       },
-      profilePic: "",
+      profilePic: '',
       settingsAlert: {
         message: undefined,
         color: undefined
       }
-    };
+    }
   },
   methods: {
-    saveSettings() {
-      axios.patch("/users/me/", this.passwords)
+    saveSettings () {
+      axios.patch('/users/me/', this.passwords)
         .then(() => {
-          window.location.replace("/login");
+          window.location.replace('/login')
         })
         .catch((e) => {
           this.settingsAlert = {
             message: e.response.data,
-            color: "alert--red"
-          };
-        });
+            color: 'alert--red'
+          }
+        })
     },
-    uploadProfilePic() {
-      let profilePic = this.$refs.settingsProfilePic.files[0];
+    uploadProfilePic () {
+      let profilePic = this.$refs.settingsProfilePic.files[0]
 
-      let formData = new FormData();
+      let formData = new FormData()
 
-      formData.append("picToUpload", profilePic);
+      formData.append('picToUpload', profilePic)
 
-      axios.patch("/users/me/pic/", formData)
+      axios.patch('/users/me/pic/', formData)
         .then((message) => {
-          window.location.reload();
+          window.location.reload()
         })
         .catch((e) => {
           this.settingsAlert = {
             message: e.response.data,
-            color: "alert--red"
-          };
-        });
+            color: 'alert--red'
+          }
+        })
     },
-    disableAccount() {
-      axios.delete("/users/me/")
+    disableAccount () {
+      axios.delete('/users/me/')
         .then(() => {
-          window.location.replace("/");
+          window.location.replace('/')
         })
         .catch((e) => {
           this.settingsAlert = {
             message: e.response.data,
-            color: "alert--red"
-          };
-        });
+            color: 'alert--red'
+          }
+        })
     }
   }
 }

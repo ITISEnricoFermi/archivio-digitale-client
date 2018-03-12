@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  name: "app",
+  name: 'app',
   sockets: {
-    disconnect() {
-      console.log("Connection lost.");;
+    disconnect () {
+      console.log('Connection lost.')
     }
   }
 }

@@ -23,59 +23,59 @@
 
 <script>
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "signupRequests",
+  name: 'signupRequests',
   data: () => {
     return {
       requests: [],
       response: false,
-      responseMessage: ""
-    };
+      responseMessage: ''
+    }
   },
-  created() {
-    this.getRequests();
+  created () {
+    this.getRequests()
   },
   sockets: {
-    newUser() {
-      this.getRequests();
+    newUser () {
+      this.getRequests()
     }
   },
   methods: {
-    getRequests() {
-      axios.post("/admin/getRequests")
+    getRequests () {
+      axios.post('/admin/getRequests')
         .then((response) => {
-          this.requests = response.data;
+          this.requests = response.data
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     },
-    acceptRequest(id) {
-      axios.post("admin/acceptRequestById", {
-          _id: id
-        })
+    acceptRequest (id) {
+      axios.post('admin/acceptRequestById', {
+        _id: id
+      })
         .then((message) => {
-          this.getRequests();
+          this.getRequests()
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     },
-    refuseRequest(id) {
-      axios.post("admin/refuseRequestById", {
-          _id: id
-        })
+    refuseRequest (id) {
+      axios.post('admin/refuseRequestById', {
+        _id: id
+      })
         .then((message) => {
-          this.getRequests();
+          this.getRequests()
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     }
   }
 }

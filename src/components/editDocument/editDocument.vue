@@ -88,35 +88,35 @@
 <script>
 import {
   eventBus
-} from "@/main";
+} from '@/main'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "editDocument",
-  props: ["id", "types", "faculties", "visibilities", "sections", "schoolClasses"],
+  name: 'editDocument',
+  props: ['id', 'types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
   data: () => {
     return {
       progress: 0,
       uploading: false,
       documentToEdit: {
-        name: "",
-        type: "",
-        faculty: "",
-        subject: "",
-        class: "0",
-        section: "",
-        visibility: "pubblico",
-        description: ""
+        name: '',
+        type: '',
+        faculty: '',
+        subject: '',
+        class: '0',
+        section: '',
+        visibility: 'pubblico',
+        description: ''
       },
       response: false,
-      responseMessage: ""
-    };
+      responseMessage: ''
+    }
   },
-  created() {
-    axios.get("/documents/info/" + this.id)
+  created () {
+    axios.get('/documents/info/' + this.id)
       .then((response) => {
-        let document = response.data;
+        let document = response.data
 
         this.documentToEdit = {
           name: document.name,
@@ -124,42 +124,41 @@ export default {
           faculty: document.faculty._id,
           subject: document.subject._id,
           class: document.class ? document.class._id : 0,
-          section: document.section ? document.section._id : "",
+          section: document.section ? document.section._id : '',
           visibility: document.visibility._id,
           description: document.description
-        };
-
+        }
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-        console.log(this.responseMessage);
+        this.response = true
+        this.responseMessage = e.response.data
+        console.log(this.responseMessage)
       })
   },
   methods: {
-    closePopUp() {
-      eventBus.closePopUp();
+    closePopUp () {
+      eventBus.closePopUp()
     },
-    edit(id) {
-      axios.patch("/documents/" + id, this.documentToEdit)
+    edit (id) {
+      axios.patch('/documents/' + id, this.documentToEdit)
         .then((response) => {
-          eventBus.closePopUp();
-          this.$socket.emit("documentUpdated");
+          eventBus.closePopUp()
+          this.$socket.emit('documentUpdated')
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     },
-    remove(id) {
-      axios.delete("/documents/" + id)
+    remove (id) {
+      axios.delete('/documents/' + id)
         .then((response) => {
-          eventBus.closePopUp();
-          this.$socket.emit("documentDeleted");
+          eventBus.closePopUp()
+          this.$socket.emit('documentDeleted')
         })
         .catch((e) => {
-          this.response = true;
-          this.response = e.response.data;
+          this.response = true
+          this.response = e.response.data
         })
     }
   }

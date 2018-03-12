@@ -42,23 +42,22 @@
 
 <script>
 export default {
-  name: "menuMobile",
-  props: ["privileges"],
+  name: 'menuMobile',
+  props: ['privileges'],
   methods: {
-    changePanel(panel) {
+    changePanel (panel) {
+      document.getElementsByClassName('menu-header-container__li--active')[0].classList.remove('menu-header-container__li--active')
 
-      document.getElementsByClassName("menu-header-container__li--active")[0].classList.remove("menu-header-container__li--active");
-
-      if (event.srcElement.tagName == "LI") {
-        event.target.classList.add("menu-header-container__li--active");
+      if (event.srcElement.tagName == 'LI') {
+        event.target.classList.add('menu-header-container__li--active')
       } else {
-        event.srcElement.parentNode.classList.add("menu-header-container__li--active");
+        event.srcElement.parentNode.classList.add('menu-header-container__li--active')
       }
 
-      this.$emit("panelChanged", panel);
+      this.$emit('panelChanged', panel)
     },
-    logout() {
-      window.location.replace("/logout");
+    logout () {
+      window.location.replace('/logout')
     }
   }
 }

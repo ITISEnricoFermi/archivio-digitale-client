@@ -10,59 +10,58 @@
 <script>
 import {
   eventBus
-} from "@/main";
+} from '@/main'
 
-import Document from "@/components/document/document";
+import Document from '@/components/document/document'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "recentPosts",
+  name: 'recentPosts',
   data: () => {
     return {
       recentDocuments: [],
       response: false,
-      responseMessage: ""
-    };
+      responseMessage: ''
+    }
   },
-  created() {
-    this.getRecentDocuments();
+  created () {
+    this.getRecentDocuments()
 
-    eventBus.$on("documentDeleted", () => {
-      this.getRecentDocuments();
-    });
+    eventBus.$on('documentDeleted', () => {
+      this.getRecentDocuments()
+    })
   },
   sockets: {
-    newDocument() {
-      this.getRecentDocuments();
+    newDocument () {
+      this.getRecentDocuments()
     },
-    documentDeleted() {
-      this.getRecentDocuments();
+    documentDeleted () {
+      this.getRecentDocuments()
     },
-    documentUpdated() {
-      this.getRecentDocuments();
+    documentUpdated () {
+      this.getRecentDocuments()
     }
   },
   methods: {
-    getRecentDocuments() {
-      return axios.get("/documents/recent/")
+    getRecentDocuments () {
+      return axios.get('/documents/recent/')
         .then((response) => {
-          this.recentDocuments = response.data;
+          this.recentDocuments = response.data
 
           for (let i = 0; i < this.recentDocuments.length; i++) {
-            if (this.recentDocuments[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
-              this.recentDocuments[i].own = true;
+            if (this.recentDocuments[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
+              this.recentDocuments[i].own = true
             }
           }
-
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     },
-    editDocument(id) {
-      eventBus.editEntity("editDocument", id, "appEditDocument");
+    editDocument (id) {
+      eventBus.editEntity('editDocument', id, 'appEditDocument')
     }
   },
   components: {

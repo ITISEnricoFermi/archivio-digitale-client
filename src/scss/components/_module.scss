@@ -48,44 +48,6 @@
     }
   }
 
-  &-admin-users-search {
-
-    &-article {
-      text-align: left;
-      padding: 1rem;
-
-      &--name {
-        display: inline-block;
-        font-size: $font-default-1;
-      }
-
-      &--privileges {
-        display: inline-block;
-      }
-
-      &--email {
-        display: block;
-        text-decoration: none;
-        color: $color-tertiary;
-        font-size: $font-default-2;
-
-        span {
-          font-weight: bold;
-        }
-
-      }
-
-      &--password-reset, &--account-disable , &--toggle-privileges{
-        display: inline-block;
-        text-decoration: underline;
-        font-size: $font-default-2;
-        cursor: pointer;
-      }
-
-    }
-
-  }
-
   &-document-search {
 
     &-article {

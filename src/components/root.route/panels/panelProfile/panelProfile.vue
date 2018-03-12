@@ -48,82 +48,81 @@
 </template>
 
 <script>
-import Document from "@/components/document/document";
+import Document from '@/components/document/document'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "panelProfile",
-  props: ["user"],
+  name: 'panelProfile',
+  props: ['user'],
   data: () => {
     return {
-      tab: "pubblico",
+      tab: 'pubblico',
       response: false,
-      responseMessage: "",
+      responseMessage: '',
       documents: [],
       count: {
-        pubblico: "",
-        areariservata: "",
-        materia: ""
+        pubblico: '',
+        areariservata: '',
+        materia: ''
       }
-    };
-  },
-  sockets: {
-    newDocument() {
-      this.getDocuments(this.tab);
     }
   },
-  created() {
-    this.getDocuments("pubblico");
+  sockets: {
+    newDocument () {
+      this.getDocuments(this.tab)
+    }
+  },
+  created () {
+    this.getDocuments('pubblico')
 
-    axios.get("/users/me/documents/count/pubblico")
+    axios.get('/users/me/documents/count/pubblico')
       .then((response) => {
-        this.count.pubblico = response.data;
+        this.count.pubblico = response.data
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = "";
-      });
+        this.response = true
+        this.responseMessage = ''
+      })
 
-    axios.get("/users/me/documents/count/areariservata")
+    axios.get('/users/me/documents/count/areariservata')
       .then((response) => {
-        this.count.areariservata = response.data;
+        this.count.areariservata = response.data
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = "";
-      });
+        this.response = true
+        this.responseMessage = ''
+      })
 
-    axios.get("/users/me/documents/count/materia")
+    axios.get('/users/me/documents/count/materia')
       .then((response) => {
-        this.count.materia = response.data;
+        this.count.materia = response.data
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = "";
-      });
+        this.response = true
+        this.responseMessage = ''
+      })
   },
   methods: {
-    showTab(privileges) {
-      this.tab = privileges;
-      this.getDocuments(privileges);
+    showTab (privileges) {
+      this.tab = privileges
+      this.getDocuments(privileges)
     },
-    getDocuments(tab) {
-      axios.get("/users/me/documents/" + tab)
+    getDocuments (tab) {
+      axios.get('/users/me/documents/' + tab)
         .then((response) => {
-          this.documents = response.data;
+          this.documents = response.data
 
           for (let i = 0; i < this.documents.length; i++) {
-            if (this.documents[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
-              this.documents[i].own = true;
+            if (this.documents[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
+              this.documents[i].own = true
             }
           }
-
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     }
   },
   components: {

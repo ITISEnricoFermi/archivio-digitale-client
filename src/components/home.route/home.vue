@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import Header from "./header";
-import Search from "./search";
+import Header from './header'
+import Search from './search'
 
 export default {
-  name: "home",
+  name: 'home',
   data: () => {
     return {
 
-    };
+    }
   },
   components: {
     appHeader: Header,

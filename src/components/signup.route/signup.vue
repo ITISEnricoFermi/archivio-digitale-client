@@ -69,55 +69,54 @@
 
 <script>
 
-import FooterLight from "@/components/footer/light.footer";
-import multipleSelect from "@/components/multipleSelect/multipleSelect.vue";
-import multipleSelectResults from "@/components/multipleSelect/multipleSelectResults.vue";
+import FooterLight from '@/components/footer/light.footer'
+import multipleSelect from '@/components/multipleSelect/multipleSelect.vue'
+import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults.vue'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "signup",
+  name: 'signup',
   data: () => {
     return {
       signedUp: false,
       response: false,
-      responseMessage: "",
+      responseMessage: '',
       user: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
         accesses: []
       },
       subjects: [],
-      dbElements: ["subject"]
-    };
+      dbElements: ['subject']
+    }
   },
-  created() {
-    axios.get("/api/getSubjects")
-    .then((response) => {
-      this.subjects = response.data;
-    })
-    .catch((e) => {
-      this.response = true;
-      this.responseMessage = e.response.data;
-    });
+  created () {
+    axios.get('/api/getSubjects')
+      .then((response) => {
+        this.subjects = response.data
+      })
+      .catch((e) => {
+        this.response = true
+        this.responseMessage = e.response.data
+      })
   },
   methods: {
-    signup() {
-
-      axios.put("/signup", this.user)
+    signup () {
+      axios.put('/signup', this.user)
         .then((user) => {
           if (user) {
-            this.$socket.emit("newUser");
-            this.signedUp = true;
+            this.$socket.emit('newUser')
+            this.signedUp = true
           }
         })
         .catch((e) => {
-          console.log(e);
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          console.log(e)
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     }
   },
   components: {

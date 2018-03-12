@@ -25,33 +25,32 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import axios from 'axios'
 
 import {
   eventBus
-} from "@/main";
+} from '@/main'
 
 // VUE
-import Menu from "@/components/menu/menu.vue";
-import MenuMobile from "@/components/menu/menuMobile.vue";
-import MenuHeader from "@/components/menu/menuHeader.vue";
-import panelDashboard from "./panels/panelDashboard/panelDashboard.vue";
-import panelSearch from "./panels/panelSearch/panelSearch.vue";
-import panelUpload from "./panels/panelUpload/panelUpload.vue";
-import panelAdmin from "./panels/panelAdmin/panelAdmin.vue";
-import panelProfile from "./panels/panelProfile/panelProfile.vue";
-import panelSettings from "./panels/panelSettings/panelSettings.vue";
+import Menu from '@/components/menu/menu.vue'
+import MenuMobile from '@/components/menu/menuMobile.vue'
+import MenuHeader from '@/components/menu/menuHeader.vue'
+import panelDashboard from './panels/panelDashboard/panelDashboard.vue'
+import panelSearch from './panels/panelSearch/panelSearch.vue'
+import panelUpload from './panels/panelUpload/panelUpload.vue'
+import panelAdmin from './panels/panelAdmin/panelAdmin.vue'
+import panelProfile from './panels/panelProfile/panelProfile.vue'
+import panelSettings from './panels/panelSettings/panelSettings.vue'
 
-import PopUp from "@/components/popup/popup";
-import EditDocument from "@/components/editDocument/editDocument";
-import EditCollection from "@/components/editCollection/editCollection";
+import PopUp from '@/components/popup/popup'
+import EditDocument from '@/components/editDocument/editDocument'
+import EditCollection from '@/components/editCollection/editCollection'
 
 export default {
   name: 'root',
   data: () => {
     return {
-      panel: "appPanelDashboard",
+      panel: 'appPanelDashboard',
       types: [],
       faculties: [],
       subjects: [],
@@ -61,105 +60,102 @@ export default {
       privileges: [],
       collectionsPermissions: [],
       user: {
-        privileges: "",
-        img: "../static/elements/profile.jpg"
+        privileges: '',
+        img: '../static/elements/profile.jpg'
       },
       errors: [],
       menu: false,
       popup: false,
       entityToEdit: undefined
-    };
+    }
   },
-  created() {
+  created () {
+    eventBus.$on('editEntity', (id, component) => {
+      this.showPopUp(id, component)
+    })
 
-    eventBus.$on("editEntity", (id, component) => {
-      this.showPopUp(id, component);
-    });
+    eventBus.$on('closePopUp', () => {
+      this.popup = false
+    })
 
-    eventBus.$on("closePopUp", () => {
-      this.popup = false;
-    });
-
-    axios.get("/api/getDocumentTypes/")
+    axios.get('/api/getDocumentTypes/')
       .then((response) => {
         this.types = response.data
       }).catch((e) => {
         this.errors.push(e)
-      });
+      })
 
-    axios.get("/api/getFaculties/")
+    axios.get('/api/getFaculties/')
       .then((response) => {
         this.faculties = response.data
       }).catch((e) => {
         this.errors.push(e)
-      });
+      })
 
-    axios.get("/api/getDocumentVisibilityList")
+    axios.get('/api/getDocumentVisibilityList')
       .then((response) => {
         this.visibilities = response.data
       }).catch((e) => {
         this.errors.push(e)
-      });
+      })
 
-    axios.get("/api/getSections")
+    axios.get('/api/getSections')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
-        this.errors.push(e);
-      });
+        this.errors.push(e)
+      })
 
-    axios.get("/api/getClasses")
+    axios.get('/api/getClasses')
       .then((response) => {
-        this.schoolClasses = response.data;
+        this.schoolClasses = response.data
       }).catch((e) => {
-        this.errors.push(e);
-      });
+        this.errors.push(e)
+      })
 
-    axios.get("/api/getPrivileges")
+    axios.get('/api/getPrivileges')
       .then((response) => {
-        this.privileges = response.data;
+        this.privileges = response.data
       })
       .catch((e) =>  {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
+        this.response = true
+        this.responseMessage = e.response.data
+      })
 
-
-    axios.get("/api/getCollectionsPermissions")
+    axios.get('/api/getCollectionsPermissions')
       .then((response) => {
-        this.collectionsPermissions = response.data;
+        this.collectionsPermissions = response.data
       })
       .catch((e) => {
-        this.response = true;
-        this.responseMessage = e.response.data;
-      });
+        this.response = true
+        this.responseMessage = e.response.data
+      })
 
-    this.getUser();
-
+    this.getUser()
   },
   sockets: {
-    newDocument() {
-      this.getUser();
+    newDocument () {
+      this.getUser()
     }
   },
   methods: {
-    menuMobile(e) {
-      this.panel = e;
-      this.menu = false;
+    menuMobile (e) {
+      this.panel = e
+      this.menu = false
     },
-    getUser() {
-      axios.get("/users/me")
+    getUser () {
+      axios.get('/users/me')
         .then((response) => {
-          this.user = response.data;
+          this.user = response.data
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     },
-    showPopUp(id, component) {
-      this.popup = component;
-      this.entityToEdit = id;
+    showPopUp (id, component) {
+      this.popup = component
+      this.entityToEdit = id
     }
   },
   components: {

@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "multipleSelect",
+  name: 'multipleSelect',
   props: {
     placeholder: String,
     multipleSelectData: Array,
@@ -23,68 +23,65 @@ export default {
     multipleSelectOutput: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     }
   },
   data: () => {
     return {
-      multipleSelectField: "",
+      multipleSelectField: '',
       multipleSelectResults: []
-    };
+    }
   },
   methods: {
 
-    typing(event) {
-
-      if (event.key == "Enter") {
+    typing (event) {
+      if (event.key == 'Enter') {
         if (this.multipleSelectResults.length !== 0) {
-          this.multipleSelectOutput.push(this.multipleSelectResults[0]);
-          this.multipleSelectField = "";
+          this.multipleSelectOutput.push(this.multipleSelectResults[0])
+          this.multipleSelectField = ''
 
           // EMIT
-          this.$emit("elementAdded", this.multipleSelectOutput);
+          this.$emit('elementAdded', this.multipleSelectOutput)
 
-          return this.multipleSelectResults = [];
+          return this.multipleSelectResults = []
         }
       }
 
-      this.multipleSelectResults = [];
+      this.multipleSelectResults = []
       if (this.multipleSelectField) {
-
         this.multipleSelectData.forEach((element) => {
           // if (this.multipleSelectOutput.indexOf(element) != -1) {
           //   return true;
           // }
 
           if ((this.multipleSelectOutput.filter(el => el._id == element._id))[0]) {
-            return true;
+            return true
           }
 
           for (var i = 0; i < this.dbElements.length; i++) {
             if ((new RegExp(this.multipleSelectField.toLowerCase())).test(element[this.dbElements[i]].toLowerCase())) {
-              this.multipleSelectResults.push(element);
-              i = this.dbElements.length;
+              this.multipleSelectResults.push(element)
+              i = this.dbElements.length
             }
           }
-
-        });
+        })
       }
     },
 
-    click(event) {
-      var id = event.target.getAttribute("value");
-      var element = (this.multipleSelectResults.filter(function(object) {
-        return object._id == id;
-      }))[0];
+    click (event) {
+      var id = event.target.getAttribute('value')
+      var element = (this.multipleSelectResults.filter(function (object) {
+        return object._id == id
+      }))[0]
 
-      this.multipleSelectOutput.push(element);
-      this.multipleSelectField = "";
+      this.multipleSelectOutput.push(element)
+      this.multipleSelectField = ''
 
       // EMIT
-      this.$emit("elementAdded", this.multipleSelectOutput);
+      this.$emit('elementAdded', this.multipleSelectOutput)
 
-      return this.multipleSelectResults = [];
+      return this.multipleSelectResults = []
     }
   }
 }

@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import RecentPosts from "./recentPosts.vue";
-import Profile from "./profile.vue";
-import Chart from "./chart.vue";
+import RecentPosts from './recentPosts.vue'
+import Profile from './profile.vue'
+import Chart from './chart.vue'
 
 export default {
-  name: "panelDashboard",
-  props: ["user"],
+  name: 'panelDashboard',
+  props: ['user'],
   components: {
     appRecentPosts: RecentPosts,
     appProfile: Profile,
@@ -51,8 +51,6 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
   }
-
-
 
   &--chart {
     grid-area: chart;

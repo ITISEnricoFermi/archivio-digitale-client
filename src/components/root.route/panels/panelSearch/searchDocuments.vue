@@ -69,59 +69,58 @@
 
 <script>
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "createDocument",
-  props: ["types", "faculties", "visibilities", "sections", "schoolClasses"],
+  name: 'createDocument',
+  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
   data: () => {
     return {
-      subjects: "",
+      subjects: '',
       query: {
-        fulltext: "",
-        type: "",
-        faculty: "",
-        subject: "",
-        class: "",
-        section: "",
-        visibility: ""
+        fulltext: '',
+        type: '',
+        faculty: '',
+        subject: '',
+        class: '',
+        section: '',
+        visibility: ''
       },
       help: undefined
-    };
+    }
   },
   sockets: {
-    documentDeleted() {
-      this.search();
+    documentDeleted () {
+      this.search()
     }
   },
   methods: {
-    search() {
-
-      for(let i = 0; i < this.query.length; i++) {
-        if(Object.keys(this.query)[i] != "") {
-          return false;
+    search () {
+      for (let i = 0; i < this.query.length; i++) {
+        if (Object.keys(this.query)[i] != '') {
+          return false
         }
       }
 
-      axios.post("/documents/search/", this.query)
+      axios.post('/documents/search/', this.query)
         .then((response) => {
-          let documents = response.data;
+          let documents = response.data
 
           for (let i = 0; i < documents.length; i++) {
-            if (documents[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
-              documents[i].own = true;
+            if (documents[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
+              documents[i].own = true
             }
           }
 
-          this.$emit("searchDocuments", documents);
+          this.$emit('searchDocuments', documents)
         })
         .catch((e) => {
-          this.$emit("searchDocuments", []);
-          this.$emit("alert", {
+          this.$emit('searchDocuments', [])
+          this.$emit('alert', {
             message: e.response.data,
-            color: "alert--yellow"
-          });
-        });
+            color: 'alert--yellow'
+          })
+        })
     }
   }
 }

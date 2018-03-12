@@ -12,28 +12,28 @@
 
 <script>
 export default {
-  name: "multipleSelectResults",
+  name: 'multipleSelectResults',
   props: {
     multipleSelectOutput: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     dbElements: Array
   },
   methods: {
-    remove: function(event) {
-      var id = event.target.getAttribute("value");
+    remove: function (event) {
+      var id = event.target.getAttribute('value')
 
-      var element = (this.multipleSelectOutput.filter(function(object) {
-        return object._id == id;
-      }))[0];
+      var element = (this.multipleSelectOutput.filter(function (object) {
+        return object._id == id
+      }))[0]
 
-      var index = this.multipleSelectOutput.indexOf(element);
+      var index = this.multipleSelectOutput.indexOf(element)
 
-      this.multipleSelectOutput.splice(index, 1);
-      this.$emit("elementRemoved", this.multipleSelectOutput);
+      this.multipleSelectOutput.splice(index, 1)
+      this.$emit('elementRemoved', this.multipleSelectOutput)
     }
   }
 }

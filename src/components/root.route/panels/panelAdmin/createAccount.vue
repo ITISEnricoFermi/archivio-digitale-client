@@ -41,55 +41,53 @@
 </template>
 
 <script>
-import multipleSelect from "@/components/multipleSelect/multipleSelect.vue";
-import multipleSelectResults from "@/components/multipleSelect/multipleSelectResults.vue";
+import multipleSelect from '@/components/multipleSelect/multipleSelect.vue'
+import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults.vue'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "createAccount",
-  props: ["privileges", "subjects"],
+  name: 'createAccount',
+  props: ['privileges', 'subjects'],
   data: () => {
     return {
       // multipleSelectOutput: "",
-      dbElements: ["subject"],
+      dbElements: ['subject'],
       response: false,
-      responseMessage: "",
+      responseMessage: '',
       user: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-        privileges: "",
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        privileges: '',
         accesses: []
       }
-    };
+    }
   },
   methods: {
 
-    createUser() {
-
-      axios.post("/admin/createUser", this.user)
+    createUser () {
+      axios.post('/admin/createUser', this.user)
         .then((user) => {
+          this.user.firstname = ''
+          this.user.lastname = ''
+          this.user.email = ''
+          this.user.password = ''
+          this.user.privileges = ''
+          this.user.accesses = []
 
-          this.user.firstname = "";
-          this.user.lastname = "";
-          this.user.email = "";
-          this.user.password = "";
-          this.user.privileges = "";
-          this.user.accesses = [];
-
-          this.$emit("alert", {
-            message: "Utente creato correttamente.",
-            color: "alert--green"
-          });
+          this.$emit('alert', {
+            message: 'Utente creato correttamente.',
+            color: 'alert--green'
+          })
         })
         .catch((e) => {
-          this.$emit("alert", {
+          this.$emit('alert', {
             message: e.response.data,
-            color: "alert--red"
-          });
-        });
+            color: 'alert--red'
+          })
+        })
     }
   },
   components: {

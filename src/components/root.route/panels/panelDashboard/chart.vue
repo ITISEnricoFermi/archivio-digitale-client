@@ -6,19 +6,14 @@
 
 <script>
 
-import Chart from "@/components/chart/chart.js";
-
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "chart",
+  name: 'chart',
   data: () => {
     return {
 
-    };
-  },
-  components: {
-    appChart: Chart
+    }
   }
 }
 </script>

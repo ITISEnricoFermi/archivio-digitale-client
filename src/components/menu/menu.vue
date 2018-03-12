@@ -49,27 +49,26 @@
 </template>
 
 <script>
-  export default {
-    name: "menuLeft",
-    props: ["privileges"],
-    methods: {
-      changePanel(panel) {
+export default {
+  name: 'menuLeft',
+  props: ['privileges'],
+  methods: {
+    changePanel (panel) {
+      document.getElementsByClassName('menu-left__li--active')[0].classList.remove('menu-left__li--active')
 
-        document.getElementsByClassName("menu-left__li--active")[0].classList.remove("menu-left__li--active");
-
-        if(event.srcElement.tagName == "LI") {
-          event.target.classList.add("menu-left__li--active");
-        } else {
-          event.srcElement.parentNode.classList.add("menu-left__li--active");
-        }
-
-        this.$emit("panelChanged", panel);
-      },
-      logout() {
-        window.location.replace("/logout");
+      if (event.srcElement.tagName == 'LI') {
+        event.target.classList.add('menu-left__li--active')
+      } else {
+        event.srcElement.parentNode.classList.add('menu-left__li--active')
       }
+
+      this.$emit('panelChanged', panel)
+    },
+    logout () {
+      window.location.replace('/logout')
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

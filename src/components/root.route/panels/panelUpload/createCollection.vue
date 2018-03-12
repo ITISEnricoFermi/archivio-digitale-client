@@ -30,66 +30,65 @@
 </template>
 
 <script>
-import multipleSelect from "@/components/multipleSelect/multipleSelect.vue";
-import multipleSelectResults from "@/components/multipleSelect/multipleSelectResults.vue";
+import multipleSelect from '@/components/multipleSelect/multipleSelect.vue'
+import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults.vue'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "createCollection",
-  props: ["collectionsPermissions"],
+  name: 'createCollection',
+  props: ['collectionsPermissions'],
   data: () => {
     return {
-      dbElements: ["firstname", "lastname"],
+      dbElements: ['firstname', 'lastname'],
       users: [],
       collection: {
         documentCollection: undefined,
         permissions: undefined,
         authorizations: []
       }
-    };
-  },
-  computed: {
-    toggleMultipleSelect() {
-      if (this.collection.permissions == "utenti") {
-        return true;
-      }
-      this.collection.authorizations = [];
-      return false;
     }
   },
-  created() {
-    axios.get("/api/getUsers/")
+  computed: {
+    toggleMultipleSelect () {
+      if (this.collection.permissions == 'utenti') {
+        return true
+      }
+      this.collection.authorizations = []
+      return false
+    }
+  },
+  created () {
+    axios.get('/api/getUsers/')
       .then((response) => {
-        this.users = response.data;
+        this.users = response.data
       })
       .catch((e) => {
-        this.$emit("alert", {
+        this.$emit('alert', {
           message: e.respone.data,
-          color: "alert--red"
-        });
-      });
+          color: 'alert--red'
+        })
+      })
   },
   methods: {
-    createCollection() {
-      axios.put("/collections/", this.collection)
+    createCollection () {
+      axios.put('/collections/', this.collection)
         .then((response) => {
+          this.collection.documentCollection = ''
+          this.collection.permissions = undefined
+          this.collection.authorizations = []
 
-          this.collection.documentCollection = "";
-          this.collection.permissions = undefined;
-          this.collection.authorizations = [];
-
-          this.$emit("alert", {
+          this.$emit('alert', {
             message: response.data,
-            color: "alert--blue"
-          });
+            color: 'alert--blue'
+          })
         })
         .catch((e) => {
-          this.$emit("alert", {
+          this.$emit('alert', {
             message: e.respone.data,
-            color: "alert--red"
-          });
-        });
+            color: 'alert--red'
+          })
+        })
     }
   },
   components: {

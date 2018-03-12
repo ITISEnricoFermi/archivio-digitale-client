@@ -20,43 +20,42 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "searchCollections",
-  props: ["collectionsPermissions"],
+  name: 'searchCollections',
+  props: ['collectionsPermissions'],
   data: () => {
     return {
       query: {
-        fulltext: "",
-        permissions: ""
+        fulltext: '',
+        permissions: ''
       },
       response: false,
-      responseMessage: ""
-    };
+      responseMessage: ''
+    }
   },
   methods: {
-    search() {
-
-      axios.post("/collections/search/", this.query)
+    search () {
+      axios.post('/collections/search/', this.query)
         .then((response) => {
-          let collections = response.data;
+          let collections = response.data
 
           for (let i = 0; i < collections.length; i++) {
-            if (collections[i].author._id === response.headers["x-userid"] || response.headers["x-userprivileges"] === "admin") {
-              collections[i].own = true;
+            if (collections[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
+              collections[i].own = true
             }
           }
 
-          this.$emit("searchCollections", collections);
+          this.$emit('searchCollections', collections)
         })
         .catch((e) => {
-          this.$emit("searchCollections", []);
-          this.$emit("alert", {
+          this.$emit('searchCollections', [])
+          this.$emit('alert', {
             message: e.response.data,
-            color: "alert--yellow"
-          });
-        });
+            color: 'alert--yellow'
+          })
+        })
     }
   }
 }

@@ -75,72 +75,69 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "createDocument",
-  props: ["types", "faculties", "visibilities", "sections", "schoolClasses"],
+  name: 'createDocument',
+  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
   data: () => {
     return {
       documentToUpload: {
-        name: "",
-        type: "",
-        faculty: "",
-        subject: "",
-        class: "0",
-        section: "",
-        visibility: "pubblico",
-        description: ""
+        name: '',
+        type: '',
+        faculty: '',
+        subject: '',
+        class: '0',
+        section: '',
+        visibility: 'pubblico',
+        description: ''
       }
-    };
+    }
   },
   methods: {
-    upload() {
-
-      let self = this;
-      let formData = new FormData();
+    upload () {
+      let self = this
+      let formData = new FormData()
       let config = {
-        onUploadProgress: function(progressEvent) {
-          let progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          if (progress == 100) {
-            progress = 0;
+        onUploadProgress: function (progressEvent) {
+          let progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+          if (progress === 100) {
+            progress = 0
           }
-          self.$emit("progress", progress);
+          self.$emit('progress', progress)
         }
-      };
+      }
 
-      let document = JSON.stringify(this.documentToUpload);
-      let file = this.$refs.uploadFile.files[0];
+      let document = JSON.stringify(this.documentToUpload)
+      let file = this.$refs.uploadFile.files[0]
 
-      formData.append("document", document);
-      formData.append("fileToUpload", file);
+      formData.append('document', document)
+      formData.append('fileToUpload', file)
 
-      axios.put("/documents/", formData, config)
+      axios.put('/documents/', formData, config)
         .then((response) => {
+          this.documentToUpload.name = ''
+          this.documentToUpload.type = ''
+          this.documentToUpload.faculty = ''
+          this.documentToUpload.subject = ''
+          this.documentToUpload.class = '0'
+          this.documentToUpload.section = ''
+          this.documentToUpload.visibility = 'pubblico'
+          this.documentToUpload.description = ''
 
-          this.documentToUpload.name = "";
-          this.documentToUpload.type = "";
-          this.documentToUpload.faculty = "";
-          this.documentToUpload.subject = "";
-          this.documentToUpload.class = "0";
-          this.documentToUpload.section = "";
-          this.documentToUpload.visibility = "pubblico";
-          this.documentToUpload.description = "";
+          this.$socket.emit('newDocument')
 
-          this.$socket.emit("newDocument");
-
-          this.$emit("alert", {
-            message: "Documento caricato con successo.",
-            color: "alert--blue"
-          });
-
+          this.$emit('alert', {
+            message: 'Documento caricato con successo.',
+            color: 'alert--blue'
+          })
         })
         .catch((e) => {
-          this.$emit("alert", {
+          this.$emit('alert', {
             message: e.response.data,
-            color: "alert--red"
-          });
-        });
+            color: 'alert--red'
+          })
+        })
     }
   }
 }

@@ -15,12 +15,11 @@
 <script>
 import {
   eventBus
-} from "@/main";
-
+} from '@/main'
 
 export default {
-  name: "progressBar",
-  props: ["value", "isStripped", "isAnimated"]
+  name: 'progressBar',
+  props: ['value', 'isStripped', 'isAnimated']
 }
 </script>
 

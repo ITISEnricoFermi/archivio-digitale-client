@@ -33,37 +33,36 @@
 
 <script>
 
-import FooterLight from "@/components/footer/light.footer";
+import FooterLight from '@/components/footer/light.footer'
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "login",
+  name: 'login',
   data: () => {
     return {
       response: false,
-      responseMessage: "",
-      loginEmail: "",
-      loginPassword: ""
-    };
+      responseMessage: '',
+      loginEmail: '',
+      loginPassword: ''
+    }
   },
   methods: {
-    login() {
-
+    login () {
       let user = {
         email: this.loginEmail,
         password: this.loginPassword
-      };
+      }
 
-      axios.post("/login", user)
+      axios.post('/login', user)
         .then((token) => {
-          localStorage.setItem('token', token);
-          window.location.replace("/");
+          localStorage.setItem('token', token)
+          window.location.replace('/')
         })
         .catch((e) => {
-          this.response = true;
-          this.responseMessage = e.response.data;
-        });
+          this.response = true
+          this.responseMessage = e.response.data
+        })
     }
   },
   components: {

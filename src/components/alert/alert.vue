@@ -1,8 +1,7 @@
 <template>
-  <div class="module alert" :class="alert.color">
-    <p>{{alert.message}}</p>
-  </div>
-
+<div class="module alert" :class="alert.color">
+  <p>{{alert.message}}</p>
+</div>
 </template>
 
 <script>
@@ -28,4 +27,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.alert {
+
+    &--red {
+        @include alertColor($color-button-red);
+    }
+
+    &--green {
+        @include alertColor($color-button-green);
+    }
+
+    &--blue {
+        @include alertColor($color-button-blue);
+    }
+
+    &--yellow {
+        @include alertColor($color-button-yellow);
+    }
+
+}
 </style>

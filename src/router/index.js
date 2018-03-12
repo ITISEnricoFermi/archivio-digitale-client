@@ -2,9 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import axios from "axios";
 
-import Root from "@/components/root/root";
-import Login from "@/components/login/login";
-import SignUp from "@/components/signup/signup";
+import Root from "@/components/root.route/root";
+import Home from "@/components/home.route/home";
+import Login from "@/components/login.route/login";
+import SignUp from "@/components/signup.route/signup";
 
 import NotFoundComponent from "@/components/404.error/404.error";
 
@@ -21,9 +22,13 @@ export default new Router({
         axios.post("/users/me/logged")
           .then((response) => next())
           .catch((e) => next({
-            path: "/login"
+            path: "/home"
           }));
       }
+    }, {
+      path: "/home",
+      name: "Home",
+      component: Home
     }, {
       path: "/login",
       name: "Login",

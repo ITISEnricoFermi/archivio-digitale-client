@@ -9,8 +9,6 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -38,10 +36,7 @@ module.exports = {
         }, {
           loader: "css-loader"
         }, {
-          loader: "sass-loader",
-          options: {
-            includePaths: [path.resolve(__dirname, '../src/scss/main.scss')]
-          }
+          loader: "sass-loader"
         }]
       },
       {

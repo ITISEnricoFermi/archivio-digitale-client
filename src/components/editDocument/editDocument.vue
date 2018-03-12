@@ -64,19 +64,19 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <button class="module-button module-button--yellow" @click="closePopUp">
+      <button class="button button--yellow" @click="closePopUp">
           <span><i class="fas fa-ban"></i></span>
           <span>Annulla</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="module-button module-button--red" @click="remove(id)">
+      <button class="button button--red" @click="remove(id)">
           <span><i class="fas fa-trash-alt"></i></span>
           <span>Elimina il documento</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="module-button module-button--green" @click="edit(id)">
+      <button class="button button--green" @click="edit(id)">
           <span><i class="fas fa-save"></i></span>
           <span>Salva documento</span>
         </button>

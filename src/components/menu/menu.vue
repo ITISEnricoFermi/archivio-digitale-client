@@ -73,5 +73,75 @@
 </script>
 
 <style scoped lang="scss">
+.menu-left {
+  background-color: $color-primary;
+  position: relative;
+  box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
 
+  @include respond(tab-lan) {
+    display: none;
+  }
+
+  &__header {
+    display: table;
+    width: 100%;
+    padding: 5rem;
+    .menu-left__logo {
+      width: 90%;
+      display: table-cell;
+      vertical-align: middle;
+      margin: 0 auto;
+    }
+  }
+
+  &__main {
+    .menu-left__li {
+      color: $color-white;
+      padding: 2rem;
+      width: 100%;
+      display: block;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.1s;
+
+      * {
+        cursor: pointer;
+      }
+
+      &--active,
+      &:hover {
+        background-color: $color-secondary;
+      }
+
+      span:first-child {
+        margin: 1rem;
+      }
+
+      &-tag {
+        padding: 0.2rem 0.5rem;
+        border-radius: 10rem;
+        font-size: 1rem;
+        color: $color-white;
+        margin-left: 1rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__footer {
+    font-size: $font-default-2;
+    color: $color-white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2rem;
+    width: 100%;
+
+    &--a {
+      color: $color-white;
+    }
+  }
+}
 </style>

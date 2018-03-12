@@ -40,4 +40,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.module-multiple-select-tag-box {
+    ul {
+        padding: 0;
+        li {
+            margin: 1rem 0;
+            display: inline-block;
+            background-color: #DBDBDB;
+            border-radius: 20px;
+            padding: 7px;
+            font-size: 12px;
+            font-family: sans-serif;
+            cursor: pointer;
+
+            &:not(:first-child) {
+                margin-left: 5px;
+            }
+        }
+    }
+}
 </style>

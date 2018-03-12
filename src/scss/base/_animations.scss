@@ -48,6 +48,16 @@
   }
 }
 
+@keyframes progressBarStripes {
+  0% {
+    background-position: 0;
+  }
+
+  100% {
+    background-position: -6rem;
+  }
+}
+
 // FADE
 .fade-enter-active, .fade-leave-active {
   transition: all 0.2s;
@@ -55,4 +65,36 @@
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+// EXPAND
+.expand-enter-active,
+.expand-leave-active {
+    transition: all 0.2s;
+}
+
+.expand-enter,
+.expand-leave-to {
+    height: 0;
+}
+.expand-enter-to,
+.expand-leave {
+    height: calc(100% - 6rem);
+}
+
+//PANEL
+.panel-enter-active,
+.panel-leave-active {
+    transition: all 0.2s;
+}
+
+.panel-enter,
+.panel-leave-to {
+    visibility: hidden;
+    opacity: 0;
+}
+.panel-enter-to,
+.panel-leave {
+    opacity: 1;
+    visibility: visible;
 }

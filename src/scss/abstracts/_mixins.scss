@@ -15,9 +15,9 @@
 }
 
 @mixin alertColor($color) {
-  background-color: lighten($color, 27%);
-  // border: 0.5px solid lighten($color, 10%);
-  color: darken($color, 27%);
+  background-color: lighten($color, 27%)!important;
+  // border: 0.5px solid lighten($color, 10%)!important;
+  color: darken($color, 27%)!important;
 }
 
 // MEDIA QUERY MANAGER

@@ -57,7 +57,7 @@ export default {
           //   return true;
           // }
 
-          if((this.multipleSelectOutput.filter(el => el._id == element._id))[0]) {
+          if ((this.multipleSelectOutput.filter(el => el._id == element._id))[0]) {
             return true;
           }
 
@@ -91,4 +91,50 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.module-multiple-select {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    &__results {
+        margin: 0;
+        width: 100%;
+        max-height: 20rem;
+        overflow-y: scroll;
+        border-radius: 0 0 3px 3px;
+        position: absolute;
+        z-index: 1000;
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 9px 8px;
+            background: #FFFFFF;
+            width: 100%;
+            border-color: #DBDBDB;
+            border-style: solid;
+            border-width: 0 1px 1px 1px;
+            border-radius: 0;
+            color: #151A22;
+            font-family: sans-serif;
+            font-size: 14px;
+            display: block;
+            cursor: pointer;
+
+            &:first-child {
+                background: #F7F7F7;
+            }
+
+            &:last-child {
+                border-radius: 0 0 3px 3px;
+            }
+
+        }
+
+    }
+
+}
 </style>

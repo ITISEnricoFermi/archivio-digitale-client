@@ -20,8 +20,6 @@ import Document from '@/components/document/document'
 import Collection from '@/components/collection/collection'
 import Alert from '@/components/alert/alert'
 
-import axios from 'axios'
-
 export default {
   props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses', 'collectionsPermissions'],
   data: () => {

@@ -48,7 +48,7 @@ export default {
     changePanel (panel) {
       document.getElementsByClassName('menu-header-container__li--active')[0].classList.remove('menu-header-container__li--active')
 
-      if (event.srcElement.tagName == 'LI') {
+      if (event.srcElement.tagName === 'LI') {
         event.target.classList.add('menu-header-container__li--active')
       } else {
         event.srcElement.parentNode.classList.add('menu-header-container__li--active')

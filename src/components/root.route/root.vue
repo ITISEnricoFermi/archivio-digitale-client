@@ -117,7 +117,7 @@ export default {
       .then((response) => {
         this.privileges = response.data
       })
-      .catch((e) =>  {
+      .catch((e) => {
         this.response = true
         this.responseMessage = e.response.data
       })
@@ -176,35 +176,34 @@ export default {
 </script>
 
 <style lang="scss">
-
 body {
 
-  #app {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 25rem auto;
-    grid-template-areas: ". main";
-    min-height: 100vh;
-    background-color: $color-white-2;
-    width: 100vw;
-    @include respond(tab-lan) {
-      display: block;
-      margin-top: 6rem;
+    #app {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 25rem auto;
+        grid-template-areas: ". main";
+        min-height: 100vh;
+        background-color: $color-white-2;
+        width: 100vw;
+        @include respond(tab-lan) {
+            display: block;
+            margin-top: 6rem;
+        }
     }
-  }
 
-  main {
-    grid-area: main;
-    font-size: 1.4rem;
-    padding: 3vh!important;
-    background-color: $color-white-2;
-  }
+    main {
+        grid-area: main;
+        font-size: 1.4rem;
+        padding: 3vh!important;
+        background-color: $color-white-2;
+    }
 
-  .menu-left {
-    position: fixed;
-    width: 25rem;
-    height: 100%;
-    z-index: 9998;
-  }
+    .menu-left {
+        position: fixed;
+        width: 25rem;
+        height: 100%;
+        z-index: 9998;
+    }
 }
 </style>

@@ -13,10 +13,6 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from '@/main'
-
 export default {
   name: 'progressBar',
   props: ['value', 'isStripped', 'isAnimated']

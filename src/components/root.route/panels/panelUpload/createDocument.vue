@@ -14,7 +14,7 @@
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="documentToUpload.type" required>
           <option class="module-input-option" value="" disabled selected>Tipo</option>
-          <option class="module-input-option" v-bind:value="type._id" v-for="type in types">
+          <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index" >
             {{ type.type }}
           </option>
         </select>
@@ -22,7 +22,7 @@
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="documentToUpload.faculty">
           <option class="module-input-option" value="" disabled selected>Specializzazione</option>
-          <option class="module-input-option" :value="faculty._id" v-for="faculty in faculties">
+          <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index" >
             {{ faculty.faculty }}
           </option>
         </select>
@@ -30,8 +30,8 @@
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="documentToUpload.subject" required>
           <option class="module-input-option" value="" disabled selected>Materia</option>
-          <optgroup :label="faculty.faculty" v-for="faculty in faculties">
-            <option class="module-input-option" :value="subject._id" v-for="subject in faculty.subjects">
+          <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index" >
+            <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index" >
               {{ subject.subject }}
             </option>
           </optgroup>
@@ -42,7 +42,7 @@
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="documentToUpload.class">
           <option class="module-input-option" value="0" selected>Classe</option>
-          <option class="module-input-option" :value="schoolClass._id" v-for="schoolClass in schoolClasses">
+          <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index" >
             {{ schoolClass.class }}
           </option>
         </select>
@@ -50,7 +50,7 @@
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="documentToUpload.section">
           <option class="module-input-option" value="" selected>Sezione</option>
-          <option class="module-input-option" v-for="section in sections" :value="section._id">
+          <option class="module-input-option" v-for="(section, index) in sections" :key="index" :value="section._id">
             {{ section.section }}
           </option>
         </select>
@@ -58,7 +58,7 @@
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="documentToUpload.visibility">
           <option class="module-input-option" value="pubblico" disabled selected>Visibilità</option>
-          <option class="module-input-option" v-for="visibility in visibilities" :value="visibility._id">{{visibility.visibility}}</option>
+          <option class="module-input-option" v-for="(visibility, index) in visibilities" :key="index" :value="visibility._id">{{visibility.visibility}}</option>
         </select>
     </div>
   </div>

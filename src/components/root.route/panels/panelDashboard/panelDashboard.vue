@@ -26,35 +26,34 @@ export default {
 
 <style scoped lang="scss">
 .panel__dashboard {
-  &-box {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "recentPosts profile" "recentPosts chart";
-    grid-gap: 3vh;
-    width: 100%;
-    height: 100%;
-    @include respond(tab-por) {
-      grid-template-rows: auto auto auto;
-      grid-template-columns: 1fr;
-      grid-template-areas: "recentPosts" "profile" "chart";
+    &-box {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "recentPosts profile" "recentPosts chart";
+        grid-gap: 3vh;
+        width: 100%;
+        height: 100%;
+        @include respond(tab-por) {
+            grid-template-rows: auto auto auto;
+            grid-template-columns: 1fr;
+            grid-template-areas: "recentPosts" "profile" "chart";
+        }
+
+        .module {
+            margin: 0!important !important;
+        }
+
     }
 
-    .module {
-      margin: 0!important;
+    &--recent-posts {
+        grid-area: recentPosts;
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
-  }
-
-  &--recent-posts {
-    grid-area: recentPosts;
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  &--chart {
-    grid-area: chart;
-  }
+    &--chart {
+        grid-area: chart;
+    }
 }
-
 </style>

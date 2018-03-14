@@ -1,6 +1,6 @@
 <template>
 <div class="module">
-  <div class="row" v-for="request in requests">
+  <div class="row" v-for="(request, index) in requests" :key="index">
     <div class="col-1-of-1">
       <div class="module__admin-request">
         <p class="module__admin-request--name">{{ request.firstname }} {{ request.lastname }}</p>

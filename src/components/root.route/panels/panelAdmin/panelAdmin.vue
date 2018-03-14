@@ -5,15 +5,16 @@
   <transition name="fade">
     <app-alert v-if="userAlert.message" :alert="userAlert" @alert="userAlert = $event"></app-alert>
   </transition>
-  <app-search-users  @searchUsers="users  = $event" @alert="searchUsersAlert = $event"></app-search-users>
+  <app-search-users @searchUsers="users  = $event" @alert="searchUsersAlert = $event"></app-search-users>
   <transition name="fade">
     <app-alert v-if="searchUsersAlert.message" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
   </transition>
-  <app-user v-if="users" v-for="(user, index) in users" :user="user" :key="user._id"></app-user>
+  <app-user v-if="users" v-for="(user, index) in users" :user="user" :key="index"></app-user>
 </main>
 </template>
 
 <script>
+
 import axios from 'axios'
 
 import signupRequests from './signupRequests.vue'

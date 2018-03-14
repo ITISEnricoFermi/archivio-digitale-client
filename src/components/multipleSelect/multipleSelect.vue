@@ -1,12 +1,12 @@
 <template>
 <div class="module-multiple-select">
-  <input type="text" class="module-input-text" :placeholder="placeholder" v-model="multipleSelectField" v-on:keyup="typing">
+  <input type="text" class="module-input-text" :placeholder="placeholder" v-model="multipleSelectField" @keyup="typing">
   <div class="module-multiple-select__results">
     <ul>
-      <li v-bind:value="result._id" v-for="result in multipleSelectResults" v-on:click="click">
-        <span v-for="element in dbElements">
+      <li :value="result._id" v-for="(result, index) in multipleSelectResults" :key="index" @click="click">
+        <span v-for="(element, index) in dbElements" :key="index">
             {{ result[element] }}
-          </span>
+        </span>
       </li>
     </ul>
   </div>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'multipleSelect',
   props: {
@@ -36,7 +37,7 @@ export default {
   methods: {
 
     typing (event) {
-      if (event.key == 'Enter') {
+      if (event.key === 'Enter') {
         if (this.multipleSelectResults.length !== 0) {
           this.multipleSelectOutput.push(this.multipleSelectResults[0])
           this.multipleSelectField = ''
@@ -44,7 +45,7 @@ export default {
           // EMIT
           this.$emit('elementAdded', this.multipleSelectOutput)
 
-          return this.multipleSelectResults = []
+          this.multipleSelectResults = []
         }
       }
 
@@ -55,7 +56,7 @@ export default {
           //   return true;
           // }
 
-          if ((this.multipleSelectOutput.filter(el => el._id == element._id))[0]) {
+          if ((this.multipleSelectOutput.filter(el => el._id === element._id))[0]) {
             return true
           }
 
@@ -72,7 +73,7 @@ export default {
     click (event) {
       var id = event.target.getAttribute('value')
       var element = (this.multipleSelectResults.filter(function (object) {
-        return object._id == id
+        return object._id === id
       }))[0]
 
       this.multipleSelectOutput.push(element)
@@ -81,7 +82,7 @@ export default {
       // EMIT
       this.$emit('elementAdded', this.multipleSelectOutput)
 
-      return this.multipleSelectResults = []
+      this.multipleSelectResults = []
     }
   }
 }

@@ -3,7 +3,7 @@
   <div class="module document-box" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
-  <app-document :document="document" v-for="(document, key) in recentDocuments" :key="document._id"></app-document>
+  <app-document :document="document" v-for="(document, index) in recentDocuments" :key="index"></app-document>
 </div>
 </template>
 

@@ -108,6 +108,9 @@ export default {
           }
         })
     }
+  },
+  components: {
+    appAlert: Alert
   }
 }
 </script>

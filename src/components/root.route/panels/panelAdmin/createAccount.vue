@@ -20,7 +20,7 @@
     <div class="col-1-of-2">
       <select class="module-input-select" v-model="user.privileges">
           <option class="module-input-option" disabled value="">Privilegi</option>
-          <option class="module-input-option" v-for="privilege in privileges" v-bind:value="privilege._id">{{privilege.privilege}}</option>
+          <option class="module-input-option" v-for="(privilege, index) in privileges" :key="index" :value="privilege._id">{{privilege.privilege}}</option>
         </select>
     </div>
     <div class="col-1-of-2">
@@ -96,6 +96,7 @@ export default {
   }
 
 }
+
 </script>
 
 <style scoped lang="scss">

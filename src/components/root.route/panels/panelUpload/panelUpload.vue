@@ -18,8 +18,6 @@ import createCollection from './createCollection'
 import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
 
-import axios from 'axios'
-
 export default {
   props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses', 'collectionsPermissions'],
   data: () => {

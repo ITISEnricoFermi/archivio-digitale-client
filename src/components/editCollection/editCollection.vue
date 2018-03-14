@@ -7,7 +7,7 @@
     <div class="col-1-of-2">
       <select class="module-input-select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
-          <option class="module-input-option" v-for="permission in collectionsPermissions" :value="permission._id">{{permission.permission}}</option>
+          <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
         </select>
     </div>
   </div>
@@ -66,10 +66,9 @@ export default {
   },
   computed: {
     toggleMultipleSelect () {
-      if (this.collectionToEdit.permissions == 'utenti') {
+      if (this.collectionToEdit.permissions === 'utenti') {
         return true
       }
-      this.collectionToEdit.authorizations = []
       return false
     }
   },

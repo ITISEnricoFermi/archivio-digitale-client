@@ -39,9 +39,9 @@
       </div>
     </div>
     <div class="row">
-        <div class="col-1-of-1">
-          <button class="button button--green" @click="signup">Registrati</button>
-        </div>
+      <div class="col-1-of-1">
+        <button class="button button--green" @click="signup">Registrati</button>
+      </div>
     </div>
     <div class="row" v-if="response">
       <div class="col-1-of-1">
@@ -68,7 +68,6 @@
 </template>
 
 <script>
-
 import FooterLight from '@/components/footer/light.footer'
 import multipleSelect from '@/components/multipleSelect/multipleSelect.vue'
 import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults.vue'
@@ -129,64 +128,63 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: $color-white-2;
-  height: 100%;
+    background-color: $color-white-2;
+    height: 100%;
 }
 
 main {
-  position: relative;
-  width: 100%;
-  height: 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .signup-box {
-  position: absolute;
-  @include absCenter;
-  width: 20vw!important;
+    position: absolute;
+    @include absCenter;
+    width: 20vw!important;
 
-  @include respond(tab-por) {
-    width: 60vw!important;
-  }
+    @include respond(tab-por) {
+        width: 60vw!important;
+    }
 
-  @include respond(phone) {
-    width: 80vw!important;
-  }
+    @include respond(phone) {
+        width: 80vw!important;
+    }
 }
 
 .success-box {
-  position: absolute;
-  @include absCenter;
-  width: 20vw!important;
+    position: absolute;
+    @include absCenter;
+    width: 20vw!important;
 
-  @include respond(tab-por) {
-    width: 60vw!important;
-  }
+    @include respond(tab-por) {
+        width: 60vw!important;
+    }
 
-  @include respond(phone) {
-    width: 80vw!important;
-  }
+    @include respond(phone) {
+        width: 80vw!important;
+    }
 
-  &__title {
-    font-weight: bold;
-  }
+    &__title {
+        font-weight: bold;
+    }
 
-  &__paragraph {
-    font-size: $font-default-2;
-    margin: 1rem;
-  }
+    &__paragraph {
+        font-size: $font-default-2;
+        margin: 1rem;
+    }
 }
 
 .logo {
-  width: 50%;
+    width: 50%;
 
-  @include respond(tab-por) {
-    width: 40%;
-  }
+    @include respond(tab-por) {
+        width: 40%;
+    }
 
 }
 
 .error {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
-
 </style>

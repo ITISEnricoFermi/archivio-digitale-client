@@ -49,12 +49,7 @@
 
 <script>
 export default {
-  name: 'headerMenu',
-  data: () => {
-    return {
-
-    }
-  }
+  name: 'headerMenu'
 }
 </script>
 

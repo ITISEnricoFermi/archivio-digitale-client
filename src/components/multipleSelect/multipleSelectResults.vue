@@ -1,8 +1,8 @@
 <template>
 <div class="module-multiple-select-tag-box">
   <ul>
-    <li v-bind:value="output._id" v-for="output in multipleSelectOutput" v-on:click="remove">
-      <span v-bind:value="output._id" v-for="element in dbElements">
+    <li :value="output._id" v-for="(output, index) in multipleSelectOutput" :key="index" @click="remove">
+      <span :value="output._id" v-for="(element, index) in dbElements" :key="index">
         {{ output[element] }}
       </span>
     </li>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'multipleSelectResults',
   props: {
@@ -27,11 +28,10 @@ export default {
       var id = event.target.getAttribute('value')
 
       var element = (this.multipleSelectOutput.filter(function (object) {
-        return object._id == id
+        return object._id === id
       }))[0]
 
       var index = this.multipleSelectOutput.indexOf(element)
-
       this.multipleSelectOutput.splice(index, 1)
       this.$emit('elementRemoved', this.multipleSelectOutput)
     }

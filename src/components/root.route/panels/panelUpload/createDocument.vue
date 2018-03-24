@@ -2,34 +2,34 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="module-input-text" placeholder="Titolo" autocomplete="off" required v-model="documentToUpload.name">
+      <input type="text" class="module-input-text" placeholder="Titolo" autocomplete="off" required v-model="document.name" @keyup.enter="upload">
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <textarea class="module-input-textarea" placeholder="Descrizione" v-model="documentToUpload.description"></textarea>
+      <textarea class="module-input-textarea" placeholder="Descrizione" v-model="document.description"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToUpload.type" required>
-          <option class="module-input-option" value="" disabled selected>Tipo</option>
+      <select class="module-input-select" v-model="document.type" required>
+          <option class="module-input-option" value=undefined disabled selected>Tipo</option>
           <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index" >
             {{ type.type }}
           </option>
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToUpload.faculty">
-          <option class="module-input-option" value="" disabled selected>Specializzazione</option>
+      <select class="module-input-select" v-model="document.faculty">
+          <option class="module-input-option" value=undefined disabled selected>Specializzazione</option>
           <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index" >
             {{ faculty.faculty }}
           </option>
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToUpload.subject" required>
-          <option class="module-input-option" value="" disabled selected>Materia</option>
+      <select class="module-input-select" v-model="document.subject" required>
+          <option class="module-input-option" value=undefined disabled selected>Materia</option>
           <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index" >
             <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index" >
               {{ subject.subject }}
@@ -40,7 +40,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToUpload.class">
+      <select class="module-input-select" v-model="document.class">
           <option class="module-input-option" value="0" selected>Classe</option>
           <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index" >
             {{ schoolClass.class }}
@@ -48,15 +48,15 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToUpload.section">
-          <option class="module-input-option" value="" selected>Sezione</option>
+      <select class="module-input-select" v-model="document.section">
+          <option class="module-input-option" value=undefined selected>Sezione</option>
           <option class="module-input-option" v-for="(section, index) in sections" :key="index" :value="section._id">
             {{ section.section }}
           </option>
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToUpload.visibility">
+      <select class="module-input-select" v-model="document.visibility">
           <option class="module-input-option" value="pubblico" disabled selected>Visibilità</option>
           <option class="module-input-option" v-for="(visibility, index) in visibilities" :key="index" :value="visibility._id">{{visibility.visibility}}</option>
         </select>
@@ -82,15 +82,15 @@ export default {
   props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
   data: () => {
     return {
-      documentToUpload: {
-        name: '',
-        type: '',
-        faculty: '',
-        subject: '',
+      document: {
+        name: undefined,
+        type: undefined,
+        faculty: undefined,
+        subject: undefined,
         class: '0',
-        section: '',
+        section: undefined,
         visibility: 'pubblico',
-        description: ''
+        description: undefined
       }
     }
   },
@@ -108,33 +108,33 @@ export default {
         }
       }
 
-      let document = JSON.stringify(this.documentToUpload)
+      let document = JSON.stringify(this.document)
       let file = this.$refs.uploadFile.files[0]
 
       formData.append('document', document)
-      formData.append('fileToUpload', file)
+      formData.append('file', file)
 
       axios.put('/documents/', formData, config)
         .then((response) => {
-          this.documentToUpload.name = ''
-          this.documentToUpload.type = ''
-          this.documentToUpload.faculty = ''
-          this.documentToUpload.subject = ''
-          this.documentToUpload.class = '0'
-          this.documentToUpload.section = ''
-          this.documentToUpload.visibility = 'pubblico'
-          this.documentToUpload.description = ''
+          this.document.name = undefined
+          this.document.type = undefined
+          this.document.faculty = undefined
+          this.document.subject = undefined
+          this.document.class = '0'
+          this.document.section = undefined
+          this.document.visibility = 'pubblico'
+          this.document.description = undefined
 
           this.$socket.emit('newDocument')
 
           this.$emit('alert', {
-            message: 'Documento caricato con successo.',
+            messages: ['Documento caricato con successo.'],
             color: 'alert--blue'
           })
         })
         .catch((e) => {
           this.$emit('alert', {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--red'
           })
         })

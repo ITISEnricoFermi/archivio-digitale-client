@@ -30,9 +30,7 @@ export default {
       query: {
         fulltext: '',
         permissions: ''
-      },
-      response: false,
-      responseMessage: ''
+      }
     }
   },
   methods: {
@@ -52,7 +50,7 @@ export default {
         .catch((e) => {
           this.$emit('searchCollections', [])
           this.$emit('alert', {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--yellow'
           })
         })

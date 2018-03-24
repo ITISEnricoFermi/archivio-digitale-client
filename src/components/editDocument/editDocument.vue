@@ -132,7 +132,6 @@ export default {
       .catch((e) => {
         this.response = true
         this.responseMessage = e.response.data
-        console.log(this.responseMessage)
       })
   },
   methods: {
@@ -140,7 +139,9 @@ export default {
       eventBus.closePopUp()
     },
     edit (id) {
-      axios.patch('/documents/' + id, this.documentToEdit)
+      axios.patch('/documents/' + id, {
+        document: this.documentToEdit
+      })
         .then((response) => {
           eventBus.closePopUp()
           this.$socket.emit('documentUpdated')

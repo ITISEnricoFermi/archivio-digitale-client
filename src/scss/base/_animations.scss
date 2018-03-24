@@ -3,51 +3,53 @@
     opacity: 0;
     transform: translateX(-10rem);
   }
+
   80% {
     transform: translateX(1rem);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
-
 @keyframes moveInRight {
   0% {
     opacity: 0;
     transform: translateX(10rem);
   }
+
   80% {
     transform: translateX(-1rem);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0rem);
   }
 }
-
 @keyframes moveInBottom {
   0% {
     opacity: 0;
     transform: translateY(3rem);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0rem);
   }
 }
-
 @keyframes moveInTop {
   0% {
     opacity: 0;
     transform: translateY(-3rem);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0rem);
   }
 }
-
 @keyframes progressBarStripes {
   0% {
     background-position: 0;
@@ -57,44 +59,58 @@
     background-position: -6rem;
   }
 }
+@keyframes fluidBackground {
+  0% {
+    background-position: 0 50%;
+  }
 
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
 // FADE
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.2s;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
-
 // EXPAND
 .expand-enter-active,
 .expand-leave-active {
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .expand-enter,
 .expand-leave-to {
-    height: 0;
-}
-.expand-enter-to,
-.expand-leave {
-    height: calc(100% - 6rem);
+  height: 0;
 }
 
+.expand-enter-to,
+.expand-leave {
+  height: calc(100% - 6rem);
+}
 //PANEL
 .panel-enter-active,
 .panel-leave-active {
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .panel-enter,
 .panel-leave-to {
-    visibility: hidden;
-    opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
+
 .panel-enter-to,
 .panel-leave {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }

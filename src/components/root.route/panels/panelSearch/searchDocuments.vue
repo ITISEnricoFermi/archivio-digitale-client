@@ -116,7 +116,7 @@ export default {
         .catch((e) => {
           this.$emit('searchDocuments', [])
           this.$emit('alert', {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--yellow'
           })
         })

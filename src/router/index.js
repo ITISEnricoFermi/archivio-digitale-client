@@ -6,6 +6,7 @@ import Root from '@/components/root.route/root'
 import Home from '@/components/home.route/home'
 import Login from '@/components/login.route/login'
 import SignUp from '@/components/signup.route/signup'
+import Search from '@/components/search.route/search'
 
 import NotFoundComponent from '@/components/404.error/404.error'
 
@@ -36,10 +37,12 @@ export default new Router({
     path: '/signup',
     name: 'SignUp',
     component: SignUp
-  },
-  {
+  }, {
+    path: '/search',
+    name: 'Search',
+    component: Search
+  }, {
     path: '*',
     component: NotFoundComponent
-  }
-  ]
+  }]
 })

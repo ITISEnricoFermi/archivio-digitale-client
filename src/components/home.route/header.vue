@@ -56,9 +56,10 @@ export default {
 <style scoped lang="scss">
 .header {
     width: 100%;
-    // background-image: linear-gradient(45deg, lighten($color-primary, 10%), lighten($color-primary, 12.5%));
-    background-color: lighten($color-primary, 10%);
+    //background-image: linear-gradient(lighten($color-primary, 13%), lighten($color-primary, 7%));
+    // background-color: lighten($color-primary, 10%);
     // position: fixed;
+    background-color: #2b3137;
     z-index: 10000;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
 
@@ -66,9 +67,9 @@ export default {
         width: 100%;
         text-align: center;
         display: table;
-        border-bottom: 1px solid lighten($color-primary, 12%);
+        //border-bottom: 1px solid lighten($color-primary, 12%);
 
-        &>* {
+        & > * {
             display: table-cell;
             vertical-align: middle;
             width: calc(100% / 3);
@@ -76,6 +77,10 @@ export default {
 
         .logo {
             text-align: left;
+
+            @include respond(tab-lan) {
+              width: 60%;
+            }
 
             * {
                 display: inline-block;
@@ -105,6 +110,10 @@ export default {
             margin: 0 auto;
             text-align: center;
 
+            @include respond(tab-lan) {
+              display: none;
+            }
+
             li {
                 display: inline-block;
                 margin: 0 2rem;
@@ -120,8 +129,22 @@ export default {
             text-align: right;
             padding: 0;
 
+            @include respond(tab-lan) {
+              width: 40%;
+            }
+
             li {
                 display: inline-block;
+
+                a,
+                a:link,
+                a:visited {
+                  text-transform: uppercase;
+                  padding: 0.7rem;
+                  display: block;
+                  text-decoration: none;
+                  font-size: 1.2rem;
+                }
 
                 &:nth-child(1) {
                     a {
@@ -131,20 +154,57 @@ export default {
 
                 &:nth-child(2) {
                     a {
-                        color: $color-black;
-                        border-radius: 2rem;
-                        background-color: $color-white;
-                        margin: 0 3vh 0 1vh;
+
+                        &,
+                        &:link,
+                        &:visited {
+
+                            color: $color-black;
+                            border-radius: 2rem;
+                            background-color: $color-white;
+                            margin: 0 3vh 0 1vh;
+                            transition: all 0.2s;
+                            position: relative;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                        &:hover {
+                            transform: translateY(-0.2rem);
+                            box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+                            &::after {
+                                transform: scaleX(1.4) scaleY(1.6);
+                                opacity: 0;
+                            }
+
+                        }
+
+                        &:active,
+                        &:focus {
+                            outline: none;
+                            transform: translateY(-0.1rem);
+                            box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+                        }
+
+                        &::after {
+                            content: "";
+                            display: inline-block;
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 10rem;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: -1;
+                            transition: all 0.4s;
+                            background-color: $color-white;
+                            color: $color-black;
+                        }
+
                     }
                 }
 
-                a {
-                    text-transform: uppercase;
-                    padding: 0.7rem;
-                    display: block;
-                    text-decoration: none;
-                    font-size: 1.2rem;
-                }
             }
         }
 
@@ -165,6 +225,7 @@ export default {
                     display: block;
                     padding: 3vh;
                     color: $color-secondary;
+                    color: $color-white-5;
                     text-decoration: none;
 
                     * {

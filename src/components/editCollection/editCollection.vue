@@ -59,7 +59,12 @@ export default {
   props: ['id', 'collectionsPermissions'],
   data: () => {
     return {
-      collectionToEdit: {},
+      collectionToEdit: {
+        documentCollection: undefined,
+        permissions: undefined,
+        authorizations: [],
+        documents: []
+      },
       users: [],
       dbElements: ['firstname', 'lastname']
     }
@@ -112,6 +117,7 @@ export default {
           this.socket.$emit('collectionDeleted')
         })
         .catch((e) => {
+          console.log(e)
           this.response = true
           this.responseMessage = e.respose.data
         })

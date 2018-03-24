@@ -3,12 +3,12 @@
   <app-search-documents :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
   <app-document :document="document" v-for="document in documents" :key="document._id"></app-document>
   <transition name="fade">
-    <app-alert v-if="documentsAlert.message" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
+    <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
   </transition>
   <app-search-collections :collectionsPermissions="collectionsPermissions" @searchCollections="collections  = $event" @alert="collectionsAlert = $event"></app-search-collections>
   <app-collection :collection="collection" v-for="collection in collections" :key="collection._id"></app-collection>
   <transition name="fade">
-    <app-alert v-if="collectionsAlert.message" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
+    <app-alert v-if="collectionsAlert.messages" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
   </transition>
 </main>
 </template>
@@ -27,11 +27,11 @@ export default {
       documents: undefined,
       collections: undefined,
       documentsAlert: {
-        message: undefined,
+        messages: undefined,
         color: undefined
       },
       collectionsAlert: {
-        message: undefined,
+        messages: undefined,
         color: undefined
       }
     }

@@ -1,6 +1,6 @@
 <template>
 <div class="module alert" :class="alert.color">
-  <p>{{alert.message}}</p>
+  <p>{{alert.messages[0]}}</p>
 </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     let self = this
     this.timeout = setTimeout(function () {
       self.$emit('alert', {
-        message: undefined,
+        messages: undefined,
         color: undefined
       })
     }, 4000)

@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     getRequests () {
-      axios.post('/admin/getRequests')
+      axios.get('/admin/requests/')
         .then((response) => {
           this.requests = response.data
         })

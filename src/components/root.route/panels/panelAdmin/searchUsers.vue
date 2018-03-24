@@ -21,16 +21,14 @@ export default {
   },
   methods: {
     search () {
-      axios.post('/admin/getUsers/', {
-        key: this.query
-      })
+      axios.get('/admin/users/' + this.query)
         .then((response) => {
           this.$emit('searchUsers', response.data)
         })
         .catch((e) => {
           this.$emit('searchUsers', undefined)
           this.$emit('alert', {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--yellow'
           })
         })

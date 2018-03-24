@@ -33,8 +33,8 @@ body {
     #app {
         width: 100vw;
         height: 100vh;
-        background-image: linear-gradient(45deg, lighten($color-primary, 0%), lighten($color-primary, 12.5%));
-        padding: 3vh;
+        //background-image: linear-gradient(45deg, lighten($color-primary, 0%), lighten($color-primary, 12.5%));
+        // padding: 3vh;
 
         main {
             height: 100%;
@@ -43,10 +43,13 @@ body {
             &>section {
                 height: 100%;
                 width: 100%;
+                //background: url("/static/layout/git.svg") #2b3137;
                 background-image: linear-gradient(to right bottom, $color-black, $color-secondary), url("/static/layout/bg.jpg");
                 background-blend-mode: screen;
                 background-size: cover;
                 background-position: center;
+
+                // background-position: center 10%;
                 background-repeat: no-repeat;
 
                 position: relative;

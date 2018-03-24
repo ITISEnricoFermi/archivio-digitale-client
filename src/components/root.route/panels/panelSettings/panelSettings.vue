@@ -40,7 +40,7 @@
     </div>
   </div>
   <transition name="fade">
-    <app-alert v-if="settingsAlert.message" :alert="settingsAlert" @alert="settingsAlert = $event"></app-alert>
+    <app-alert v-if="settingsAlert.messages" :alert="settingsAlert" @alert="settingsAlert = $event"></app-alert>
   </transition>
 </main>
 </template>
@@ -60,7 +60,7 @@ export default {
       },
       profilePic: '',
       settingsAlert: {
-        message: undefined,
+        messages: undefined,
         color: undefined
       }
     }
@@ -73,7 +73,7 @@ export default {
         })
         .catch((e) => {
           this.settingsAlert = {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--red'
           }
         })
@@ -91,7 +91,7 @@ export default {
         })
         .catch((e) => {
           this.settingsAlert = {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--red'
           }
         })
@@ -103,7 +103,7 @@ export default {
         })
         .catch((e) => {
           this.settingsAlert = {
-            message: e.response.data,
+            messages: e.response.data.messages,
             color: 'alert--red'
           }
         })

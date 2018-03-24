@@ -3,11 +3,11 @@
   <app-signup-requests></app-signup-requests>
   <app-create-account :privileges="privileges" :subjects="subjects" @alert="userAlert = $event"></app-create-account>
   <transition name="fade">
-    <app-alert v-if="userAlert.message" :alert="userAlert" @alert="userAlert = $event"></app-alert>
+    <app-alert v-if="userAlert.messages" :alert="userAlert" @alert="userAlert = $event"></app-alert>
   </transition>
   <app-search-users @searchUsers="users  = $event" @alert="searchUsersAlert = $event"></app-search-users>
   <transition name="fade">
-    <app-alert v-if="searchUsersAlert.message" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
+    <app-alert v-if="searchUsersAlert.messages" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
   </transition>
   <app-user v-if="users" v-for="(user, index) in users" :user="user" :key="index"></app-user>
 </main>
@@ -30,11 +30,11 @@ export default {
       subjects: [],
       users: [],
       userAlert: {
-        message: undefined,
+        messages: undefined,
         color: undefined
       },
       searchUsersAlert: {
-        message: undefined,
+        messages: undefined,
         color: undefined
       }
     }
@@ -45,7 +45,7 @@ export default {
         this.subjects = response.data
       }).catch((e) => {
         this.userAlert = {
-          message: e.response.data,
+          messages: e.response.data.messages,
           color: 'alert--red'
         }
       })

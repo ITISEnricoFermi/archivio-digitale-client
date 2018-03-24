@@ -1,12 +1,19 @@
 <template>
   <div class="search">
-    <input class="search__bar" type="text" placeholder="Cerca documenti, foto e video..." autocomplete="off">
+    <input class="search__bar" type="text" placeholder="Cerca documenti, foto e video..." autocomplete="off" v-model="query" @keyup.enter="search">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'search'
+  name: 'search',
+  methods: {
+    search () {
+      if (this.query) {
+        window.location.replace('/search?query=' + this.query)
+      }
+    }
+  }
 }
 </script>
 

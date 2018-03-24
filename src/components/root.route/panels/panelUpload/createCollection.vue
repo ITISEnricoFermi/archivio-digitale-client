@@ -2,7 +2,7 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Collezione" v-model="collection.documentCollection">
+      <input type="text" class="module-input-text" placeholder="Collezione" v-model="collection.documentCollection" @keyup.enter="createCollection">
     </div>
     <div class="col-1-of-2">
       <select class="module-input-select" v-model="collection.permissions">
@@ -64,27 +64,35 @@ export default {
       })
       .catch((e) => {
         this.$emit('alert', {
-          message: e.respone.data,
+          messages: e.respone.data.messages,
           color: 'alert--red'
         })
       })
   },
   methods: {
     createCollection () {
-      axios.put('/collections/', this.collection)
+      if (!this.collection.documentCollection) {
+        return this.$emit('alert', {
+          messages: ['Il campo del nome della collezione è vuoto.'],
+          color: 'alert--red'
+        })
+      }
+      axios.put('/collections/', {
+        collection: this.collection
+      })
         .then((response) => {
-          this.collection.documentCollection = ''
+          this.collection.documentCollection = undefined
           this.collection.permissions = undefined
           this.collection.authorizations = []
 
           this.$emit('alert', {
-            message: response.data,
+            messages: response.data.messages,
             color: 'alert--blue'
           })
         })
         .catch((e) => {
           this.$emit('alert', {
-            message: e.respone.data,
+            messages: e.response.data.messages,
             color: 'alert--red'
           })
         })

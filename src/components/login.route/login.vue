@@ -61,7 +61,7 @@ export default {
         })
         .catch((e) => {
           this.response = true
-          this.responseMessage = e.response.data
+          this.responseMessage = e.response.data.messages[0]
         })
     }
   },

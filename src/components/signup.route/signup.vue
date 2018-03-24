@@ -114,7 +114,7 @@ export default {
         .catch((e) => {
           console.log(e)
           this.response = true
-          this.responseMessage = e.response.data
+          this.responseMessage = e.response.data.messages[0]
         })
     }
   },

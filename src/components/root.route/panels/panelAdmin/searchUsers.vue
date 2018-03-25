@@ -16,12 +16,15 @@ export default {
   name: 'searchUsers',
   data: () => {
     return {
-      query: ''
+      query: undefined
     }
   },
   methods: {
     search () {
-      axios.get('/admin/users/' + this.query)
+      if (!this.query) {
+        return false
+      }
+      axios.get('/admin/users/search/' + this.query)
         .then((response) => {
           this.$emit('searchUsers', response.data)
         })

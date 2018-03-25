@@ -19,7 +19,7 @@
       <span>Inserisci</span>
       <span class="menu-left__li-tag u-bg-color-red">Disattivo</span>
     </li>
-    <li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges == 'admin'">
+    <li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges._id == 'admin'">
       <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
       <span>Admin</span>
       <span class="menu-left__li-tag u-bg-color-yellow">Beta</span>
@@ -74,8 +74,11 @@ export default {
 <style scoped lang="scss">
 .menu-left {
   background-color: $color-primary;
-  position: relative;
+  position: fixed;
   box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+  width: 25rem;
+  height: 100%;
+  z-index: 9998;
 
   @include respond(tab-lan) {
     display: none;

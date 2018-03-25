@@ -17,7 +17,7 @@
   </transition>
   <transition name="fade">
     <app-popup v-if="popup" :width="'80%'">
-      <component v-if="popup" :is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions">
+      <component v-if="popup" :is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
       </component>
     </app-popup>
   </transition>
@@ -45,6 +45,7 @@ import panelSettings from './panels/panelSettings/panelSettings.vue'
 import PopUp from '@/components/popup/popup'
 import EditDocument from '@/components/editDocument/editDocument'
 import EditCollection from '@/components/editCollection/editCollection'
+import EditUser from '@/components/editUser/editUser'
 
 export default {
   name: 'root',
@@ -61,7 +62,7 @@ export default {
       collectionsPermissions: [],
       user: {
         privileges: '',
-        img: '../static/elements/profile.jpg'
+        img: '../static/elements/profile.svg'
       },
       errors: [],
       menu: false,
@@ -81,6 +82,13 @@ export default {
     axios.get('/api/getDocumentTypes/')
       .then((response) => {
         this.types = response.data
+      }).catch((e) => {
+        this.errors.push(e)
+      })
+
+    axios.get('/api/getSubjects/')
+      .then((response) => {
+        this.subjects = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
@@ -170,14 +178,15 @@ export default {
     appPanelSettings: panelSettings,
     appPopup: PopUp,
     appEditDocument: EditDocument,
-    appEditCollection: EditCollection
+    appEditCollection: EditCollection,
+    appEditUser: EditUser
   }
 }
 </script>
 
 <style lang="scss">
 body {
-
+  background-color: $color-white-2;
     #app {
         display: grid;
         grid-template-rows: 1fr;
@@ -197,13 +206,6 @@ body {
         font-size: 1.4rem;
         padding: 3vh!important;
         background-color: $color-white-2;
-    }
-
-    .menu-left {
-        position: fixed;
-        width: 25rem;
-        height: 100%;
-        z-index: 9998;
     }
 }
 </style>

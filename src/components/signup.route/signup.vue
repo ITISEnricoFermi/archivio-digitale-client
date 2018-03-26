@@ -170,7 +170,7 @@ main {
     }
 
     &__paragraph {
-        font-size: $font-default-2;
+        font-size: $font-default-3;
         margin: 1rem;
     }
 }

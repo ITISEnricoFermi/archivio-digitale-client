@@ -131,7 +131,7 @@ export default {
   }
 
   &__footer {
-    font-size: $font-default-2;
+    font-size: $font-default-3;
     color: $color-white;
     text-align: center;
     position: absolute;

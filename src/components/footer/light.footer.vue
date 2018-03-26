@@ -35,7 +35,7 @@ footer {
         text-decoration: none;
         text-transform: uppercase;
         padding: 1rem 1.5rem;
-        font-size: 1.4rem;
+        font-size: $font-default-2;
         font-weight: bold;
       }
     }

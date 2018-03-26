@@ -22,7 +22,7 @@ export default {
   methods: {
     search () {
       if (!this.query) {
-        return false
+        return this.$emit('searchUsers', [])
       }
       axios.get('/admin/users/search/' + this.query)
         .then((response) => {

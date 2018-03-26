@@ -203,7 +203,7 @@ body {
 
     main {
         grid-area: main;
-        font-size: 1.4rem;
+        font-size: $font-default-2;
         padding: 3vh!important;
         background-color: $color-white-2;
     }

@@ -11,7 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: [{
-      context: ["/api", "/users", "/logout", "/pics", "/admin", "/documents", "/collections"],
+      context: ["/api", "/users", "/logout", "/pics", "/admin", "/documents", "/collections", "/public"],
       target: "http://localhost:3000",
       changeOrigin: true
     }, {

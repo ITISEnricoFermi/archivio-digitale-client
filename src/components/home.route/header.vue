@@ -61,7 +61,8 @@ export default {
     // position: fixed;
     background-color: #2b3137;
     z-index: 10000;
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
+    // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
+    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
 
     &__top {
         width: 100%;
@@ -119,7 +120,7 @@ export default {
                 margin: 0 2rem;
                 a {
                     color: $color-white;
-                    font-size: $font-default-2;
+                    font-size: $font-default-3;
                     text-decoration: none;
                 }
             }

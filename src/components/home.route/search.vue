@@ -5,12 +5,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'search',
   methods: {
     search () {
       if (this.query) {
-        window.location.replace('/search?query=' + this.query)
+        window.location.replace('/search?q=' + this.query)
       }
     }
   }

@@ -2,11 +2,22 @@
 <main class="panel panel__settings">
   <div class="module">
     <div class="row">
+      <div class="col-1-of-3">
+        <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" v-model="user.firstname">
+      </div>
+      <div class="col-1-of-3">
+        <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" v-model="user.lastname">
+      </div>
+      <div class="col-1-of-3">
+        <input type="text" class="module-input-text" placeholder="Email" autocomplete="off" v-model="user.email">
+      </div>
+    </div>
+    <div class="row">
       <div class="col-1-of-2">
-        <input type="password" class="module-input-text" placeholder="Password attuale" autocomplete="off" v-model="passwords.old">
+        <input type="password" class="module-input-text" placeholder="Password attuale" autocomplete="off" v-model="localUser.passwords.old">
       </div>
       <div class="col-1-of-2">
-        <input type="password" class="module-input-text" placeholder="Nuova password" autocomplete="off" v-model="passwords.new">
+        <input type="password" class="module-input-text" placeholder="Nuova password" autocomplete="off" v-model="localUser.passwords.new">
       </div>
     </div>
     <div class="row">
@@ -32,13 +43,6 @@
       </div>
     </div>
   </div>
-  <div class="module" v-if="response">
-    <div class="row">
-      <div class="col-1-of-1">
-        <p>{{responseMessage}}</p>
-      </div>
-    </div>
-  </div>
   <transition name="fade">
     <app-alert v-if="settingsAlert.messages" :alert="settingsAlert" @alert="settingsAlert = $event"></app-alert>
   </transition>
@@ -52,11 +56,17 @@ import axios from 'axios'
 
 export default {
   name: 'panelSettings',
+  props: ['user'],
   data: () => {
     return {
-      passwords: {
-        new: '',
-        old: ''
+      localUser: {
+        firstname: undefined,
+        lastname: undefined,
+        email: undefined,
+        passwords: {
+          new: '',
+          old: ''
+        }
       },
       profilePic: '',
       settingsAlert: {
@@ -67,7 +77,7 @@ export default {
   },
   methods: {
     saveSettings () {
-      axios.patch('/users/me/', this.passwords)
+      axios.patch('/users/me/', this.localUser.passwords)
         .then(() => {
           window.location.replace('/login')
         })

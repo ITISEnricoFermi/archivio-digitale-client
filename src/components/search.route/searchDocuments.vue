@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="query.type">
-            <option class="module-input-option" value="" selected>Tipo</option>
+            <option class="module-input-option" value=undefined selected>Tipo</option>
             <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index">
               {{ type.type }}
             </option>
@@ -16,7 +16,7 @@
     </div>
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="query.faculty">
-            <option class="module-input-option" value="" selected>Specializzazione</option>
+            <option class="module-input-option" value=undefined selected>Specializzazione</option>
             <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index">
               {{ faculty.faculty }}
             </option>
@@ -24,7 +24,7 @@
     </div>
     <div class="col-1-of-3">
       <select class="module-input-select" v-model="query.subject">
-            <option class="module-input-option" value="" selected>Materia</option>
+            <option class="module-input-option" value=undefined selected>Materia</option>
             <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index">
               <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index">
                 {{ subject.subject }}
@@ -34,27 +34,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-1-of-3">
+    <div class="col-1-of-2">
       <select class="module-input-select" v-model="query.class">
-            <option class="module-input-option" value="" selected>Classe</option>
+            <option class="module-input-option" value=undefined selected>Classe</option>
             <option class="module-input-option" v-bind:value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
               {{ schoolClass.class }}
             </option>
           </select>
     </div>
-    <div class="col-1-of-3">
+    <div class="col-1-of-2">
       <select class="module-input-select" v-model="query.section">
-            <option class="module-input-option" value="" selected>Sezione</option>
+            <option class="module-input-option" value=undefined selected>Sezione</option>
             <option class="module-input-option" :value="section._id" v-for="(section, index) in sections" :key="index">
               {{ section.section }}
-            </option>
-          </select>
-    </div>
-    <div class="col-1-of-3">
-      <select class="module-input-select" v-model="query.visibility">
-            <option class="module-input-option" value="" selected>Visibilità</option>
-            <option class="module-input-option" :value="visibility._id" v-for="(visibility, index) in visibilities" :key="index">
-              {{ visibility.visibility }}
             </option>
           </select>
     </div>
@@ -72,21 +64,24 @@ import axios from 'axios'
 
 export default {
   name: 'searchDocuments',
-  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
+  props: ['types', 'faculties', 'sections', 'schoolClasses'],
   data: () => {
     return {
       subjects: '',
       query: {
-        fulltext: '',
-        type: '',
-        faculty: '',
-        subject: '',
-        class: '',
-        section: '',
-        visibility: ''
+        fulltext: undefined,
+        type: undefined,
+        faculty: undefined,
+        subject: undefined,
+        class: undefined,
+        section: undefined
       },
       help: undefined
     }
+  },
+  created () {
+    this.query.fulltext = this.$route.query.q
+    this.search()
   },
   sockets: {
     documentDeleted () {
@@ -94,32 +89,29 @@ export default {
     }
   },
   methods: {
-    search () {
+    async search () {
       for (let i = 0; i < this.query.length; i++) {
         if (Object.keys(this.query)[i] !== '') {
           return false
         }
       }
 
-      axios.post('/documents/search/', this.query)
-        .then((response) => {
-          let documents = response.data
+      try {
+        let response = await axios.post('/public/search/documents/', this.query)
+        let documents = response.data
 
-          for (let i = 0; i < documents.length; i++) {
-            if (documents[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
-              documents[i].own = true
-            }
-          }
+        for (let i = 0; i < documents.length; i++) {
+          documents[i].own = false
+        }
 
-          this.$emit('searchDocuments', documents)
+        this.$emit('searchDocuments', documents)
+      } catch (e) {
+        this.$emit('searchDocuments', [])
+        this.$emit('alert', {
+          messages: e.response.data.messages,
+          color: 'alert--yellow'
         })
-        .catch((e) => {
-          this.$emit('searchDocuments', [])
-          this.$emit('alert', {
-            messages: e.response.data.messages,
-            color: 'alert--yellow'
-          })
-        })
+      }
     }
   }
 }

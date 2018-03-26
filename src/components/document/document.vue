@@ -30,12 +30,12 @@
   <div class="document-box-left">
     <ul>
       <li class="u-noselect">
-        <a v-bind:href="'documents/' + document.directory" download>
+        <a v-bind:href="'/public/documents/' + document.directory" download>
           <i class="fas fa-download"></i>
         </a>
       </li>
       <li class="u-noselect">
-        <a v-bind:href="'documents/' + document.directory" target="_blank">
+        <a v-bind:href="'/public/documents/' + document.directory" target="_blank">
           <i class="fas fa-eye"></i>
         </a>
       </li>
@@ -142,8 +142,8 @@ export default {
             text-overflow: ellipsis;
             overflow: hidden;
             display: -webkit-box;
-            height: $font-default-2*$line-height-default*$lines-to-show;
-            font-size: $font-default-2;
+            height: $font-default-3*$line-height-default*$lines-to-show;
+            font-size: $font-default-3;
             line-height: $line-height-default;
             -webkit-line-clamp: $lines-to-show;
             -webkit-box-orient: vertical;

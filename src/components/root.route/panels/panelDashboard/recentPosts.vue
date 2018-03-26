@@ -56,6 +56,7 @@ export default {
           }
         })
         .catch((e) => {
+          console.log(e)
           this.response = true
           this.responseMessage = e.response.data
         })

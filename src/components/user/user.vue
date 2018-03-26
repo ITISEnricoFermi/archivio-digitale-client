@@ -128,7 +128,7 @@ export default {
             display: block;
             text-decoration: none;
             color: $color-tertiary;
-            font-size: $font-default-2;
+            font-size: $font-default-3;
           }
 
           .user-tag {

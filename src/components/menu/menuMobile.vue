@@ -16,7 +16,7 @@
       <span>Inserisci</span>
       <span class="menu-header-container__li-tag u-bg-color-red">Disattivato</span>
     </li>
-    <li class="menu-header-container__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges == 'admin'">
+    <li class="menu-header-container__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges._id == 'admin'">
       <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
       <span>Admin</span>
       <span class="menu-header-container__li-tag u-bg-color-yellow">Beta</span>
@@ -116,7 +116,7 @@ export default {
     }
 
     &__footer {
-        font-size: $font-default-2;
+        font-size: $font-default-3;
         color: $color-white;
         text-align: center;
         position: absolute;

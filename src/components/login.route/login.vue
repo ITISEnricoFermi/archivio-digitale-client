@@ -1,5 +1,5 @@
 <template>
-<main id="app">
+<main id="app" class="main__login">
   <div class="login-box module">
     <div class="row">
       <div class="col-1-of-1">
@@ -72,41 +72,38 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  background-color: $color-white-2;
-  height: 100%;
-}
 
-main {
+.main__login {
   position: relative;
   width: 100%;
   height: 100%;
-}
 
-.login-box {
-  position: absolute;
-  @include absCenter;
-  width: 20vw!important;
+  .login-box {
+    position: absolute;
+    @include absCenter;
+    width: 20vw!important;
 
-  @include respond(tab-por) {
-    width: 60vw!important;
+    @include respond(tab-por) {
+      width: 60vw!important;
+    }
+
+    @include respond(tab-por) {
+      width: 80vw!important;
+    }
+
+    .logo {
+      width: 50%;
+
+      @include respond(tab-por) {
+        width: 40%;
+      }
+    }
+
+    .error {
+      font-size: 1.2rem;
+    }
+
   }
-
-  @include respond(tab-por) {
-    width: 80vw!important;
-  }
-}
-
-.logo {
-  width: 50%;
-
-  @include respond(tab-por) {
-    width: 40%;
-  }
-}
-
-.error {
-  font-size: 1.2rem;
 }
 
 </style>

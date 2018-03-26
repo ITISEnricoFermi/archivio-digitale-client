@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" class="main__root">
   <app-menu-header @changeMenu="menu = !menu"></app-menu-header>
   <keep-alive>
     <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu>
@@ -185,20 +185,17 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  background-color: $color-white-2;
-    #app {
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: 25rem auto;
-        grid-template-areas: ". main";
-        min-height: 100vh;
-        background-color: $color-white-2;
-        width: 100vw;
-        @include respond(tab-lan) {
-            display: block;
-            margin-top: 6rem;
-        }
+.main__root {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 25rem auto;
+    grid-template-areas: ". main";
+    min-height: 100vh;
+    background-color: $color-white-2;
+    width: 100vw;
+    @include respond(tab-lan) {
+        display: block;
+        margin-top: 6rem;
     }
 
     main {

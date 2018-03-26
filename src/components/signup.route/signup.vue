@@ -1,5 +1,5 @@
 <template>
-<main id="app">
+<main id="app" class="main__signup">
 
   <div class="signup-box module" v-if="!signedUp">
     <!-- Nome, Cognome, Email, Password, Materie -->
@@ -127,64 +127,60 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-    background-color: $color-white-2;
-    height: 100%;
-}
-
-main {
+.main__signup {
     position: relative;
     width: 100%;
     height: 100%;
-}
 
-.signup-box {
-    position: absolute;
-    @include absCenter;
-    width: 20vw!important;
+    .signup-box {
+        position: absolute;
+        @include absCenter;
+        width: 20vw!important;
 
-    @include respond(tab-por) {
-        width: 60vw!important;
+        @include respond(tab-por) {
+            width: 60vw!important;
+        }
+
+        @include respond(phone) {
+            width: 80vw!important;
+        }
     }
 
-    @include respond(phone) {
-        width: 80vw!important;
-    }
-}
+    .success-box {
+        position: absolute;
+        @include absCenter;
+        width: 20vw!important;
 
-.success-box {
-    position: absolute;
-    @include absCenter;
-    width: 20vw!important;
+        @include respond(tab-por) {
+            width: 60vw!important;
+        }
 
-    @include respond(tab-por) {
-        width: 60vw!important;
-    }
+        @include respond(phone) {
+            width: 80vw!important;
+        }
 
-    @include respond(phone) {
-        width: 80vw!important;
-    }
+        &__title {
+            font-weight: bold;
+        }
 
-    &__title {
-        font-weight: bold;
-    }
-
-    &__paragraph {
-        font-size: $font-default-3;
-        margin: 1rem;
-    }
-}
-
-.logo {
-    width: 50%;
-
-    @include respond(tab-por) {
-        width: 40%;
+        &__paragraph {
+            font-size: $font-default-3;
+            margin: 1rem;
+        }
     }
 
-}
+    .logo {
+        width: 50%;
 
-.error {
-    font-size: 1.2rem;
+        @include respond(tab-por) {
+            width: 40%;
+        }
+
+    }
+
+    .error {
+        font-size: 1.2rem;
+    }
+
 }
 </style>

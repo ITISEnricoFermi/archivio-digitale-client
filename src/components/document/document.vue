@@ -30,12 +30,12 @@
   <div class="document-box-left">
     <ul>
       <li class="u-noselect">
-        <a v-bind:href="'/public/documents/' + document.directory" download>
+        <a v-bind:href="'/shared/documents/' + document.directory" download>
           <i class="fas fa-download"></i>
         </a>
       </li>
       <li class="u-noselect">
-        <a v-bind:href="'/public/documents/' + document.directory" target="_blank">
+        <a v-bind:href="'/shared/documents/' + document.directory" target="_blank">
           <i class="fas fa-eye"></i>
         </a>
       </li>

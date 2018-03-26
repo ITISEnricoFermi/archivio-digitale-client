@@ -37,15 +37,7 @@ export default {
     search () {
       axios.post('/collections/search/', this.query)
         .then((response) => {
-          let collections = response.data
-
-          for (let i = 0; i < collections.length; i++) {
-            if (collections[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
-              collections[i].own = true
-            }
-          }
-
-          this.$emit('searchCollections', collections)
+          this.$emit('searchCollections', response.data)
         })
         .catch((e) => {
           this.$emit('searchCollections', [])

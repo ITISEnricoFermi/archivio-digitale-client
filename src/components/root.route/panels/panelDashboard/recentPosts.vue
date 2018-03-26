@@ -48,12 +48,6 @@ export default {
       return axios.get('/documents/recent/')
         .then((response) => {
           this.recentDocuments = response.data
-
-          for (let i = 0; i < this.recentDocuments.length; i++) {
-            if (this.recentDocuments[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
-              this.recentDocuments[i].own = true
-            }
-          }
         })
         .catch((e) => {
           console.log(e)

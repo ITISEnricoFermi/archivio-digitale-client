@@ -49,6 +49,9 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   name: 'menuLeft',
   props: ['privileges'],
@@ -64,8 +67,9 @@ export default {
 
       this.$emit('panelChanged', panel)
     },
-    logout () {
-      window.location.replace('/logout')
+    async logout () {
+      await axios.get('/logout')
+      window.location.reload()
     }
   }
 }

@@ -103,15 +103,7 @@ export default {
 
       axios.post('/documents/search/', this.query)
         .then((response) => {
-          let documents = response.data
-
-          for (let i = 0; i < documents.length; i++) {
-            if (documents[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
-              documents[i].own = true
-            }
-          }
-
-          this.$emit('searchDocuments', documents)
+          this.$emit('searchDocuments', response.data)
         })
         .catch((e) => {
           this.$emit('searchDocuments', [])

@@ -112,12 +112,6 @@ export default {
       axios.get('/users/me/documents/' + tab)
         .then((response) => {
           this.documents = response.data
-
-          for (let i = 0; i < this.documents.length; i++) {
-            if (this.documents[i].author._id === response.headers['x-userid'] || response.headers['x-userprivileges'] === 'admin') {
-              this.documents[i].own = true
-            }
-          }
         })
         .catch((e) => {
           this.response = true

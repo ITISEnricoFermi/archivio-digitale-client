@@ -1,20 +1,19 @@
 <template>
-  <div id="app">
-    <app-header></app-header>
-    <main>
-      <app-search-documents :types="types" :faculties="faculties" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
-      <transition name="fade">
-        <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
-      </transition>
-      <transition name="fade">
-        <app-document v-for="(document, index) in documents" :key="index" :document="document"></app-document>
-      </transition>
-    </main>
-  </div>
+<div id="app" class="main__search">
+  <app-header></app-header>
+  <main>
+    <app-search-documents :types="types" :faculties="faculties" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
+    <transition name="fade">
+      <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
+    </transition>
+    <transition name="fade">
+      <app-document v-for="(document, index) in documents" :key="index" :document="document"></app-document>
+    </transition>
+  </main>
+</div>
 </template>
 
 <script>
-
 import Header from '@/components/home.route/header'
 import Document from '@/components/document/document'
 import SearchDocuments from './searchDocuments.vue'
@@ -76,20 +75,17 @@ export default {
 </script>
 
 <style lang="scss">
-
-body {
-  background-color: $color-white-2;
-
-  main {
-    padding: 3vh;
-    font-size: $font-default-2;
-  }
-
-  .header {
-
-    &__bottom {
-      display: none;
+.main__search {
+    main {
+        padding: 3vh;
+        font-size: $font-default-2;
     }
-  }
+
+    .header {
+
+        &__bottom {
+            display: none;
+        }
+    }
 }
 </style>

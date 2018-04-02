@@ -30,6 +30,10 @@ export default {
   position: absolute;
   @include absCenter;
 
+  @include respond(phone) {
+    width: 70%;
+  }
+
   &__bar {
     padding: 2vh;
     border: none;

@@ -94,6 +94,7 @@ export default {
 
             @include respond(tab-por) {
                 width: 100%;
+                // padding: 3vh;
             }
 
             .menu {
@@ -113,6 +114,7 @@ export default {
                     color: $color-grey-2;
                     font-size: 2rem;
                     display: inline-block;
+
                 }
 
                 .filters {

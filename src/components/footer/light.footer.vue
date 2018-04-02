@@ -1,10 +1,8 @@
 <template>
 <footer>
   <ul>
-    <li><a href="http://www.itisfermi.it" target="_blank">Itis Enrico Fermi</a></li>
     <li><a href="/login">Login</a></li>
     <li><a href="/signup">Registrati</a></li>
-    <li><a href="/help">Serve aiuto?</a></li>
     <li><a href="https://www.riccardosangiorgio.com">Riccardo Sangiorgio</a></li>
   </ul>
 </footer>
@@ -20,7 +18,7 @@ export default {
 footer {
   text-align: center;
   position: absolute;
-  bottom: 0;
+  bottom: 1rem;
   left: 0;
   width: 100%;
   padding: 3rem!important !important;

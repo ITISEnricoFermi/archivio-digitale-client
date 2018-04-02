@@ -56,9 +56,6 @@ export default {
                 height: 4.5rem;
                 // margin: 0.75rem 0.75rem 0.75rem 3vh;
 
-                @include respond(phone) {
-                    display: none;
-                }
             }
 
             .separator {
@@ -76,6 +73,10 @@ export default {
                 font-size: 2rem;
                 color: $color-white;
                 font-family: 'Bitter';
+
+                @include respond(phone) {
+                    display: none;
+                }
             }
 
         }

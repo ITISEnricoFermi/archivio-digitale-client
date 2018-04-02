@@ -68,6 +68,14 @@ export default {
         font-size: $font-default-3;
         cursor: pointer;
 
+        span {
+
+          @include respond(phone) {
+            display: none;
+          }
+
+        }
+
         &.selected, &:hover {
           background-color: $color-white-4;
         }

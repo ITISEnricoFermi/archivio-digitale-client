@@ -7,37 +7,31 @@
     <li class="menu-left__li menu-left__li--active" data-tab="panel__dashboard" @click="changePanel('appPanelDashboard')">
       <span><i class="fas fa-tachometer-alt"></i></span>
       <span>Dashboard</span>
-      <span class="menu-left__li-tag u-bg-color-red">Disattivo</span>
+      <!-- <span class="menu-left__li-tag u-bg-color-red">Disattivo</span> -->
     </li>
     <li class="menu-left__li" data-tab="panel__search" @click.stop="changePanel('appPanelSearch')">
       <span><i class="fa fa-search" aria-hidden="true"></i></span>
       <span>Ricerca</span>
-      <span class="menu-left__li-tag u-bg-color-red">Disattivo</span>
     </li>
     <li class="menu-left__li" data-tab="panel__upload" @click.stop="changePanel('appPanelUpload')">
       <span><i class="fas fa-pencil-alt"></i></span>
       <span>Inserisci</span>
-      <span class="menu-left__li-tag u-bg-color-red">Disattivo</span>
     </li>
     <li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges._id == 'admin'">
       <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
       <span>Admin</span>
-      <span class="menu-left__li-tag u-bg-color-yellow">Beta</span>
     </li>
     <li class="menu-left__li" data-tab="panel__profile" @click.stop="changePanel('appPanelProfile')">
       <span><i class="fa fa-user" aria-hidden="true"></i></span>
       <span>Profilo</span>
-      <span class="menu-left__li-tag u-bg-color-green">Attivo</span>
     </li>
     <li class="menu-left__li" data-tab="panel__settings" @click.stop="changePanel('appPanelSettings')">
       <span><i class="fa fa-cog" aria-hidden="true"></i></span>
       <span>Impostazioni</span>
-      <span class="menu-left__li-tag u-bg-color-green">Attivo</span>
     </li>
     <li class="menu-left__li" data-tab="panel--logout" @click="logout">
       <span><i class="fas fa-sign-out-alt"></i></span>
       <span>Logout</span>
-      <span class="menu-left__li-tag u-bg-color-green">Attivo</span>
     </li>
   </ul>
   <footer class="menu-left__footer">

@@ -23,15 +23,15 @@
     <div class="row">
       <div class="col-1-of-2">
         <input type="file" class="module-input-file" id="upload-img-profile" @change="uploadProfilePic" ref="settingsProfilePic">
-        <label class="button button--blue" for="upload-img-profile">Carica foto profilo</label>
+        <label class="button button--blue" for="upload-img-profile"><span><i class="fas fa-upload"></i></span>Carica foto profilo</label>
       </div>
       <div class="col-1-of-2">
-        <button class="button button--green" @click="saveSettings">Salva impostazioni</button>
+        <button class="button button--green" @click="saveSettings"><span><i class="fas fa-save"></i></span>Salva impostazioni</button>
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <button class="button button--red" @click="disableAccount">Elimina account</button>
+        <button class="button button--red" @click="disableAccount"><span><i class="fas fa-trash-alt"></i></span>Elimina account</button>
       </div>
     </div>
     <div class="row">

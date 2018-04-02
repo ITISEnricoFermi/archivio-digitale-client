@@ -8,6 +8,11 @@
 
 export default {
   name: 'search',
+  data: () => {
+    return {
+      query: undefined
+    }
+  },
   methods: {
     search () {
       if (this.query) {

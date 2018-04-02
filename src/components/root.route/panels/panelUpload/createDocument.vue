@@ -65,10 +65,10 @@
   <div class="row">
     <div class="col-1-of-2">
       <input type="file" class="module-input-file" id="upload-file" ref="uploadFile">
-      <label class="button button--blue" for="upload-file">Carica file</label>
+      <label class="button button--blue" for="upload-file"><span><i class="fas fa-upload"></i></span>Carica file</label>
     </div>
     <div class="col-1-of-2">
-      <button class="button button--green" @click="upload">Carica documento</button>
+      <button class="button button--green" @click="upload"><span><i class="fas fa-edit"></i></span>Crea documento</button>
     </div>
   </div>
 </div>

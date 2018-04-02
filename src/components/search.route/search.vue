@@ -1,5 +1,6 @@
 <template>
 <div id="app" class="main__search">
+  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
   <app-header></app-header>
   <main>
     <app-search-documents :types="types" :faculties="faculties" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
@@ -79,13 +80,6 @@ export default {
     main {
         padding: 3vh;
         font-size: $font-default-2;
-    }
-
-    .header {
-
-        &__bottom {
-            display: none;
-        }
     }
 }
 </style>

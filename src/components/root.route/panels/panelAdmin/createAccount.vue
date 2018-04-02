@@ -34,7 +34,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <button class="button button--green" @click="createUser">Crea account</button>
+      <button class="button button--green" @click="createUser"><span><i class="fas fa-edit"></i></span>Crea account</button>
     </div>
   </div>
 </div>

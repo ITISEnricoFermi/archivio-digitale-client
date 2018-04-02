@@ -20,6 +20,17 @@
   color: darken($color, 27%)!important;
 }
 
+@mixin ellipsis($font, $line-height, $lines) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  height: $font*$line-height*$lines;
+  font-size: $font;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
 // MEDIA QUERY MANAGER
 /*
  *  $breakpoint: {

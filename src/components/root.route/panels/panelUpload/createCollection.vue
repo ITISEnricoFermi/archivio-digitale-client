@@ -23,7 +23,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <button class="button button--green" @click="createCollection">Crea collezione</button>
+      <button class="button button--green" @click="createCollection"><span><i class="fas fa-edit"></i></span>Crea collezione</button>
     </div>
   </div>
 </div>

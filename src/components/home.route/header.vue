@@ -1,49 +1,18 @@
 <template>
 <header class="header">
-  <section class="header__top">
-    <div class="logo">
-      <img src="/static/logo/itisFermi_white.svg" class="logo__fermi">
+  <div class="logo">
+    <div class="logo__content">
+      <img src="/static/logo/itisFermi_white.svg" class="fermi">
       <div class="separator"></div>
-      <p class="logo__archivio">Archivio Digitale</p>
+      <p class="archivio">Archivio Digitale</p>
     </div>
-    <ul class="menu">
-      <li><a href="http://www.itisfermi.it" target="_blank">Itis Enrico Fermi</a></li>
-      <li><a href="/help">Serve aiuto?</a></li>
-      <li><a href="https://www.riccardosangiorgio.com">Riccardo Sangiorgio</a></li>
-    </ul>
+  </div>
+  <div class="menu">
     <ul class="buttons">
       <li><a href="/login">Login</a></li>
       <li><a href="/signup">Registrati</a></li>
     </ul>
-  </section>
-  <section class="header__bottom">
-    <ul>
-      <li>
-        <a href="#">
-          <i class="far fa-file-alt"></i>
-          <span>Documenti</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fas fa-film"></i>
-          <span>Video</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fas fa-headphones"></i>
-          <span>Audio</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fas fa-archive"></i>
-          <span>Collezioni</span>
-        </a>
-      </li>
-    </ul>
-  </section>
+  </div>
 </header>
 </template>
 
@@ -56,36 +25,40 @@ export default {
 <style scoped lang="scss">
 .header {
     width: 100%;
-    //background-image: linear-gradient(lighten($color-primary, 13%), lighten($color-primary, 7%));
-    // background-color: lighten($color-primary, 10%);
-    // position: fixed;
-    background-color: #2b3137;
+    text-align: center;
+    width: 100%;
     z-index: 10000;
-    // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+    height: 10rem;
+    padding: 4vh 6vh;
+    background-color: $color-fourth;
+    @include clearfix;
 
-    &__top {
-        width: 100%;
-        text-align: center;
+    @include respond(phone) {
+      padding: 3vh;
+    }
+
+    .logo {
+        float: left;
         display: table;
-        //border-bottom: 1px solid lighten($color-primary, 12%);
 
-        & > * {
+        &__content {
+            text-align: left;
+            height: 4.5rem;
             display: table-cell;
             vertical-align: middle;
-            width: calc(100% / 3);
-        }
-
-        .logo {
-            text-align: left;
-
-            @include respond(tab-lan) {
-              width: 60%;
-            }
 
             * {
                 display: inline-block;
                 vertical-align: middle;
+            }
+
+            .fermi {
+                height: 4.5rem;
+                // margin: 0.75rem 0.75rem 0.75rem 3vh;
+
+                @include respond(phone) {
+                    display: none;
+                }
             }
 
             .separator {
@@ -93,46 +66,32 @@ export default {
                 width: 0.05rem;
                 background-color: $color-white;
                 margin: 0 1rem;
-            }
 
-            &__fermi {
-                height: 4.5rem;
-                margin: 0.75rem 0.75rem 0.75rem 3vh;
-            }
-
-            &__archivio {
-                font-size: 2rem;
-                color: $color-white;
-            }
-        }
-
-        .menu {
-            padding: 0;
-            margin: 0 auto;
-            text-align: center;
-
-            @include respond(tab-lan) {
-              display: none;
-            }
-
-            li {
-                display: inline-block;
-                margin: 0 2rem;
-                a {
-                    color: $color-white;
-                    font-size: $font-default-3;
-                    text-decoration: none;
+                @include respond(phone) {
+                    display: none;
                 }
             }
+
+            .archivio {
+                font-size: 2rem;
+                color: $color-white;
+                font-family: 'Bitter';
+            }
+
         }
+
+    }
+
+    .menu {
+        float: right;
+        display: table;
 
         .buttons {
             text-align: right;
             padding: 0;
-
-            @include respond(tab-lan) {
-              width: 40%;
-            }
+            display: table-cell;
+            vertical-align: middle;
+            height: 4.5rem;
 
             li {
                 display: inline-block;
@@ -140,11 +99,11 @@ export default {
                 a,
                 a:link,
                 a:visited {
-                  text-transform: uppercase;
-                  padding: 0.7rem;
-                  display: block;
-                  text-decoration: none;
-                  font-size: 1.2rem;
+                    text-transform: uppercase;
+                    padding: 0.7rem;
+                    display: block;
+                    text-decoration: none;
+                    font-size: 1.2rem;
                 }
 
                 &:nth-child(1) {
@@ -160,10 +119,9 @@ export default {
                         &:link,
                         &:visited {
 
-                            color: $color-black;
+                            color: $color-fourth;
                             border-radius: 2rem;
                             background-color: $color-white;
-                            margin: 0 3vh 0 1vh;
                             transition: all 0.2s;
                             position: relative;
                             border: none;
@@ -211,38 +169,5 @@ export default {
 
     }
 
-    &__bottom {
-        width: 100%;
-
-        ul {
-            padding: 0;
-            width: 100%;
-            text-align: center;
-
-            li {
-                display: inline-block;
-
-                a {
-                    display: block;
-                    padding: 3vh;
-                    color: $color-secondary;
-                    color: $color-white-5;
-                    text-decoration: none;
-
-                    * {
-                        display: inline-block;
-                    }
-
-                    i {
-                        font-size: 5rem;
-                    }
-
-                    span {
-                        font-size: 1.2rem;
-                    }
-                }
-            }
-        }
-    }
 }
 </style>

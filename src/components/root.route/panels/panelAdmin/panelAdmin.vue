@@ -7,7 +7,7 @@
   </transition>
   <app-search-users @searchUsers="users  = $event" @alert="searchUsersAlert = $event"></app-search-users>
   <transition name="fade">
-    <app-alert v-if="searchUsersAlert.messages" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
+    <app-alert v-if="!users" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
   </transition>
   <transition name="fade">
     <app-user v-if="users" v-for="(user, index) in users" :user="user" :key="index"></app-user>

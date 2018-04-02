@@ -94,6 +94,11 @@ export default {
 
         }
 
+        span:nth-child(1),
+        span:nth-child(3) {
+          font-weight: 500;
+        }
+
         &__img {
             display: inline-block;
             height: 5rem;

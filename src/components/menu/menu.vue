@@ -4,28 +4,28 @@
     <img src="/static/logo/itisFermi_white.svg" class="menu-left__logo" alt="ITIS Enrico Fermi">
   </header>
   <ul class="menu-left__main">
-    <li class="menu-left__li menu-left__li--active" data-tab="panel__dashboard" @click="changePanel('appPanelDashboard')">
+    <li class="menu-left__li menu-left__li--active" data-tab="panel__dashboard" @click="changePanel($event, 'appPanelDashboard')">
       <span><i class="fas fa-tachometer-alt"></i></span>
       <span>Dashboard</span>
       <!-- <span class="menu-left__li-tag u-bg-color-red">Disattivo</span> -->
     </li>
-    <li class="menu-left__li" data-tab="panel__search" @click.stop="changePanel('appPanelSearch')">
+    <li class="menu-left__li" data-tab="panel__search" @click.stop="changePanel($event, 'appPanelSearch')">
       <span><i class="fa fa-search" aria-hidden="true"></i></span>
       <span>Ricerca</span>
     </li>
-    <li class="menu-left__li" data-tab="panel__upload" @click.stop="changePanel('appPanelUpload')">
+    <li class="menu-left__li" data-tab="panel__upload" @click.stop="changePanel($event, 'appPanelUpload')">
       <span><i class="fas fa-pencil-alt"></i></span>
       <span>Inserisci</span>
     </li>
-    <li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges._id == 'admin'">
+    <li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel($event, 'appPanelAdmin')" v-if="privileges._id == 'admin'">
       <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
       <span>Admin</span>
     </li>
-    <li class="menu-left__li" data-tab="panel__profile" @click.stop="changePanel('appPanelProfile')">
+    <li class="menu-left__li" data-tab="panel__profile" @click.stop="changePanel($event, 'appPanelProfile')">
       <span><i class="fa fa-user" aria-hidden="true"></i></span>
       <span>Profilo</span>
     </li>
-    <li class="menu-left__li" data-tab="panel__settings" @click.stop="changePanel('appPanelSettings')">
+    <li class="menu-left__li" data-tab="panel__settings" @click.stop="changePanel($event, 'appPanelSettings')">
       <span><i class="fa fa-cog" aria-hidden="true"></i></span>
       <span>Impostazioni</span>
     </li>
@@ -50,13 +50,13 @@ export default {
   name: 'menuLeft',
   props: ['privileges'],
   methods: {
-    changePanel (panel) {
+    changePanel (event, panel) {
       document.getElementsByClassName('menu-left__li--active')[0].classList.remove('menu-left__li--active')
 
-      if (event.srcElement.tagName === 'LI') {
+      if (event.target.tagName === 'LI') {
         event.target.classList.add('menu-left__li--active')
       } else {
-        event.srcElement.parentNode.classList.add('menu-left__li--active')
+        event.target.parentNode.classList.add('menu-left__li--active')
       }
 
       this.$emit('panelChanged', panel)

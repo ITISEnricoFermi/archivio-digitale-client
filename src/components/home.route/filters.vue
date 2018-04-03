@@ -1,21 +1,21 @@
 <template>
   <ul class="filters">
-    <li class="selected u-noselect" @click.stop="getRecentProjects('appunti')">
-        <i class="far fa-file-alt"></i>
-        <span>Appunti</span>
-    </li>
-    <li class="u-noselect" @click.stop="getRecentProjects('videoLezione')">
-        <i class="fas fa-film"></i>
-        <span>Video</span>
-    </li>
-    <li class="u-noselect" @click.stop="getRecentProjects('audioLezione')">
-        <i class="fas fa-headphones"></i>
-        <span>Audio</span>
-    </li>
-    <li class="u-noselect" @click.stop="getRecentProjects('progettiStudenti')">
-        <i class="fas fa-archive"></i>
-        <span>Progetti</span>
-    </li>
+      <li class="selected u-noselect" @click.stop="getRecentProjects($event, 'appunti')">
+          <span class="icon"><i class="far fa-file-alt"></i></span>
+          <span class="tag">Appunti</span>
+      </li>
+      <li class="u-noselect" @click.stop="getRecentProjects($event, 'videoLezione')">
+          <span class="icon"><i class="fas fa-film"></i></span>
+          <span class="tag">Video</span>
+      </li>
+      <li class="u-noselect" @click.stop="getRecentProjects($event, 'audioLezione')">
+          <span class="icon"><i class="fas fa-headphones"></i></span>
+          <span class="tag">Audio</span>
+      </li>
+      <li class="u-noselect" @click.stop="getRecentProjects($event, 'progettiStudenti')">
+          <span class="icon"><i class="fas fa-archive"></i></span>
+          <span class="tag">Progetti</span>
+      </li>
   </ul>
 </template>
 
@@ -26,17 +26,17 @@ import axios from 'axios'
 export default {
   name: 'filters',
   created () {
-    this.getRecentProjects('appunti')
+    this.getRecentProjects(null, 'appunti')
   },
   methods: {
-    async getRecentProjects (type) {
-      if (event && event.type === 'click') {
+    async getRecentProjects (event, type) {
+      if (event) {
         document.getElementsByClassName('selected')[0].classList.remove('selected')
 
-        if (event.srcElement.tagName === 'LI') {
+        if (event.target.tagName === 'LI') {
           event.target.classList.add('selected')
         } else {
-          event.srcElement.parentNode.classList.add('selected')
+          event.target.parentNode.classList.add('selected')
         }
       }
 
@@ -68,7 +68,7 @@ export default {
         font-size: $font-default-3;
         cursor: pointer;
 
-        span {
+        .tag {
 
           @include respond(phone) {
             display: none;

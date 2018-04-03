@@ -3,21 +3,21 @@
   <div class="module">
     <div class="row">
       <div class="col-1-of-3">
-        <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" v-model="user.firstname">
+        <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" v-model="local.firstname">
       </div>
       <div class="col-1-of-3">
-        <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" v-model="user.lastname">
+        <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" v-model="local.lastname">
       </div>
       <div class="col-1-of-3">
-        <input type="text" class="module-input-text" placeholder="Email" autocomplete="off" v-model="user.email">
+        <input type="text" class="module-input-text" placeholder="Email" autocomplete="off" v-model="local.email">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-2">
-        <input type="password" class="module-input-text" placeholder="Password attuale" autocomplete="off" v-model="localUser.passwords.old">
+        <input type="password" class="module-input-text" placeholder="Password attuale" autocomplete="off" v-model="local.passwords.old">
       </div>
       <div class="col-1-of-2">
-        <input type="password" class="module-input-text" placeholder="Nuova password" autocomplete="off" v-model="localUser.passwords.new">
+        <input type="password" class="module-input-text" placeholder="Nuova password" autocomplete="off" v-model="local.passwords.new">
       </div>
     </div>
     <div class="row">
@@ -59,7 +59,7 @@ export default {
   props: ['user'],
   data: () => {
     return {
-      localUser: {
+      local: {
         firstname: undefined,
         lastname: undefined,
         email: undefined,
@@ -75,9 +75,16 @@ export default {
       }
     }
   },
+  created () {
+    this.local.firstname = this.user.firstname
+    this.local.lastname = this.user.lastname
+    this.local.email = this.user.email
+  },
   methods: {
     saveSettings () {
-      axios.patch('/users/me/', this.localUser.passwords)
+      axios.patch('/users/me/', {
+        user: this.local
+      })
         .then(() => {
           window.location.replace('/login')
         })

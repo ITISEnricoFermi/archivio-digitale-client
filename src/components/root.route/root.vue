@@ -9,13 +9,13 @@
       <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
     </keep-alive>
   </transition>
-  <transition name="panel">
+  <transition name="panel" mode="out-in">
     <keep-alive>
       <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
       </component>
     </keep-alive>
   </transition>
-  <transition name="fade">
+  <transition name="fade" mode="out-in">
     <app-popup v-if="popup" :width="'80%'">
       <component v-if="popup" :is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
       </component>

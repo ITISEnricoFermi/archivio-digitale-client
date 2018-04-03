@@ -115,7 +115,7 @@ export default {
         &__info {
             display: inline-block;
             vertical-align: middle;
-            width: calc(100% - 5rem);
+            width: calc(100% - 6rem);
             padding-left: 1.5rem;
 
             &--head {

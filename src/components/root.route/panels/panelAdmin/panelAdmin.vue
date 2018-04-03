@@ -9,9 +9,9 @@
   <transition name="fade">
     <app-alert v-if="!users" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
   </transition>
-  <transition name="fade">
+  <transition-group name="fade" mode="out-in">
     <app-user v-if="users" v-for="(user, index) in users" :user="user" :key="index"></app-user>
-  </transition>
+  </transition-group>
 </main>
 </template>
 

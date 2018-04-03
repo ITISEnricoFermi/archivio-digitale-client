@@ -7,9 +7,9 @@
     <transition name="fade">
       <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
     </transition>
-    <transition name="fade">
+    <transition-group name="fade">
       <app-document v-for="(document, index) in documents" :key="index" :document="document"></app-document>
-    </transition>
+    </transition-group>
   </main>
 </div>
 </template>

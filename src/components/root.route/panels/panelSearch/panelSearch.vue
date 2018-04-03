@@ -4,9 +4,9 @@
   <transition name="fade">
     <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
   </transition>
-  <transition name="fade">
+  <transition-group name="fade">
     <app-document :document="document" v-for="document in documents" :key="document._id"></app-document>
-  </transition>
+  </transition-group>
   <app-search-collections :collectionsPermissions="collectionsPermissions" @searchCollections="collections  = $event" @alert="collectionsAlert = $event"></app-search-collections>
   <transition name="fade">
     <app-alert v-if="collectionsAlert.messages" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>

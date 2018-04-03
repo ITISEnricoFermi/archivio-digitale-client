@@ -117,7 +117,16 @@ export default {
       eventBus.closePopUp()
     },
     async reset (id) {
+      try {
+        let password = await axios.post('/admin/resetPassword/', {
+          _id: id
+        })
 
+        console.log(password)
+      } catch (e) {
+        this.response = true
+        this.responseMessage = e.response.data
+      }
     },
     async edit (id) {
       try {

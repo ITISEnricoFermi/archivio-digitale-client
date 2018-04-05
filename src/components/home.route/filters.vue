@@ -32,12 +32,7 @@ export default {
     async getRecentProjects (event, type) {
       if (event) {
         document.getElementsByClassName('selected')[0].classList.remove('selected')
-
-        if (event.target.tagName === 'LI') {
-          event.target.classList.add('selected')
-        } else {
-          event.target.parentNode.classList.add('selected')
-        }
+        event.target.closest('li').classList.add('selected')
       }
 
       try {

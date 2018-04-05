@@ -153,10 +153,15 @@ export default {
                     grid-template-columns: repeat(1, 1fr);
                 }
 
-                .project:last-child {
+                .project:nth-child(9) {
                     @include respond(tab-lan) {
                         display: none;
                     }
+
+                    @include respond(tab-port) {
+                        display: block;
+                    }
+
                 }
             }
         }

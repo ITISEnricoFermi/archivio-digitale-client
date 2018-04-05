@@ -71,14 +71,14 @@ export default {
     }
 
     .top {
-        background-color: $color-fourth;
+        // background-color: $color-fourth;
         // background-image: url('/static/layout/bg.jpg');
         // background-size: cover;
         // background-repeat: no-repeat;
         // background-position: center;
 
         .content {
-            height: 40vh;
+            height: 20vh;
             width: 100%;
             position: relative;
         }

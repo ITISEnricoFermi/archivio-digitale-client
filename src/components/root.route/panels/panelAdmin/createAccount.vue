@@ -24,12 +24,12 @@
         </select>
     </div>
     <div class="col-1-of-2">
-      <app-multiple-select :placeholder="'Visibilità'" :multipleSelectData="subjects" :dbElements="dbElements" @elementAdded="user.accesses = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Visibilità'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="user.accesses.length != 0">
     <div class="col-1-of-1">
-      <app-multiple-select-results :multipleSelectOutput="user.accesses" :dbElements="dbElements" @elementRemoved="user.accesses = $event"></app-multiple-select-results>
+      <app-multiple-select-results :selected.sync="user.accesses" :dbElements="['subject']" @update:selected="user.accesses = $event"></app-multiple-select-results>
     </div>
   </div>
   <div class="row">
@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import multipleSelect from '@/components/multipleSelect/multipleSelect.vue'
-import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults.vue'
+import MultipleSelect from '@/components/multipleSelect/multipleSelect'
+import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 import axios from 'axios'
 
@@ -51,8 +51,6 @@ export default {
   props: ['privileges', 'subjects'],
   data: () => {
     return {
-      // multipleSelectOutput: "",
-      dbElements: ['subject'],
       user: {
         firstname: undefined,
         lastname: undefined,
@@ -64,7 +62,6 @@ export default {
     }
   },
   methods: {
-
     createUser () {
       axios.put('/admin/users/', {
         user: this.user
@@ -91,8 +88,8 @@ export default {
     }
   },
   components: {
-    appMultipleSelect: multipleSelect,
-    appMultipleSelectResults: multipleSelectResults
+    appMultipleSelect: MultipleSelect,
+    appMultipleSelectResults: MultipleSelectResults
   }
 
 }

@@ -11,9 +11,9 @@
   <transition name="fade">
     <app-alert v-if="collectionsAlert.messages" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
   </transition>
-  <transition name="fade">
+  <transition-group name="fade">
     <app-collection :collection="collection" v-for="collection in collections" :key="collection._id"></app-collection>
-  </transition>
+  </transition-group>
 </main>
 </template>
 

@@ -2,13 +2,7 @@
 <main class="panel panel__settings">
   <div class="module">
     <div class="row">
-      <div class="col-1-of-3">
-        <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" v-model="local.firstname">
-      </div>
-      <div class="col-1-of-3">
-        <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" v-model="local.lastname">
-      </div>
-      <div class="col-1-of-3">
+      <div class="col-1-of-1">
         <input type="text" class="module-input-text" placeholder="Email" autocomplete="off" v-model="local.email">
       </div>
     </div>
@@ -60,8 +54,6 @@ export default {
   data: () => {
     return {
       local: {
-        firstname: undefined,
-        lastname: undefined,
         email: undefined,
         passwords: {
           new: '',
@@ -76,8 +68,6 @@ export default {
     }
   },
   created () {
-    this.local.firstname = this.user.firstname
-    this.local.lastname = this.user.lastname
     this.local.email = this.user.email
   },
   methods: {

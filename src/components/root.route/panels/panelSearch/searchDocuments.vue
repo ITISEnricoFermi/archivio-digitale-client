@@ -91,6 +91,9 @@ export default {
   sockets: {
     documentDeleted () {
       this.search()
+    },
+    documentUpdated () {
+      this.search()
     }
   },
   methods: {

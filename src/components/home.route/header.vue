@@ -30,7 +30,7 @@ export default {
     z-index: 10000;
     height: 10rem;
     padding: 4vh 6vh;
-    background-color: $color-fourth;
+    background-color: $color-primary;
     @include clearfix;
 
     @include respond(phone) {

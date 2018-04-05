@@ -42,7 +42,7 @@ export default {
     }
   },
   created () {
-    axios.get('/api/getSubjects/')
+    axios.get('/api/subjects/')
       .then((response) => {
         this.subjects = response.data
       }).catch((e) => {

@@ -33,6 +33,14 @@ export default {
       }
     }
   },
+  sockets: {
+    collectionDeleted () {
+      this.search()
+    },
+    collectionUpdated () {
+      this.search()
+    }
+  },
   methods: {
     search () {
       axios.post('/collections/search/', this.query)

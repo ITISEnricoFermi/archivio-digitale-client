@@ -86,7 +86,7 @@ export default {
         this.errors.push(e)
       })
 
-    axios.get('/api/getSubjects/')
+    axios.get('/api/subjects/')
       .then((response) => {
         this.subjects = response.data
       }).catch((e) => {

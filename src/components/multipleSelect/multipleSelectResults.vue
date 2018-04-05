@@ -1,62 +1,72 @@
 <template>
-<div class="module-multiple-select-tag-box">
-  <ul>
-    <li :value="output._id" v-for="(output, index) in multipleSelectOutput" :key="index" @click="remove">
-      <span :value="output._id" v-for="(element, index) in dbElements" :key="index">
-        {{ output[element] }}
-      </span>
-    </li>
-  </ul>
-</div>
+  <div class="multiple-select-results">
+    <ul>
+      <li class="u-noselect" v-for="(result, index) in selected" :key="index" @click="remove($event, result)">
+          <span class="result" v-for="(element, index) in dbElements" :key="index">
+              {{ result[element] }}
+          </span>
+          <span class="remove">
+            <i class="fas fa-times-circle"></i>
+          </span>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'multipleSelectResults',
   props: {
-    multipleSelectOutput: {
-      type: Array,
-      default: () => {
-        return []
-      }
-    },
+    selected: Array,
     dbElements: Array
   },
   methods: {
-    remove: function (event) {
-      var id = event.target.getAttribute('value')
-
-      var element = (this.multipleSelectOutput.filter(function (object) {
-        return object._id === id
-      }))[0]
-
-      var index = this.multipleSelectOutput.indexOf(element)
-      this.multipleSelectOutput.splice(index, 1)
-      this.$emit('elementRemoved', this.multipleSelectOutput)
+    remove (event, element) {
+      this.selected.splice(this.selected.indexOf(element), 1)
+      this.$emit('update:selected', this.selected)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.module-multiple-select-tag-box {
-    ul {
-        padding: 0;
-        li {
-            margin: 1rem 0;
-            display: inline-block;
-            background-color: #DBDBDB;
-            border-radius: 20px;
-            padding: 7px;
-            font-size: 12px;
-            font-family: sans-serif;
-            cursor: pointer;
+.multiple-select-results {
+  border-radius: 0.25rem;
+  background-color: $color-white-1;
+  border: 1px solid darken($color-white-5, 5%);
 
-            &:not(:first-child) {
-                margin-left: 5px;
-            }
-        }
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+      font-size: $font-default-2;
+      padding: 0.9rem 0.8rem;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid darken($color-white-5, 5%);
+      }
+
+      &:hover {
+        background-color: $color-white-5;
+      }
+
+      .result {
+        max-width: calc(100% - 2rem);
+        display: inline-block;
+      }
+
+      .remove {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $color-grey-1;
+      }
     }
+  }
 }
 </style>

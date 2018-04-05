@@ -19,6 +19,15 @@ export default {
       query: undefined
     }
   },
+  sockets: {
+    userDeleted () {
+      console.log('ciao')
+      this.search()
+    },
+    userUpdated () {
+      this.search()
+    }
+  },
   methods: {
     search () {
       if (!this.query) {

@@ -23,12 +23,12 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <app-multiple-select :placeholder="'Visibilità'" :multipleSelectOutput="userToEdit.accesses" :multipleSelectData="subjects" :dbElements="dbElements" @elementAdded="userToEdit.accesses = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Visibilità'" :selected.sync="userToEdit.accesses" :dbElements="['subject']" :url="'/api/subjects/search/partial/'" @update:selected="userToEdit.accesses = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="userToEdit.accesses.length !== 0">
     <div class="col-1-of-1">
-      <app-multiple-select-results :multipleSelectOutput="userToEdit.accesses" :dbElements="dbElements" @elementRemoved="userToEdit.accesses = $event"></app-multiple-select-results>
+      <app-multiple-select-results :selected.sync="userToEdit.accesses" :dbElements="['subject']" @update:selected="userToEdit.accesses = $event"></app-multiple-select-results>
     </div>
   </div>
   <div class="row">
@@ -66,16 +66,15 @@ import {
 } from '@/main'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
-import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
+import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 import axios from 'axios'
 
 export default {
   name: 'editUser',
-  props: ['id', 'privileges', 'subjects'],
+  props: ['id', 'privileges'],
   data: () => {
     return {
-      dbElements: ['subject'],
       userToEdit: {
         firstname: undefined,
         lastname: undefined,
@@ -88,7 +87,6 @@ export default {
     }
   },
   created () {
-    console.log(this.id, this.privileges, this.subjects)
     axios.get('/admin/users/' + this.id)
       .then((response) => {
         let {firstname, lastname, email, privileges, accesses} = response.data
@@ -101,8 +99,7 @@ export default {
         }
       })
       .catch((e) => {
-        this.response = true
-        this.responseMessage = e.response.data
+        console.log(e)
       })
   },
   sockets: {
@@ -147,7 +144,7 @@ export default {
       axios.delete('/documents/' + id)
         .then((response) => {
           eventBus.closePopUp()
-          this.$socket.emit('documentDeleted')
+          this.$socket.emit('userDeleted')
         })
         .catch((e) => {
           this.response = true
@@ -157,7 +154,7 @@ export default {
   },
   components: {
     appMultipleSelect: MultipleSelect,
-    appMultipleSelectResults: multipleSelectResults
+    appMultipleSelectResults: MultipleSelectResults
   }
 }
 </script>

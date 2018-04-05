@@ -1,24 +1,34 @@
 <template>
 <div class="editCollection">
   <div class="row">
-    <div class="col-1-of-2">
+    <div class="col-1-of-1">
       <input type="text" class="module-input-text" placeholder="Titolo" v-model="collectionToEdit.documentCollection">
     </div>
+  </div>
+  <div class="row" v-if="toggleMultipleSelect">
     <div class="col-1-of-2">
       <select class="module-input-select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
         </select>
     </div>
-  </div>
-  <div class="row" v-if="toggleMultipleSelect">
-    <div class="col-1-of-1">
-      <app-multiple-select :placeholder="'Autorizzazioni'" :multipleSelectOutput="collectionToEdit.authorizations" :multipleSelectData="users" :dbElements="dbElements" @elementAdded="collectionToEdit.authorizations = $event"></app-multiple-select>
+    <div class="col-1-of-2">
+      <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="collectionToEdit.authorizations" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="collectionToEdit.authorizations = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="collectionToEdit.authorizations.length !== 0 && toggleMultipleSelect">
     <div class="col-1-of-1">
-      <app-multiple-select-results :multipleSelectOutput="collectionToEdit.authorizations" :dbElements="dbElements" @elementRemoved="collectionToEdit.authorizations = $event"></app-multiple-select-results>
+      <app-multiple-select-results :selected.sync="collectionToEdit.authorizations" :dbElements="['firstname', 'lastname']" @update:selected="collectionToEdit.authorizations = $event"></app-multiple-select-results>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1-of-1">
+      <app-multiple-select :placeholder="'Aggiungi un documento alla collezione'" :selected.sync="collectionToEdit.documents" :dbElements="['name']" :url="'/documents/search/partial/'" @update:selected="collectionToEdit.documents = $event"></app-multiple-select>
+    </div>
+  </div>
+  <div class="row" v-if="this.collectionToEdit.documents.length">
+    <div class="col-1-of-1">
+      <app-multiple-select-results :selected.sync="collectionToEdit.documents" :dbElements="['name']" @update:selected="collectionToEdit.documents = $event"></app-multiple-select-results>
     </div>
   </div>
   <div class="row">
@@ -64,9 +74,7 @@ export default {
         permissions: undefined,
         authorizations: [],
         documents: []
-      },
-      users: [],
-      dbElements: ['firstname', 'lastname']
+      }
     }
   },
   computed: {
@@ -78,15 +86,6 @@ export default {
     }
   },
   created () {
-    axios.get('/api/getUsers/')
-      .then((response) => {
-        this.users = response.data
-      })
-      .catch((e) => {
-        this.response = true
-        this.responseMessage = e.response.data
-      })
-
     axios.get('/collections/info/' + this.id)
       .then((response) => {
         let collection = response.data
@@ -99,27 +98,39 @@ export default {
         }
       })
       .catch((e) => {
-        this.response = true
-        this.responseMessage = e.response.data
+        console.log(e)
       })
   },
+  // sockets: {
+  //   collectionUpdated (collection) {
+  //     if (collection._id === this.collectionToEdit._id) {
+  //       this.collectionToEdit = collection
+  //     }
+  //   }
+  // },
   methods: {
     closePopUp () {
       eventBus.closePopUp()
     },
-    edit (id) {
-
+    async edit (id) {
+      try {
+        await axios.patch('/collections/' + id, {
+          collection: this.collectionToEdit
+        })
+        this.closePopUp()
+        this.$socket.emit('collectionUpdated')
+      } catch (e) {
+        console.log(e)
+      }
     },
     remove (id) {
       axios.delete('/collections/' + id)
         .then((response) => {
           this.closePopUp()
-          this.socket.$emit('collectionDeleted')
+          this.$socket.emit('collectionDeleted')
         })
         .catch((e) => {
           console.log(e)
-          this.response = true
-          this.responseMessage = e.respose.data
         })
     }
   },

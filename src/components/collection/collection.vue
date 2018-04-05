@@ -19,7 +19,7 @@
     <p v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
     <ul class="collection-box-info__documents" v-else>
       <li v-for="(document, index) in collection.documents" :key="index">
-        <a :href="'/public/documents/' + document.directory" target="_blank">
+        <a :href="'/public/public/documents/' + document.directory" target="_blank">
             {{index}}. <span>{{document.name}}</span>
           </a>
       </li>
@@ -55,9 +55,6 @@ import {
 export default {
   name: 'collection',
   props: ['collection'],
-  created () {
-    console.log(this.collection.documents)
-  },
   computed: {
     date: function () {
       let timestamp = this.collection._id.toString().substring(0, 8)

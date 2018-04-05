@@ -13,12 +13,12 @@
   </div>
   <div class="row" v-if="toggleMultipleSelect">
     <div class="col-1-of-1">
-      <app-multiple-select :placeholder="'Autorizzazioni'" :multipleSelectData="users" :dbElements="dbElements" @elementAdded="collection.authorizations = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="collection.authorizations" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="collection.authorizations = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="collection.authorizations.length !== 0 && toggleMultipleSelect">
     <div class="col-1-of-1">
-      <app-multiple-select-results :multipleSelectOutput="collection.authorizations" :dbElements="dbElements" @elementRemoved="collection.authorizations = $event"></app-multiple-select-results>
+      <app-multiple-select-results :selected.sync="collection.authorizations" :dbElements="['firstname', 'lastname']" @update:selected="collection.authorizations = $event"></app-multiple-select-results>
     </div>
   </div>
   <div class="row">
@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import multipleSelect from '@/components/multipleSelect/multipleSelect.vue'
-import multipleSelectResults from '@/components/multipleSelect/multipleSelectResults.vue'
+import MultipleSelect from '@/components/multipleSelect/multipleSelect'
+import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 import axios from 'axios'
 
@@ -40,8 +40,6 @@ export default {
   props: ['collectionsPermissions'],
   data: () => {
     return {
-      dbElements: ['firstname', 'lastname'],
-      users: [],
       collection: {
         documentCollection: undefined,
         permissions: undefined,
@@ -56,18 +54,6 @@ export default {
       }
       return false
     }
-  },
-  created () {
-    axios.get('/api/getUsers/')
-      .then((response) => {
-        this.users = response.data
-      })
-      .catch((e) => {
-        this.$emit('alert', {
-          messages: e.respone.data.messages,
-          color: 'alert--red'
-        })
-      })
   },
   methods: {
     createCollection () {
@@ -99,8 +85,8 @@ export default {
     }
   },
   components: {
-    appMultipleSelect: multipleSelect,
-    appMultipleSelectResults: multipleSelectResults
+    appMultipleSelect: MultipleSelect,
+    appMultipleSelectResults: MultipleSelectResults
   }
 }
 </script>

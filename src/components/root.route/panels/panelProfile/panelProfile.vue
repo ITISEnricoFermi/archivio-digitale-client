@@ -135,6 +135,8 @@ export default {
         background-size: cover;
         background-repeat: no-repeat;
         position: relative;
+        border-radius: 0.25rem;
+        overflow: hidden;
 
         .profile-img {
             width: 100%;

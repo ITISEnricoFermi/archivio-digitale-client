@@ -1,24 +1,39 @@
 <template>
 <div class="editCollection">
+  <div class="row row--title">
+    <div class="col-1-of-1">
+      <p class="section-title">Informazioni</p>
+    </div>
+  </div>
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="module-input-text" placeholder="Titolo" v-model="collectionToEdit.documentCollection">
     </div>
   </div>
-  <div class="row" v-if="toggleMultipleSelect">
+  <div class="row row--title">
+    <div class="col-1-of-1">
+      <p class="section-title">Autorizzazioni</p>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-1-of-2">
       <select class="module-input-select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
         </select>
     </div>
-    <div class="col-1-of-2">
+    <div class="col-1-of-2" disabled>
       <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="collectionToEdit.authorizations" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="collectionToEdit.authorizations = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="collectionToEdit.authorizations.length !== 0 && toggleMultipleSelect">
     <div class="col-1-of-1">
       <app-multiple-select-results :selected.sync="collectionToEdit.authorizations" :dbElements="['firstname', 'lastname']" @update:selected="collectionToEdit.authorizations = $event"></app-multiple-select-results>
+    </div>
+  </div>
+  <div class="row row--title">
+    <div class="col-1-of-1">
+      <p class="section-title">Documenti</p>
     </div>
   </div>
   <div class="row">
@@ -85,21 +100,22 @@ export default {
       return false
     }
   },
-  created () {
-    axios.get('/collections/info/' + this.id)
-      .then((response) => {
-        let collection = response.data
+  async created () {
+    try {
+      let collection = (await axios.get('/collections/info/' + this.id)).data
 
-        this.collectionToEdit = {
-          documentCollection: collection.documentCollection,
-          permissions: collection.permissions._id,
-          authorizations: collection.authorizations,
-          documents: collection.documents
-        }
+      this.collectionToEdit = {
+        documentCollection: collection.documentCollection,
+        permissions: collection.permissions._id,
+        authorizations: collection.authorizations,
+        documents: collection.documents
+      }
+    } catch (e) {
+      eventBus.notification({
+        title: e.response.data,
+        temporary: true
       })
-      .catch((e) => {
-        console.log(e)
-      })
+    }
   },
   // sockets: {
   //   collectionUpdated (collection) {
@@ -114,24 +130,37 @@ export default {
     },
     async edit (id) {
       try {
-        await axios.patch('/collections/' + id, {
+        let response = await axios.patch('/collections/' + id, {
           collection: this.collectionToEdit
+        })
+        eventBus.notification({
+          title: response.data.messages[0],
+          temporary: true
         })
         this.closePopUp()
         this.$socket.emit('collectionUpdated')
       } catch (e) {
-        console.log(e)
+        eventBus.notification({
+          title: e.response.data,
+          temporary: true
+        })
       }
     },
-    remove (id) {
-      axios.delete('/collections/' + id)
-        .then((response) => {
-          this.closePopUp()
-          this.$socket.emit('collectionDeleted')
+    async remove (id) {
+      try {
+        let response = await axios.delete('/collections/' + id)
+        eventBus.notification({
+          title: response.data.messages[0],
+          temporary: true
         })
-        .catch((e) => {
-          console.log(e)
+        this.closePopUp()
+        this.$socket.emit('collectionDeleted')
+      } catch (e) {
+        eventBus.notification({
+          title: e.response.data,
+          temporary: true
         })
+      }
     }
   },
   components: {
@@ -142,5 +171,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.section-title {
+  font-size: $font-default-2;
+  font-weight: bold;
+}
+
+.row--title {
+  margin-bottom: $gutter-vertical-1!important;
+}
 
 </style>

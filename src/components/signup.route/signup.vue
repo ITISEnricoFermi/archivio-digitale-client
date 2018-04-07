@@ -1,6 +1,8 @@
 <template>
 <main id="app" class="main__signup">
-
+  <keep-alive>
+    <app-notifications></app-notifications>
+  </keep-alive>
   <div class="signup-box module" v-if="!signedUp">
     <!-- Nome, Cognome, Email, Password, Materie -->
     <div class="row">
@@ -43,11 +45,6 @@
         <button class="button button--green" @click="signup">Registrati</button>
       </div>
     </div>
-    <div class="row" v-if="response">
-      <div class="col-1-of-1">
-        <p class="error">{{responseMessage}}</p>
-      </div>
-    </div>
   </div>
 
   <div class="success-box module" v-else>
@@ -68,9 +65,15 @@
 </template>
 
 <script>
+
+import {
+  eventBus
+} from '@/main'
+
 import FooterLight from '@/components/footer/light.footer'
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
+import Notifications from '@/components/notifications/notifications'
 
 import axios from 'axios'
 
@@ -79,8 +82,6 @@ export default {
   data: () => {
     return {
       signedUp: false,
-      response: false,
-      responseMessage: '',
       user: {
         firstname: '',
         lastname: '',
@@ -91,25 +92,33 @@ export default {
     }
   },
   methods: {
-    signup () {
-      axios.put('/signup', this.user)
-        .then((user) => {
-          if (user) {
-            this.$socket.emit('newUser')
-            this.signedUp = true
-          }
+    async signup () {
+      if (!this.user.firstname && !this.user.lastname && !this.user.email && !this.user.password && !this.user.accesses) {
+        return false
+      }
+
+      try {
+        await axios.put('/signup', this.user)
+        this.$socket.emit('newUser')
+        this.signedUp = true
+
+        // if (user) {
+        //   this.$socket.emit('newUser')
+        //   this.signedUp = true
+        // }
+      } catch (e) {
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
         })
-        .catch((e) => {
-          console.log(e)
-          this.response = true
-          this.responseMessage = e.response.data.messages[0]
-        })
+      }
     }
   },
   components: {
     appMultipleSelect: MultipleSelect,
     appMultipleSelectResults: MultipleSelectResults,
-    appFooterLight: FooterLight
+    appFooterLight: FooterLight,
+    appNotifications: Notifications
   }
 }
 </script>

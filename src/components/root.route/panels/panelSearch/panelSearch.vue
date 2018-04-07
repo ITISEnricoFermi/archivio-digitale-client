@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import searchDocuments from './searchDocuments'
-import searchCollections from './searchCollections'
+import SearchDocuments from './searchDocuments'
+import SearchCollections from './searchCollections'
 import Document from '@/components/document/document'
 import Collection from '@/components/collection/collection'
 import Alert from '@/components/alert/alert'
@@ -41,8 +41,8 @@ export default {
     }
   },
   components: {
-    appSearchDocuments: searchDocuments,
-    appSearchCollections: searchCollections,
+    appSearchDocuments: SearchDocuments,
+    appSearchCollections: SearchCollections,
     appDocument: Document,
     appCollection: Collection,
     appAlert: Alert
@@ -51,4 +51,9 @@ export default {
 </script>
 
 <style lang="scss">
+.document,
+.collection {
+  margin-bottom: 3vh;
+}
+
 </style>

@@ -1,50 +1,45 @@
 <template>
-<div class="module document-box">
-  <div class="document-box-header">
-    <div class="document-box-header__img">
-      <img v-bind:src="'pics/' + document.author.img" alt="Foto profilo utente">
+<div class="module document">
+  <div class="row document-header">
+    <div class="col-1-of-1">
+      <div class="document-header__img">
+        <img v-bind:src="'pics/' + document.author.img" alt="Foto profilo utente">
+      </div>
+      <div class="document-header__info">
+        <p class="document-header__info--head heading-fourth">
+          <span>{{document.author.firstname}} {{document.author.lastname}}</span>
+          <span> ha pubblicato</span>
+          <span>{{document.name}}</span>.
+        </p>
+        <p class="document-header__info--date heading-fifth">{{ this.date }}
+        </p>
+      </div>
+      <div class="document-header__menu" @mouseleave="closeMenu">
+        <span class="u-noselect" @click="menu = !menu">
+          <i class="fas fa-ellipsis-h"></i>
+        </span>
+        <transition name="fade">
+          <app-menu v-if="menu" :own="document.own" @edit="edit" @download="download" @view="view"></app-menu>
+        </transition>
+      </div>
     </div>
-    <div class="document-box-header__info">
-      <p class="document-box-header__info--head heading-fourth">
-        <span>{{document.author.firstname}} {{document.author.lastname}}</span>
-        <span> ha pubblicato</span>
-        <span>{{document.name}}</span>.
-      </p>
-      <p class="document-box-header__info--date heading-fifth">{{ this.date }}
-      </p>
+  </div>
+  <div class="row document-info">
+    <div class="col-1-of-1">
+      <p class="document-info__description">{{document.description}}</p>
     </div>
   </div>
-  <div class="document-box-info">
-    <p class="document-box-info__description">{{document.description}}</p>
-  </div>
-  <div class="document-box-footer">
-    <ul class="document-box-footer__info">
-      <li v-if="document.subject" class="u-bg-color-blue">{{document.subject.subject}}</li>
-      <li v-if="document.class || document.section" class="u-bg-color-yellow">
-        <span v-if="document.class">{{document.class.class}}</span>
-        <span v-if="document.section">{{document.section.section}}</span>
-      </li>
-      <li v-if="document.type" class="u-bg-color-green">{{document.type.type}}</li>
-    </ul>
-  </div>
-  <div class="document-box-left">
-    <ul>
-      <li class="u-noselect">
-        <a v-bind:href="'/public/documents/' + document.directory" download>
-          <i class="fas fa-download"></i>
-        </a>
-      </li>
-      <li class="u-noselect">
-        <a v-bind:href="'/public/documents/' + document.directory" target="_blank">
-          <i class="fas fa-eye"></i>
-        </a>
-      </li>
-      <li class="u-noselect">
-        <a v-if="document.own" @click.prevent="editDocument(document._id)">
-          <i class="fas fa-edit"></i>
-        </a>
-      </li>
-    </ul>
+  <div class="row document-footer">
+    <div class="col-1-of-1">
+      <ul class="document-footer__info">
+        <li v-if="document.subject" class="u-bg-color-blue">{{document.subject.subject}}</li>
+        <li v-if="document.class || document.section" class="u-bg-color-yellow">
+          <span v-if="document.class">{{document.class.class}}</span>
+          <span v-if="document.section">{{document.section.section}}</span>
+        </li>
+        <li v-if="document.type" class="u-bg-color-green">{{document.type.type}}</li>
+      </ul>
+    </div>
   </div>
 </div>
 </template>
@@ -54,9 +49,16 @@ import {
   eventBus
 } from '@/main'
 
+import Menu from './menu'
+
 export default {
   name: 'document',
   props: ['document'],
+  data: () => {
+    return {
+      menu: false
+    }
+  },
   computed: {
     date: function () {
       let timestamp = this.document._id.toString().substring(0, 8)
@@ -64,46 +66,71 @@ export default {
     }
   },
   methods: {
-    editDocument (id) {
-      eventBus.editEntity(id, 'appEditDocument')
+    edit () {
+      eventBus.editEntity(this.document._id, 'appEditDocument')
+    },
+    download () {
+      let a = document.createElement('A')
+      a.href = `/public/documents/${this.document.directory}`
+      a.download = this.document.name
+      a.click()
+    },
+    view () {
+      window.open(`/public/documents/${this.document.directory}`, '_blank')
+    },
+    closeMenu () {
+      if (this.menu) {
+        this.menu = false
+      }
     }
+  },
+  components: {
+    appMenu: Menu
   }
 }
 </script>
 
 <style scoped lang="scss">
-.document-box {
-    display: grid;
-    grid-template-columns: auto 4rem;
-    grid-template-rows: auto 2fr auto;
-    grid-template-areas: "header left" "info left" "footer left";
-    grid-gap: 2vh;
+.document {
 
     &-header {
-        grid-area: header;
         text-align: left;
         display: table;
         width: 100%;
 
-        span:nth-child(1),
-        span:nth-child(2) {
+        .col-1-of-1 {
+            position: relative;
+        }
 
-            @include respond(phone) {
-                display: none;
+        &__menu {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            right: 0;
+
+            span {
+                display: block;
+                padding: 0.5rem 1rem;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    transform: rotate(180deg);
+                }
+
             }
-
         }
 
         span:nth-child(1),
         span:nth-child(3) {
-          font-weight: 500;
+            font-weight: 500;
         }
 
         &__img {
             display: inline-block;
             height: 5rem;
             width: 5rem;
-            border-radius: 100%;
+            // border-radius: 100%;
+            border-radius: 0.25rem;
             overflow: hidden;
             vertical-align: middle;
 
@@ -115,7 +142,7 @@ export default {
         &__info {
             display: inline-block;
             vertical-align: middle;
-            width: calc(100% - 6rem);
+            width: calc(100% - 10rem);
             padding-left: 1.5rem;
 
             &--head {
@@ -127,6 +154,16 @@ export default {
 
                 span {
                     font-weight: 400;
+
+                    &:nth-child(1),
+                    &:nth-child(2) {
+
+                        @include respond(phone) {
+                            display: none;
+                        }
+
+                    }
+
                 }
             }
 
@@ -139,7 +176,6 @@ export default {
     }
 
     &-info {
-        grid-area: info;
         text-align: justify;
 
         &__description {
@@ -152,11 +188,11 @@ export default {
             line-height: $line-height-default;
             -webkit-line-clamp: $lines-to-show;
             -webkit-box-orient: vertical;
-            padding-right: 2rem;
-            padding-left: 6.5rem;
-            @include respond(phone) {
-                padding-left: 0;
-            }
+            // padding-right: 2rem;
+            // padding-left: 6.5rem;
+            // @include respond(phone) {
+            //     padding-left: 0;
+            // }
             @include respond(tab-lan) {
                 height: auto;
             }
@@ -164,14 +200,13 @@ export default {
     }
 
     &-footer {
-        grid-area: footer;
 
         &__info {
             text-align: left;
-            padding-left: 6.5rem;
-            @include respond(phone) {
-                padding-left: 0;
-            }
+            // padding-left: 6.5rem;
+            // @include respond(phone) {
+            //     padding-left: 0;
+            // }
 
             li {
                 padding: 0.5rem 1rem;
@@ -190,35 +225,5 @@ export default {
         }
     }
 
-    &-left {
-        grid-area: left;
-
-        ul {
-            li {
-                display: block;
-
-                &:not(:last-child) {
-                    margin-bottom: 1.5vh;
-                }
-
-                a {
-                    display: block;
-                    text-decoration: none;
-                    color: $color-tertiary;
-                    text-align: center;
-                    width: 100%;
-                    padding: 1rem;
-                    border-radius: 0.3rem;
-                    cursor: pointer;
-                    transition: all 0.2s ease-in-out;
-                    box-shadow: 0 0 0.5rem rgba($color-black, 0.2);
-
-                    &:hover {
-                        box-shadow: 0 0 0.7rem rgba($color-black, 0.3);
-                    }
-                }
-            }
-        }
-    }
 }
 </style>

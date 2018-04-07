@@ -2,6 +2,9 @@
 <div id="app" class="main__root">
   <app-menu-header @changeMenu="menu = !menu"></app-menu-header>
   <keep-alive>
+    <app-notifications></app-notifications>
+  </keep-alive>
+  <keep-alive>
     <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu>
   </keep-alive>
   <transition name="expand">
@@ -33,14 +36,15 @@ import {
 
 // VUE
 import Menu from '@/components/menu/menu.vue'
-import MenuMobile from '@/components/menu/menuMobile.vue'
-import MenuHeader from '@/components/menu/menuHeader.vue'
-import panelDashboard from './panels/panelDashboard/panelDashboard.vue'
-import panelSearch from './panels/panelSearch/panelSearch.vue'
-import panelUpload from './panels/panelUpload/panelUpload.vue'
-import panelAdmin from './panels/panelAdmin/panelAdmin.vue'
-import panelProfile from './panels/panelProfile/panelProfile.vue'
-import panelSettings from './panels/panelSettings/panelSettings.vue'
+import MenuMobile from '@/components/menu/menuMobile'
+import MenuHeader from '@/components/menu/menuHeader'
+import Notifications from '@/components/notifications/notifications'
+import panelDashboard from './panels/panelDashboard/panelDashboard'
+import panelSearch from './panels/panelSearch/panelSearch'
+import panelUpload from './panels/panelUpload/panelUpload'
+import panelAdmin from './panels/panelAdmin/panelAdmin'
+import panelProfile from './panels/panelProfile/panelProfile'
+import panelSettings from './panels/panelSettings/panelSettings'
 
 import PopUp from '@/components/popup/popup'
 import EditDocument from '@/components/editDocument/editDocument'
@@ -64,7 +68,6 @@ export default {
         privileges: '',
         img: '../static/elements/profile.svg'
       },
-      errors: [],
       menu: false,
       popup: false,
       entityToEdit: undefined
@@ -83,42 +86,60 @@ export default {
       .then((response) => {
         this.types = response.data
       }).catch((e) => {
-        this.errors.push(e)
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/subjects/')
       .then((response) => {
         this.subjects = response.data
       }).catch((e) => {
-        this.errors.push(e)
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/getFaculties/')
       .then((response) => {
         this.faculties = response.data
       }).catch((e) => {
-        this.errors.push(e)
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/getDocumentVisibilityList')
       .then((response) => {
         this.visibilities = response.data
       }).catch((e) => {
-        this.errors.push(e)
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/getSections')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
-        this.errors.push(e)
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/getClasses')
       .then((response) => {
         this.schoolClasses = response.data
       }).catch((e) => {
-        this.errors.push(e)
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/getPrivileges')
@@ -126,8 +147,10 @@ export default {
         this.privileges = response.data
       })
       .catch((e) => {
-        this.response = true
-        this.responseMessage = e.response.data
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     axios.get('/api/getCollectionsPermissions')
@@ -135,8 +158,10 @@ export default {
         this.collectionsPermissions = response.data
       })
       .catch((e) => {
-        this.response = true
-        this.responseMessage = e.response.data
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       })
 
     this.getUser()
@@ -157,8 +182,10 @@ export default {
           this.user = response.data
         })
         .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data
+          eventBus.notification({
+            title: e.response.data.messages[0],
+            temporary: true
+          })
         })
     },
     showPopUp (id, component) {
@@ -170,6 +197,7 @@ export default {
     appMenu: Menu,
     appMenuMobile: MenuMobile,
     appMenuHeader: MenuHeader,
+    appNotifications: Notifications,
     appPanelDashboard: panelDashboard,
     appPanelSearch: panelSearch,
     appPanelUpload: panelUpload,

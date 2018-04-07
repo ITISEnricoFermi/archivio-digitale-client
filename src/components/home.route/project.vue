@@ -1,15 +1,13 @@
 <template>
 <a :href="'/public/documents/' + project.directory" class="module project" target="_blank">
-  <div class="row project__info">
-    <div class="row">
-      <div class="col-1-of-1">
-        <p class="project-name">{{ project.name }}</p>
-      </div>
+  <div class="row">
+    <div class="col-1-of-1">
+      <p class="project-name">{{ project.name }}</p>
     </div>
-    <div class="row">
-      <div class="col-1-of-1">
-        <p class="project-description">{{ project.description }}</p>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-1-of-1">
+      <p class="project-description">{{ project.description }}</p>
     </div>
   </div>
   <div class="row project__details">
@@ -53,20 +51,16 @@ export default {
         box-shadow: 0 0.25rem 1rem rgba($color-black, 0.20);
     }
 
-    &__info {
+    .project-name {
+        text-align: left;
+        color: $color-grey-1;
+        @include ellipsis($font-default-1, $line-height-default,1);
+    }
 
-        .project-name {
-            text-align: left;
-            color: $color-grey-1;
-            @include ellipsis($font-default-1, $line-height-default,1);
-        }
-
-        .project-description {
-            text-align: justify;
-            color: $color-grey-2;
-            @include ellipsis($font-default-3, $line-height-default, $lines-to-show);
-        }
-
+    .project-description {
+        text-align: justify;
+        color: $color-grey-2;
+        @include ellipsis($font-default-3, $line-height-default, $lines-to-show);
     }
 
     &__details {
@@ -76,8 +70,6 @@ export default {
             display: table;
 
             .author-img {
-                // -webkit-clip-path: circle(50% at 50% 50%);
-                // clip-path: circle(50% at 50% 50%);
                 border-radius: 0.25rem;
                 box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
                 height: 5rem;

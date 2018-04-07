@@ -21,7 +21,6 @@ export default {
   },
   sockets: {
     userDeleted () {
-      console.log('ciao')
       this.search()
     },
     userUpdated () {

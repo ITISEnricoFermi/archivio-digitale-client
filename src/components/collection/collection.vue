@@ -1,48 +1,45 @@
 <template>
-<div class="module collection-box">
-  <div class="collection-box-header">
-    <div class="collection-box-header__img">
-      <img v-bind:src="'pics/' + collection.author.img" alt="Foto profilo utente">
-    </div>
-    <div class="collection-box-header__info">
-      <p class="collection-box-header__info--head heading-fourth">
-        <span>{{collection.author.firstname}} {{collection.author.lastname}}</span>
-        <span> ha creato</span>
-        <span>{{collection.documentCollection}}</span>.
-      </p>
-      <p class="collection-box-header__info--date heading-fifth">{{ this.date }}
-      </p>
+<div class="module collection">
+  <div class="row collection-header">
+    <div class="col-1-of-1">
+      <div class="collection-header__img">
+        <img v-bind:src="'pics/' + collection.author.img" alt="Foto profilo utente">
+      </div>
+      <div class="collection-header__info">
+        <p class="collection-header__info--head heading-fourth">
+          <span>{{collection.author.firstname}} {{collection.author.lastname}}</span>
+          <span> ha creato</span>
+          <span>{{collection.documentCollection}}</span>.
+        </p>
+        <p class="collection-header__info--date heading-fifth">{{ this.date }}
+        </p>
+      </div>
+      <div class="collection-header__menu" @mouseleave="closeMenu">
+        <span class="u-noselect" @click="menu = !menu">
+          <i class="fas fa-ellipsis-h"></i>
+        </span>
+        <transition name="fade">
+          <app-menu v-if="menu" :own="collection.own" @edit="edit"></app-menu>
+        </transition>
+      </div>
     </div>
   </div>
-  <div class="collection-box-info">
-    <!-- <p class="collection-box-info__description">{{document.description}}</p> -->
-    <p v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
-    <ul class="collection-box-info__documents" v-else>
-      <li v-for="(document, index) in collection.documents" :key="index">
-        <a :href="'/public/public/documents/' + document.directory" target="_blank">
-            {{index}}. <span>{{document.name}}</span>
+  <div class="row collection-info">
+    <div class="col-1-of-1">
+      <p v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
+      <ul v-else>
+        <li v-for="(document, index) in collection.documents" :key="index">
+          <a :href="'/public/public/documents/' + document.directory" target="_blank">
+            <span class="result">
+                {{index}}. {{document.name}}
+            </span>
+            <span class="open">
+              <i class="fas fa-external-link-alt"></i>
+            </span>
           </a>
-      </li>
-    </ul>
-  </div>
-  <div class="collection-box-footer">
-    <!-- <ul class="collection-box-footer__info">
-        <li v-if="document.subject" class="u-bg-color-blue">{{document.subject.subject}}</li>
-        <li v-if="document.class || document.section" class="u-bg-color-yellow">
-          <span v-if="document.class">{{document.class.class}}</span>
-          <span v-if="document.section">{{document.section.section}}</span>
         </li>
-        <li v-if="document.type" class="u-bg-color-green">{{document.type.type}}</li>
-      </ul> -->
-  </div>
-  <div class="collection-box-left">
-    <ul>
-      <li class="u-noselect" v-if="collection.own">
-        <a @click.prevent="edit(collection._id)">
-            <i class="fas fa-edit"></i>
-          </a>
-      </li>
-    </ul>
+      </ul>
+    </div>
   </div>
 </div>
 </template>
@@ -52,9 +49,16 @@ import {
   eventBus
 } from '@/main'
 
+import Menu from './menu'
+
 export default {
   name: 'collection',
   props: ['collection'],
+  data: () => {
+    return {
+      menu: false
+    }
+  },
   computed: {
     date: function () {
       let timestamp = this.collection._id.toString().substring(0, 8)
@@ -62,39 +66,39 @@ export default {
     }
   },
   methods: {
-    edit (id) {
-      eventBus.editEntity(id, 'appEditCollection')
+    edit () {
+      eventBus.editEntity(this.collection._id, 'appEditCollection')
+    },
+    closeMenu () {
+      if (this.menu) {
+        this.menu = false
+      }
     }
+  },
+  components: {
+    appMenu: Menu
   }
 }
 </script>
 
 <style scoped lang="scss">
-.collection-box {
-    display: grid;
-    grid-template-columns: auto 4rem;
-    grid-template-rows: auto 2fr auto;
-    grid-template-areas: "header left" "info left" "footer left";
-    grid-gap: 2vh;
+.collection {
 
     &-header {
-        grid-area: header;
         text-align: left;
         display: table;
         width: 100%;
 
-        span:nth-child(1),
-        span:nth-child(2) {
-            @include respond(phone) {
-                display: none;
-            }
+        .col-1-of-1 {
+            position: relative;
         }
 
         &__img {
             display: inline-block;
             height: 5rem;
             width: 5rem;
-            border-radius: 100%;
+            // border-radius: 100%;
+            border-radius: 0.25rem;
             overflow: hidden;
             vertical-align: middle;
 
@@ -106,7 +110,7 @@ export default {
         &__info {
             display: inline-block;
             vertical-align: middle;
-            width: calc(100% - 5rem);
+            width: calc(100% - 6rem);
             padding-left: 1.5rem;
 
             &--head {
@@ -118,6 +122,14 @@ export default {
 
                 span {
                     font-weight: 400;
+
+                    &:nth-child(1),
+                    &:nth-child(2) {
+                        @include respond(phone) {
+                            display: none;
+                        }
+                    }
+
                 }
             }
 
@@ -127,72 +139,74 @@ export default {
                 color: $color-grey-1;
             }
         }
+
+        &__menu {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            right: 0;
+
+            span {
+                display: block;
+                padding: 0.5rem 1rem;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    transform: rotate(180deg);
+                }
+
+            }
+        }
+
     }
 
     &-info {
-        grid-area: info;
-        text-align: justify;
+        border-radius: 0.25rem;
+        background-color: $color-white-1;
+        border: 1px solid darken($color-white-5, 5%);
 
-        p {
-            padding-left: 6.5rem;
-        }
-
-        &__documents {
-            padding-left: 6.5rem;
+        ul {
+            padding: 0;
 
             li {
                 list-style: none;
-                display: block;
-                font-size: 1.2rem;
+                font-size: $font-default-2;
+                cursor: pointer;
+                text-align: left;
+                position: relative;
 
                 &:not(:last-child) {
-                    margin-bottom: 2rem;
+                    border-bottom: 1px solid darken($color-white-5, 5%);
+                }
+
+                &:hover {
+                    background-color: $color-white-5;
                 }
 
                 a {
-                    text-decoration: none;
-                    color: $color-black;
-                    background-color: $color-white-5;
-                    padding: 0.7rem;
-                    border-radius: 0.5rem;
+                    text-align: none;
+                    color: $color-tertiary;
+                    display: block;
+                    padding: 0.9rem 0.8rem;
 
-                    span {
-                        text-decoration: underline;
+                    .result {
+                        max-width: calc(100% - 2rem);
+                        display: inline-block;
+                    }
+
+                    .open {
+                        position: absolute;
+                        right: 1rem;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: $color-grey-1;
                     }
                 }
             }
         }
     }
 
-    &-footer {
-        grid-area: footer;
-
-        &__info {
-            text-align: left;
-            padding-left: 6.5rem;
-            @include respond(phone) {
-                padding-left: 0;
-            }
-
-            li {
-                padding: 0.5rem 1rem;
-                border-radius: 10rem;
-                display: inline-block;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                max-width: 30%;
-                white-space: nowrap;
-                color: $color-white;
-
-                &:not(:first-child) {
-                    margin-left: 0.5rem;
-                }
-            }
-        }
-    }
-
     &-left {
-        grid-area: left;
 
         ul {
             li {

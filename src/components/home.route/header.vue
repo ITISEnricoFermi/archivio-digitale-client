@@ -31,15 +31,15 @@ export default {
     height: 10rem;
     padding: 4vh 6vh;
     background-color: $color-primary;
-    @include clearfix;
+    display: table;
 
     @include respond(phone) {
       padding: 3vh;
     }
 
     .logo {
-        float: left;
-        display: table;
+        display: table-cell;
+        vertical-align: middle;
 
         &__content {
             text-align: left;
@@ -55,7 +55,6 @@ export default {
             .fermi {
                 height: 4.5rem;
                 // margin: 0.75rem 0.75rem 0.75rem 3vh;
-
             }
 
             .separator {
@@ -84,15 +83,13 @@ export default {
     }
 
     .menu {
-        float: right;
-        display: table;
+        display: table-cell;
+        vertical-align: middle;
 
         .buttons {
             text-align: right;
             padding: 0;
-            display: table-cell;
-            vertical-align: middle;
-            height: 4.5rem;
+            float: right;
 
             li {
                 display: inline-block;

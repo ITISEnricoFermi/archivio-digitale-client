@@ -1,5 +1,8 @@
 <template>
 <main id="app" class="main__login">
+  <keep-alive>
+    <app-notifications></app-notifications>
+  </keep-alive>
   <div class="login-box module">
     <div class="row">
       <div class="col-1-of-1">
@@ -8,22 +11,17 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="email" class="module-input-text" placeholder="Email" autocomplete="off" v-model="loginEmail" @keyup.enter="login">
+        <input type="email" class="module-input-text" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="login">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="password" class="module-input-text" placeholder="Password" autocomplete="off" v-model="loginPassword" @keyup.enter="login">
+        <input type="password" class="module-input-text" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="login">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
         <button class="button button--green" @click="login">Entra</button>
-      </div>
-    </div>
-    <div class="row" v-if="response">
-      <div class="col-1-of-1">
-        <p class="error">{{responseMessage}}</p>
       </div>
     </div>
   </div>
@@ -33,7 +31,12 @@
 
 <script>
 
+import {
+  eventBus
+} from '@/main'
+
 import FooterLight from '@/components/footer/light.footer'
+import Notifications from '@/components/notifications/notifications'
 
 import axios from 'axios'
 
@@ -41,32 +44,33 @@ export default {
   name: 'login',
   data: () => {
     return {
-      response: false,
-      responseMessage: '',
-      loginEmail: '',
-      loginPassword: ''
+      user: {
+        email: '',
+        password: ''
+      }
     }
   },
   methods: {
-    login () {
-      let user = {
-        email: this.loginEmail,
-        password: this.loginPassword
+    async login () {
+      if (!this.user.email && !this.user.password) {
+        return false
       }
 
-      axios.post('/login', user)
-        .then((token) => {
-          localStorage.setItem('token', token)
-          window.location.replace('/')
+      try {
+        let token = (await axios.post('/login', this.user)).data
+        localStorage.setItem('token', token)
+        window.location.replace('/')
+      } catch (e) {
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
         })
-        .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data.messages[0]
-        })
+      }
     }
   },
   components: {
-    appFooterLight: FooterLight
+    appFooterLight: FooterLight,
+    appNotifications: Notifications
   }
 }
 </script>

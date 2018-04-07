@@ -12,6 +12,20 @@
   display: block;
   cursor: pointer;
   outline: none;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+      transform: translateY(-0.2rem);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  }
+
+  &:active,
+  &:focus {
+      outline: none;
+      transform: translateY(-0.1rem);
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
 
   span:nth-child(1) {
     margin: 0.5rem;

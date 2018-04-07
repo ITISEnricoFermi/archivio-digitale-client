@@ -18,6 +18,9 @@ export const eventBus = new Vue({
     },
     uploading (progress) {
       this.$emit('uploading', progress)
+    },
+    notification (notification) {
+      this.$emit('notification', notification)
     }
   }
 })

@@ -66,5 +66,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+  .document:last-child {
+    margin-bottom: 0vh!important;
+  }
 </style>

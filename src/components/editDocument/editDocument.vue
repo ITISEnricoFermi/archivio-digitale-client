@@ -108,64 +108,80 @@ export default {
         section: '',
         visibility: 'pubblico',
         description: ''
-      },
-      response: false,
-      responseMessage: ''
+      }
     }
   },
-  created () {
-    axios.get('/documents/info/' + this.id)
-      .then((response) => {
-        let document = response.data
+  async created () {
+    try {
+      let document = (await axios.get('/documents/info/' + this.id)).data
 
-        this.documentToEdit = {
-          name: document.name,
-          type: document.type._id,
-          faculty: document.faculty._id,
-          subject: document.subject._id,
-          class: document.class ? document.class._id : 0,
-          section: document.section ? document.section._id : '',
-          visibility: document.visibility._id,
-          description: document.description
-        }
+      this.documentToEdit = {
+        name: document.name,
+        type: document.type._id,
+        faculty: document.faculty._id,
+        subject: document.subject._id,
+        class: document.class ? document.class._id : 0,
+        section: document.section ? document.section._id : '',
+        visibility: document.visibility._id,
+        description: document.description
+      }
+    } catch (e) {
+      eventBus.notification({
+        title: e.response.data,
+        temporary: true
       })
-      .catch((e) => {
-        this.response = true
-        this.responseMessage = e.response.data
-      })
+    }
   },
   methods: {
     closePopUp () {
       eventBus.closePopUp()
     },
-    edit (id) {
-      axios.patch('/documents/' + id, {
-        document: this.documentToEdit
-      })
-        .then((response) => {
-          eventBus.closePopUp()
-          this.$socket.emit('documentUpdated')
+    async edit (id) {
+      try {
+        let response = await axios.patch('/documents/' + id, {
+          document: this.documentToEdit
         })
-        .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data
+        eventBus.notification({
+          title: response.data.messages[0],
+          temporary: true
         })
+        eventBus.closePopUp()
+        this.$socket.emit('documentUpdated')
+      } catch (e) {
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
+      }
     },
-    remove (id) {
-      axios.delete('/documents/' + id)
-        .then((response) => {
-          eventBus.closePopUp()
-          this.$socket.emit('documentDeleted')
+    async remove (id) {
+      try {
+        let response = (await axios.delete('/documents/' + id)).data
+        eventBus.notification({
+          title: response.data.messages[0],
+          temporary: true
         })
-        .catch((e) => {
-          this.response = true
-          this.response = e.response.data
+        eventBus.closePopUp()
+        this.$socket.emit('documentDeleted')
+      } catch (e) {
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
         })
+      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.section-title {
+  font-size: $font-default-2;
+  font-weight: bold;
+}
+
+.row--title {
+  margin-bottom: $gutter-vertical-1!important;
+}
 
 </style>

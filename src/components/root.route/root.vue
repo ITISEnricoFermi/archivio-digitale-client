@@ -5,19 +5,22 @@
     <app-notifications></app-notifications>
   </keep-alive>
   <keep-alive>
-    <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu>
+    <app-menu-white @panelChanged="panel = $event" :privileges="user.privileges" :user="user"></app-menu-white>
+    <!-- <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu> -->
   </keep-alive>
   <transition name="expand">
     <keep-alive>
       <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
     </keep-alive>
   </transition>
+  <app-profile :user="user"></app-profile>
   <transition name="panel" mode="out-in">
     <keep-alive>
       <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
       </component>
     </keep-alive>
   </transition>
+  <!-- <app-footer></app-footer> -->
   <transition name="fade" mode="out-in">
     <app-popup v-if="popup" :width="'80%'">
       <component v-if="popup" :is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
@@ -50,6 +53,10 @@ import PopUp from '@/components/popup/popup'
 import EditDocument from '@/components/editDocument/editDocument'
 import EditCollection from '@/components/editCollection/editCollection'
 import EditUser from '@/components/editUser/editUser'
+
+import MenuWhite from '@/components/menu/menuWhite'
+import Footer from '@/components/home.route/footer'
+import Profile from '@/components/root.route/profile/profile'
 
 export default {
   name: 'root',
@@ -207,18 +214,22 @@ export default {
     appPopup: PopUp,
     appEditDocument: EditDocument,
     appEditCollection: EditCollection,
-    appEditUser: EditUser
+    appEditUser: EditUser,
+
+    appProfile: Profile,
+    appMenuWhite: MenuWhite,
+    appFooter: Footer
   }
 }
 </script>
 
 <style lang="scss">
 .main__root {
+
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 25rem auto;
-    grid-template-areas: ". main";
-    min-height: 100vh;
+    grid-template-columns: auto 60% auto;
+    grid-template-rows: auto 20rem auto;
+    grid-template-areas: "menu menu menu" "profile main ." ". main .";
     background-color: $color-white-2;
     width: 100vw;
     @include respond(tab-lan) {
@@ -230,7 +241,13 @@ export default {
         grid-area: main;
         font-size: $font-default-2;
         padding: 3vh!important;
+        width: 60%;
+        margin-left: 20%;
         background-color: $color-white-2;
+    }
+
+    .profile {
+      grid-area: profile;
     }
 }
 </style>

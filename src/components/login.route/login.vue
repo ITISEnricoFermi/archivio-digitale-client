@@ -57,7 +57,7 @@ export default {
       }
 
       try {
-        let token = (await axios.post('/login', this.user)).data
+        let token = (await axios.post('/login/', this.user)).data
         localStorage.setItem('token', token)
         window.location.replace('/')
       } catch (e) {

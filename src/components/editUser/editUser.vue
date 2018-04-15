@@ -36,7 +36,7 @@
       <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="userToEdit.accesses" :dbElements="['subject']" :url="'/api/subjects/search/partial/'" @update:selected="userToEdit.accesses = $event"></app-multiple-select>
     </div>
   </div>
-  <div class="row" v-if="userToEdit.accesses">
+  <div class="row" v-if="userToEdit.accesses.length">
     <div class="col-1-of-1">
       <app-multiple-select-results :selected.sync="userToEdit.accesses" :dbElements="['subject']" @update:selected="userToEdit.accesses = $event"></app-multiple-select-results>
     </div>

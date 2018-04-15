@@ -20,7 +20,7 @@
       <select class="module-input-select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
-        </select>
+      </select>
     </div>
     <div class="col-1-of-2" disabled>
       <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="collectionToEdit.authorizations" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="collectionToEdit.authorizations = $event"></app-multiple-select>

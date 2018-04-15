@@ -13,12 +13,12 @@ export default {
   props: ['notification'],
   data: () => {
     return {
-
+      timeout: undefined
     }
   },
   created () {
     if (this.notification.temporary) {
-      // clearTimeout(this.timeout)
+      clearTimeout(this.timeout)
       let self = this
       this.timeout = setTimeout(function () {
         self.$emit('remove')

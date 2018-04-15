@@ -1,7 +1,7 @@
 <template>
   <div class="notifications">
     <transition-group name="fade">
-      <app-notification v-for="(notification, index) in notifications" :notification="notification" :key="index" @remove="remove(notification)"></app-notification>
+      <app-notification v-for="(notification, index) in notifications" :notification="notification" :key="index" @remove="remove(index)"></app-notification>
     </transition-group>
   </div>
 </template>
@@ -31,8 +31,8 @@ export default {
     })
   },
   methods: {
-    remove (notification) {
-      let index = this.notifications.indexOf(notification)
+    remove (index) {
+      console.log('Rimossa la notifica con indice: ', index, this.notifications)
       this.notifications.splice(index, 1)
     }
   },

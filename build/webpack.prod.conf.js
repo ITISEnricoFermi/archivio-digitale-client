@@ -34,7 +34,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       'process.env': env
     }),
     new SWPrecacheWebpackPlugin({
-      cacheId: 'my-vue-app',
+      cacheId: 'archivio-digitale',
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,

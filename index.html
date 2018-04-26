@@ -23,12 +23,19 @@
     <meta name="msapplication-config" content="/static/shortcut/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
+    <script type="text/javascript">
+      (function () {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js');
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>
       This is your fallback content in case JavaScript fails to load.
     </noscript>
     <div id="app"></div>
-    <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
+    <!-- <%= htmlWebpackPlugin.options.serviceWorkerLoader %> -->
   </body>
 </html>

@@ -1,5 +1,7 @@
 {
-  "name": "",
+  "name": "Archivio Digitale",
+  "short_name": "Archivio",
+  "description": "Archivio Digitale - ITIS Enrico Fermi",
   "icons": [{
       "src": "/images/shortcut/android-chrome-192x192.png",
       "sizes": "192x192",

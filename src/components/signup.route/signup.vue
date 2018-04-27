@@ -7,7 +7,7 @@
     <!-- Nome, Cognome, Email, Password, Materie -->
     <div class="row">
       <div class="col-1-of-1">
-        <img src="/static/logo/itisFermi.svg" class="logo">
+        <img src="/static/logo/itisFermi.svg" class="logo" alt="ITIS Enrico Fermi">
       </div>
     </div>
     <div class="row">
@@ -50,7 +50,7 @@
   <div class="success-box module" v-else>
     <div class="row">
       <div class="col-1-of-1">
-        <img src="/static/logo/itisFermi.svg" class="logo">
+        <img src="/static/logo/itisFermi.svg" class="logo" alt="ITIS Enrico Fermi">
       </div>
     </div>
     <div class="row">

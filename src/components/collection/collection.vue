@@ -3,7 +3,7 @@
   <div class="row collection-header">
     <div class="col-1-of-1">
       <div class="collection-header__img">
-        <img v-bind:src="'pics/' + collection.author.img" alt="Foto profilo utente">
+        <img v-bind:src="'pics/' + collection.author.img" :alt="collection.author.firstname + ' ' + collection.author.lastname">
       </div>
       <div class="collection-header__info">
         <p class="collection-header__info--head heading-fourth">

@@ -3,7 +3,7 @@
   <div class="row document-header">
     <div class="col-1-of-1">
       <div class="document-header__img">
-        <img v-bind:src="'pics/' + document.author.img" alt="Foto profilo utente">
+        <img v-bind:src="'pics/' + document.author.img" :alt="document.author.firstname + ' ' + document.author.lastname">
       </div>
       <div class="document-header__info">
         <p class="document-header__info--head heading-fourth">

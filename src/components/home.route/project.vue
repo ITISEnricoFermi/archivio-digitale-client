@@ -12,7 +12,7 @@
   </div>
   <div class="row project__details">
     <div class="col-1-of-1">
-      <!-- <img :src="'/pics/' + project.author.img" class="author-img" :alt="project.author.firstname + ' ' + project.author.lastname"> -->
+      <img :src="'/pics/' + project.author.img" class="author-img" :alt="project.author.firstname + ' ' + project.author.lastname">
       <div>
         <p class="author-name">{{ project.author.firstname }} {{ project.author.lastname }}</p>
         <p class="project-date">{{ date }}</p>

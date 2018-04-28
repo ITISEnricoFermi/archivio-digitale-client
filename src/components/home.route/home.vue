@@ -52,6 +52,7 @@ export default {
 <style lang="scss">
 .main__home {
     width: 100vw;
+    min-height: 100vh;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
 
     .sections {

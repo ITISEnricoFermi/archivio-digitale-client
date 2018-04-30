@@ -4,7 +4,7 @@
     <div class="profile-cover">
       <div class="profile-img">
         <div class="profile-cover__content">
-          <div class="profile-cover__pic" v-bind:style="'background-image: url(pics/' + user.img + ');'"></div>
+          <img class="profile-cover__pic" sizes="36vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
           <div class="profile-cover__info">
             <p class="profile-cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
           </div>
@@ -140,7 +140,6 @@ export default {
 
         .profile-img {
             width: 100%;
-            height: 100%;
             position: absolute;
             top: 0;
             height: 36vh;
@@ -158,9 +157,6 @@ export default {
         }
 
         &__pic {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             width: 25vh;
             height: 25vh;
             border-radius: 100%;

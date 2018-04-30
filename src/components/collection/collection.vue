@@ -3,7 +3,7 @@
   <div class="row collection-header">
     <div class="col-1-of-1">
       <div class="collection-header__img">
-        <img v-bind:src="'pics/' + collection.author.img" :alt="collection.author.firstname + ' ' + collection.author.lastname">
+        <img sizes="5rem" :srcset="'/pics/' + collection.author._id + '/xs.jpeg 100w, /pics/' + collection.author._id + '/sm.jpeg 300w, /pics/' + collection.author._id + '/md.jpeg 500w, /pics/' + collection.author._id + '/lg.jpeg 800w, /pics/' + collection.author._id + '/xlg.jpeg 1200w'" :alt="collection.author.firstname + ' ' + collection.author.lastname">
       </div>
       <div class="collection-header__info">
         <p class="collection-header__info--head heading-fourth">
@@ -165,6 +165,10 @@ export default {
         background-color: $color-white-1;
         border: 1px solid darken($color-white-5, 5%);
 
+        p {
+          padding: 0.9rem 0.8rem;
+        }
+
         ul {
             padding: 0;
 
@@ -200,36 +204,6 @@ export default {
                         top: 50%;
                         transform: translateY(-50%);
                         color: $color-grey-1;
-                    }
-                }
-            }
-        }
-    }
-
-    &-left {
-
-        ul {
-            li {
-                display: block;
-
-                &:not(:last-child) {
-                    margin-bottom: 1.5vh;
-                }
-
-                a {
-                    display: block;
-                    text-decoration: none;
-                    color: $color-tertiary;
-                    text-align: center;
-                    width: 100%;
-                    padding: 1rem;
-                    border-radius: 0.3rem;
-                    cursor: pointer;
-                    transition: all 0.2s ease-in-out;
-                    box-shadow: 0 0 0.5rem rgba($color-black, 0.2);
-
-                    &:hover {
-                        box-shadow: 0 0 0.7rem rgba($color-black, 0.3);
                     }
                 }
             }

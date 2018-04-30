@@ -4,7 +4,7 @@
     <div class="col-1-of-1">
       <div class="content">
         <div class="img">
-          <img :src="'/pics/' + localUser.img" :alt="localUser.firstname + ' ' + localUser.lastname">
+          <img class="author-img" sizes="8rem" :srcset="'/pics/' + localUser._id + '/xs.jpeg 100w, /pics/' + localUser._id + '/sm.jpeg 300w, /pics/' + localUser._id + '/md.jpeg 500w, /pics/' + localUser._id + '/lg.jpeg 800w, /pics/' + localUser._id + '/xlg.jpeg 1200w'" :alt="localUser.firstname + ' ' + localUser.lastname">
         </div>
         <div class="info">
           <p class="info__name u-margin-bottom-small">{{localUser.firstname}} {{localUser.lastname}}</p>

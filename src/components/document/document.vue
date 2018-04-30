@@ -3,7 +3,7 @@
   <div class="row document-header">
     <div class="col-1-of-1">
       <div class="document-header__img">
-        <img v-bind:src="'pics/' + document.author.img" :alt="document.author.firstname + ' ' + document.author.lastname">
+        <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'" :alt="document.author.firstname + ' ' + document.author.lastname">
       </div>
       <div class="document-header__info">
         <p class="document-header__info--head heading-fourth">

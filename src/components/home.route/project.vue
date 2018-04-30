@@ -12,7 +12,7 @@
   </div>
   <div class="row project__details">
     <div class="col-1-of-1">
-      <img :src="'/pics/' + project.author.img" class="author-img" :alt="project.author.firstname + ' ' + project.author.lastname">
+      <img class="author-img" sizes="5rem" :srcset="'/pics/' + project.author._id + '/xs.jpeg 100w, /pics/' + project.author._id + '/sm.jpeg 300w, /pics/' + project.author._id + '/md.jpeg 500w, /pics/' + project.author._id + '/lg.jpeg 800w, /pics/' + project.author._id + '/xlg.jpeg 1200w'" :alt="project.author.firstname + ' ' + project.author.lastname">
       <div>
         <p class="author-name">{{ project.author.firstname }} {{ project.author.lastname }}</p>
         <p class="project-date">{{ date }}</p>
@@ -26,11 +26,6 @@
 export default {
   name: 'project',
   props: ['project'],
-  data: () => {
-    return {
-
-    }
-  },
   computed: {
     date: function () {
       let timestamp = this.project._id.toString().substring(0, 8)

@@ -83,20 +83,22 @@
   opacity: 0;
 }
 // EXPAND
-.expand-enter-active,
-.expand-leave-active {
-  transition: all 0.2s;
-}
-
-.expand-enter,
-.expand-leave-to {
-  height: 0;
-}
-
-.expand-enter-to,
-.expand-leave {
-  height: calc(100% - 6rem);
-}
+// .expand-enter-active,
+// .expand-leave-active {
+//   transition: all 0.2s;
+// }
+//
+// .expand-enter,
+// .expand-leave-to {
+//   visibility: hidden;
+//   height: 0;
+// }
+//
+// .expand-enter-to,
+// .expand-leave {
+//   height: calc(100% - 6rem);
+//   visibility: visible;
+// }
 //PANEL
 .panel-enter-active,
 .panel-leave-active {

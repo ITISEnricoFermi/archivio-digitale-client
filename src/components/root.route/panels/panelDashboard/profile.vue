@@ -1,7 +1,7 @@
 <template>
 <div class="module panel__dashboard--profile">
   <div class="profile-box" v-if="user">
-    <div :style="'background-image: url(pics/' + user.img + ');'" class="profile-img"></div>
+    <img class="profile-img" sizes="20vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
     <div class="profile-info">
       <p class="profile-info--name heading-secondary">{{user.firstname}} {{user.lastname}}</p>
       <p class="profile-info--documents heading-tertiary">Pubblicazioni: {{user.documents}}</p>
@@ -13,13 +13,7 @@
 <script>
 export default {
   name: 'profile',
-  props: ['user'],
-  data: () => {
-    return {
-      response: false,
-      responseMessage: ''
-    }
-  }
+  props: ['user']
 }
 </script>
 
@@ -30,6 +24,7 @@ export default {
     height: 100%;
     @include respond(tab-por) {
         height: auto;
+        display: none;
     }
 
     .profile-box {
@@ -40,9 +35,6 @@ export default {
             width: 20vh;
             height: 20vh;
             display: inline-block;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
             -webkit-clip-path: circle(50% at 50% 50%);
             clip-path: circle(50% at 50% 50%);
         }

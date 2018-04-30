@@ -35,9 +35,9 @@ export default {
         width: 100%;
         height: 100%;
         @include respond(tab-por) {
-            grid-template-rows: auto auto auto;
+            grid-template-rows: auto;
             grid-template-columns: 1fr;
-            grid-template-areas: "recentPosts" "profile" "chart";
+            grid-template-areas: "recentPosts";
         }
 
         .module {

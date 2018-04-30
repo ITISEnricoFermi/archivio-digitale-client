@@ -25,4 +25,8 @@ body {
   position: relative;
   background-color: $color-white-2;
   height: 100%;
+
+  @include respond(tab-por) {
+    height: auto;
+  }
 }

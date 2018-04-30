@@ -17,4 +17,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.panel__dashboard--chart {
+
+  @include respond(tab-por) {
+    display: none;
+  }
+}
 </style>

@@ -7,7 +7,7 @@
   <keep-alive>
     <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu>
   </keep-alive>
-  <transition name="expand">
+  <transition name="panel" mode="out-in">
     <keep-alive>
       <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
     </keep-alive>
@@ -218,12 +218,14 @@ export default {
     grid-template-rows: 1fr;
     grid-template-columns: 25rem auto;
     grid-template-areas: ". main";
-    min-height: 100vh;
+    min-height: calc(100vh - 6rem);
+    height: 100vh;
     background-color: $color-white-2;
     width: 100vw;
     @include respond(tab-lan) {
         display: block;
         margin-top: 6rem;
+        height: auto;
     }
 
     main {
@@ -231,6 +233,10 @@ export default {
         font-size: $font-default-2;
         padding: 3vh!important;
         background-color: $color-white-2;
+
+        @include respond(tab-por) {
+            height: calc(100vh - 6rem);
+        }
     }
 }
 </style>

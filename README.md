@@ -6,9 +6,15 @@
   Progetto Archivio Digitale sviluppato da Riccardo Sangiorgio per l'ITIS Enrico Fermi.
 </p>
 
-## Installazione
+## Getting Started
 
 L'Archivio Digitale è suddiviso in due repository: [archivio-fermi-server](https://github.com/Richard1984/archivio-fermi-server) e [archivio-fermi-client](https://github.com/Richard1984/archivio-fermi-client).
+
+### Prerequisiti
+
+* Il web client necessita dell'installazione del [server](https://github.com/Richard1984/archivio-fermi-server).
+
+### Installazione
 
 1. Clonare il repository nella destinazione desiderata
 

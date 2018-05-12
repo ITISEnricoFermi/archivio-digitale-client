@@ -6,7 +6,7 @@ import VueSocketIO from 'vue-socket.io'
 import App from './App'
 import router from './router'
 
-export const SocketInstance = socketio('http://localhost:3000', {secure: true})
+export const SocketInstance = socketio('http://127.0.0.1:3000', {secure: true})
 
 export const eventBus = new Vue({
   methods: {

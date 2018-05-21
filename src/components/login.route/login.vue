@@ -6,7 +6,9 @@
   <div class="login-box module">
     <div class="row">
       <div class="col-1-of-1">
-        <img src="static/logo/itisFermi.svg" class="logo" alt="ITIS Enrico Fermi">
+        <a href="/home/">
+          <img src="static/logo/itisFermi.svg" class="logo" alt="ITIS Enrico Fermi">
+        </a>
       </div>
     </div>
     <div class="row">

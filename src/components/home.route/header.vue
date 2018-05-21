@@ -1,11 +1,11 @@
 <template>
 <header class="header">
   <div class="logo">
-    <div class="logo__content">
+    <a href="/home/" class="logo__content">
       <img src="/static/logo/itisFermi_white.svg" class="fermi" alt="ITIS Enrico Fermi">
       <div class="separator"></div>
       <p class="archivio">Archivio Digitale</p>
-    </div>
+    </a>
   </div>
   <div class="menu">
     <ul class="buttons">

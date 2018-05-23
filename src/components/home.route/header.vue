@@ -46,6 +46,7 @@ export default {
             height: 4.5rem;
             display: table-cell;
             vertical-align: middle;
+            text-decoration: none;
 
             * {
                 display: inline-block;

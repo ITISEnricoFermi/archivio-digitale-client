@@ -39,6 +39,7 @@ export default {
         let response = await axios.get('/public/recent/' + type)
         this.$emit('filter', response.data)
       } catch (e) {
+        this.$emit('filter', [])
         console.log(e)
       }
     }

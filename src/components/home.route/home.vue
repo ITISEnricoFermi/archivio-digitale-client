@@ -14,10 +14,15 @@
         <app-filters @filter="projects = $event"></app-filters>
       </div>
       <app-filters @filter="projects = $event"></app-filters>
-      <div class="projects-list">
+      <div class="projects-list" v-if="projects.length">
         <transition name="scale" v-for="(project, index) in projects" :key="index">
           <app-project :project="project"></app-project>
         </transition>
+      </div>
+      <div class="no-projects" mode="out-in" v-else>
+        <div class="module project">
+            <p>Nessun documento presente nella categoria selezionata.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -36,7 +41,7 @@ export default {
   name: 'home',
   data: () => {
     return {
-      projects: undefined
+      projects: []
     }
   },
   components: {
@@ -50,9 +55,16 @@ export default {
 </script>
 
 <style lang="scss">
+
+body {
+    min-height: 100vh!important;
+    height: auto!important;
+}
+
 .main__home {
     width: 100vw;
     min-height: 100vh;
+    height: auto;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
 
     .sections {

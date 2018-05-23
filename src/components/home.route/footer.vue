@@ -21,9 +21,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .footer {
     background-color: $color-white-4;
     width: 100%;
+    position: absolute;
+    bottom: 0;
+
+    @include respond(tab-por) {
+      position: relative;
+      bottom: 0;
+    }
 
     .content {
         width: 80%;

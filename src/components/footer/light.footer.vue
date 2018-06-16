@@ -21,7 +21,7 @@ footer {
   bottom: 1rem;
   left: 0;
   width: 100%;
-  padding: 3rem!important !important;
+  padding: 3rem!important;
   z-index: 999;
   ul {
     li {

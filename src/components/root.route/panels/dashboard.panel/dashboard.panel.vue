@@ -41,7 +41,7 @@ export default {
         }
 
         .module {
-            margin: 0!important !important;
+            margin: 0!important;
         }
 
     }

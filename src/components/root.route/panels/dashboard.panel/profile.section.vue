@@ -1,6 +1,6 @@
 <template>
 <div class="module profile">
-  <div class="content" v-if="user.length">
+  <div class="content" v-if="user">
     <img class="profile-img" sizes="20vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
     <div class="profile-info">
       <p class="profile-info__name heading-secondary">{{user.firstname}} {{user.lastname}}</p>

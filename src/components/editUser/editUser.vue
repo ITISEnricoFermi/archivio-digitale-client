@@ -7,18 +7,18 @@
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" required v-model="userToEdit.firstname">
+      <input type="text" class="textfield" placeholder="Nome" autocomplete="off" required v-model="userToEdit.firstname">
     </div>
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" required v-model="userToEdit.lastname">
+      <input type="text" class="textfield" placeholder="Cognome" autocomplete="off" required v-model="userToEdit.lastname">
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <input type="email" class="module-input-text" placeholder="Email" autocomplete="off" required v-model="userToEdit.email">
+      <input type="email" class="textfield" placeholder="Email" autocomplete="off" required v-model="userToEdit.email">
     </div>
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="userToEdit.privileges" required>
+      <select class="select" v-model="userToEdit.privileges" required>
           <option class="module-input-option" value="" disabled>Privilegi</option>
           <option class="module-input-option" :value="privilege._id" v-for="(privilege, index) in privileges" :key="index">
             {{ privilege.privilege }}

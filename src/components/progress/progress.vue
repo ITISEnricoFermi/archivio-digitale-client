@@ -3,9 +3,7 @@
   <div class="row">
     <div class="col-1-of-1">
       <div class="progress">
-        <div class="bar" :class="{ 'bar--stripped': isStripped, 'bar--animated': isAnimated }" :style="'width: ' + value + '%;'">
-
-        </div>
+        <div class="bar" :class="{ 'bar--stripped': isStripped, 'bar--animated': isAnimated }" :style="'width: ' + value + '%;'"></div>
       </div>
     </div>
   </div>

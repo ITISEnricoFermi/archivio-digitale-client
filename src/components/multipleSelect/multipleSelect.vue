@@ -1,6 +1,6 @@
 <template>
   <div class="multiple-select">
-    <input type="text" class="module-input-text" :placeholder="placeholder" v-model="query" @keyup.enter="add" @keyup="search($event)" >
+    <input type="text" class="textfield" :placeholder="placeholder" v-model="query" @keyup.enter="add" @keyup="search($event)" >
     <div class="multiple-select__results">
       <ul>
         <li :value="result._id" v-for="(result, index) in results" :key="index" @click="add">

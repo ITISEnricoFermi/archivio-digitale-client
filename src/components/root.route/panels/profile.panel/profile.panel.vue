@@ -1,5 +1,5 @@
 <template>
-<main class="panel panel__profile">
+<main class="panel">
   <div class="profile">
     <div class="profile-cover">
       <div class="profile-img">

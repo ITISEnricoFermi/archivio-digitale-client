@@ -1,7 +1,7 @@
 <template>
-<main class="panel panel__admin">
+<main class="panel">
   <app-signup-requests></app-signup-requests>
-  <app-create-account :privileges="privileges" :subjects="subjects" @alert="userAlert = $event"></app-create-account>
+  <app-add-users :privileges="privileges" :subjects="subjects" @alert="userAlert = $event"></app-add-users>
   <transition name="fade">
     <app-alert v-if="userAlert.messages" :alert="userAlert" @alert="userAlert = $event"></app-alert>
   </transition>
@@ -17,19 +17,16 @@
 
 <script>
 
-import axios from 'axios'
-
 import signupRequests from './signupRequests.vue'
-import createAccount from './createAccount.vue'
-import searchUsers from './searchUsers.vue'
+import AddUsers from './users.add'
+import SearchUsers from './users.search'
 import User from '@/components/user/user'
 import Alert from '@/components/alert/alert'
 
 export default {
-  props: ['privileges'],
+  props: ['privileges', 'subjects'],
   data: () => {
     return {
-      subjects: [],
       users: [],
       userAlert: {
         messages: undefined,
@@ -41,21 +38,10 @@ export default {
       }
     }
   },
-  created () {
-    axios.get('/api/subjects/')
-      .then((response) => {
-        this.subjects = response.data
-      }).catch((e) => {
-        this.userAlert = {
-          messages: e.response.data.messages,
-          color: 'alert--red'
-        }
-      })
-  },
   components: {
     appSignupRequests: signupRequests,
-    appCreateAccount: createAccount,
-    appSearchUsers: searchUsers,
+    appAddUsers: AddUsers,
+    appSearchUsers: SearchUsers,
     appUser: User,
     appAlert: Alert
   }

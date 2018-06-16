@@ -2,12 +2,12 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="module-input-text" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="search">
+      <input type="text" class="textfield" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="search">
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="query.type">
+      <select class="select" v-model="query.type">
             <option class="module-input-option" value=undefined selected>Tipo</option>
             <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index">
               {{ type.type }}
@@ -15,7 +15,7 @@
           </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="query.faculty">
+      <select class="select" v-model="query.faculty">
             <option class="module-input-option" value=undefined selected>Specializzazione</option>
             <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index">
               {{ faculty.faculty }}
@@ -23,7 +23,7 @@
           </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="query.subject">
+      <select class="select" v-model="query.subject">
             <option class="module-input-option" value=undefined selected>Materia</option>
             <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index">
               <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index">
@@ -35,7 +35,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="query.class">
+      <select class="select" v-model="query.class">
             <option class="module-input-option" value=undefined selected>Classe</option>
             <option class="module-input-option" v-bind:value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
               {{ schoolClass.class }}
@@ -43,7 +43,7 @@
           </select>
     </div>
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="query.section">
+      <select class="select" v-model="query.section">
             <option class="module-input-option" value=undefined selected>Sezione</option>
             <option class="module-input-option" :value="section._id" v-for="(section, index) in sections" :key="index">
               {{ section.section }}

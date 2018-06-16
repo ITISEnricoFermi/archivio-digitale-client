@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="module-input-text" placeholder="Titolo" v-model="collectionToEdit.documentCollection">
+      <input type="text" class="textfield" placeholder="Titolo" v-model="collectionToEdit.documentCollection">
     </div>
   </div>
   <div class="row row--title">
@@ -17,7 +17,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="collectionToEdit.permissions">
+      <select class="select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
       </select>

@@ -1,0 +1,23 @@
+.select {
+  appearance: none;
+  background-image: url("/static/layout/arrow_down.svg");
+  background-size: 4rem;
+  background-repeat: no-repeat;
+  background-position: right;
+  border: 0.1rem solid $color-white-5;
+  border-radius: 0.3rem;
+  color: $color-tertiary;
+  font-size: $font-default-2;
+  padding: 0.9rem 0.8rem;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+
+  @include respond(phone) {
+    background-image: none;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0.75rem rgba($color-tertiary, 0.7);
+  }
+}

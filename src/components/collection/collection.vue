@@ -121,7 +121,10 @@ export default {
                 margin-bottom: 0.5rem;
 
                 span {
-                    font-weight: 400;
+
+                  &:not(:nth-child(2)) {
+                      font-weight: 500;
+                  }
 
                     &:nth-child(1),
                     &:nth-child(2) {

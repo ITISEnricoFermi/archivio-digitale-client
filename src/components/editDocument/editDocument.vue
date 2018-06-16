@@ -2,17 +2,17 @@
 <div class="editDocument">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="module-input-text" placeholder="Titolo" autocomplete="off" required v-model="documentToEdit.name">
+      <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" required v-model="documentToEdit.name">
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <textarea class="module-input-textarea" placeholder="Descrizione" v-model="documentToEdit.description"></textarea>
+      <textarea class="textarea" placeholder="Descrizione" v-model="documentToEdit.description"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToEdit.type" required>
+      <select class="select" v-model="documentToEdit.type" required>
           <option class="module-input-option" value="" disabled>Tipo</option>
           <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index">
             {{ type.type }}
@@ -20,7 +20,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToEdit.faculty">
+      <select class="select" v-model="documentToEdit.faculty">
           <option class="module-input-option" value="" disabled>Specializzazione</option>
           <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index">
             {{ faculty.faculty }}
@@ -28,7 +28,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToEdit.subject" required>
+      <select class="select" v-model="documentToEdit.subject" required>
           <option class="module-input-option" value="" disabled>Materia</option>
           <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index">
             <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index">
@@ -40,7 +40,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToEdit.class">
+      <select class="select" v-model="documentToEdit.class">
           <option class="module-input-option" value="0">Classe</option>
           <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
             {{ schoolClass.class }}
@@ -48,7 +48,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToEdit.section">
+      <select class="select" v-model="documentToEdit.section">
           <option class="module-input-option" value="">Sezione</option>
           <option class="module-input-option" :value="section._id" v-for="(section, index) in sections" :key="index">
             {{ section.section }}
@@ -56,7 +56,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="documentToEdit.visibility">
+      <select class="select" v-model="documentToEdit.visibility">
           <option class="module-input-option" value="" disabled>Visibilità</option>
           <option class="module-input-option" :value="visibility._id" v-for="(visibility, index) in visibilities" :key="index">{{visibility.visibility}}</option>
         </select>

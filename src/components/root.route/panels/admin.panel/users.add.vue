@@ -2,23 +2,23 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" v-model="user.firstname" @keyup.enter="createUser">
+      <input type="text" class="textfield" placeholder="Nome" autocomplete="off" v-model="user.firstname" @keyup.enter="createUser">
     </div>
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" v-model="user.lastname" @keyup.enter="createUser">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-1-of-2">
-      <input type="email" class="module-input-text" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="createUser">
-    </div>
-    <div class="col-1-of-2">
-      <input type="password" class="module-input-text" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="createUser">
+      <input type="text" class="textfield" placeholder="Cognome" autocomplete="off" v-model="user.lastname" @keyup.enter="createUser">
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="user.privileges">
+      <input type="email" class="textfield" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="createUser">
+    </div>
+    <div class="col-1-of-2">
+      <input type="password" class="textfield" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="createUser">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1-of-2">
+      <select class="select" v-model="user.privileges">
           <option class="module-input-option" disabled value=undefined>Privilegi</option>
           <option class="module-input-option" v-for="(privilege, index) in privileges" :key="index" :value="privilege._id">{{privilege.privilege}}</option>
         </select>

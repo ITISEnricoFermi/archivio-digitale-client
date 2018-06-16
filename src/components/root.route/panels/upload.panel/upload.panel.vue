@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import createDocument from './createDocument'
-import createCollection from './createCollection'
+import createDocument from './documents.add'
+import createCollection from './collections.add'
 import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
 

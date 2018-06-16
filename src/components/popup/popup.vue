@@ -1,6 +1,6 @@
 <template>
 <div class="popup">
-  <div class="popup__box" :style="'width: ' + width + ';'">
+  <div class="content" :style="'width: ' + width + ';'">
     <slot>
       Contenuto del popup
     </slot>
@@ -41,7 +41,7 @@ export default {
     left: 0;
     z-index: 20000;
 
-    &__box {
+    .content {
         height: auto;
         max-width: 90%;
         background-color: $color-white;

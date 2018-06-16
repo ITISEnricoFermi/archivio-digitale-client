@@ -2,12 +2,12 @@
 <div class="module">
   <div class="row" v-for="(request, index) in requests" :key="index">
     <div class="col-1-of-1">
-      <div class="module__admin-request">
-        <p class="module__admin-request--name">{{ request.firstname }} {{ request.lastname }}</p>
-        <p class="module__admin-request--choice module__admin-request--choice--accept" @click="acceptRequest(request._id)">
+      <div class="admin-request">
+        <p class="admin-request__name">{{ request.firstname }} {{ request.lastname }}</p>
+        <p class="admin-request__choice admin-request__choice--accept" @click="acceptRequest(request._id)">
           <i class="fa fa-check" aria-hidden="true"></i>
         </p>
-        <p class="module__admin-request--choice module__admin-request--choice--refuse" @click="refuseRequest(request._id)">
+        <p class="admin-request__choice admin-request__choice--refuse" @click="refuseRequest(request._id)">
           <i class="fa fa-times" aria-hidden="true"></i>
         </p>
       </div>
@@ -82,4 +82,37 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.admin-request {
+  display: table;
+  width: 100%;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-white-4;
+  }
+
+  &__name {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    font-size: $font-default-1;
+  }
+
+  &__choice {
+    font-size: 2.5rem;
+    display: inline-block;
+    float: right;
+    margin: 10px;
+    cursor: pointer;
+
+    &--accept {
+      color: $color-button-green;
+    }
+
+    &--refuse {
+      color: $color-button-red;
+    }
+  }
+}
+
 </style>

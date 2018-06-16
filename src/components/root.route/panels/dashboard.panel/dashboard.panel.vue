@@ -1,7 +1,7 @@
 <template>
-<main class="panel panel__dashboard">
-  <div class="panel__dashboard-box">
-    <app-recent-posts></app-recent-posts>
+<main class="panel">
+  <div class="content">
+    <app-documents></app-documents>
     <app-profile :user="user"></app-profile>
     <app-chart></app-chart>
   </div>
@@ -9,15 +9,15 @@
 </template>
 
 <script>
-import RecentPosts from './recentPosts.vue'
-import Profile from './profile.vue'
-import Chart from './chart.vue'
+import Documents from './documents.section'
+import Profile from './profile.section'
+import Chart from './chart.section'
 
 export default {
-  name: 'panelDashboard',
+  name: 'dashboard',
   props: ['user'],
   components: {
-    appRecentPosts: RecentPosts,
+    appDocuments: Documents,
     appProfile: Profile,
     appChart: Chart
   }
@@ -25,19 +25,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.panel__dashboard {
-    &-box {
+    .content {
         display: grid;
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas: "recentPosts profile" "recentPosts chart";
+        grid-template-areas: "documents profile" "documents chart";
         grid-gap: 3vh;
         width: 100%;
         height: 100%;
+
         @include respond(tab-por) {
             grid-template-rows: auto;
             grid-template-columns: 1fr;
-            grid-template-areas: "recentPosts";
+            grid-template-areas: "documents";
         }
 
         .module {
@@ -45,15 +45,4 @@ export default {
         }
 
     }
-
-    &--recent-posts {
-        grid-area: recentPosts;
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    &--chart {
-        grid-area: chart;
-    }
-}
 </style>

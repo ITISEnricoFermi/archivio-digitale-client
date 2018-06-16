@@ -14,22 +14,22 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="text" class="module-input-text" placeholder="Nome" autocomplete="off" v-model="user.firstname" @keyup.enter="signup">
+        <input type="text" class="textfield" placeholder="Nome" autocomplete="off" v-model="user.firstname" @keyup.enter="signup">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="text" class="module-input-text" placeholder="Cognome" autocomplete="off" v-model="user.lastname" @keyup.enter="signup">
+        <input type="text" class="textfield" placeholder="Cognome" autocomplete="off" v-model="user.lastname" @keyup.enter="signup">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="email" class="module-input-text" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="signup">
+        <input type="email" class="textfield" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="signup">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="password" class="module-input-text" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="signup">
+        <input type="password" class="textfield" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="signup">
       </div>
     </div>
     <div class="row">

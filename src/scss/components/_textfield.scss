@@ -1,0 +1,15 @@
+.textfield {
+  background: $color-white;
+  width: 100%;
+  border: 1px solid $color-white-5;
+  border-radius: 0.25rem;
+  color: $color-tertiary;
+  padding: 0.9rem 0.8rem;
+  outline: none;
+  font-size: $font-default-2;
+  transition: all 0.3s;
+
+  &:focus {
+    box-shadow: 0 0 0.75rem rgba($color-tertiary, 0.7);
+  }
+}

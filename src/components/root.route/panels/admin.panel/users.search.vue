@@ -2,7 +2,7 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="module-input-text" placeholder="Cerca utenti" autocomplete="off" v-model="query" v-on:keyup="search">
+      <input type="text" class="textfield" placeholder="Cerca utenti" autocomplete="off" v-model="query" v-on:keyup="search">
     </div>
   </div>
 </div>

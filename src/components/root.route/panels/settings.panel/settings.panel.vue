@@ -1,22 +1,22 @@
 <template>
-<main class="panel panel__settings">
+<main class="panel">
   <div class="module">
     <div class="row">
       <div class="col-1-of-1">
-        <input type="text" class="module-input-text" placeholder="Email" autocomplete="off" v-model="local.email">
+        <input type="text" class="textfield" placeholder="Email" autocomplete="off" v-model="local.email">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-2">
-        <input type="password" class="module-input-text" placeholder="Password attuale" autocomplete="off" v-model="local.passwords.old">
+        <input type="password" class="textfield" placeholder="Password attuale" autocomplete="off" v-model="local.passwords.old">
       </div>
       <div class="col-1-of-2">
-        <input type="password" class="module-input-text" placeholder="Nuova password" autocomplete="off" v-model="local.passwords.new">
+        <input type="password" class="textfield" placeholder="Nuova password" autocomplete="off" v-model="local.passwords.new">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-2">
-        <input type="file" class="module-input-file" id="upload-img-profile" @change="uploadProfilePic" ref="settingsProfilePic">
+        <input type="file" class="file" id="upload-img-profile" @change="uploadProfilePic" ref="settingsProfilePic">
         <label class="button button--blue" for="upload-img-profile"><span><i class="fas fa-upload"></i></span>Carica foto profilo</label>
       </div>
       <div class="col-1-of-2">
@@ -71,49 +71,46 @@ export default {
     this.local.email = this.user.email
   },
   methods: {
-    saveSettings () {
-      axios.patch('/users/me/', {
-        user: this.local
-      })
-        .then(() => {
-          window.location.replace('/login')
+    async saveSettings () {
+      try {
+        await axios.patch('/users/me/', {
+          user: this.local
         })
-        .catch((e) => {
-          this.settingsAlert = {
-            messages: e.response.data.messages,
-            color: 'alert--red'
-          }
-        })
+        window.location.replace('/login')
+      } catch (e) {
+        this.settingsAlert = {
+          messages: e.response.data.messages,
+          color: 'alert--red'
+        }
+      }
     },
-    uploadProfilePic () {
+    async uploadProfilePic () {
       let profilePic = this.$refs.settingsProfilePic.files[0]
 
       let formData = new FormData()
 
       formData.append('picToUpload', profilePic)
 
-      axios.patch('/users/me/pic/', formData)
-        .then((message) => {
-          window.location.reload()
-        })
-        .catch((e) => {
-          this.settingsAlert = {
-            messages: e.response.data.messages,
-            color: 'alert--red'
-          }
-        })
+      try {
+        await axios.patch('/users/me/pic/', formData)
+        window.location.reload()
+      } catch (e) {
+        this.settingsAlert = {
+          messages: e.response.data.messages,
+          color: 'alert--red'
+        }
+      }
     },
-    disableAccount () {
-      axios.delete('/users/me/')
-        .then(() => {
-          window.location.replace('/')
-        })
-        .catch((e) => {
-          this.settingsAlert = {
-            messages: e.response.data.messages,
-            color: 'alert--red'
-          }
-        })
+    async disableAccount () {
+      try {
+        await axios.delete('/users/me/')
+        window.location.replace('/')
+      } catch (e) {
+        this.settingsAlert = {
+          messages: e.response.data.messages,
+          color: 'alert--red'
+        }
+      }
     }
   },
   components: {

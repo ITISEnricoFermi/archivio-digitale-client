@@ -2,17 +2,17 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="module-input-text" placeholder="Titolo" autocomplete="off" required v-model="document.name" @keyup.enter="upload">
+      <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" required v-model="document.name" @keyup.enter="upload">
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <textarea class="module-input-textarea" placeholder="Descrizione" v-model="document.description"></textarea>
+      <textarea class="textarea" placeholder="Descrizione" v-model="document.description"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="document.type" required>
+      <select class="select" v-model="document.type" required>
           <option class="module-input-option" value=undefined disabled selected>Tipo</option>
           <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index" >
             {{ type.type }}
@@ -20,7 +20,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="document.faculty">
+      <select class="select" v-model="document.faculty">
           <option class="module-input-option" value=undefined disabled selected>Specializzazione</option>
           <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index" >
             {{ faculty.faculty }}
@@ -28,7 +28,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="document.subject" required>
+      <select class="select" v-model="document.subject" required>
           <option class="module-input-option" value=undefined disabled selected>Materia</option>
           <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index" >
             <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index" >
@@ -40,7 +40,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="document.class">
+      <select class="select" v-model="document.class">
           <option class="module-input-option" value="0" selected>Classe</option>
           <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index" >
             {{ schoolClass.class }}
@@ -48,7 +48,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="document.section">
+      <select class="select" v-model="document.section">
           <option class="module-input-option" value=undefined selected>Sezione</option>
           <option class="module-input-option" v-for="(section, index) in sections" :key="index" :value="section._id">
             {{ section.section }}
@@ -56,7 +56,7 @@
         </select>
     </div>
     <div class="col-1-of-3">
-      <select class="module-input-select" v-model="document.visibility">
+      <select class="select" v-model="document.visibility">
           <option class="module-input-option" value="pubblico" disabled selected>Visibilità</option>
           <option class="module-input-option" v-for="(visibility, index) in visibilities" :key="index" :value="visibility._id">{{visibility.visibility}}</option>
         </select>
@@ -64,7 +64,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <input type="file" class="module-input-file" id="upload-file" ref="uploadFile">
+      <input type="file" class="file" id="upload-file" ref="uploadFile">
       <label class="button button--blue" for="upload-file"><span><i class="fas fa-upload"></i></span>Carica file</label>
     </div>
     <div class="col-1-of-2">

@@ -2,10 +2,10 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Collezione" v-model="collection.documentCollection" @keyup.enter="createCollection">
+      <input type="text" class="textfield" placeholder="Collezione" v-model="collection.documentCollection" @keyup.enter="createCollection">
     </div>
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="collection.permissions">
+      <select class="select" v-model="collection.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" v-for="(permission, index) in collectionsPermissions" :key="index" :value="permission._id">{{permission.permission}}</option>
         </select>
@@ -56,32 +56,31 @@ export default {
     }
   },
   methods: {
-    createCollection () {
+    async createCollection () {
       if (!this.collection.documentCollection) {
         return this.$emit('alert', {
           messages: ['Il campo del nome della collezione è vuoto.'],
           color: 'alert--red'
         })
       }
-      axios.put('/collections/', {
-        collection: this.collection
-      })
-        .then((response) => {
-          this.collection.documentCollection = undefined
-          this.collection.permissions = undefined
-          this.collection.authorizations = []
+      try {
+        let response = await axios.put('/collections/', {
+          collection: this.collection
+        })
+        this.collection.documentCollection = undefined
+        this.collection.permissions = undefined
+        this.collection.authorizations = []
 
-          this.$emit('alert', {
-            messages: response.data.messages,
-            color: 'alert--blue'
-          })
+        this.$emit('alert', {
+          messages: response.data.messages,
+          color: 'alert--blue'
         })
-        .catch((e) => {
-          this.$emit('alert', {
-            messages: e.response.data.messages,
-            color: 'alert--red'
-          })
+      } catch (e) {
+        this.$emit('alert', {
+          messages: e.response.data.messages,
+          color: 'alert--red'
         })
+      }
     }
   },
   components: {
@@ -91,6 +90,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

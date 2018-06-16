@@ -13,12 +13,12 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="email" class="module-input-text" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="login">
+        <input type="email" class="textfield" placeholder="Email" autocomplete="off" v-model="user.email" @keyup.enter="login">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="password" class="module-input-text" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="login">
+        <input type="password" class="textfield" placeholder="Password" autocomplete="off" v-model="user.password" @keyup.enter="login">
       </div>
     </div>
     <div class="row">

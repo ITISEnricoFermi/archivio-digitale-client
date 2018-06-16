@@ -1,6 +1,6 @@
 <template>
-<div class="panel__dashboard--recent-posts">
-  <div class="module document-box" v-if="response">
+<div class="documents">
+  <div class="module documents__error" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
   <app-document :document="document" v-for="(document, index) in recentDocuments" :key="index"></app-document>
@@ -17,7 +17,7 @@ import Document from '@/components/document/document'
 import axios from 'axios'
 
 export default {
-  name: 'recentPosts',
+  name: 'documents',
   data: () => {
     return {
       recentDocuments: [],
@@ -66,7 +66,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .document:last-child {
-    margin-bottom: 0vh!important;
-  }
+.documents {
+    grid-area: documents;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    &__error:last-child {
+        margin-bottom: 0vh!important;
+    }
+
+}
 </style>

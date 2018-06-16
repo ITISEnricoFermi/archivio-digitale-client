@@ -1,11 +1,10 @@
 <template>
-<div class="module panel__dashboard--chart">
+<div class="module chart">
   <!-- <app-chart :width="120" :height="250"></app-chart> -->
 </div>
 </template>
 
 <script>
-
 export default {
   name: 'chart',
   data: () => {
@@ -17,10 +16,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.panel__dashboard--chart {
+.chart {
+    grid-area: chart;
 
-  @include respond(tab-por) {
-    display: none;
-  }
+    @include respond(tab-por) {
+        display: none;
+    }
 }
 </style>

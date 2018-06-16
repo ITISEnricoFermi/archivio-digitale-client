@@ -120,8 +120,7 @@ export default {
             }
         }
 
-        span:nth-child(1),
-        span:nth-child(3) {
+        span:not(:nth-child(2)) {
             font-weight: 500;
         }
 

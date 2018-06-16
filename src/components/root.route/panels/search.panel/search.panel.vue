@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import SearchDocuments from './searchDocuments'
-import SearchCollections from './searchCollections'
+import SearchDocuments from './documents.search'
+import SearchCollections from './collections.search'
 import Document from '@/components/document/document'
 import Collection from '@/components/collection/collection'
 import Alert from '@/components/alert/alert'

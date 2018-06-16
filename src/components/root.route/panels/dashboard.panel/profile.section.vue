@@ -1,10 +1,10 @@
 <template>
-<div class="module panel__dashboard--profile">
-  <div class="profile-box" v-if="user">
+<div class="module profile">
+  <div class="content" v-if="user">
     <img class="profile-img" sizes="20vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
     <div class="profile-info">
-      <p class="profile-info--name heading-secondary">{{user.firstname}} {{user.lastname}}</p>
-      <p class="profile-info--documents heading-tertiary">Pubblicazioni: {{user.documents}}</p>
+      <p class="profile-info__name heading-secondary">{{user.firstname}} {{user.lastname}}</p>
+      <p class="profile-info__documents heading-tertiary">Pubblicazioni: {{user.documents}}</p>
     </div>
   </div>
 </div>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.panel__dashboard--profile {
+.profile {
     grid-area: profile;
     display: table;
     height: 100%;
@@ -27,7 +27,7 @@ export default {
         display: none;
     }
 
-    .profile-box {
+    .content {
         display: table-cell;
         vertical-align: middle;
 
@@ -42,8 +42,8 @@ export default {
         .profile-info {
             margin: 1rem;
 
-            &--documents,
-            &--name {
+            &__documents,
+            &__name {
                 margin: 0.5rem;
             }
         }

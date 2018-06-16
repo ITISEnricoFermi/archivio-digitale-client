@@ -2,10 +2,10 @@
 <div class="module">
   <div class="row">
     <div class="col-1-of-2">
-      <input type="text" class="module-input-text" placeholder="Cerca una collezione" v-model="query.fulltext" @keyup.enter="search">
+      <input type="text" class="textfield" placeholder="Cerca una collezione" v-model="query.fulltext" @keyup.enter="search">
     </div>
     <div class="col-1-of-2">
-      <select class="module-input-select" v-model="query.permissions">
+      <select class="select" v-model="query.permissions">
             <option class="module-input-option" value="" selected>Permessi (modifica)</option>
             <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{ permission.permission }}</option>
         </select>
@@ -42,18 +42,17 @@ export default {
     }
   },
   methods: {
-    search () {
-      axios.post('/collections/search/', this.query)
-        .then((response) => {
-          this.$emit('searchCollections', response.data)
+    async search () {
+      try {
+        let response = await axios.post('/collections/search/', this.query)
+        this.$emit('searchCollections', response.data)
+      } catch (e) {
+        this.$emit('searchCollections', [])
+        this.$emit('alert', {
+          messages: e.response.data.messages,
+          color: 'alert--yellow'
         })
-        .catch((e) => {
-          this.$emit('searchCollections', [])
-          this.$emit('alert', {
-            messages: e.response.data.messages,
-            color: 'alert--yellow'
-          })
-        })
+      }
     }
   }
 }

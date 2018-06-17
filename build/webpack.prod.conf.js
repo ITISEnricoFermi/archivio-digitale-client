@@ -109,7 +109,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       penthouse: {
         blockJSRequests: false
       }
-    })
+    }),
     // new ScriptExtHtmlWebpackPlugin({
     //   defaultAttribute: 'async'
     // }),

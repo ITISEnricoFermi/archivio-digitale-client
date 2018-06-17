@@ -24,7 +24,7 @@ export default {
   width: 100%;
   top: 0;
   display: none;
-  box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+  // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
   z-index: 10000;
 
   @include respond(tab-lan) {

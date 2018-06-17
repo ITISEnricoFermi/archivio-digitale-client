@@ -233,7 +233,8 @@ export default {
     main {
         grid-area: main;
         font-size: $font-default-2;
-        padding: 3vh!important;
+        //padding: 3vh!important;
+        padding-top: 3vh;
         background-color: $color-white-2;
 
         @include respond(tab-por) {

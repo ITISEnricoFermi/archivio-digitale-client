@@ -36,7 +36,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       cacheId: 'archivio-digitale',
       filename: 'service-worker.js',
       staticFileGlobs: [
-        'dist/**/*.{js,html,css,png,json,jpg,jpeg}', 'static/**/**.{js,html,css,png,json,jpg,jpeg}'
+        'dist/**/*.{js,html,css,png,json,jpg,jpeg,svg}', 'static/**/*.{js,html,css,png,json,jpg,jpeg,svg}'
       ],
       minify: true,
       stripPrefix: 'dist/',

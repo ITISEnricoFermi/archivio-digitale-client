@@ -42,7 +42,11 @@ const webpackConfig = merge(baseWebpackConfig, {
       stripPrefix: 'dist/',
       runtimeCaching: [
         {
-          urlPattern: /^https?.*/,
+          urlPattern: /\/api\//,
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: /\/public\/recent\//,
           handler: 'cacheFirst'
         }
       ]

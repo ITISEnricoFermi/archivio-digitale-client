@@ -96,7 +96,7 @@ body {
 
             @include respond(tab-por) {
                 width: 100%;
-                // padding: 3vh;
+                padding: 3vh;
             }
 
             .menu {

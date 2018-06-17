@@ -65,10 +65,16 @@
   <div class="row">
     <div class="col-1-of-2">
       <input type="file" class="file" id="upload-file" ref="uploadFile">
-      <label class="button button--blue" for="upload-file"><span><i class="fas fa-upload"></i></span>Carica file</label>
+      <label class="button button--blue" for="upload-file">
+        <span><i class="fas fa-upload"></i></span>
+        <span>Carica file</span>
+      </label>
     </div>
     <div class="col-1-of-2">
-      <button class="button button--green" @click="upload"><span><i class="fas fa-edit"></i></span>Crea documento</button>
+      <button class="button button--green" @click="upload">
+        <span><i class="fas fa-edit"></i></span>
+        <span>Crea documento</span>
+      </button>
     </div>
   </div>
 </div>

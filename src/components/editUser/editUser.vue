@@ -50,24 +50,24 @@
     </div>
     <div class="col-1-of-4">
       <button class="button button--red" v-if="userToEdit.state === 'active'" @click="toggleState">
-          <span><i class="fas fa-trash-alt"></i></span>
-          <span>Disattiva utente</span>
+          <span class="icon"><i class="fas fa-trash-alt"></i></span>
+          <span class="crop">Disattiva utente</span>
       </button>
       <button class="button button--green" v-if="userToEdit.state === 'disabled'" @click="toggleState">
-          <span><i class="fas fa-check-circle"></i></span>
-          <span>Attiva utente</span>
+          <span class="icon"><i class="fas fa-check-circle"></i></span>
+          <span class="crop">Attiva utente</span>
       </button>
     </div>
     <div class="col-1-of-4">
       <button class="button button--blue" @click="reset">
-          <span><i class="fas fa-key"></i></span>
-          <span>Reimposta password</span>
+          <span class="icon"><i class="fas fa-key"></i></span>
+          <span class="crop">Reimposta password</span>
         </button>
     </div>
     <div class="col-1-of-4">
       <button class="button button--green" @click="edit">
-          <span><i class="fas fa-save"></i></span>
-          <span>Salva utente</span>
+          <span class="icon"><i class="fas fa-save"></i></span>
+          <span class="crop">Salva utente</span>
         </button>
     </div>
   </div>

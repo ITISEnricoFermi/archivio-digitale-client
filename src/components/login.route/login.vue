@@ -23,7 +23,9 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <button class="button button--green" @click="login">Entra</button>
+        <button class="button button--green" @click="login">
+          <span>Entra</span>
+        </button>
       </div>
     </div>
   </div>

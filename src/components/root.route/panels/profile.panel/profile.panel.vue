@@ -126,6 +126,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.panel {
+
+    @include respond(tab-lan) {
+      padding: 0!important;
+    }
+    
+}
+
 .profile {
     .profile-cover {
         width: 100%;

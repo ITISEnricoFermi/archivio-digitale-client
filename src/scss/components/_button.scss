@@ -25,11 +25,13 @@
   }
 
 
-  span:nth-child(1) {
-    margin: 0.5rem;
+  span.icon {
+    @include respond(tab-por) {
+      margin: 0.5rem;
+    }
   }
 
-  span:nth-child(2) {
+  span.crop {
     @include respond(tab-por) {
       display: none;
     }

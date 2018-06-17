@@ -44,7 +44,9 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <button class="button button--green" @click="signup">Registrati</button>
+        <button class="button button--green" @click="signup">
+          <span>Registrati</span>
+        </button>
       </div>
     </div>
   </div>
@@ -67,7 +69,6 @@
 </template>
 
 <script>
-
 import {
   eventBus
 } from '@/main'
@@ -94,7 +95,7 @@ export default {
     }
   },
   methods: {
-    async signup () {
+    async signup() {
       if (!this.user.firstname && !this.user.lastname && !this.user.email && !this.user.password && !this.user.accesses) {
         return false
       }
@@ -145,8 +146,8 @@ export default {
         }
 
         .multiple-select-results {
-          overflow-y: scroll;
-          max-height: 25vh;
+            overflow-y: scroll;
+            max-height: 25vh;
         }
     }
 

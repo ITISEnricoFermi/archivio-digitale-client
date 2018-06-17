@@ -17,15 +17,24 @@
     <div class="row">
       <div class="col-1-of-2">
         <input type="file" class="file" id="upload-img-profile" @change="uploadProfilePic" ref="settingsProfilePic">
-        <label class="button button--blue" for="upload-img-profile"><span><i class="fas fa-upload"></i></span>Carica foto profilo</label>
+        <label class="button button--blue" for="upload-img-profile">
+          <span><i class="fas fa-upload"></i></span>
+          <span>Carica foto profilo</span>
+        </label>
       </div>
       <div class="col-1-of-2">
-        <button class="button button--green" @click="saveSettings"><span><i class="fas fa-save"></i></span>Salva impostazioni</button>
+        <button class="button button--green" @click="saveSettings">
+          <span><i class="fas fa-save"></i></span>
+          <span>Salva <span class="crop">impostazioni</span></span>
+        </button>
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <button class="button button--red" @click="disableAccount"><span><i class="fas fa-trash-alt"></i></span>Elimina account</button>
+        <button class="button button--red" @click="disableAccount">
+          <span><i class="fas fa-trash-alt"></i></span>
+          <span>Elimina account</span>
+        </button>
       </div>
     </div>
     <div class="row">

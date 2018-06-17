@@ -14,7 +14,10 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <button class="button button--green" @click="search"><span><i class="fas fa-search"></i></span>Cerca</button>
+      <button class="button button--green" @click="search">
+        <span><i class="fas fa-search"></i></span>
+        <span>Cerca</span>
+    </button>
     </div>
   </div>
 </div>

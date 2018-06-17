@@ -1,5 +1,4 @@
 .textfield {
-  background: $color-white;
   width: 100%;
   border: 1px solid $color-white-5;
   border-radius: 0.25rem;
@@ -8,8 +7,21 @@
   outline: none;
   font-size: $font-default-2;
   transition: all 0.3s;
+  background-color: $color-white;
+  background-image: url("/static/layout/loading.svg");
+  background-size: 4rem;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-image: none;
 
   &:focus {
     box-shadow: 0 0 0.75rem rgba($color-tertiary, 0.7);
   }
+
+  & + .v-spinner {
+    position: absolute;
+    right: 1rem;
+    top: 24%;
+  }
+
 }

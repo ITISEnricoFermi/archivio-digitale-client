@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="textfield" placeholder="Cerca utenti" autocomplete="off" v-model="query" v-on:keyup="search">
+      <moon-loader :loading="true" :color="'#000'" :size="'20px'" v-if="loading"></moon-loader>
     </div>
   </div>
 </div>
@@ -10,13 +11,16 @@
 
 <script>
 
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
+
 import axios from 'axios'
 
 export default {
   name: 'searchUsers',
   data: () => {
     return {
-      query: undefined
+      query: undefined,
+      loading: false
     }
   },
   sockets: {
@@ -28,22 +32,29 @@ export default {
     }
   },
   methods: {
-    search () {
+    async search () {
+      this.loading = true
       if (!this.query) {
+        this.loading = false
         return this.$emit('searchUsers', [])
       }
-      axios.get('/admin/users/search/' + this.query)
-        .then((response) => {
-          this.$emit('searchUsers', response.data)
+
+      try {
+        let response = await axios.get('/admin/users/search/' + this.query)
+        this.loading = false
+        this.$emit('searchUsers', response.data)
+      } catch (e) {
+        this.loading = false
+        this.$emit('searchUsers', undefined)
+        this.$emit('alert', {
+          messages: e.response.data.messages,
+          color: 'alert--yellow'
         })
-        .catch((e) => {
-          this.$emit('searchUsers', undefined)
-          this.$emit('alert', {
-            messages: e.response.data.messages,
-            color: 'alert--yellow'
-          })
-        })
+      }
     }
+  },
+  components: {
+    MoonLoader: MoonLoader
   }
 }
 </script>

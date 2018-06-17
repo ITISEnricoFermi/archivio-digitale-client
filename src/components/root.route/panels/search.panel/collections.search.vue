@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-1-of-2">
       <input type="text" class="textfield" placeholder="Cerca una collezione" v-model="query.fulltext" @keyup.enter="search">
+      <moon-loader :loading="true" :color="'#000'" :size="'20px'" v-if="loading"></moon-loader>
     </div>
     <div class="col-1-of-2">
       <select class="select" v-model="query.permissions">
@@ -20,6 +21,9 @@
 </template>
 
 <script>
+
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
+
 import axios from 'axios'
 
 export default {
@@ -30,7 +34,8 @@ export default {
       query: {
         fulltext: '',
         permissions: ''
-      }
+      },
+      loading: false
     }
   },
   sockets: {
@@ -43,10 +48,13 @@ export default {
   },
   methods: {
     async search () {
+      this.loading = true
       try {
         let response = await axios.post('/collections/search/', this.query)
+        this.loading = false
         this.$emit('searchCollections', response.data)
       } catch (e) {
+        this.loading = false
         this.$emit('searchCollections', [])
         this.$emit('alert', {
           messages: e.response.data.messages,
@@ -54,6 +62,9 @@ export default {
         })
       }
     }
+  },
+  components: {
+    MoonLoader: MoonLoader
   }
 }
 </script>

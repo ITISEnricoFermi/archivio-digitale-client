@@ -92,21 +92,25 @@ export default {
 
 <style scoped lang="scss">
 .document {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & > div {
+        width: 100%;
+    }
 
     &-header {
         text-align: left;
         display: table;
         width: 100%;
 
-        .col-1-of-1 {
-            position: relative;
-        }
-
         &__menu {
             position: absolute;
             cursor: pointer;
             top: 0;
             right: 0;
+            z-index: 1000;
 
             span {
                 display: block;

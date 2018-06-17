@@ -1,7 +1,7 @@
 <template>
 <div class="menu">
   <ul>
-      <li class="u-noselect" v-if="own" @click="edit"><span><i class="fas fa-edit"></i></span>Modifica</li>
+    <li class="u-noselect" v-if="own" @click="edit"><span><i class="fas fa-edit"></i></span>Modifica</li>
     <li class="u-noselect" @click="download"><span><i class="fas fa-download"></i></span>Scarica</li>
     <li class="u-noselect" @click="view"><span><i class="fas fa-eye"></i></span>Visualizza</li>
   </ul>

@@ -1,9 +1,9 @@
 <template>
   <div class="multiple-select">
-    <input type="text" class="textfield" :placeholder="placeholder" v-model="query" @keyup.enter="add" @keyup="search($event)" >
-    <div class="multiple-select__results">
+    <input type="text" class="textfield" :placeholder="placeholder" v-model="query" @keyup.enter="add(pointer)" @keyup.up="selectUp" @keyup.down="selectDown" @keyup="search($event)" >
+    <div class="results">
       <ul>
-        <li :value="result._id" v-for="(result, index) in results" :key="index" @click="add">
+        <li class="result" :class="{ 'result--selected': pointer == index ? true : false }" :value="result._id" v-for="(result, index) in results" :key="index" @click="add(index)">
           <span v-for="(element, index) in dbElements" :key="index">
               {{ result[element] }}
           </span>
@@ -33,10 +33,29 @@ export default {
   data: () => {
     return {
       query: undefined,
-      results: []
+      results: [],
+      pointer: 0
     }
   },
   methods: {
+    async selectUp () {
+      switch (this.pointer) {
+        case 0:
+          this.pointer = this.results.length - 1
+          break
+        default:
+          this.pointer = this.pointer - 1
+      }
+    },
+    async selectDown () {
+      switch (this.pointer) {
+        case this.results.length - 1:
+          this.pointer = 0
+          break
+        default:
+          this.pointer = this.pointer + 1
+      }
+    },
     async search (event) {
       if (!this.query) {
         this.results = []
@@ -53,10 +72,11 @@ export default {
         console.log(e)
       }
     },
-    async add () {
+    async add (index) {
       try {
         if (this.results.length) {
-          this.selected.push(this.results[0])
+          this.pointer = 0
+          this.selected.push(this.results[index])
           this.query = undefined
           this.results = []
           this.$emit('update:selected', this.selected)
@@ -75,7 +95,7 @@ export default {
     margin: 0 auto;
     position: relative;
 
-    &__results {
+    .results {
         margin: 0;
         width: 100%;
         max-height: 20rem;
@@ -89,23 +109,23 @@ export default {
             margin: 0;
         }
 
-        li {
+        .result {
             padding: 9px 8px;
-            background: #FFFFFF;
+            background: $color-white;
             width: 100%;
-            border-color: #DBDBDB;
+            border-color: $color-white-5;
             border-style: solid;
             border-width: 0 1px 1px 1px;
             border-radius: 0;
-            color: #151A22;
+            color: $color-tertiary;
             font-family: sans-serif;
             font-size: 14px;
             display: block;
             cursor: pointer;
             text-align: left;
 
-            &:first-child {
-                background: #F7F7F7;
+            &:hover, &--selected {
+                background: $color-white-2;
             }
 
             &:last-child {

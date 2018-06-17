@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="textfield" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="search">
+      <moon-loader :loading="true" :color="'#000'" :size="'20px'" v-if="loading"></moon-loader>
     </div>
   </div>
   <div class="row">
@@ -68,6 +69,9 @@
 </template>
 
 <script>
+
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
+
 import axios from 'axios'
 
 export default {
@@ -85,7 +89,8 @@ export default {
         section: '',
         visibility: ''
       },
-      help: undefined
+      help: undefined,
+      loading: false
     }
   },
   sockets: {
@@ -98,6 +103,7 @@ export default {
   },
   methods: {
     async search () {
+      this.loading = true
       for (let i = 0; i < this.query.length; i++) {
         if (Object.keys(this.query)[i] !== '') {
           return false
@@ -106,8 +112,10 @@ export default {
 
       try {
         let response = await axios.post('/documents/search/', this.query)
+        this.loading = false
         this.$emit('searchDocuments', response.data)
       } catch (e) {
+        this.loading = false
         this.$emit('searchDocuments', [])
         this.$emit('alert', {
           messages: e.response.data.messages,
@@ -115,6 +123,9 @@ export default {
         })
       }
     }
+  },
+  components: {
+    MoonLoader: MoonLoader
   }
 }
 </script>

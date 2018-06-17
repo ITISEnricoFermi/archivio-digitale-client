@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-1-of-2">
       <input type="text" class="textfield" placeholder="Collezione" v-model="collection.documentCollection" @keyup.enter="createCollection">
+      <moon-loader :loading="true" :color="'#000'" :size="'20px'" v-if="loading"></moon-loader>
     </div>
     <div class="col-1-of-2">
       <select class="select" v-model="collection.permissions">
@@ -33,6 +34,8 @@
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
+
 import axios from 'axios'
 
 export default {
@@ -44,7 +47,8 @@ export default {
         documentCollection: undefined,
         permissions: undefined,
         authorizations: []
-      }
+      },
+      loading: false
     }
   },
   computed: {
@@ -57,6 +61,7 @@ export default {
   },
   methods: {
     async createCollection () {
+      this.loading = true // Parte il caricamento
       if (!this.collection.documentCollection) {
         return this.$emit('alert', {
           messages: ['Il campo del nome della collezione è vuoto.'],
@@ -67,6 +72,7 @@ export default {
         let response = await axios.put('/collections/', {
           collection: this.collection
         })
+        this.loading = false // Il caricamento è terminato
         this.collection.documentCollection = undefined
         this.collection.permissions = undefined
         this.collection.authorizations = []
@@ -76,6 +82,7 @@ export default {
           color: 'alert--blue'
         })
       } catch (e) {
+        this.loading = false
         this.$emit('alert', {
           messages: e.response.data.messages,
           color: 'alert--red'
@@ -85,7 +92,8 @@ export default {
   },
   components: {
     appMultipleSelect: MultipleSelect,
-    appMultipleSelectResults: MultipleSelectResults
+    appMultipleSelectResults: MultipleSelectResults,
+    MoonLoader: MoonLoader
   }
 }
 </script>

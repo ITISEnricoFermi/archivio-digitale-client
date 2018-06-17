@@ -132,7 +132,7 @@ export default {
     @include respond(tab-lan) {
       padding: 0!important;
     }
-    
+
 }
 
 .profile {
@@ -146,6 +146,10 @@ export default {
         position: relative;
         border-radius: 0.25rem;
         overflow: hidden;
+
+        @include respond(tab-lan) {
+          border-radius: 0;
+        }
 
         .profile-img {
             width: 100%;

@@ -95,7 +95,7 @@ export default {
     }
   },
   methods: {
-    async signup() {
+    async signup () {
       if (!this.user.firstname && !this.user.lastname && !this.user.email && !this.user.password && !this.user.accesses) {
         return false
       }

@@ -245,4 +245,10 @@ export default {
         }
     }
 }
+
+.module {
+  @include respond(tab-lan) {
+    border-radius: 0!important;
+  }
+}
 </style>

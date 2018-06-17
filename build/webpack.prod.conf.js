@@ -47,6 +47,14 @@ const webpackConfig = merge(baseWebpackConfig, {
         },
         {
           urlPattern: /\/public\/recent\//,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /\/pics\/*\/*\//,
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: /\/users\/me\/*\//,
           handler: 'cacheFirst'
         }
       ]

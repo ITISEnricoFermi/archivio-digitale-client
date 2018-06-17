@@ -36,24 +36,30 @@ const webpackConfig = merge(baseWebpackConfig, {
       cacheId: 'archivio-digitale',
       filename: 'service-worker.js',
       staticFileGlobs: [
-        'dist/**/*.{js,html,css,png,json,jpg,jpeg}', 'static/**/*.{js,html,css,png,json,jpg,jpeg}'
+        'dist/**/*.{js,html,css,png,json,jpg,jpeg}', 'static/**/**.{js,html,css,png,json,jpg,jpeg}'
       ],
       minify: true,
       stripPrefix: 'dist/',
       runtimeCaching: [
         {
+          urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
+          handler: 'cacheFirst'
+        }, {
+          urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
+          handler: 'cacheFirst'
+        }, {
+          urlPattern: /^https:\/\/use\.fontawesome\.com\//,
+          handler: 'cacheFirst'
+        }, {
           urlPattern: /\/api\//,
           handler: 'cacheFirst'
-        },
-        {
+        }, {
           urlPattern: /\/public\/recent\//,
           handler: 'networkFirst'
-        },
-        {
-          urlPattern: /\/pics\/*\/*\//,
+        }, {
+          urlPattern: /\/pics\/*\//,
           handler: 'cacheFirst'
-        },
-        {
+        }, {
           urlPattern: /\/users\/me\/*\//,
           handler: 'cacheFirst'
         }

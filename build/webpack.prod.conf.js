@@ -37,9 +37,30 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'archivio-digitale',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css}', 'static/**/*.{jpeg,svg,jpg}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/code\.getmdl\.io\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^https:\/\/use\.fontawesome\.com\//,
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: /^pics\//,
+        handler: 'cacheFirst'
+      }]
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

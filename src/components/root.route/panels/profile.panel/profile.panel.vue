@@ -147,7 +147,7 @@ export default {
         border-radius: 0.25rem;
         overflow: hidden;
 
-        @include respond(tab-lan) {
+        @include respond(tab-por) {
           border-radius: 0;
         }
 

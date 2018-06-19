@@ -236,18 +236,15 @@ export default {
         padding: 3vh!important;
         background-color: $color-white-2;
 
-        @include respond(tab-lan) {
-          padding: 3vh 0 0 0!important;
-        }
-
         @include respond(tab-por) {
             height: calc(100vh - 6rem);
+            padding: 3vh 0 0 0!important;
         }
     }
 }
 
 .module {
-  @include respond(tab-lan) {
+  @include respond(tab-por) {
     border-radius: 0!important;
   }
 }

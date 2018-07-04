@@ -107,6 +107,12 @@ export default {
 </script>
 
 <style lang="scss">
+
+.video:parent {
+    padding: 0vh!important;
+    display: none;
+}
+
 .player {
     width: 100%;
     .vjs-big-play-button {

@@ -76,8 +76,11 @@ export default {
       a.click()
     },
     view () {
-      eventBus.openPopUp(this.document, 'appVideo', 70)
-      // window.open(`/public/documents/${this.document.directory}`, '_blank')
+      let type = this.document.mimetype.split('/')[0]
+      if (type === 'video') {
+        return eventBus.openPopUp(this.document, 'appVideo', 70)
+      }
+      window.open(`/public/documents/${this.document.directory}`, '_blank')
     },
     closeMenu () {
       if (this.menu) {

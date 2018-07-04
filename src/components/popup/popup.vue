@@ -22,6 +22,13 @@ export default {
         eventBus.closePopUp()
       }
     })
+  },
+  mounted () {
+    let popup = (document.querySelectorAll('.popup'))[0]
+    popup.addEventListener('click', (e) => {
+      if (e.target !== popup) { return }
+      eventBus.closePopUp()
+    })
   }
 }
 </script>
@@ -35,6 +42,7 @@ export default {
     top: 0;
     left: 0;
     z-index: 20000;
+    cursor: pointer;
 
     .content {
         height: auto;
@@ -44,9 +52,15 @@ export default {
         border-radius: 0.3rem;
         padding: 3vh;
         position: absolute;
+        overflow: hidden;
         @include absCenter;
         @include respond(phone) {
             width: 90%!important;
+        }
+
+        &:has(> .video) {
+          padding: 0vh!important;
+          border: none!important;
         }
     }
 }

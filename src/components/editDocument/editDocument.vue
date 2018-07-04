@@ -1,5 +1,5 @@
 <template>
-<div class="editDocument">
+<div class="edit">
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" required v-model="documentToEdit.name">
@@ -70,13 +70,13 @@
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--red" @click="remove(entity.id)">
+      <button class="button button--red" @click="remove(entity._id)">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina il documento</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--green" @click="edit(entity.id)">
+      <button class="button button--green" @click="edit(entity._id)">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva documento</span>
         </button>
@@ -147,7 +147,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = (await axios.delete('/documents/' + id)).data
+        let response = await axios.delete('/documents/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

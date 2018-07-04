@@ -1,5 +1,5 @@
 <template>
-<div class="editUser">
+<div class="edit">
   <div class="row row--title">
     <div class="col-1-of-1">
       <p class="section-title">Informazioni</p>
@@ -100,7 +100,6 @@ export default {
     }
   },
   created () {
-    console.log(this.entity)
     this.userToEdit = {
       firstname: this.entity.firstname,
       lastname: this.entity.lastname,

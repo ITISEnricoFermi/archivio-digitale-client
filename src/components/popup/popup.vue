@@ -26,7 +26,9 @@ export default {
   mounted () {
     let popup = (document.querySelectorAll('.popup'))[0]
     popup.addEventListener('click', (e) => {
-      if (e.target !== popup) { return }
+      if (e.target !== popup) {
+        return
+      }
       eventBus.closePopUp()
     })
   }
@@ -47,10 +49,7 @@ export default {
     .content {
         height: auto;
         max-width: 90%;
-        background-color: $color-white;
-        border: 1px solid $color-white-3;
         border-radius: 0.3rem;
-        padding: 3vh;
         position: absolute;
         overflow: hidden;
         @include absCenter;
@@ -58,10 +57,12 @@ export default {
             width: 90%!important;
         }
 
-        &:has(> .video) {
-          padding: 0vh!important;
-          border: none!important;
+        .edit {
+            background-color: $color-white;
+            border: 1px solid $color-white-3;
+            padding: 3vh;
         }
+
     }
 }
 </style>

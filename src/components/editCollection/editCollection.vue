@@ -1,5 +1,5 @@
 <template>
-<div class="editCollection">
+<div class="edit">
   <div class="row row--title">
     <div class="col-1-of-1">
       <p class="section-title">Informazioni</p>
@@ -54,13 +54,13 @@
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--red" @click="remove(entity.id)">
+      <button class="button button--red" @click="remove(entity._id)">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina la collezione</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--green" @click="edit(entity.id)">
+      <button class="button button--green" @click="edit(entity._id)">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva collezione</span>
         </button>

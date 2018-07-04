@@ -1,5 +1,8 @@
 <template>
 <div class="video">
+  <div class="header">
+    <p class="title">{{entity.name}}</p>
+  </div>
   <video-player class="player" ref="videoPlayer"
   :options="playerOptions"
   :playsinline="true"
@@ -26,8 +29,6 @@ import {
 
 import { videoPlayer } from 'vue-video-player'
 import 'video.js/dist/video-js.css'
-//
-// import axios from 'axios'
 
 export default {
   props: ['entity'],
@@ -49,15 +50,6 @@ export default {
   },
   async created () {
     this.playerOptions.sources[0].src = 'public/documents/' + this.entity.directory
-    // try {
-    //   let {directory} = (await axios.get('/documents/info/' + this.entity._id)).data
-    //   this.playerOptions.sources[0].src = 'public/documents/' + directory
-    // } catch (e) {
-    //   eventBus.notification({
-    //     title: e.response.data,
-    //     temporary: true
-    //   })
-    // }
   },
   mounted () {
     // console.log('This is current player instance object', this.player)
@@ -80,8 +72,12 @@ export default {
       // console.log('player pause!', player)
     },
 
-    onPlayerEnded (player) {},
-    onPlayerWaiting (player) {},
+    onPlayerEnded (player) {
+      // console.log('Ended')
+    },
+    onPlayerWaiting (player) {
+      // console.log('Waiting')
+    },
     onPlayerPlaying (player) {},
     onPlayerLoadeddata (player) {},
     onPlayerTimeupdate (player) {},
@@ -108,16 +104,31 @@ export default {
 
 <style lang="scss">
 
-.video:parent {
-    padding: 0vh!important;
-    display: none;
-}
-
-.player {
+.video {
+  position: relative;
+  .header {
     width: 100%;
-    .vjs-big-play-button {
-      position: absolute;
-      @include absCenter;
+    height: 5rem;
+    position: absolute;
+    z-index: 400000;
+    // background-color: rgba(43, 51, 63, 0.7);
+    padding: 1.7rem;
+
+    .title {
+      color: $color-white;
     }
+  }
+
+  .player {
+      width: 100%;
+      cursor: pointer;
+      .vjs-big-play-button {
+        position: absolute!important;
+        @include absCenter;
+        border: none!important;
+        cursor: pointer!important;
+      }
+  }
+
 }
 </style>

@@ -10,8 +10,8 @@ export const SocketInstance = socketio('/', {secure: true, rejectUnauthorized: f
 
 export const eventBus = new Vue({
   methods: {
-    editEntity (id, component) {
-      this.$emit('editEntity', id, component)
+    openPopUp (entity, component, width) {
+      this.$emit('openPopUp', entity, component, width)
     },
     closePopUp () {
       this.$emit('closePopUp')

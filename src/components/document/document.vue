@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     edit () {
-      eventBus.editEntity(this.document._id, 'appEditDocument')
+      eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
     download () {
       let a = document.createElement('A')
@@ -76,7 +76,8 @@ export default {
       a.click()
     },
     view () {
-      window.open(`/public/documents/${this.document.directory}`, '_blank')
+      eventBus.openPopUp(this.document, 'appVideo', 70)
+      // window.open(`/public/documents/${this.document.directory}`, '_blank')
     },
     closeMenu () {
       if (this.menu) {

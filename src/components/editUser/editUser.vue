@@ -86,7 +86,7 @@ import axios from 'axios'
 
 export default {
   name: 'editUser',
-  props: ['id', 'privileges'],
+  props: ['entity', 'privileges'],
   data: () => {
     return {
       userToEdit: {
@@ -100,7 +100,15 @@ export default {
     }
   },
   created () {
-    this.getUser()
+    console.log(this.entity)
+    this.userToEdit = {
+      firstname: this.entity.firstname,
+      lastname: this.entity.lastname,
+      email: this.entity.email,
+      state: this.entity.state,
+      privileges: this.entity.privileges._id,
+      accesses: this.entity.accesses
+    }
   },
   sockets: {
     userUpdated (user) {
@@ -134,7 +142,7 @@ export default {
     async reset () {
       try {
         let response = await axios.post('/admin/resetPassword/', {
-          _id: this.id
+          _id: this.entity._id
         })
 
         eventBus.notification({
@@ -152,7 +160,7 @@ export default {
     },
     async edit () {
       try {
-        await axios.patch('/admin/users/' + this.id, {
+        await axios.patch('/admin/users/' + this.entity._id, {
           user: this.userToEdit
         })
         eventBus.notification({
@@ -171,7 +179,7 @@ export default {
     async toggleState () {
       try {
         let user = await axios.post('/admin/toggleState/', {
-          _id: this.id,
+          _id: this.entity._id,
           state: this.userToEdit.state
         })
         eventBus.notification({

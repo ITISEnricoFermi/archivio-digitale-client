@@ -19,8 +19,8 @@
     </keep-alive>
   </transition>
   <transition name="fade" mode="out-in">
-    <app-popup v-if="popup" :width="'80%'">
-      <component v-if="popup" :is="popup" :id="entityToEdit" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
+    <app-popup v-if="popup.component" :width="popup.width + '%'">
+      <component v-if="popup.component" :is="popup.component" :entity="popup.entity" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
       </component>
     </app-popup>
   </transition>
@@ -52,6 +52,7 @@ import PopUp from '@/components/popup/popup'
 import EditDocument from '@/components/editDocument/editDocument'
 import EditCollection from '@/components/editCollection/editCollection'
 import EditUser from '@/components/editUser/editUser'
+import Video from '@/components/video/video'
 
 export default {
   name: 'root',
@@ -71,17 +72,26 @@ export default {
         img: '../static/elements/profile.svg'
       },
       menu: false,
-      popup: false,
-      entityToEdit: undefined
+      popup: {
+        entity: undefined,
+        component: undefined,
+        width: 80
+      }
     }
   },
   created () {
-    eventBus.$on('editEntity', (id, component) => {
-      this.showPopUp(id, component)
+    eventBus.$on('openPopUp', (entity, component, width) => {
+      this.popup.entity = entity
+      this.popup.component = component
+      this.popup.width = width
     })
 
     eventBus.$on('closePopUp', () => {
-      this.popup = false
+      this.popup = {
+        entity: undefined,
+        component: undefined,
+        width: undefined
+      }
     })
 
     axios.get('/api/getDocumentTypes/')
@@ -189,10 +199,6 @@ export default {
             temporary: true
           })
         })
-    },
-    showPopUp (id, component) {
-      this.popup = component
-      this.entityToEdit = id
     }
   },
   components: {
@@ -209,7 +215,8 @@ export default {
     appPopup: PopUp,
     appEditDocument: EditDocument,
     appEditCollection: EditCollection,
-    appEditUser: EditUser
+    appEditUser: EditUser,
+    appVideo: Video
   }
 }
 </script>

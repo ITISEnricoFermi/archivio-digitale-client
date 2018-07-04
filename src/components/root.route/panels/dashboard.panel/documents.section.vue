@@ -56,7 +56,7 @@ export default {
         })
     },
     editDocument (id) {
-      eventBus.editEntity('editDocument', id, 'appEditDocument')
+      eventBus.openPopUp('editDocument', id, 'appEditDocument', 80)
     }
   },
   components: {

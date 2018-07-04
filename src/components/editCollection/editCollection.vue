@@ -54,13 +54,13 @@
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--red" @click="remove(id)">
+      <button class="button button--red" @click="remove(entity.id)">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina la collezione</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--green" @click="edit(id)">
+      <button class="button button--green" @click="edit(entity.id)">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva collezione</span>
         </button>
@@ -81,14 +81,14 @@ import axios from 'axios'
 
 export default {
   name: 'editCollection',
-  props: ['id', 'collectionsPermissions'],
+  props: ['entity', 'collectionsPermissions'],
   data: () => {
     return {
       collectionToEdit: {
-        documentCollection: undefined,
-        permissions: undefined,
-        authorizations: [],
-        documents: []
+        documentCollection: this.entity.documentCollection,
+        permissions: this.entity.permissions,
+        authorizations: this.entity.authorizations,
+        documents: this.entity.documents
       }
     }
   },
@@ -101,20 +101,11 @@ export default {
     }
   },
   async created () {
-    try {
-      let collection = (await axios.get('/collections/info/' + this.id)).data
-
-      this.collectionToEdit = {
-        documentCollection: collection.documentCollection,
-        permissions: collection.permissions._id,
-        authorizations: collection.authorizations,
-        documents: collection.documents
-      }
-    } catch (e) {
-      eventBus.notification({
-        title: e.response.data,
-        temporary: true
-      })
+    this.collectionToEdit = {
+      documentCollection: this.entity.documentCollection,
+      permissions: this.entity.permissions._id,
+      authorizations: this.entity.authorizations,
+      documents: this.entity.documents
     }
   },
   // sockets: {

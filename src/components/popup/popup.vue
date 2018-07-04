@@ -16,11 +16,6 @@ import {
 export default {
   name: 'popup',
   props: ['width'],
-  data: () => {
-    return {
-
-    }
-  },
   created () {
     window.addEventListener('keyup', (e) => {
       if (e.keyCode === 27) {

@@ -70,13 +70,13 @@
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--red" @click="remove(id)">
+      <button class="button button--red" @click="remove(entity.id)">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina il documento</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--green" @click="edit(id)">
+      <button class="button button--green" @click="edit(entity.id)">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva documento</span>
         </button>
@@ -94,7 +94,7 @@ import axios from 'axios'
 
 export default {
   name: 'editDocument',
-  props: ['id', 'types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
+  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
   data: () => {
     return {
       progress: 0,
@@ -112,24 +112,15 @@ export default {
     }
   },
   async created () {
-    try {
-      let document = (await axios.get('/documents/info/' + this.id)).data
-
-      this.documentToEdit = {
-        name: document.name,
-        type: document.type._id,
-        faculty: document.faculty._id,
-        subject: document.subject._id,
-        class: document.class ? document.class._id : 0,
-        section: document.section ? document.section._id : '',
-        visibility: document.visibility._id,
-        description: document.description
-      }
-    } catch (e) {
-      eventBus.notification({
-        title: e.response.data,
-        temporary: true
-      })
+    this.documentToEdit = {
+      name: this.entity.name,
+      type: this.entity.type._id,
+      faculty: this.entity.faculty._id,
+      subject: this.entity.subject._id,
+      class: this.entity.class ? this.entity.class._id : 0,
+      section: this.entity.section ? this.entity.section._id : '',
+      visibility: this.entity.visibility._id,
+      description: this.entity.description
     }
   },
   methods: {
@@ -176,12 +167,11 @@ export default {
 
 <style scoped lang="scss">
 .section-title {
-  font-size: $font-default-2;
-  font-weight: bold;
+    font-size: $font-default-2;
+    font-weight: bold;
 }
 
 .row--title {
-  margin-bottom: $gutter-vertical-1!important;
+    margin-bottom: $gutter-vertical-1!important;
 }
-
 </style>

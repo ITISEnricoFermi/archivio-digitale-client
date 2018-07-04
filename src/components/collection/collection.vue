@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     edit () {
-      eventBus.editEntity(this.collection._id, 'appEditCollection')
+      eventBus.openPopUp(this.collection, 'appEditCollection', 80)
     },
     closeMenu () {
       if (this.menu) {

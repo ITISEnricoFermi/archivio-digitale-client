@@ -16,7 +16,8 @@
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vue-socket.io": "^2.1.1",
-    "vue-spinner": "^1.0.3"
+    "vue-spinner": "^1.0.3",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

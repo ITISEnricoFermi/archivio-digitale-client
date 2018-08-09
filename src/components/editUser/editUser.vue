@@ -44,8 +44,8 @@
   <div class="row">
     <div class="col-1-of-4">
       <button class="button button--yellow" @click="closePopUp">
-          <span><i class="fas fa-ban"></i></span>
-          <span>Annulla</span>
+          <span class="icon"><i class="fas fa-ban"></i></span>
+          <span class="crop">Annulla</span>
         </button>
     </div>
     <div class="col-1-of-4">

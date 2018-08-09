@@ -40,7 +40,7 @@ import Menu from './menu'
 export default {
   name: 'user',
   props: ['user'],
-  data: () => {
+  data () {
     return {
       localUser: this.user,
       menu: false

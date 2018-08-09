@@ -44,7 +44,7 @@ export default {
           type: 'video/mp4',
           src: undefined
         }]
-        // poster: '/static/images/author.jpg'
+        // poster: '/images/author.jpg'
       }
     }
   },

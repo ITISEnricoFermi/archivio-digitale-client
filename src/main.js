@@ -1,10 +1,15 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import './registerServiceWorker'
+
+// CUSTOM
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
-import App from './App'
-import router from './router'
+import axios from 'axios'
+
+Vue.config.productionTip = false
 
 export const SocketInstance = socketio('/', {secure: true, rejectUnauthorized: false, transports: ['websocket', 'flashsocket', 'polling']})
 
@@ -25,15 +30,13 @@ export const eventBus = new Vue({
   }
 })
 
-Vue.use(VueSocketIO, SocketInstance)
-Vue.config.productionTip = false
+axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.withCredentials = true
 
-/* eslint-disable no-new */
+Vue.use(VueSocketIO, SocketInstance)
+
 new Vue({
-  el: '#app',
   router,
-  components: {
-    App
-  },
-  template: '<App/>'
-})
+  store,
+  render: h => h(App)
+}).$mount('#app')

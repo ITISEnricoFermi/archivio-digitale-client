@@ -1,7 +1,7 @@
 <template>
 <aside class="menu-left">
   <header class="menu-left__header">
-    <img src="/static/logo/itisFermi_white.svg" class="menu-left__logo" alt="ITIS Enrico Fermi">
+    <img src="/logo/itisFermi_white.svg" class="menu-left__logo" alt="ITIS Enrico Fermi">
   </header>
   <ul class="menu-left__main">
     <li class="menu-left__li menu-left__li--active" data-tab="panel__dashboard" @click="changePanel($event, 'appPanelDashboard')">

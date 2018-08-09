@@ -26,6 +26,7 @@
 
 
   span.icon {
+    margin: 0 0.5rem;
     @include respond(tab-por) {
       margin: 0.5rem;
     }

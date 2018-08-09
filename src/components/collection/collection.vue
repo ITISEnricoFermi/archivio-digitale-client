@@ -54,7 +54,7 @@ import Menu from './menu'
 export default {
   name: 'collection',
   props: ['collection'],
-  data: () => {
+  data () {
     return {
       menu: false
     }

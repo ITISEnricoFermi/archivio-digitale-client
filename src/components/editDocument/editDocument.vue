@@ -43,7 +43,7 @@
       <select class="select" v-model="documentToEdit.class">
           <option class="module-input-option" value="0">Classe</option>
           <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index">
-            {{ grade.class }}
+            {{ grade.grade }}
           </option>
         </select>
     </div>

@@ -40,6 +40,7 @@ export default {
         box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
         width: 100%;
         outline: none;
+        font-size: $font-default-3;
 
         &:focus {
             box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.1);

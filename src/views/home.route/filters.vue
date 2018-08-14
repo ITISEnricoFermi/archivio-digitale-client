@@ -2,19 +2,19 @@
   <ul class="filters">
       <li class="selected u-noselect" @click.stop="getRecentProjects($event, 'appunti')">
           <span class="icon"><i class="far fa-file-alt"></i></span>
-          <span class="tag">Appunti</span>
+          <span class="tag"> Appunti</span>
       </li>
       <li class="u-noselect" @click.stop="getRecentProjects($event, 'videoLezione')">
           <span class="icon"><i class="fas fa-film"></i></span>
-          <span class="tag">Video</span>
+          <span class="tag"> Video</span>
       </li>
       <li class="u-noselect" @click.stop="getRecentProjects($event, 'audioLezione')">
           <span class="icon"><i class="fas fa-headphones"></i></span>
-          <span class="tag">Audio</span>
+          <span class="tag"> Audio</span>
       </li>
       <li class="u-noselect" @click.stop="getRecentProjects($event, 'progettiStudenti')">
           <span class="icon"><i class="fas fa-archive"></i></span>
-          <span class="tag">Progetti</span>
+          <span class="tag"> Progetti</span>
       </li>
   </ul>
 </template>

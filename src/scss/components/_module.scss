@@ -7,7 +7,15 @@
   overflow: hidden;
 
   &--padded {
-    padding: 3vh;
+    padding: 3rem;
+
+    @include respond(tab-por) {
+      padding: 2rem;
+    }
+
+    @include respond(phone) {
+      padding: 1.5rem;
+    }
   }
 
   &:not(:last-child) {

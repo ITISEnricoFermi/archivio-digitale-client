@@ -1,12 +1,12 @@
 <template>
 <div class="documents">
-  <div class="module module--padded documents__error" v-if="response">
-    <p>{{ responseMessage }}</p>
-  </div>
   <app-document :document="document" v-for="(document, index) in documents" :key="index" v-if="documents.length"></app-document>
-  <button class="button" v-if="documents.length" @click="loadmore()">Carica altro</button>
   <div class="module module--padded" v-else>
     <p>Non sono presenti documenti nell'archivio.</p>
+  </div>
+  <button class="button" v-if="documents.length && newDocuments === true" @click="loadmore()">Carica altro</button>
+  <div class="module module--padded documents__error" v-if="response">
+    <p>{{ responseMessage }}</p>
   </div>
 </div>
 </template>
@@ -27,7 +27,8 @@ export default {
       documents: [],
       response: false,
       responseMessage: '',
-      page: 1
+      page: 1,
+      newDocuments: false
     }
   },
   async created () {
@@ -51,11 +52,16 @@ export default {
   methods: {
     async getDocuments () {
       try {
-        this.documents = [...this.documents, ...(await axios.get(`/documents/recent/${this.page}/3`)).data]
+        const response = await axios.get(`/documents/recent/${this.page}/3`)
+        if (response) {
+          this.documents = [...this.documents, ...response.data]
+          this.newDocuments = true
+        }
       } catch (e) {
         console.log(e)
+        this.newDocuments = false
         this.response = true
-        this.responseMessage = e.response.data
+        this.responseMessage = e.response.data.messages[0]
       }
     },
     editDocument (id) {

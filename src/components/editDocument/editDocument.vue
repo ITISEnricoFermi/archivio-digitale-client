@@ -117,7 +117,7 @@ export default {
       type: this.entity.type._id,
       faculty: this.entity.faculty._id,
       subject: this.entity.subject._id,
-      class: this.entity.class ? this.entity.class._id : 0,
+      grade: this.entity.class ? this.entity.class._id : 0,
       section: this.entity.section ? this.entity.section._id : '',
       visibility: this.entity.visibility._id,
       description: this.entity.description

@@ -3,7 +3,8 @@
   <div class="module module--padded documents__error" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
-  <app-document :document="document" v-for="(document, index) in recentDocuments" :key="index" v-if="recentDocuments.length"></app-document>
+  <app-document :document="document" v-for="(document, index) in documents" :key="index" v-if="documents.length"></app-document>
+  <button class="button" v-if="documents.length" @click="loadmore()">Carica altro</button>
   <div class="module module--padded" v-else>
     <p>Non sono presenti documenti nell'archivio.</p>
   </div>
@@ -23,43 +24,46 @@ export default {
   name: 'documents',
   data: () => {
     return {
-      recentDocuments: [],
+      documents: [],
       response: false,
-      responseMessage: ''
+      responseMessage: '',
+      page: 1
     }
   },
-  created () {
-    this.getRecentDocuments()
+  async created () {
+    await this.getDocuments()
 
-    eventBus.$on('documentDeleted', () => {
-      this.getRecentDocuments()
+    eventBus.$on('documentDeleted', async () => {
+      await this.getDocuments()
     })
   },
   sockets: {
-    newDocument () {
-      this.getRecentDocuments()
+    async newDocument () {
+      await this.getDocuments()
     },
-    documentDeleted () {
-      this.getRecentDocuments()
+    async documentDeleted () {
+      await this.getDocuments()
     },
-    documentUpdated () {
-      this.getRecentDocuments()
+    async documentUpdated () {
+      await this.getDocuments()
     }
   },
   methods: {
-    getRecentDocuments () {
-      return axios.get('/documents/recent/')
-        .then((response) => {
-          this.recentDocuments = response.data
-        })
-        .catch((e) => {
-          console.log(e)
-          this.response = true
-          this.responseMessage = e.response.data
-        })
+    async getDocuments () {
+      try {
+        this.documents = [...this.documents, ...(await axios.get(`/documents/recent/${this.page}/3`)).data]
+      } catch (e) {
+        console.log(e)
+        this.response = true
+        this.responseMessage = e.response.data
+      }
     },
     editDocument (id) {
       eventBus.openPopUp('editDocument', id, 'appEditDocument', 80)
+    },
+    loadmore () {
+      this.page++
+      this.getDocuments()
     }
   },
   components: {
@@ -73,8 +77,8 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
 
-    &__error:last-child {
-        margin-bottom: 0vh!important;
+    .module:last-child {
+      margin-bottom: 0!important;
     }
 
 }

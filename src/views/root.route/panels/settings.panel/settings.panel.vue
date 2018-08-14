@@ -1,6 +1,6 @@
 <template>
 <main class="panel">
-  <div class="module">
+  <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-1">
         <input type="text" class="textfield" placeholder="Email" autocomplete="off" v-model="local.email">

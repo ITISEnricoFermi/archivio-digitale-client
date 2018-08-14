@@ -1,5 +1,5 @@
 <template>
-<div class="module">
+<div class="module module--padded">
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="textfield" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="search">

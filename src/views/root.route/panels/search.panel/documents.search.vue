@@ -1,5 +1,5 @@
 <template>
-<div class="module">
+<div class="module module--padded">
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="textfield" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="search">
@@ -36,10 +36,10 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="select" v-model="query.class">
+      <select class="select" v-model="query.grade">
             <option class="module-input-option" value="" selected>Classe</option>
-            <option class="module-input-option" v-bind:value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
-              {{ schoolClass.class }}
+            <option class="module-input-option" v-bind:value="grade._id" v-for="(grade, index) in grades" :key="index">
+              {{ grade.grade }}
             </option>
           </select>
     </div>
@@ -79,7 +79,7 @@ import axios from 'axios'
 
 export default {
   name: 'searchDocuments',
-  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
+  props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
   data: () => {
     return {
       subjects: '',
@@ -88,7 +88,7 @@ export default {
         type: '',
         faculty: '',
         subject: '',
-        class: '',
+        grade: '',
         section: '',
         visibility: ''
       },

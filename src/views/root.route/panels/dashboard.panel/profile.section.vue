@@ -1,13 +1,17 @@
 <template>
 <div class="module profile">
-  <div class="content" v-if="user">
-    <img class="profile-img" sizes="20vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
-    <div class="profile-info">
-      <p class="profile-info__name heading-secondary">{{user.firstname}} {{user.lastname}}</p>
-      <p class="profile-info__documents heading-tertiary">Pubblicazioni: {{user.documents}}</p>
-    </div>
+  <img class="profile__pic" sizes="15rem" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
+  <div class="info">
+    <p class="info__name heading-secondary">
+      <span class="info__name--firstname">{{user.firstname}}</span>
+      <span class="info__name--lastname"> {{user.lastname}}</span>
+    </p>
+    <p class="info__documents">
+      Pubblicazioni: {{user.documents}}
+    </p>
   </div>
 </div>
+
 </template>
 
 <script>
@@ -20,32 +24,38 @@ export default {
 <style scoped lang="scss">
 .profile {
     grid-area: profile;
-    display: table;
+    display: grid;
     height: 100%;
-    @include respond(tab-por) {
-        height: auto;
-        display: none;
+    grid-template-columns: 15rem auto;
+
+    &__pic {
+        width: 15rem;
+        display: block;
     }
 
-    .content {
-        display: table-cell;
-        vertical-align: middle;
+    .info {
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
 
-        .profile-img {
-            width: 20vh;
-            height: 20vh;
-            display: inline-block;
-            -webkit-clip-path: circle(50% at 50% 50%);
-            clip-path: circle(50% at 50% 50%);
+        & > * {
+            margin: 1rem 0;
+            text-align: left;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
         }
 
-        .profile-info {
-            margin: 1rem;
-
-            &__documents,
-            &__name {
-                margin: 0.5rem;
-            }
+        &__documents {
+            color: $color-white-6;
         }
     }
 }

@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="profile-documents">
-      <div class="module" v-if="documents.messages">
+      <div class="module module--padded" v-if="documents.messages">
         <div class="row">
           <div class="col-1-of-1">
             <p>Nessun documento nella scheda selezioanata.</p>

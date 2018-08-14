@@ -3,7 +3,7 @@
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
-  <div class="signup-box module" v-if="!signedUp">
+  <div class="signup-box module module--padded" v-if="!signedUp">
     <!-- Nome, Cognome, Email, Password, Materie -->
     <div class="row">
       <div class="col-1-of-1">
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="success-box module" v-else>
+  <div class="success-box module module--padded" v-else>
     <div class="row">
       <div class="col-1-of-1">
         <img src="/logo/itisFermi.svg" class="logo" alt="ITIS Enrico Fermi">
@@ -94,6 +94,13 @@ export default {
       }
     }
   },
+  computed: {
+    computedAccesses () {
+      return {
+        accesses: this.user.accesses.map(el => el._id)
+      }
+    }
+  },
   methods: {
     async signup () {
       if (!this.user.firstname && !this.user.lastname && !this.user.email && !this.user.password && !this.user.accesses) {
@@ -101,7 +108,12 @@ export default {
       }
 
       try {
-        await axios.put('/signup', this.user)
+        await axios.put('/signup', {
+          user: {
+            ...this.user,
+            ...this.computedAccesses
+          }
+        })
         this.$socket.emit('newUser')
         this.signedUp = true
 

@@ -4,6 +4,7 @@
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
+
   <keep-alive>
     <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu>
   </keep-alive>
@@ -12,15 +13,17 @@
       <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
     </keep-alive>
   </transition>
+
   <transition name="panel" mode="out-in">
     <keep-alive>
-      <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
+      <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
       </component>
     </keep-alive>
   </transition>
+
   <transition name="fade" mode="out-in">
     <app-popup v-if="popup.component" :width="popup.width + '%'">
-      <component v-if="popup.component" :is="popup.component" :entity="popup.entity" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
+      <component v-if="popup.component" :is="popup.component" :entity="popup.entity" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
       </component>
     </app-popup>
   </transition>
@@ -63,7 +66,7 @@ export default {
       subjects: [],
       visibilities: [],
       sections: [],
-      schoolClasses: [],
+      grades: [],
       privileges: [],
       collectionsPermissions: [],
       user: {
@@ -123,7 +126,7 @@ export default {
         })
       })
 
-    axios.get('/api/getDocumentVisibilityList')
+    axios.get('/api/getDocumentVisibilityList/')
       .then((response) => {
         this.visibilities = response.data
       }).catch((e) => {
@@ -133,7 +136,7 @@ export default {
         })
       })
 
-    axios.get('/api/getSections')
+    axios.get('/api/getSections/')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
@@ -143,9 +146,9 @@ export default {
         })
       })
 
-    axios.get('/api/getClasses')
+    axios.get('/api/getGrades/')
       .then((response) => {
-        this.schoolClasses = response.data
+        this.grades = response.data
       }).catch((e) => {
         eventBus.notification({
           title: e.response.data.messages[0],
@@ -153,7 +156,7 @@ export default {
         })
       })
 
-    axios.get('/api/getPrivileges')
+    axios.get('/api/getPrivileges/')
       .then((response) => {
         this.privileges = response.data
       })
@@ -164,7 +167,7 @@ export default {
         })
       })
 
-    axios.get('/api/getCollectionsPermissions')
+    axios.get('/api/getCollectionsPermissions/')
       .then((response) => {
         this.collectionsPermissions = response.data
       })

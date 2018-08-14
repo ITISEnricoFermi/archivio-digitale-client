@@ -20,7 +20,7 @@
         </transition>
       </div>
       <div class="no-projects" mode="out-in" v-else>
-        <div class="module project">
+        <div class="module module--padded project">
             <p>Nessun documento presente nella categoria selezionata.</p>
         </div>
       </div>

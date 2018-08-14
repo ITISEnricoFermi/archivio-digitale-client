@@ -7,7 +7,7 @@ import './registerServiceWorker'
 // CUSTOM
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
-import axios from 'axios'
+// import axios from 'axios'
 
 Vue.config.productionTip = false
 
@@ -30,8 +30,8 @@ export const eventBus = new Vue({
   }
 })
 
-axios.defaults.baseURL = 'http://localhost:3000'
-axios.defaults.withCredentials = true
+// // axios.defaults.baseURL = 'http://localhost:3000'
+// axios.defaults.withCredentials = true
 
 Vue.use(VueSocketIO, SocketInstance)
 

@@ -1,5 +1,5 @@
 <template>
-<div class="module">
+<div class="module module--padded">
   <div class="row">
     <div class="col-1-of-2">
       <input type="text" class="textfield" placeholder="Nome" autocomplete="off" v-model="user.firstname" @keyup.enter="createUser">
@@ -64,30 +64,40 @@ export default {
       }
     }
   },
+  computed: {
+    computedAccesses () {
+      return {
+        accesses: this.user.accesses.map(el => el._id)
+      }
+    }
+  },
   methods: {
-    createUser () {
-      axios.put('/admin/users/', {
-        user: this.user
-      })
-        .then((user) => {
-          this.user.firstname = undefined
-          this.user.lastname = undefined
-          this.user.email = undefined
-          this.user.password = undefined
-          this.user.privileges = undefined
-          this.user.accesses = []
+    async createUser () {
+      try {
+        await axios.put('/admin/users/', {
+          user: {
+            ...this.user,
+            ...this.computedAccesses
+          }
+        })
 
-          this.$emit('alert', {
-            messages: ['Utente creato correttamente.'],
-            color: 'alert--green'
-          })
+        this.user.firstname = undefined
+        this.user.lastname = undefined
+        this.user.email = undefined
+        this.user.password = undefined
+        this.user.privileges = undefined
+        this.user.accesses = []
+
+        this.$emit('alert', {
+          messages: ['Utente creato correttamente.'],
+          color: 'alert--green'
         })
-        .catch((e) => {
-          this.$emit('alert', {
-            messages: e.response.data.messages,
-            color: 'alert--red'
-          })
+      } catch (e) {
+        this.$emit('alert', {
+          messages: e.response.data.messages,
+          color: 'alert--red'
         })
+      }
     }
   },
   components: {
@@ -96,7 +106,6 @@ export default {
   }
 
 }
-
 </script>
 
 <style scoped lang="scss">

@@ -1,5 +1,5 @@
 <template>
-<div class="module collection">
+<div class="module module--padded collection">
   <div class="row collection-header">
     <div class="col-1-of-1">
       <div class="collection-header__img">

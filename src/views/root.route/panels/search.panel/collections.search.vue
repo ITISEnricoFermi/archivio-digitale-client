@@ -1,5 +1,5 @@
 <template>
-<div class="module">
+<div class="module module--padded">
   <div class="row">
     <div class="col-1-of-2">
       <input type="text" class="textfield" placeholder="Cerca una collezione" v-model="query.fulltext" @keyup.enter="search">

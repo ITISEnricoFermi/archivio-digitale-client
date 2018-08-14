@@ -1,9 +1,12 @@
 <template>
 <div class="documents">
-  <div class="module documents__error" v-if="response">
+  <div class="module module--padded documents__error" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
-  <app-document :document="document" v-for="(document, index) in recentDocuments" :key="index"></app-document>
+  <app-document :document="document" v-for="(document, index) in recentDocuments" :key="index" v-if="recentDocuments.length"></app-document>
+  <div class="module module--padded" v-else>
+    <p>Non sono presenti documenti nell'archivio.</p>
+  </div>
 </div>
 </template>
 
@@ -67,7 +70,6 @@ export default {
 
 <style scoped lang="scss">
 .documents {
-    grid-area: documents;
     display: grid;
     grid-template-columns: 1fr;
 

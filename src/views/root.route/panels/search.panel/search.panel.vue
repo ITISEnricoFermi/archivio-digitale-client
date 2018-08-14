@@ -1,6 +1,6 @@
 <template>
 <main class="panel panel__search">
-  <app-search-documents :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
+  <app-search-documents :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
   <transition name="fade">
     <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
   </transition>
@@ -25,7 +25,7 @@ import Collection from '@/components/collection/collection'
 import Alert from '@/components/alert/alert'
 
 export default {
-  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses', 'collectionsPermissions'],
+  props: ['types', 'faculties', 'visibilities', 'sections', 'grades', 'collectionsPermissions'],
   data: () => {
     return {
       documents: undefined,

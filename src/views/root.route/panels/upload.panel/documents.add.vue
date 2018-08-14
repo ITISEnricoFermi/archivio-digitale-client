@@ -1,5 +1,5 @@
 <template>
-<div class="module">
+<div class="module module--padded">
   <div class="row">
     <div class="col-1-of-1">
       <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" required v-model="document.name" @keyup.enter="upload">
@@ -40,10 +40,10 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="select" v-model="document.class">
+      <select class="select" v-model="document.grade">
           <option class="module-input-option" value="0" selected>Classe</option>
-          <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index" >
-            {{ schoolClass.class }}
+          <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index" >
+            {{ grade.grade }}
           </option>
         </select>
     </div>
@@ -85,7 +85,7 @@ import axios from 'axios'
 
 export default {
   name: 'createDocument',
-  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
+  props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
   data: () => {
     return {
       document: {
@@ -93,7 +93,7 @@ export default {
         type: undefined,
         faculty: undefined,
         subject: undefined,
-        class: '0',
+        grade: '0',
         section: undefined,
         visibility: 'pubblico',
         description: undefined
@@ -105,7 +105,7 @@ export default {
       let self = this
       let formData = new FormData()
       let config = {
-        onUploadProgress: function (progressEvent) {
+        onUploadProgress (progressEvent) {
           let progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
           if (progress === 100) {
             progress = 0
@@ -120,13 +120,15 @@ export default {
       formData.append('document', document)
       formData.append('file', file)
 
+      console.log(document)
+
       axios.put('/documents/', formData, config)
         .then((response) => {
           this.document.name = undefined
           this.document.type = undefined
           this.document.faculty = undefined
           this.document.subject = undefined
-          this.document.class = '0'
+          this.document.grade = '0'
           this.document.section = undefined
           this.document.visibility = 'pubblico'
           this.document.description = undefined

@@ -1,6 +1,6 @@
 <template>
 <main class="panel panel__upload">
-  <app-create-document :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :schoolClasses="schoolClasses" @alert="documentsAlert = $event" @progress="documentsProgress = $event"></app-create-document>
+  <app-create-document :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" @alert="documentsAlert = $event" @progress="documentsProgress = $event"></app-create-document>
   <app-progress v-if="documentsProgress" :value="documentsProgress" :isStripped="true" :isAnimated="true"></app-progress>
   <transition name="fade">
     <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
@@ -19,7 +19,7 @@ import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
 
 export default {
-  props: ['types', 'faculties', 'visibilities', 'sections', 'schoolClasses', 'collectionsPermissions'],
+  props: ['types', 'faculties', 'visibilities', 'sections', 'grades', 'collectionsPermissions'],
   data: () => {
     return {
       documentsProgress: undefined,

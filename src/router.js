@@ -30,11 +30,9 @@ export default new Router({
     component: Root,
     async beforeEnter (to, from, next) {
       try {
-        const response = await axios.post('/users/me/logged')
-        console.log(response)
+        await axios.post('/users/me/logged')
         next()
       } catch (e) {
-        console.log(e)
         next({
           path: '/home'
         })
@@ -48,6 +46,16 @@ export default new Router({
     path: '/login',
     name: 'Login',
     component: Login
+  }, {
+    path: '/logout',
+    name: 'Logout',
+    async beforeEnter (to, from, next) {
+      localStorage.removeItem('token')
+      let date = (new Date()).toUTCString()
+      document.cookie = `token=; expires=${date}; path=/;`
+      next()
+    },
+    redirect: { name: 'Home' }
   }, {
     path: '/signup',
     name: 'SignUp',

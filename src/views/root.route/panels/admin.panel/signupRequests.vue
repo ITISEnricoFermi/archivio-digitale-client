@@ -1,5 +1,5 @@
 <template>
-<div class="module">
+<div class="module module--padded">
   <div class="row" v-for="(request, index) in requests" :key="index">
     <div class="col-1-of-1">
       <div class="admin-request">

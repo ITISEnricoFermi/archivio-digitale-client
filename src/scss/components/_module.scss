@@ -1,19 +1,17 @@
 .module {
-  padding: 3vh;
   border-radius: 0.25rem;
   background-color: $color-white;
   box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
   text-align: center;
   width: 100%;
+  overflow: hidden;
+
+  &--padded {
+    padding: 3vh;
+  }
 
   &:not(:last-child) {
     margin-bottom: 3vh;
-  }
-
-  &__info {
-    font-size: 1rem;
-    margin-top: 10px;
-    line-height: 1.5rem;
   }
 
 }

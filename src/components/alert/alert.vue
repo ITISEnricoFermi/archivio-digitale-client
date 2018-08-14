@@ -1,5 +1,5 @@
 <template>
-<div class="module alert" :class="alert.color">
+<div class="module module--padded alert" :class="alert.color">
   <p>{{alert.messages[0]}}</p>
 </div>
 </template>

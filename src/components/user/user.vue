@@ -1,5 +1,5 @@
 <template>
-<div class="module user">
+<div class="module module--padded user">
   <div class="row">
     <div class="col-1-of-1">
       <div class="content">

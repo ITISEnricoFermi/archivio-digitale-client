@@ -42,8 +42,8 @@
     <div class="col-1-of-3">
       <select class="select" v-model="documentToEdit.class">
           <option class="module-input-option" value="0">Classe</option>
-          <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
-            {{ schoolClass.class }}
+          <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index">
+            {{ grade.class }}
           </option>
         </select>
     </div>
@@ -94,7 +94,7 @@ import axios from 'axios'
 
 export default {
   name: 'editDocument',
-  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
+  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'grades'],
   data: () => {
     return {
       progress: 0,
@@ -104,7 +104,7 @@ export default {
         type: '',
         faculty: '',
         subject: '',
-        class: '0',
+        grade: '0',
         section: '',
         visibility: 'pubblico',
         description: ''

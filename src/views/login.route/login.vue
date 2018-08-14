@@ -3,7 +3,7 @@
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
-  <div class="login-box module">
+  <div class="login-box module module--padded">
     <div class="row">
       <div class="col-1-of-1">
         <a href="/home/">

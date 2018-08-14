@@ -1,5 +1,5 @@
 <template>
-<a :href="'/public/documents/' + project.directory" class="module project" target="_blank">
+<a :href="'/public/documents/' + project.directory" class="module module--padded project" target="_blank">
   <div class="row">
     <div class="col-1-of-1">
       <p class="project-name">{{ project.name }}</p>

@@ -47,7 +47,9 @@
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'createAccount',
@@ -74,7 +76,7 @@ export default {
   methods: {
     async createUser () {
       try {
-        await axios.put('/admin/users/', {
+        await api.put('/admin/users/', {
           user: {
             ...this.user,
             ...this.computedAccesses

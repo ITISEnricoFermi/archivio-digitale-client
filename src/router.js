@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import axios from 'axios'
 
+import {
+  api
+} from '@/main'
+
 // Video
 // import VueVideoPlayer from 'vue-video-player'
 // import 'video.js/dist/video-js.css'
@@ -30,7 +34,7 @@ export default new Router({
     component: Root,
     async beforeEnter (to, from, next) {
       try {
-        await axios.post('/users/me/logged')
+        await api.post('/users/me/logged')
         next()
       } catch (e) {
         next({

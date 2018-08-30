@@ -76,13 +76,12 @@
 
 <script>
 import {
-  eventBus
+  eventBus,
+  api
 } from '@/main'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
-
-import axios from 'axios'
 
 export default {
   name: 'editUser',
@@ -122,7 +121,7 @@ export default {
     },
     async getUser () {
       try {
-        let {firstname, lastname, email, privileges, accesses, state} = (await axios.get('/admin/users/' + this.id)).data
+        let {firstname, lastname, email, privileges, accesses, state} = (await api.get('/admin/users/' + this.id)).data
         this.userToEdit = {
           firstname,
           lastname,
@@ -140,7 +139,7 @@ export default {
     },
     async reset () {
       try {
-        let response = await axios.post('/admin/resetPassword/', {
+        let response = await api.post('/admin/resetPassword/', {
           _id: this.entity._id
         })
 
@@ -159,7 +158,7 @@ export default {
     },
     async edit () {
       try {
-        await axios.patch('/admin/users/' + this.entity._id, {
+        await api.patch('/admin/users/' + this.entity._id, {
           user: this.userToEdit
         })
         eventBus.notification({
@@ -177,7 +176,7 @@ export default {
     },
     async toggleState () {
       try {
-        let user = await axios.post('/admin/toggleState/', {
+        let user = await api.post('/admin/toggleState/', {
           _id: this.entity._id,
           state: this.userToEdit.state
         })

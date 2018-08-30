@@ -71,13 +71,12 @@
 
 <script>
 import {
-  eventBus
+  eventBus,
+  api
 } from '@/main'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
-
-import axios from 'axios'
 
 export default {
   name: 'editCollection',
@@ -121,7 +120,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await axios.patch('/collections/' + id, {
+        let response = await api.patch('/collections/' + id, {
           collection: this.collectionToEdit
         })
         eventBus.notification({
@@ -139,7 +138,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = await axios.delete('/collections/' + id)
+        let response = await api.delete('/collections/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

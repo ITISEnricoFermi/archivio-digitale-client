@@ -55,7 +55,9 @@
 <script>
 import Alert from '@/components/alert/alert'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'panelSettings',
@@ -82,7 +84,7 @@ export default {
   methods: {
     async saveSettings () {
       try {
-        await axios.patch('/users/me/', {
+        await api.patch('/users/me/', {
           user: this.local
         })
         window.location.replace('/login')
@@ -101,7 +103,7 @@ export default {
       formData.append('picToUpload', profilePic)
 
       try {
-        await axios.patch('/users/me/pic/', formData)
+        await api.patch('/users/me/pic/', formData)
         window.location.reload()
       } catch (e) {
         this.settingsAlert = {
@@ -112,7 +114,7 @@ export default {
     },
     async disableAccount () {
       try {
-        await axios.delete('/users/me/')
+        await api.delete('/users/me/')
         window.location.replace('/')
       } catch (e) {
         this.settingsAlert = {

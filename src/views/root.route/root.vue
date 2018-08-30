@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {
-  eventBus
+  eventBus,
+  api
 } from '@/main'
 
 // VUE
@@ -96,7 +96,7 @@ export default {
       }
     })
 
-    axios.get('/api/getDocumentTypes/')
+    api.get('/document_types/')
       .then((response) => {
         this.types = response.data
       }).catch((e) => {
@@ -106,7 +106,7 @@ export default {
         })
       })
 
-    axios.get('/api/subjects/')
+    api.get('/subjects/')
       .then((response) => {
         this.subjects = response.data
       }).catch((e) => {
@@ -116,7 +116,7 @@ export default {
         })
       })
 
-    axios.get('/api/getFaculties/')
+    api.get('/faculties/')
       .then((response) => {
         this.faculties = response.data
       }).catch((e) => {
@@ -126,7 +126,7 @@ export default {
         })
       })
 
-    axios.get('/api/getDocumentVisibilityList/')
+    api.get('/document_visibility/')
       .then((response) => {
         this.visibilities = response.data
       }).catch((e) => {
@@ -136,7 +136,7 @@ export default {
         })
       })
 
-    axios.get('/api/getSections/')
+    api.get('/sections/')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
@@ -146,7 +146,7 @@ export default {
         })
       })
 
-    axios.get('/api/getGrades/')
+    api.get('/grades/')
       .then((response) => {
         this.grades = response.data
       }).catch((e) => {
@@ -156,7 +156,7 @@ export default {
         })
       })
 
-    axios.get('/api/getPrivileges/')
+    api.get('/privileges/')
       .then((response) => {
         this.privileges = response.data
       })
@@ -167,7 +167,7 @@ export default {
         })
       })
 
-    axios.get('/api/getCollectionsPermissions/')
+    api.get('/collection_permissions/')
       .then((response) => {
         this.collectionsPermissions = response.data
       })
@@ -191,7 +191,7 @@ export default {
       this.menu = false
     },
     getUser () {
-      axios.get('/users/me')
+      api.get('/users/me')
         .then((response) => {
           this.user = response.data
         })

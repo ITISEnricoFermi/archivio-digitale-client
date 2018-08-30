@@ -13,11 +13,7 @@ module.exports = {
   //   }
   // },
   devServer: {
-    proxy: [{
-      context: ['/login', '/pics'],
-      target: 'http://localhost:3000',
-      changeOrigin: true
-    }]
+    proxy: 'http://localhost:3000'
   },
   css: {
     loaderOptions: {

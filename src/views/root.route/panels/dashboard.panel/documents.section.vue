@@ -13,12 +13,11 @@
 
 <script>
 import {
-  eventBus
+  eventBus,
+  api
 } from '@/main'
 
 import Document from '@/components/document/document'
-
-import axios from 'axios'
 
 export default {
   name: 'documents',
@@ -52,7 +51,7 @@ export default {
   methods: {
     async getDocuments () {
       try {
-        const response = await axios.get(`/documents/recent/${this.page}/3`)
+        const response = await api.get(`/documents/recent/${this.page}/3`)
         if (response) {
           this.documents = [...this.documents, ...response.data]
           this.newDocuments = true

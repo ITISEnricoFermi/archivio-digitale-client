@@ -27,7 +27,9 @@
 
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'searchCollections',
@@ -53,7 +55,7 @@ export default {
     async search () {
       this.loading = true
       try {
-        let response = await axios.post('/collections/search/', this.query)
+        let response = await api.post('/collections/search/', this.query)
         this.loading = false
         this.$emit('searchCollections', response.data)
       } catch (e) {

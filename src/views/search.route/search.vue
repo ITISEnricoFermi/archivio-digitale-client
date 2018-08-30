@@ -20,7 +20,9 @@ import Document from '@/components/document/document'
 import SearchDocuments from './searchDocuments.vue'
 import Alert from '@/components/alert/alert'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'search',
@@ -38,28 +40,28 @@ export default {
     }
   },
   created () {
-    axios.get('/api/getDocumentTypes/')
+    api.get('/document_types/')
       .then((response) => {
         this.types = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
 
-    axios.get('/api/getFaculties/')
+    api.get('/faculties/')
       .then((response) => {
         this.faculties = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
 
-    axios.get('/api/getSections')
+    api.get('/sections/')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
 
-    axios.get('/api/getClasses')
+    api.get('/grades/')
       .then((response) => {
         this.schoolClasses = response.data
       }).catch((e) => {

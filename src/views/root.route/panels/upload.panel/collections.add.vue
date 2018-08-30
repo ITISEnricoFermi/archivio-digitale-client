@@ -39,7 +39,9 @@ import MultipleSelectResults from '@/components/multipleSelect/multipleSelectRes
 
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'createCollection',
@@ -72,7 +74,7 @@ export default {
         })
       }
       try {
-        let response = await axios.put('/collections/', {
+        let response = await api.put('/collections/', {
           collection: this.collection
         })
         this.loading = false // Il caricamento è terminato

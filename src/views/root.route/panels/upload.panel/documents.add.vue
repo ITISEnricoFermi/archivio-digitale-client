@@ -81,7 +81,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'createDocument',
@@ -122,7 +124,7 @@ export default {
 
       console.log(document)
 
-      axios.put('/documents/', formData, config)
+      api.put('/documents/', formData, config)
         .then((response) => {
           this.document.name = undefined
           this.document.type = undefined

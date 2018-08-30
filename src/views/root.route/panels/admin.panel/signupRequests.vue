@@ -23,7 +23,9 @@
 
 <script>
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'signupRequests',
@@ -44,7 +46,7 @@ export default {
   },
   methods: {
     getRequests () {
-      axios.get('/admin/requests/')
+      api.get('/admin/requests/')
         .then((response) => {
           this.requests = response.data
         })
@@ -54,7 +56,7 @@ export default {
         })
     },
     acceptRequest (id) {
-      axios.post('admin/acceptRequestById', {
+      api.post('admin/acceptRequestById', {
         _id: id
       })
         .then((message) => {
@@ -66,7 +68,7 @@ export default {
         })
     },
     refuseRequest (id) {
-      axios.post('admin/refuseRequestById', {
+      api.post('admin/refuseRequestById', {
         _id: id
       })
         .then((message) => {

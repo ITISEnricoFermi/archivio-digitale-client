@@ -87,10 +87,9 @@
 
 <script>
 import {
-  eventBus
+  eventBus,
+  api
 } from '@/main'
-
-import axios from 'axios'
 
 export default {
   name: 'editDocument',
@@ -129,7 +128,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await axios.patch('/documents/' + id, {
+        let response = await api.patch('/documents/' + id, {
           document: this.documentToEdit
         })
         eventBus.notification({
@@ -147,7 +146,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = await axios.delete('/documents/' + id)
+        let response = await api.delete('/documents/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

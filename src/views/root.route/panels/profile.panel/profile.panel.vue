@@ -50,7 +50,9 @@
 <script>
 import Document from '@/components/document/document'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'panelProfile',
@@ -76,7 +78,7 @@ export default {
   created () {
     this.getDocuments('pubblico')
 
-    axios.get('/users/me/documents/count/pubblico')
+    api.get('/users/me/documents/count/pubblico')
       .then((response) => {
         this.count.pubblico = response.data
       })
@@ -85,7 +87,7 @@ export default {
         this.responseMessage = ''
       })
 
-    axios.get('/users/me/documents/count/areariservata')
+    api.get('/users/me/documents/count/areariservata')
       .then((response) => {
         this.count.areariservata = response.data
       })
@@ -94,7 +96,7 @@ export default {
         this.responseMessage = ''
       })
 
-    axios.get('/users/me/documents/count/materia')
+    api.get('/users/me/documents/count/materia')
       .then((response) => {
         this.count.materia = response.data
       })
@@ -109,7 +111,7 @@ export default {
       this.getDocuments(privileges)
     },
     getDocuments (tab) {
-      axios.get('/users/me/documents/' + tab)
+      api.get('/users/me/documents/' + tab)
         .then((response) => {
           this.documents = response.data
         })

@@ -13,7 +13,9 @@
 
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 
-import axios from 'axios'
+import {
+  api
+} from '@/main'
 
 export default {
   name: 'searchUsers',
@@ -40,7 +42,7 @@ export default {
       }
 
       try {
-        let response = await axios.get('/admin/users/search/' + this.query)
+        let response = await api.get('/admin/users/search/' + this.query)
         this.loading = false
         this.$emit('searchUsers', response.data)
       } catch (e) {

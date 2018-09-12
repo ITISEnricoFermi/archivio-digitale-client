@@ -34,7 +34,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
+        <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/v1/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
       </div>
     </div>
     <div class="row" v-if="user.accesses.length !== 0">
@@ -70,15 +70,14 @@
 
 <script>
 import {
-  eventBus
+  eventBus,
+  service
 } from '@/main'
 
 import FooterLight from '@/components/footer/light.footer'
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 import Notifications from '@/components/notifications/notifications'
-
-import axios from 'axios'
 
 export default {
   name: 'signup',
@@ -108,7 +107,7 @@ export default {
       }
 
       try {
-        await axios.put('/signup', {
+        await service.put('/signup/', {
           user: {
             ...this.user,
             ...this.computedAccesses

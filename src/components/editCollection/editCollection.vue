@@ -72,7 +72,7 @@
 <script>
 import {
   eventBus,
-  api
+  v1
 } from '@/main'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
@@ -120,7 +120,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await api.patch('/collections/' + id, {
+        let response = await v1.patch('/collections/' + id, {
           collection: this.collectionToEdit
         })
         eventBus.notification({
@@ -138,7 +138,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = await api.delete('/collections/' + id)
+        let response = await v1.delete('/collections/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

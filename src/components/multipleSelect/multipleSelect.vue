@@ -16,7 +16,7 @@
 <script>
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -65,7 +65,7 @@ export default {
       }
 
       try {
-        let response = await api.post(this.url, {
+        let response = await v1.post(this.url, {
           query: this.query
         })
 

@@ -11,7 +11,7 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 
-export const SocketInstance = socketio('/', {secure: true, rejectUnauthorized: false, transports: ['websocket', 'flashsocket', 'polling']})
+export const SocketInstance = socketio('/', { secure: true, rejectUnauthorized: false, transports: ['websocket', 'flashsocket', 'polling'] })
 
 export const eventBus = new Vue({
   methods: {
@@ -30,9 +30,25 @@ export const eventBus = new Vue({
   }
 })
 
-export const api = axios.create({
-  baseURL: 'http://localhost:3000/api/v1/',
-  withCredentials: true
+const host = {
+  heroku: 'https://archivio-fermi.herokuapp.com/',
+  local: 'http://localhost:3000'
+}
+
+export const v1 = axios.create({
+  baseURL: `${host.heroku}/api/v1`,
+  withCredentials: true,
+  headers: {
+    Authorization: 'Bearer ' + localStorage.getItem('token')
+  }
+})
+
+export const service = axios.create({
+  baseURL: `${host.heroku}`,
+  withCredentials: true,
+  headers: {
+    Authorization: 'Bearer ' + localStorage.getItem('token')
+  }
 })
 
 // // axios.defaults.baseURL = 'http://localhost:3000'

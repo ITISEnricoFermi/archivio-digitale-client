@@ -21,7 +21,7 @@ import SearchDocuments from './searchDocuments.vue'
 import Alert from '@/components/alert/alert'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -40,28 +40,28 @@ export default {
     }
   },
   created () {
-    api.get('/document_types/')
+    v1.get('/document_types/')
       .then((response) => {
         this.types = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
 
-    api.get('/faculties/')
+    v1.get('/faculties/')
       .then((response) => {
         this.faculties = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
 
-    api.get('/sections/')
+    v1.get('/sections/')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
         this.errors.push(e)
       })
 
-    api.get('/grades/')
+    v1.get('/grades/')
       .then((response) => {
         this.schoolClasses = response.data
       }).catch((e) => {

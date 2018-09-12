@@ -33,7 +33,7 @@
 <script>
 import {
   eventBus,
-  api
+  v1
 } from '@/main'
 
 // VUE
@@ -96,7 +96,7 @@ export default {
       }
     })
 
-    api.get('/document_types/')
+    v1.get('/document_types/')
       .then((response) => {
         this.types = response.data
       }).catch((e) => {
@@ -106,7 +106,7 @@ export default {
         })
       })
 
-    api.get('/subjects/')
+    v1.get('/subjects/')
       .then((response) => {
         this.subjects = response.data
       }).catch((e) => {
@@ -116,7 +116,7 @@ export default {
         })
       })
 
-    api.get('/faculties/')
+    v1.get('/faculties/')
       .then((response) => {
         this.faculties = response.data
       }).catch((e) => {
@@ -126,7 +126,7 @@ export default {
         })
       })
 
-    api.get('/document_visibility/')
+    v1.get('/document_visibility/')
       .then((response) => {
         this.visibilities = response.data
       }).catch((e) => {
@@ -136,7 +136,7 @@ export default {
         })
       })
 
-    api.get('/sections/')
+    v1.get('/sections/')
       .then((response) => {
         this.sections = response.data
       }).catch((e) => {
@@ -146,7 +146,7 @@ export default {
         })
       })
 
-    api.get('/grades/')
+    v1.get('/grades/')
       .then((response) => {
         this.grades = response.data
       }).catch((e) => {
@@ -156,7 +156,7 @@ export default {
         })
       })
 
-    api.get('/privileges/')
+    v1.get('/privileges/')
       .then((response) => {
         this.privileges = response.data
       })
@@ -167,7 +167,7 @@ export default {
         })
       })
 
-    api.get('/collection_permissions/')
+    v1.get('/collection_permissions/')
       .then((response) => {
         this.collectionsPermissions = response.data
       })
@@ -191,7 +191,7 @@ export default {
       this.menu = false
     },
     getUser () {
-      api.get('/users/me')
+      v1.get('/users/me')
         .then((response) => {
           this.user = response.data
         })

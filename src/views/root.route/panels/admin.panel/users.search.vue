@@ -14,7 +14,7 @@
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -42,7 +42,7 @@ export default {
       }
 
       try {
-        let response = await api.get('/admin/users/search/' + this.query)
+        let response = await v1.get('/admin/users/search/' + this.query)
         this.loading = false
         this.$emit('searchUsers', response.data)
       } catch (e) {

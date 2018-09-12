@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import axios from 'axios'
 
 import {
-  api
+  v1
 } from '@/main'
 
 // Video
@@ -20,7 +20,7 @@ import Search from '@/views/search.route/search'
 // Errors
 import NotFoundComponent from '@/views/404.error/404.error'
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'https://archivio-fermi.herokuapp.com/'
 axios.defaults.withCredentials = true
 
 Vue.use(Router)
@@ -34,7 +34,7 @@ export default new Router({
     component: Root,
     async beforeEnter (to, from, next) {
       try {
-        await api.post('/users/me/logged')
+        await v1.post('/users/me/logged')
         next()
       } catch (e) {
         next({

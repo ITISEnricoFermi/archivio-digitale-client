@@ -82,7 +82,7 @@
 
 <script>
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -124,7 +124,7 @@ export default {
 
       console.log(document)
 
-      api.put('/documents/', formData, config)
+      v1.put('/documents/', formData, config)
         .then((response) => {
           this.document.name = undefined
           this.document.type = undefined

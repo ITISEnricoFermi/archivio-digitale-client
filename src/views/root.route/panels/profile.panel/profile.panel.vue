@@ -51,7 +51,7 @@
 import Document from '@/components/document/document'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -78,7 +78,7 @@ export default {
   created () {
     this.getDocuments('pubblico')
 
-    api.get('/users/me/documents/count/pubblico')
+    v1.get('/users/me/documents/count/pubblico')
       .then((response) => {
         this.count.pubblico = response.data
       })
@@ -87,7 +87,7 @@ export default {
         this.responseMessage = ''
       })
 
-    api.get('/users/me/documents/count/areariservata')
+    v1.get('/users/me/documents/count/areariservata')
       .then((response) => {
         this.count.areariservata = response.data
       })
@@ -96,7 +96,7 @@ export default {
         this.responseMessage = ''
       })
 
-    api.get('/users/me/documents/count/materia')
+    v1.get('/users/me/documents/count/materia')
       .then((response) => {
         this.count.materia = response.data
       })
@@ -111,7 +111,7 @@ export default {
       this.getDocuments(privileges)
     },
     getDocuments (tab) {
-      api.get('/users/me/documents/' + tab)
+      v1.get('/users/me/documents/' + tab)
         .then((response) => {
           this.documents = response.data
         })

@@ -24,7 +24,7 @@
 <script>
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     getRequests () {
-      api.get('/admin/requests/')
+      v1.get('/admin/requests/')
         .then((response) => {
           this.requests = response.data
         })
@@ -56,7 +56,7 @@ export default {
         })
     },
     acceptRequest (id) {
-      api.post('admin/acceptRequestById', {
+      v1.post('admin/acceptRequestById', {
         _id: id
       })
         .then((message) => {
@@ -68,7 +68,7 @@ export default {
         })
     },
     refuseRequest (id) {
-      api.post('admin/refuseRequestById', {
+      v1.post('admin/refuseRequestById', {
         _id: id
       })
         .then((message) => {

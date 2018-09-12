@@ -9,7 +9,7 @@
         <p class="collection-header__info--head heading-fourth">
           <span>{{collection.author.firstname}} {{collection.author.lastname}}</span>
           <span> ha creato</span>
-          <span>{{collection.documentCollection}}</span>.
+          <span> {{collection.documentCollection}}</span>.
         </p>
         <p class="collection-header__info--date heading-fifth">{{ this.date }}
         </p>

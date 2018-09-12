@@ -40,7 +40,7 @@ import MultipleSelectResults from '@/components/multipleSelect/multipleSelectRes
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -74,7 +74,7 @@ export default {
         })
       }
       try {
-        let response = await api.put('/collections/', {
+        let response = await v1.put('/collections/', {
           collection: this.collection
         })
         this.loading = false // Il caricamento è terminato

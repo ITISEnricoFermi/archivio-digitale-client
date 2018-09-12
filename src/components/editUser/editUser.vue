@@ -33,7 +33,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="userToEdit.accesses" :dbElements="['subject']" :url="'/api/subjects/search/partial/'" @update:selected="userToEdit.accesses = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="userToEdit.accesses" :dbElements="['subject']" :url="'/api/v1/subjects/search/partial/'" @update:selected="userToEdit.accesses = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="userToEdit.accesses.length">
@@ -77,7 +77,7 @@
 <script>
 import {
   eventBus,
-  api
+  v1
 } from '@/main'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
@@ -121,7 +121,7 @@ export default {
     },
     async getUser () {
       try {
-        let {firstname, lastname, email, privileges, accesses, state} = (await api.get('/admin/users/' + this.id)).data
+        let { firstname, lastname, email, privileges, accesses, state } = (await v1.get('/admin/users/' + this.id)).data
         this.userToEdit = {
           firstname,
           lastname,
@@ -139,7 +139,7 @@ export default {
     },
     async reset () {
       try {
-        let response = await api.post('/admin/resetPassword/', {
+        let response = await v1.post('/admin/resetPassword/', {
           _id: this.entity._id
         })
 
@@ -158,7 +158,7 @@ export default {
     },
     async edit () {
       try {
-        await api.patch('/admin/users/' + this.entity._id, {
+        await v1.patch('/admin/users/' + this.entity._id, {
           user: this.userToEdit
         })
         eventBus.notification({
@@ -176,7 +176,7 @@ export default {
     },
     async toggleState () {
       try {
-        let user = await api.post('/admin/toggleState/', {
+        let user = await v1.post('/admin/toggleState/', {
           _id: this.entity._id,
           state: this.userToEdit.state
         })

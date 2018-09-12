@@ -24,7 +24,7 @@
         </select>
     </div>
     <div class="col-1-of-2">
-      <app-multiple-select :placeholder="'Visibilità'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Visibilità'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/v1/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="user.accesses.length != 0">
@@ -48,7 +48,7 @@ import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -76,7 +76,7 @@ export default {
   methods: {
     async createUser () {
       try {
-        await api.put('/admin/users/', {
+        await v1.put('/admin/users/', {
           user: {
             ...this.user,
             ...this.computedAccesses

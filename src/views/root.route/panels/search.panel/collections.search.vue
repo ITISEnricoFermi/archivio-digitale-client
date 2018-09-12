@@ -28,7 +28,7 @@
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -55,7 +55,7 @@ export default {
     async search () {
       this.loading = true
       try {
-        let response = await api.post('/collections/search/', this.query)
+        let response = await v1.post('/collections/search/', this.query)
         this.loading = false
         this.$emit('searchCollections', response.data)
       } catch (e) {

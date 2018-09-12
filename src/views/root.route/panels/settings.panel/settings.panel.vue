@@ -56,7 +56,7 @@
 import Alert from '@/components/alert/alert'
 
 import {
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -84,7 +84,7 @@ export default {
   methods: {
     async saveSettings () {
       try {
-        await api.patch('/users/me/', {
+        await v1.patch('/users/me/', {
           user: this.local
         })
         window.location.replace('/login')
@@ -103,7 +103,7 @@ export default {
       formData.append('picToUpload', profilePic)
 
       try {
-        await api.patch('/users/me/pic/', formData)
+        await v1.patch('/users/me/pic/', formData)
         window.location.reload()
       } catch (e) {
         this.settingsAlert = {
@@ -114,7 +114,7 @@ export default {
     },
     async disableAccount () {
       try {
-        await api.delete('/users/me/')
+        await v1.delete('/users/me/')
         window.location.replace('/')
       } catch (e) {
         this.settingsAlert = {

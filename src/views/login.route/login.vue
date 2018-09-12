@@ -36,13 +36,12 @@
 <script>
 
 import {
-  eventBus
+  eventBus,
+  service
 } from '@/main'
 
 import FooterLight from '@/components/footer/light.footer'
 import Notifications from '@/components/notifications/notifications'
-
-import axios from 'axios'
 
 export default {
   name: 'login',
@@ -61,7 +60,7 @@ export default {
       }
 
       try {
-        let token = (await axios.post('/login/', this.user)).data
+        let token = (await service.post('/login/', this.user)).data
         localStorage.setItem('token', token)
         document.cookie = `token=${token}`
         window.location.replace('/')

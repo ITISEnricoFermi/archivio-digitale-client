@@ -88,7 +88,7 @@
 <script>
 import {
   eventBus,
-  api
+  v1
 } from '@/main'
 
 export default {
@@ -128,7 +128,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await api.patch('/documents/' + id, {
+        let response = await v1.patch('/documents/' + id, {
           document: this.documentToEdit
         })
         eventBus.notification({
@@ -146,7 +146,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = await api.delete('/documents/' + id)
+        let response = await v1.delete('/documents/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

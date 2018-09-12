@@ -13,8 +13,22 @@ module.exports = {
   //   }
   // },
   devServer: {
-    proxy: 'http://localhost:3000'
+  // https : true,
+    proxy: {
+      '/pics': {
+        target: {
+          protocol: 'http:',
+          host: 'localhost',
+          port: 3000
+        },
+        changeOrigin: true,
+        logLevel: 'debug'
+      }
+    }
   },
+  // devServer: {
+  //   proxy: 'http://localhost:3000'
+  // },
   css: {
     loaderOptions: {
       // pass options to sass-loader

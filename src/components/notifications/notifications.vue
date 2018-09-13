@@ -8,18 +8,14 @@
 
 <script>
 
-import {
-  eventBus
-} from '@/main'
+import { eventBus } from '@/main'
 
 import Notification from './notification'
 
 export default {
   name: 'notifications',
   data: () => {
-    return {
-      notifications: []
-    }
+    return { notifications: [] }
   },
   created () {
     eventBus.$on('notification', (notification) => {
@@ -40,7 +36,7 @@ export default {
   },
   methods: {
     remove (id) {
-      const index = this.notifications.findIndex(notification => notification.id = id)
+      const index = this.notifications.findIndex(notification => notification.id === id)
       if (index > -1) {
         this.notifications.splice(index, 1)
       }
@@ -52,17 +48,17 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.notifications {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 100000;
-  padding: 1vh;
+<style scoped="scoped" lang="scss">
+  .notifications {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100000;
+    padding: 1vh;
 
-  .notification:not(:last-child) {
+    .notification:not(:last-child) {
       margin-bottom: 1vh;
-  }
+    }
 
-}
+  }
 </style>

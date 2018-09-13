@@ -36,7 +36,7 @@ const host = {
 }
 
 export const v1 = axios.create({
-  baseURL: `${host.heroku}/api/v1`,
+  baseURL: `${host.local}/api/v1`,
   withCredentials: true,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -44,7 +44,7 @@ export const v1 = axios.create({
 })
 
 export const service = axios.create({
-  baseURL: `${host.heroku}`,
+  baseURL: `${host.local}`,
   withCredentials: true,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem('token')

@@ -61,7 +61,7 @@ export default {
 
       try {
         let token = (await service.post('/login/', this.user)).data
-        localStorage.setItem('token', token)
+        localStorage.setItem('token', token.token)
         document.cookie = `token=${token}`
         window.location.replace('/')
       } catch (e) {

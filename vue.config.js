@@ -1,17 +1,5 @@
 // vue.config.js
 module.exports = {
-  // devServer: {
-  //   proxy: {
-  //     '/login': {
-  //       target: 'http://localhost:3000',
-  //       changeOrigin: true
-  //     },
-  //     '/pics': {
-  //       target: 'http://localhost:3000',
-  //       changeOrigin: true
-  //     }
-  //   }
-  // }
   devServer: {
   // https : true,
     proxy: {
@@ -35,9 +23,6 @@ module.exports = {
       }
     }
   },
-  // devServer: {
-  //   proxy: 'http://localhost:3000'
-  // },
   css: {
     loaderOptions: {
       // pass options to sass-loader

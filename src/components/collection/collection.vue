@@ -1,5 +1,5 @@
 <template>
-<div class="module collection">
+<div class="module module--padded collection">
   <div class="row collection-header">
     <div class="col-1-of-1">
       <div class="collection-header__img">
@@ -9,7 +9,7 @@
         <p class="collection-header__info--head heading-fourth">
           <span>{{collection.author.firstname}} {{collection.author.lastname}}</span>
           <span> ha creato</span>
-          <span>{{collection.documentCollection}}</span>.
+          <span> {{collection.documentCollection}}</span>.
         </p>
         <p class="collection-header__info--date heading-fifth">{{ this.date }}
         </p>
@@ -54,7 +54,7 @@ import Menu from './menu'
 export default {
   name: 'collection',
   props: ['collection'],
-  data: () => {
+  data () {
     return {
       menu: false
     }

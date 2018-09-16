@@ -1,5 +1,5 @@
 <template>
-<div class="module user">
+<div class="module module--padded user">
   <div class="row">
     <div class="col-1-of-1">
       <div class="content">
@@ -40,7 +40,7 @@ import Menu from './menu'
 export default {
   name: 'user',
   props: ['user'],
-  data: () => {
+  data () {
     return {
       localUser: this.user,
       menu: false

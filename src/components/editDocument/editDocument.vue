@@ -42,8 +42,8 @@
     <div class="col-1-of-3">
       <select class="select" v-model="documentToEdit.class">
           <option class="module-input-option" value="0">Classe</option>
-          <option class="module-input-option" :value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
-            {{ schoolClass.class }}
+          <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index">
+            {{ grade.grade }}
           </option>
         </select>
     </div>
@@ -87,14 +87,13 @@
 
 <script>
 import {
-  eventBus
+  eventBus,
+  v1
 } from '@/main'
-
-import axios from 'axios'
 
 export default {
   name: 'editDocument',
-  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'schoolClasses'],
+  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'grades'],
   data: () => {
     return {
       progress: 0,
@@ -104,7 +103,7 @@ export default {
         type: '',
         faculty: '',
         subject: '',
-        class: '0',
+        grade: '0',
         section: '',
         visibility: 'pubblico',
         description: ''
@@ -117,7 +116,7 @@ export default {
       type: this.entity.type._id,
       faculty: this.entity.faculty._id,
       subject: this.entity.subject._id,
-      class: this.entity.class ? this.entity.class._id : 0,
+      grade: this.entity.class ? this.entity.class._id : 0,
       section: this.entity.section ? this.entity.section._id : '',
       visibility: this.entity.visibility._id,
       description: this.entity.description
@@ -129,7 +128,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await axios.patch('/documents/' + id, {
+        let response = await v1.patch('/documents/' + id, {
           document: this.documentToEdit
         })
         eventBus.notification({
@@ -147,7 +146,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = await axios.delete('/documents/' + id)
+        let response = await v1.delete('/documents/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

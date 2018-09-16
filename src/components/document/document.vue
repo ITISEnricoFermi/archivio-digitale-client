@@ -1,5 +1,5 @@
 <template>
-<div class="module document">
+<div class="module module--padded document">
   <div class="row document-header">
     <div class="col-1-of-1">
       <div class="document-header__img">
@@ -9,7 +9,7 @@
         <p class="document-header__info--head heading-fourth">
           <span>{{document.author.firstname}} {{document.author.lastname}}</span>
           <span> ha pubblicato</span>
-          <span>{{document.name}}</span>.
+          <span> {{document.name}}</span>.
         </p>
         <p class="document-header__info--date heading-fifth">{{ this.date }}
         </p>
@@ -33,8 +33,8 @@
     <div class="col-1-of-1">
       <ul class="document-footer__info">
         <li v-if="document.subject" class="u-bg-color-blue">{{document.subject.subject}}</li>
-        <li v-if="document.class || document.section" class="u-bg-color-yellow">
-          <span v-if="document.class">{{document.class.class}}</span>
+        <li v-if="document.grade || document.section" class="u-bg-color-yellow">
+          <span v-if="document.grade">{{document.grade.grade}}˚</span>
           <span v-if="document.section">{{document.section.section}}</span>
         </li>
         <li v-if="document.type" class="u-bg-color-green">{{document.type.type}}</li>
@@ -54,7 +54,7 @@ import Menu from './menu'
 export default {
   name: 'document',
   props: ['document'],
-  data: () => {
+  data () {
     return {
       menu: false
     }

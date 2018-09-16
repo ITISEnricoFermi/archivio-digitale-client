@@ -15,7 +15,9 @@
 
 <script>
 
-import axios from 'axios'
+import {
+  v1
+} from '@/main'
 
 export default {
   name: 'multipleSelect',
@@ -63,7 +65,7 @@ export default {
       }
 
       try {
-        let response = await axios.post(this.url, {
+        let response = await v1.post(this.url, {
           query: this.query
         })
 

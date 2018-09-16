@@ -53,6 +53,7 @@ export default {
         position: absolute;
         overflow: hidden;
         @include absCenter;
+
         @include respond(phone) {
             width: 90%!important;
         }

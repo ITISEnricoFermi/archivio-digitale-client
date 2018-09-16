@@ -2,7 +2,7 @@
   <div class="notification u-noselect">
     <p>
       <span class="result u-select">{{ notification.title }}</span>
-      <span class="remove" @click="remove"><i class="fas fa-times"></i></span>
+      <span class="remove" @click="remove(notification.id)"><i class="fas fa-times"></i></span>
     </p>
   </div>
 </template>
@@ -16,18 +16,9 @@ export default {
       timeout: undefined
     }
   },
-  created () {
-    if (this.notification.temporary) {
-      clearTimeout(this.timeout)
-      let self = this
-      this.timeout = setTimeout(function () {
-        self.$emit('remove')
-      }, 4000)
-    }
-  },
   methods: {
-    remove () {
-      this.$emit('remove')
+    remove (id) {
+      this.$emit('remove', id)
     }
   }
 }

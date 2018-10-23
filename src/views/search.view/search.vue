@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import SearchDocuments from './documents.search'
-import SearchCollections from './collections.search'
+import SearchDocuments from './components/documents.search'
+import SearchCollections from './components/collections.search'
 import Document from '@/components/document/document'
 import Collection from '@/components/collection/collection'
 import Alert from '@/components/alert/alert'
@@ -50,10 +50,15 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+
+.panel {
+  padding: 3vh;
+}
+
 .document,
 .collection {
-  margin-bottom: 3vh;
+  margin-bottom: 3vh!important;
 }
 
 </style>

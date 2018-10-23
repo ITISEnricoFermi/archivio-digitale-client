@@ -14,12 +14,9 @@
     </keep-alive>
   </transition>
 
-  <transition name="panel" mode="out-in">
-    <keep-alive>
-      <component :is="panel" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions">
-      </component>
-    </keep-alive>
-  </transition>
+  <keep-alive>
+    <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions"/>
+  </keep-alive>
 
   <transition name="fade" mode="out-in">
     <app-popup v-if="popup.component" :width="popup.width + '%'">
@@ -41,14 +38,6 @@ import Menu from '@/components/menu/menu.vue'
 import MenuMobile from '@/components/menu/menuMobile'
 import MenuHeader from '@/components/menu/menuHeader'
 import Notifications from '@/components/notifications/notifications'
-
-// Panels
-import panelDashboard from './panels/dashboard.panel/dashboard.panel'
-import panelSearch from './panels/search.panel/search.panel'
-import panelUpload from './panels/upload.panel/upload.panel'
-import panelAdmin from './panels/admin.panel/admin.panel'
-import panelProfile from './panels/profile.panel/profile.panel'
-import panelSettings from './panels/settings.panel/settings.panel'
 
 import PopUp from '@/components/popup/popup'
 import EditDocument from '@/components/editDocument/editDocument'
@@ -208,12 +197,6 @@ export default {
     appMenuMobile: MenuMobile,
     appMenuHeader: MenuHeader,
     appNotifications: Notifications,
-    appPanelDashboard: panelDashboard,
-    appPanelSearch: panelSearch,
-    appPanelUpload: panelUpload,
-    appPanelAdmin: panelAdmin,
-    appPanelProfile: panelProfile,
-    appPanelSettings: panelSettings,
     appPopup: PopUp,
     appEditDocument: EditDocument,
     appEditCollection: EditCollection,
@@ -242,7 +225,6 @@ export default {
     main {
         grid-area: main;
         font-size: $font-default-2;
-        padding: 3vh!important;
         background-color: $color-white-2;
 
         @include respond(tab-por) {

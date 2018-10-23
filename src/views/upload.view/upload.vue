@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import createDocument from './documents.add'
-import createCollection from './collections.add'
+import createDocument from './components/documents.add'
+import createCollection from './components/collections.add'
 import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
 
@@ -44,5 +44,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+  .panel {
+    padding: 3vh;
+  }
 </style>

@@ -10,8 +10,9 @@
       </div>
       </div>
               <div class="menu-container" @mouseleave="closeMenu">
-          <span class="u-noselect" @click="menu = !menu">
-            <i class="fas fa-ellipsis-h"></i>
+          <!-- <span class="u-noselect" @click="menu = !menu"> -->
+            <span class="u-noselect" @click="more">
+            <i class="fas fa-angle-right"></i>
           </span>
           <transition name="fade">
             <app-menu v-if="menu" :own="document.own" @edit="edit" @download="download" @view="view"></app-menu>
@@ -83,6 +84,9 @@ export default {
     }
   },
   methods: {
+    more () {
+      this.$emit('click', this.document)
+    },
     edit () {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
@@ -154,16 +158,6 @@ export default {
             }
         }
     }
-
-    // &-header {
-    //     text-align: left;
-    //     display: table;
-    //     width: 100%;
-    //     float: right;
-    //      position: absolute;
-    //         top: 0;
-    //         right: 0;
-
         .menu-container {
            position: absolute;
             top: 0;
@@ -177,12 +171,11 @@ export default {
                 padding: 0.5rem 1rem;
                 transition: all 0.2s ease-in-out;
 
-                &:hover {
-                    transform: rotate(180deg);
-                }
+                // &:hover {
+                //     transform: rotate(180deg);
+                // }
 
             }
-        // }
 
         span:not(:nth-child(2)) {
             font-weight: 500;

@@ -4,31 +4,31 @@
     <img src="/logo/itisFermi_white.svg" class="menu-left__logo" alt="ITIS Enrico Fermi">
   </header>
   <ul class="menu-left__main">
-    <li class="menu-left__li menu-left__li--active" data-tab="panel__dashboard" @click="changePanel($event, 'appPanelDashboard')">
+    <router-link tag="li" class="menu-left__li" to="/dashboard/" active-class="menu-left__li--active">
       <span><i class="fas fa-tachometer-alt"></i></span>
       <span>Dashboard</span>
       <!-- <span class="menu-left__li-tag u-bg-color-red">Disattivo</span> -->
-    </li>
-    <li class="menu-left__li" data-tab="panel__search" @click.stop="changePanel($event, 'appPanelSearch')">
+    </router-link>
+    <router-link tag="li" class="menu-left__li" to="/search/" active-class="menu-left__li--active">
       <span><i class="fa fa-search" aria-hidden="true"></i></span>
       <span>Ricerca</span>
-    </li>
-    <li class="menu-left__li" data-tab="panel__upload" @click.stop="changePanel($event, 'appPanelUpload')">
+    </router-link>
+    <router-link tag="li" class="menu-left__li" to="/upload/" active-class="menu-left__li--active">
       <span><i class="fas fa-pencil-alt"></i></span>
       <span>Inserisci</span>
-    </li>
-    <li class="menu-left__li" data-tab="panel__admin" @click.stop="changePanel($event, 'appPanelAdmin')" v-if="privileges._id == 'admin'">
+    </router-link>
+    <router-link tag="li" class="menu-left__li" to="/admin/" active-class="menu-left__li--active" v-if="privileges._id == 'admin'">
       <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
       <span>Admin</span>
-    </li>
-    <li class="menu-left__li" data-tab="panel__profile" @click.stop="changePanel($event, 'appPanelProfile')">
+    </router-link>
+    <router-link tag="li" class="menu-left__li" :to="'/user/'" active-class="menu-left__li--active">
       <span><i class="fa fa-user" aria-hidden="true"></i></span>
       <span>Profilo</span>
-    </li>
-    <li class="menu-left__li" data-tab="panel__settings" @click.stop="changePanel($event, 'appPanelSettings')">
+    </router-link>
+    <router-link tag="li" class="menu-left__li" to="/settings/" active-class="menu-left__li--active">
       <span><i class="fa fa-cog" aria-hidden="true"></i></span>
       <span>Impostazioni</span>
-    </li>
+    </router-link>
     <router-link tag="li" class="menu-left__li" to="/logout/">
       <span><i class="fas fa-sign-out-alt"></i></span>
       <span>Logout</span>
@@ -45,20 +45,7 @@
 
 export default {
   name: 'menuLeft',
-  props: ['privileges'],
-  methods: {
-    changePanel (event, panel) {
-      document.getElementsByClassName('menu-left__li--active')[0].classList.remove('menu-left__li--active')
-
-      if (event.target.tagName === 'LI') {
-        event.target.classList.add('menu-left__li--active')
-      } else {
-        event.target.parentNode.classList.add('menu-left__li--active')
-      }
-
-      this.$emit('panelChanged', panel)
-    }
-  }
+  props: ['privileges']
 }
 </script>
 
@@ -94,7 +81,7 @@ export default {
             width: 100%;
             display: block;
             font-weight: bold;
-            cursor: pointer;
+            cursor: pointer!important;
             transition: all 0.1s;
 
             * {

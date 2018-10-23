@@ -130,6 +130,7 @@ export default {
 <style scoped lang="scss">
 
 .panel {
+    padding: 3vh;
 
     @include respond(tab-lan) {
       padding: 0!important;

@@ -40,7 +40,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.class">
+      <select class="select" v-model="documentToEdit.grade">
           <option class="module-input-option" value="0">Classe</option>
           <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index">
             {{ grade.grade }}
@@ -116,7 +116,7 @@ export default {
       type: this.entity.type._id,
       faculty: this.entity.faculty._id,
       subject: this.entity.subject._id,
-      grade: this.entity.class ? this.entity.class._id : 0,
+      grade: this.entity.grade ? this.entity.grade._id : 0,
       section: this.entity.section ? this.entity.section._id : '',
       visibility: this.entity.visibility._id,
       description: this.entity.description

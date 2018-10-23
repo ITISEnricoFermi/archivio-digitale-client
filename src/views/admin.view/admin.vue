@@ -17,9 +17,9 @@
 
 <script>
 
-import signupRequests from './signupRequests.vue'
-import AddUsers from './users.add'
-import SearchUsers from './users.search'
+import signupRequests from './components/signupRequests'
+import AddUsers from './components/users.add'
+import SearchUsers from './components/users.search'
 import User from '@/components/user/user'
 import Alert from '@/components/alert/alert'
 
@@ -49,5 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+  .panel {
+    padding: 3vh;
+  }
 </style>

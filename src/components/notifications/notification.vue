@@ -33,6 +33,7 @@ export default {
   font-size: $font-default-3;
   color: $color-white;
   position: relative;
+  display: block;
 
   &:hover .remove {
       transform: translateY(-50%) rotate(90deg);

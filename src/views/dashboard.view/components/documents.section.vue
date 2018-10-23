@@ -1,6 +1,6 @@
 <template>
 <div class="documents">
-  <app-document :document="document" v-for="(document, index) in documents" :key="index" v-if="documents.length"></app-document>
+  <app-document :document="document" v-for="(document, index) in documents" :key="index" v-if="documents.length" @click="select(document)"></app-document>
   <div class="module module--padded" v-else>
     <p>Non sono presenti documenti nell'archivio.</p>
   </div>
@@ -17,7 +17,7 @@ import {
   v1
 } from '@/main'
 
-import Document from '@/components/document/document'
+import Document from './document/document'
 
 export default {
   name: 'documents',
@@ -32,7 +32,9 @@ export default {
   },
   async created () {
     await this.getDocuments()
-
+    if (this.documents.length) {
+      this.$emit('document', this.documents[0])
+    }
     eventBus.$on('documentDeleted', async () => {
       await this.getDocuments()
     })
@@ -69,6 +71,9 @@ export default {
     loadmore () {
       this.page++
       this.getDocuments()
+    },
+    select (document) {
+      this.$emit('document', document)
     }
   },
   components: {

@@ -33,7 +33,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="userToEdit.accesses" :dbElements="['subject']" :url="'/api/v1/subjects/search/partial/'" @update:selected="userToEdit.accesses = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="userToEdit.accesses" :dbElements="['subject']" :url="'/subjects/search/partial/'" @update:selected="userToEdit.accesses = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="userToEdit.accesses.length">

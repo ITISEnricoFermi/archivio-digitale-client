@@ -131,4 +131,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .panel {
+    padding: 3vh;
+  }
 </style>

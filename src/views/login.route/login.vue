@@ -63,7 +63,7 @@ export default {
         let token = (await service.post('/login/', this.user)).data
         localStorage.setItem('token', token.token)
         document.cookie = `token=${token}`
-        window.location.replace('/')
+        window.location.replace('/dashboard')
       } catch (e) {
         eventBus.notification({
           title: e.response.data.messages[0],
@@ -91,20 +91,34 @@ export default {
     @include absCenter;
     width: 20vw!important;
 
+    @include respond(big-desktop) {
+      width: 15vw!important;
+    }
+
+    @include respond(tab-lan) {
+      width: 40vw!important;
+    }
+
     @include respond(tab-por) {
       width: 60vw!important;
     }
 
-    @include respond(tab-por) {
+    @include respond(phone) {
       width: 80vw!important;
     }
 
     .logo {
       width: 50%;
 
-      @include respond(tab-por) {
+      @include respond(big-desktop) {
+        width: 45%;
+        margin-bottom: 1rem;
+      }
+
+      @include respond(tab-lan) {
         width: 40%;
       }
+
     }
 
     .error {

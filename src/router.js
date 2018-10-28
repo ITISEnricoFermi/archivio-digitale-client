@@ -91,15 +91,14 @@ export default new Router({
         localStorage.removeItem('token')
         // let date = (new Date()).toUTCString()
         // document.cookie = `token=; expires=${date}; path=/;`
-        next({ name: 'Home' })
+        next({ name: 'Landing' })
       }
     }]
   }, {
     path: '/home',
-    name: 'Home',
     component: loadView('home.route/home'),
     children: [{
-      path: '/',
+      path: '',
       name: 'Landing',
       component: LandingHomeView
     }, {

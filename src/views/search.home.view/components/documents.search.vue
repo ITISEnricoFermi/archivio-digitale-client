@@ -35,10 +35,10 @@
   </div>
   <div class="row">
     <div class="col-1-of-2">
-      <select class="select" v-model="query.class">
+      <select class="select" v-model="query.grade">
             <option class="module-input-option" value=undefined selected>Classe</option>
-            <option class="module-input-option" v-bind:value="schoolClass._id" v-for="(schoolClass, index) in schoolClasses" :key="index">
-              {{ schoolClass.class }}
+            <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index">
+              {{ grade.grade }}
             </option>
           </select>
     </div>
@@ -65,26 +65,39 @@
 </template>
 
 <script>
+
+import {
+  v1
+} from '@/main'
+
 import axios from 'axios'
 
 export default {
   name: 'searchDocuments',
-  props: ['types', 'faculties', 'sections', 'schoolClasses'],
   data: () => {
     return {
       subjects: '',
+      types: [],
+      faculties: [],
+      sections: [],
+      grades: [],
       query: {
         fulltext: undefined,
         type: undefined,
         faculty: undefined,
         subject: undefined,
-        class: undefined,
+        grade: undefined,
         section: undefined
       },
       help: undefined
     }
   },
-  created () {
+  async created () {
+    this.types = await this.getDocumentTypes()
+    this.faculties = await this.getFaculties()
+    this.sections = await this.getSections()
+    this.grades = await this.getGrades()
+
     this.query.fulltext = this.$route.query.q
     this.search()
   },
@@ -102,7 +115,7 @@ export default {
       }
 
       try {
-        let response = await axios.post('/public/search/documents/', this.query)
+        const response = await axios.post('/public/search/documents/', this.query)
         let documents = response.data
 
         for (let i = 0; i < documents.length; i++) {
@@ -117,6 +130,22 @@ export default {
           color: 'alert--yellow'
         })
       }
+    },
+    async getDocumentTypes () {
+      const response = await v1.get('/document_types/')
+      return response.data
+    },
+    async getFaculties () {
+      const response = await v1.get('/faculties/')
+      return response.data
+    },
+    async getSections () {
+      const response = await v1.get('/sections/')
+      return response.data
+    },
+    async getGrades () {
+      const response = await v1.get('/grades/')
+      return response.data
     }
   }
 }

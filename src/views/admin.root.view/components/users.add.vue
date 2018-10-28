@@ -24,7 +24,7 @@
         </select>
     </div>
     <div class="col-1-of-2">
-      <app-multiple-select :placeholder="'Visibilità'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/v1/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
+      <app-multiple-select :placeholder="'Visibilità'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
     </div>
   </div>
   <div class="row" v-if="user.accesses.length != 0">

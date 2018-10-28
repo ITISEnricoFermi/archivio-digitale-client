@@ -13,6 +13,8 @@ Vue.config.productionTip = false
 
 export const SocketInstance = socketio('/', { secure: true, rejectUnauthorized: false, transports: ['websocket', 'flashsocket', 'polling'] })
 
+const env = process.env.NODE_ENV
+
 export const eventBus = new Vue({
   methods: {
     openPopUp (entity, component, width) {
@@ -32,11 +34,20 @@ export const eventBus = new Vue({
 
 const host = {
   heroku: 'https://archivio-fermi.herokuapp.com/',
+  remote: 'https://archivio.riccardosangiorgio.com',
   local: 'http://localhost:3000'
 }
 
+let path
+
+if (env !== 'production') {
+  path = host.local
+} else {
+  path = host.remote
+}
+
 export const v1 = axios.create({
-  baseURL: `${host.local}/api/v1`,
+  baseURL: `${path}/api/v1`,
   withCredentials: true,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -44,7 +55,7 @@ export const v1 = axios.create({
 })
 
 export const service = axios.create({
-  baseURL: `${host.local}`,
+  baseURL: `${path}`,
   withCredentials: true,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem('token')

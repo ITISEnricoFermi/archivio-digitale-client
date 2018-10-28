@@ -1,8 +1,6 @@
 <template>
-<main id="app" class="main__home">
-  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
+<main>
   <section class="sections top">
-    <app-header></app-header>
     <div class="content">
       <app-search></app-search>
     </div>
@@ -26,16 +24,13 @@
       </div>
     </div>
   </section>
-  <app-footer></app-footer>
 </main>
 </template>
 
 <script>
-import Header from './header'
-import Search from './search'
-import Project from './project'
-import Filters from './filters'
-import Footer from './footer'
+import Search from './components/search'
+import Project from './components/project'
+import Filters from './components/filters'
 
 export default {
   name: 'home',
@@ -45,27 +40,16 @@ export default {
     }
   },
   components: {
-    appHeader: Header,
     appSearch: Search,
     appProject: Project,
-    appFilters: Filters,
-    appFooter: Footer
+    appFilters: Filters
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
-body {
-    min-height: 100vh!important;
-    height: auto!important;
-}
-
-.main__home {
-    width: 100vw;
-    min-height: 100vh;
-    height: auto;
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
+main {
 
     .sections {
         position: relative;

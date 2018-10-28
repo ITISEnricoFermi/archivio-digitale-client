@@ -1,5 +1,5 @@
 <template>
-  <section class="view module module--padded">
+  <section class="view module module--padded" v-if="document">
     <div class="header">
       <p class="title heading-secondary">{{document.name}}</p>
       <div class="actions">

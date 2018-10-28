@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Header from '../home.route/header'
+import Header from '@/routes/home.route/components/header'
 
 export default {
   name: 'ErrorPageNotFound',

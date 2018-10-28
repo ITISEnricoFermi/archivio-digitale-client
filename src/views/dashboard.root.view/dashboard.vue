@@ -50,7 +50,7 @@ export default {
     // }
 
     .documents {
-        width: calc((100vw - 15rem) / 100 * 60);
+        width: calc((100vw - 25rem) / 100 * 60);
         margin-top: 7rem;
 
         .module {
@@ -59,7 +59,7 @@ export default {
     }
 
     .header {
-      width: calc((100vw - 15rem) / 100 * 60);
+      width: calc((100vw - 25rem) / 100 * 60);
       height: 7rem;
       top: 0;
       z-index: 11111;
@@ -67,7 +67,7 @@ export default {
     }
 
     .view {
-      width: calc((100vw - 15rem) / 100 * 33.7);
+      width: calc((100vw - 25rem) / 100 * 40);
       z-index: 11111;
       position: fixed;
       right: 0;

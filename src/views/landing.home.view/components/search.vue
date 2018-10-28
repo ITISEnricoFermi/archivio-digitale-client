@@ -15,7 +15,7 @@ export default {
   methods: {
     search () {
       if (this.query) {
-        window.location.replace('/search?q=' + this.query)
+        window.location.replace('/home/search?q=' + this.query)
       }
     }
   }

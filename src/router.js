@@ -11,28 +11,30 @@ import {
 // import 'video.js/dist/video-js.css'
 
 // Routes
-import Root from '@/views/root.route/root'
-import Login from '@/views/login.route/login'
-import SignUp from '@/views/signup.route/signup'
-import Search from '@/views/search.route/search'
+import Root from '@/routes/root.route/root'
+import Login from '@/routes/login.route/login'
+import SignUp from '@/routes/signup.route/signup'
 
 // Views
-import DashboardView from '@/views/dashboard.view/dashboard'
-import AdminView from '@/views/admin.view/admin'
-import UserView from '@/views/user.view/user'
-import SettingsView from '@/views/settings.view/settings'
-import UploadView from '@/views/upload.view/upload'
-import SearchView from '@/views/search.view/search'
+import DashboardView from '@/views/dashboard.root.view/dashboard'
+import AdminView from '@/views/admin.root.view/admin'
+import UserView from '@/views/user.root.view/user'
+import SettingsView from '@/views/settings.root.view/settings'
+import UploadView from '@/views/upload.root.view/upload'
+import SearchView from '@/views/search.root.view/search'
+
+import LandingHomeView from '@/views/landing.home.view/landing'
+import SearchHomeView from '@/views/search.home.view/search'
 
 // Errors
-import NotFoundComponent from '@/views/404.error/404.error'
+import NotFoundComponent from '@/routes/404.error.route/404'
 
 // axios.defaults.baseURL = 'https://archivio-fermi.herokuapp.com/'
 // axios.defaults.withCredentials = true
 
 Vue.use(Router)
 
-const loadView = view => () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+const loadView = view => () => import(/* webpackChunkName: "view-[request]" */ `@/routes/${view}.vue`)
 
 const auth = async (to, from, next) => {
   try {
@@ -82,30 +84,33 @@ export default new Router({
       path: 'search',
       name: 'SearchView',
       component: SearchView
+    }, {
+      path: '/logout',
+      name: 'Logout',
+      async beforeEnter (to, from, next) {
+        localStorage.removeItem('token')
+        // let date = (new Date()).toUTCString()
+        // document.cookie = `token=; expires=${date}; path=/;`
+        next({ name: 'Home' })
+      }
     }]
   }, {
     path: '/home',
     name: 'Home',
     component: loadView('home.route/home'),
     children: [{
+      path: '/',
+      name: 'Landing',
+      component: LandingHomeView
+    }, {
       path: 'search',
       name: 'Search',
-      component: Search
+      component: SearchHomeView
     }]
   }, {
     path: '/login',
     name: 'Login',
     component: Login
-  }, {
-    path: '/logout',
-    name: 'Logout',
-    async beforeEnter (to, from, next) {
-      localStorage.removeItem('token')
-      let date = (new Date()).toUTCString()
-      document.cookie = `token=; expires=${date}; path=/;`
-      next()
-    },
-    redirect: { name: 'Home' }
   }, {
     path: '/signup',
     name: 'SignUp',

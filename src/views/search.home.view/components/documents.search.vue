@@ -54,8 +54,10 @@
   <div class="row">
     <div clas="col-1-of-1">
       <button class="button button--green" @click="search">
-        <span><i class="fas fa-search"></i></span>
-        <span>Cerca</span>
+        <span class="icon">
+          <i class="fas fa-search"></i>
+        </span>
+        <span class="crop">Cerca</span>
       </button>
     </div>
   </div>

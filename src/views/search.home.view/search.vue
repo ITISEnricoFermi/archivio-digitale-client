@@ -1,7 +1,4 @@
 <template>
-<div id="app" class="main__search">
-  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
-  <app-header></app-header>
   <main>
     <app-search-documents :types="types" :faculties="faculties" :sections="sections" :schoolClasses="schoolClasses" @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
     <transition name="fade">
@@ -11,13 +8,11 @@
       <app-document v-for="(document, index) in documents" :key="index" :document="document"></app-document>
     </transition-group>
   </main>
-</div>
 </template>
 
 <script>
-import Header from '@/views/home.route/header'
 import Document from '@/components/document/document'
-import SearchDocuments from './searchDocuments.vue'
+import SearchDocuments from './components/documents.search'
 import Alert from '@/components/alert/alert'
 
 import {
@@ -39,37 +34,26 @@ export default {
       }
     }
   },
-  created () {
-    v1.get('/document_types/')
-      .then((response) => {
-        this.types = response.data
-      }).catch((e) => {
-        this.errors.push(e)
-      })
+  async created () {
+    let response
 
-    v1.get('/faculties/')
-      .then((response) => {
-        this.faculties = response.data
-      }).catch((e) => {
-        this.errors.push(e)
-      })
+    try {
+      response = await v1.get('/document_types/')
+      this.types = response.data
 
-    v1.get('/sections/')
-      .then((response) => {
-        this.sections = response.data
-      }).catch((e) => {
-        this.errors.push(e)
-      })
+      response = await v1.get('/faculties/')
+      this.faculties = response.data
 
-    v1.get('/grades/')
-      .then((response) => {
-        this.schoolClasses = response.data
-      }).catch((e) => {
-        this.errors.push(e)
-      })
+      response = await v1.get('/sections/')
+      this.sections = response.data
+
+      response = await v1.get('/grades/')
+      this.schoolClasses = response.data
+    } catch (e) {
+      console.log(e)
+    }
   },
   components: {
-    appHeader: Header,
     appDocument: Document,
     appSearchDocuments: SearchDocuments,
     appAlert: Alert
@@ -77,11 +61,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.main__search {
+<style scoped lang="scss">
     main {
         padding: 3vh;
         font-size: $font-default-2;
     }
-}
 </style>

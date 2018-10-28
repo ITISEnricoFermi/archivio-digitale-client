@@ -60,9 +60,9 @@ export default {
       }
 
       try {
-        let token = (await service.post('/login/', this.user)).data
-        localStorage.setItem('token', token.token)
-        document.cookie = `token=${token}`
+        const { token } = (await service.post('/login/', this.user)).data
+        localStorage.setItem('token', token)
+        // document.cookie = `token=${token}`
         window.location.replace('/dashboard')
       } catch (e) {
         eventBus.notification({

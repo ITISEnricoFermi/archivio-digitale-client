@@ -32,6 +32,7 @@ export default {
   },
   async created () {
     await this.getDocuments()
+
     if (this.documents.length) {
       this.$emit('document', this.documents[0])
     }

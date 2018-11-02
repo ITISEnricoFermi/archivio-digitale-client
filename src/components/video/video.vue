@@ -49,7 +49,7 @@ export default {
     }
   },
   async created () {
-    this.playerOptions.sources[0].src = 'public/documents/' + this.entity.directory
+    this.playerOptions.sources[0].src = '/public/documents/' + this.entity.directory
   },
   mounted () {
     // console.log('This is current player instance object', this.player)

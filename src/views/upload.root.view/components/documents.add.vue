@@ -122,8 +122,6 @@ export default {
       formData.append('document', document)
       formData.append('file', file)
 
-      console.log(document)
-
       v1.put('/documents/', formData, config)
         .then((response) => {
           this.document.name = undefined

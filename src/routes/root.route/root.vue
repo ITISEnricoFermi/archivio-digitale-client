@@ -70,6 +70,11 @@ export default {
       }
     }
   },
+  watch: {
+    $route (to, from) {
+      this.menu = false
+    }
+  },
   created () {
     eventBus.$on('openPopUp', (entity, component, width) => {
       this.popup.entity = entity

@@ -1,62 +1,44 @@
 <template>
 <div class="menu-header-container">
   <ul class="menu-header-container__main">
-    <li class="menu-header-container__li menu-header-container__li--active" data-tab="panel__dashboard" @click.stop="changePanel('appPanelDashboard')">
+    <router-link tag="li" to="/dashboard/" class="menu-header-container__li" active-class="menu-header-container__li--active">
       <span><i class="fas fa-tachometer-alt"></i></span>
       <span>Dashboard</span>
-    </li>
-    <li class="menu-header-container__li" data-tab="panel__search" @click.stop="changePanel('appPanelSearch')">
+    </router-link>
+    <router-link tag="li" to="/search/" class="menu-header-container__li" active-class="menu-header-container__li--active">
       <span><i class="fa fa-search" aria-hidden="true"></i></span>
       <span>Ricerca</span>
-    </li>
-    <li class="menu-header-container__li" data-tab="panel__upload" @click.stop="changePanel('appPanelUpload')">
+    </router-link>
+    <router-link tag="li" to="/upload/" class="menu-header-container__li" active-class="menu-header-container__li--active">
       <span><i class="fas fa-pencil-alt"></i></span>
       <span>Inserisci</span>
-    </li>
-    <li class="menu-header-container__li" data-tab="panel__admin" @click.stop="changePanel('appPanelAdmin')" v-if="privileges._id == 'admin'">
+    </router-link>
+    <router-link tag="li" to="/admin/" class="menu-header-container__li" active-class="menu-header-container__li--active" v-if="privileges._id == 'admin'">
       <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
       <span>Admin</span>
-    </li>
-    <li class="menu-header-container__li" data-tab="panel__profile" @click.stop="changePanel('appPanelProfile')">
+    </router-link>
+    <router-link tag="li" to="/user/" class="menu-header-container__li" active-class="menu-header-container__li--active">
       <span><i class="fa fa-user" aria-hidden="true"></i></span>
       <span>Profilo</span>
-    </li>
-    <li class="menu-header-container__li" data-tab="panel__settings" @click.stop="changePanel('appPanelSettings')">
+    </router-link>
+    <router-link tag="li" to="/settings/" class="menu-header-container__li" active-class="menu-header-container__li--active">
       <span><i class="fa fa-cog" aria-hidden="true"></i></span>
       <span>Impostazioni</span>
-    </li>
-    <li class="menu-header-container__li" data-tab="panel--logout" @click.stop="logout">
+    </router-link>
+    <router-link tag="li" to="/logout/" class="menu-header-container__li" active-class="menu-header-container__li--active">
       <span><i class="fas fa-sign-out-alt"></i></span>
       <span>Logout</span>
-    </li>
+    </router-link>
   </ul>
 </div>
 </template>
 
 <script>
-
 import axios from 'axios'
 
 export default {
   name: 'menuMobile',
-  props: ['privileges'],
-  methods: {
-    changePanel (panel) {
-      document.getElementsByClassName('menu-header-container__li--active')[0].classList.remove('menu-header-container__li--active')
-
-      if (event.srcElement.tagName === 'LI') {
-        event.target.classList.add('menu-header-container__li--active')
-      } else {
-        event.srcElement.parentNode.classList.add('menu-header-container__li--active')
-      }
-
-      this.$emit('panelChanged', panel)
-    },
-    async logout () {
-      await axios.get('/logout')
-      window.location.reload()
-    }
-  }
+  props: ['privileges']
 }
 </script>
 

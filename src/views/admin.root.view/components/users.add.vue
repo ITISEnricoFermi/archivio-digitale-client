@@ -77,10 +77,8 @@ export default {
     async createUser () {
       try {
         await v1.put('/admin/users/', {
-          user: {
-            ...this.user,
-            ...this.computedAccesses
-          }
+          ...this.user,
+          ...this.computedAccesses
         })
 
         this.user.firstname = undefined

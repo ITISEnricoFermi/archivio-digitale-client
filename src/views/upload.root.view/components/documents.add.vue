@@ -82,7 +82,8 @@
 
 <script>
 import {
-  v1
+  v1,
+  eventBus
 } from '@/main'
 
 export default {
@@ -139,6 +140,7 @@ export default {
             messages: ['Documento caricato con successo.'],
             color: 'alert--blue'
           })
+          eventBus.push('Documento caricato con successo.')
         })
         .catch((e) => {
           this.$emit('alert', {

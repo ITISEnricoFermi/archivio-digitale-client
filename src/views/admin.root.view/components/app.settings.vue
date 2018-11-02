@@ -1,23 +1,23 @@
 <template>
 <div class="module module--padded">
   <p v-if="updates.client.tag === undefined && updates.server.tag === undefined">L'Archivio Digitale è aggiornato.</p>
-  <div class="update client">
+  <div class="update client" v-if="updates.client.tag !== undefined">
     <button class="button button--yellow">
       <span class="icon">
         <i class="fas fa-sync"></i>
       </span>
       <span class="crop">Aggiorna</span>
     </button>
-    <p class="message" v-if="updates.client.tag !== undefined">È possibile scaricare la nuova versione del client: {{ updates.client.tag }}.</p>
+    <p class="message">È possibile scaricare la nuova versione del client: {{ updates.client.tag }}.</p>
   </div>
-  <div class="update server">
+  <div class="update server" v-if="updates.server.tag !== undefined">
     <button class="button button--yellow">
       <span class="icon">
         <i class="fas fa-sync"></i>
       </span>
       <span class="crop">Aggiorna</span>
     </button>
-    <p class="message" v-if="updates.server.tag !== undefined">È possibile scaricare la nuova versione del server: {{ updates.server.tag }}.</p>
+    <p class="message">È possibile scaricare la nuova versione del server: {{ updates.server.tag }}.</p>
   </div>
 </div>
 </template>
@@ -50,7 +50,7 @@ export default {
       username: 'Richard1984',
       repos: {
         client: 'archivio-fermi-client',
-        server: 'archivio-fermi-client'
+        server: 'archivio-fermi-server'
       }
     }
   },
@@ -59,14 +59,14 @@ export default {
 
     const serverLastVersion = await this.getServerLastVersion()
 
-    if (serverLastVersion.name !== this.versions.server) {
+    if (serverLastVersion.name !== `v${this.versions.server.version}`) {
       this.updates.server.tag = serverLastVersion.name
       this.updates.server.url = serverLastVersion.zipball_url
     }
 
     const clientLastVersion = await this.getClientLastVersion()
 
-    if (clientLastVersion.name !== this.versions.client) {
+    if (clientLastVersion.name !== `v${this.versions.client.version}`) {
       this.updates.client.tag = clientLastVersion.name
       this.updates.client.url = clientLastVersion.zipball_url
     }

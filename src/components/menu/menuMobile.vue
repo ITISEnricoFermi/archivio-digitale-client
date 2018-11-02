@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'menuMobile',
   props: ['privileges']

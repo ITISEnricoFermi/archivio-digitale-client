@@ -33,6 +33,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.panel {
+    padding: 0!important;
+}
+
 .content {
     // display: grid;
     // grid-template-columns: 7fr 3fr;
@@ -52,6 +57,13 @@ export default {
     .documents {
         width: calc((100vw - 25rem) / 100 * 60);
         margin-top: 7rem;
+        z-index: 100;
+
+        @include respond (tab-lan) {
+          width: 100%;
+          position: absolute;
+          // margin: 0;
+        }
 
         .module {
             margin: 0;
@@ -64,6 +76,14 @@ export default {
       top: 0;
       z-index: 11111;
       position: fixed;
+
+      @include respond (tab-lan) {
+        position: absolute;
+        width: 100%;
+        margin: 0;
+        z-index: 110;
+      }
+
     }
 
     .view {
@@ -72,7 +92,16 @@ export default {
       position: fixed;
       right: 0;
       top: 0;
-      height: 100vw;
+      height: 100vh;
+
+      @include respond (tab-lan) {
+        // display: none;
+        width: 100%;
+        height: calc(100vh - 6rem);
+        top: 6rem;
+        display: none;
+      }
+
     }
 
 }

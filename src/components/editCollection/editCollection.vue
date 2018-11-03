@@ -16,13 +16,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-1-of-2">
+    <div :class="{'col-1-of-2': toggleMultipleSelect}">
       <select class="select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
           <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
       </select>
     </div>
-    <div class="col-1-of-2" disabled>
+    <div class="col-1-of-2" disabled v-if="toggleMultipleSelect">
       <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="collectionToEdit.authorizations" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="collectionToEdit.authorizations = $event"></app-multiple-select>
     </div>
   </div>
@@ -84,10 +84,10 @@ export default {
   data: () => {
     return {
       collectionToEdit: {
-        documentCollection: this.entity.documentCollection,
-        permissions: this.entity.permissions,
-        authorizations: this.entity.authorizations,
-        documents: this.entity.documents
+        documentCollection: '',
+        permissions: '',
+        authorizations: [],
+        documents: []
       }
     }
   },

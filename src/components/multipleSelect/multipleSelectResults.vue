@@ -3,7 +3,7 @@
     <ul>
       <li class="u-noselect" v-for="(result, index) in selected" :key="index" @click="remove($event, result)">
           <span class="result" v-for="(element, index) in dbElements" :key="index">
-              {{ result[element] }}
+              {{ result[element] }}&#160;
           </span>
           <span class="remove">
             <i class="fas fa-times-circle"></i>

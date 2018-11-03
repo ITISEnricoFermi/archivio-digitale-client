@@ -140,7 +140,8 @@ export default {
             messages: ['Documento caricato con successo.'],
             color: 'alert--blue'
           })
-          eventBus.push('Documento caricato con successo.')
+
+          eventBus.push('Documento caricato con successo.', response.data.name)
         })
         .catch((e) => {
           this.$emit('alert', {

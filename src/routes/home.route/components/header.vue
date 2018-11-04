@@ -34,6 +34,7 @@ export default {
     z-index: 10000;
     height: 10rem;
     padding: 4vh 6vh;
+    // background-image: linear-gradient($color-fourth, $color-primary);
     background-color: $color-primary;
     display: table;
 

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <p class="heading heading-primary">Dashboard</p>
-    <p class="more u-select" @click="loadmore">
+    <p class="more u-noselect" @click="loadmore">
       <i class="far fa-caret-square-down"></i>
     </p>
   </div>
@@ -46,7 +46,6 @@ export default {
     background-color: #fcfcfc;
     padding: 3rem;
 
-
     .heading {
       font-weight: bold;
     }
@@ -57,7 +56,7 @@ export default {
       text-shadow: 0 1px 2px rgba(10,10,10, 0.1);
       transition: all 0.2s ease-in-out;
       padding: 0.5rem 1rem;
-      // 
+      //
       // &:hover {
       //   background-color: $color-white-2;
       // }

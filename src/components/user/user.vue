@@ -42,27 +42,27 @@ import Menu from './menu'
 export default {
   name: 'user',
   props: ['user'],
-  data() {
+  data () {
     return {
       localUser: this.user,
       menu: false
     }
   },
-  created() {
+  created () {
     this.localUser = this.user
   },
   sockets: {
-    userUpdated(user) {
+    userUpdated (user) {
       if (user._id === this.user._id) {
         this.localUser = user
       }
     }
   },
   methods: {
-    edit() {
+    edit () {
       eventBus.openPopUp(this.user, 'appEditUser', 80)
     },
-    closeMenu() {
+    closeMenu () {
       if (this.menu) {
         this.menu = false
       }

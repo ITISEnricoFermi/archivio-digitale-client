@@ -67,13 +67,13 @@ import Menu from './menu'
 export default {
   name: 'document',
   props: ['document'],
-  data() {
+  data () {
     return {
       menu: false
     }
   },
   computed: {
-    date: function() {
+    date: function () {
       let timestamp = this.document._id.toString().substring(0, 8)
       let date = new Date(parseInt(timestamp, 16) * 1000)
       let getMonth = (date) => {
@@ -84,23 +84,23 @@ export default {
     }
   },
   methods: {
-    edit() {
+    edit () {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
-    download() {
+    download () {
       let a = document.createElement('A')
       a.href = `/public/documents/${this.document.directory}`
       a.download = this.document.name
       a.click()
     },
-    view() {
+    view () {
       let type = this.document.mimetype.split('/')[0]
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
       window.open(`/public/documents/${this.document.directory}`, '_blank')
     },
-    closeMenu() {
+    closeMenu () {
       if (this.menu) {
         this.menu = false
       }

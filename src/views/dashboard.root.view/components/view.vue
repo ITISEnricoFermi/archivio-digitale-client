@@ -77,28 +77,28 @@ import {
 
 export default {
   props: ['document'],
-  data() {
+  data () {
     return {
       collections: []
     }
   },
   watch: {
-    async document(value) {
+    async document (value) {
       const response = await v1.get(`/documents/${value._id}/collections`)
       this.collections = response.data
     }
   },
   methods: {
-    edit() {
+    edit () {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
-    download() {
+    download () {
       let a = document.createElement('A')
       a.href = `/public/documents/${this.document.directory}`
       a.download = this.document.name
       a.click()
     },
-    view() {
+    view () {
       let type = this.document.mimetype.split('/')[0]
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)

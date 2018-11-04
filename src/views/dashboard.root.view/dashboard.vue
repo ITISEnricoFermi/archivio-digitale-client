@@ -2,8 +2,8 @@
 <main class="panel">
   <div class="content">
     <!-- <app-profile :user="user"></app-profile> -->
-    <app-header></app-header>
-    <app-documents @document="document = $event"></app-documents>
+    <app-header @loadmore="page = $event"></app-header>
+    <app-documents @document="document = $event" :page="page"></app-documents>
     <app-view :document="document"></app-view>
   </div>
 </main>
@@ -20,7 +20,8 @@ export default {
   props: ['user'],
   data () {
     return {
-      document: undefined
+      document: undefined,
+      page: 1
     }
   },
   components: {

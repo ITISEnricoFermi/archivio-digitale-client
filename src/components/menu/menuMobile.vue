@@ -42,7 +42,7 @@ export default {
 
 <style scoped lang="scss">
 .menu-header-container {
-    background-color: $color-primary;
+    background-image: linear-gradient($color-fourth, $color-primary);
     height: calc(100vh - 6rem);
     width: 100%;
     position: fixed;
@@ -75,7 +75,7 @@ export default {
 
         &--active,
         &:hover {
-            background-color: $color-secondary;
+            background-color: $color-primary;
         }
 
         span:first-child {

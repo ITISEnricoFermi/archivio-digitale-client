@@ -4,7 +4,6 @@
   <div class="module module--padded" v-else>
     <p>Non sono presenti documenti nell'archivio.</p>
   </div>
-  <button class="button" v-if="documents.length && newDocuments === true" @click="loadmore()">Carica altro</button>
   <div class="module module--padded documents__error" v-if="response">
     <p>{{ responseMessage }}</p>
   </div>
@@ -21,43 +20,39 @@ import Document from './document/document'
 
 export default {
   name: 'documents',
-  data: () => {
+  props: ['page'],
+  data () {
     return {
       documents: [],
       response: false,
       responseMessage: '',
-      page: 1,
       newDocuments: false
     }
   },
   async created () {
-    await this.getDocuments()
+    this.documents = await this.getDocuments(this.page)
 
     if (this.documents.length) {
       this.$emit('document', this.documents[0])
     }
-    eventBus.$on('documentDeleted', async () => {
-      await this.getDocuments()
-    })
+    // eventBus.$on('documentDeleted', async () => {
+    //   this.documents = await this.getDocuments()
+    // })
   },
-  sockets: {
-    async newDocument () {
-      await this.getDocuments()
-    },
-    async documentDeleted () {
-      await this.getDocuments()
-    },
-    async documentUpdated () {
-      await this.getDocuments()
+  watch: {
+    async page (value) {
+      const news = await this.getDocuments(value)
+      this.documents = [...this.documents, ...news]
+      window.scrollTo(0, document.body.scrollHeight)
     }
   },
   methods: {
-    async getDocuments () {
+    async getDocuments (page) {
       try {
-        const response = await v1.get(`/documents/recent/${this.page}/3`)
+        const response = await v1.get(`/documents/recent/${page}/5`)
         if (response) {
-          this.documents = [...this.documents, ...response.data]
           this.newDocuments = true
+          return response.data
         }
       } catch (e) {
         console.log(e)
@@ -68,10 +63,6 @@ export default {
     },
     editDocument (id) {
       eventBus.openPopUp('editDocument', id, 'appEditDocument', 80)
-    },
-    loadmore () {
-      this.page++
-      this.getDocuments()
     },
     select (document) {
       this.$emit('document', document)

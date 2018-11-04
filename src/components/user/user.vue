@@ -10,7 +10,7 @@
         <div class="info">
           <div class="info__content">
             <p class="name u-margin-bottom-small">{{localUser.firstname}} {{localUser.lastname}}</p>
-            <a :href="`mailto:${localUser.email}`" class="email u-margin-bottom-medium"><span></span>{{localUser.email}}</a>
+            <p class="email u-margin-bottom-medium"><span></span>{{localUser.email}}</p>
             <ul class="tag">
               <li class="u-bg-color-blue">{{localUser.privileges.privilege}}</li>
               <li class="u-bg-color-green">{{localUser.state === 'active' ? 'Attivo' : 'Disattivato'}}</li>
@@ -77,7 +77,7 @@ export default {
 <style scoped lang="scss">
 .user {
     overflow: hidden;
-    
+
     .content {
         text-align: left;
         width: 100%;

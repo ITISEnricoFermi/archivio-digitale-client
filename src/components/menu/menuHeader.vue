@@ -18,7 +18,7 @@ export default {
 
 <style scoped lang="scss">
 .menu-header {
-  background-color: $color-primary;
+  background-image: linear-gradient(45deg, $color-fourth, $color-primary);
   position: fixed;
   height: 6rem;
   width: 100%;

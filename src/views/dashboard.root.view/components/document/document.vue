@@ -124,7 +124,7 @@ export default {
     border-bottom: 1px solid $color-white-5;
 
     &:hover {
-        background-color: #f3fef2;
+        background-color: #f3f5f2;
     }
 
     & > div {

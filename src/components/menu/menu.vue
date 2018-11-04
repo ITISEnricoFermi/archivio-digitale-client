@@ -51,7 +51,8 @@ export default {
 
 <style scoped lang="scss">
 .menu-left {
-    background-color: $color-primary;
+    background-image: linear-gradient($color-fourth, $color-primary);
+    // background-image: linear-gradient(darken($color-fourth, 5%), $color-secondary);
     position: fixed;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
     width: 25rem;
@@ -90,7 +91,7 @@ export default {
 
             &--active,
             &:hover {
-                background-color: $color-secondary;
+                background-color: $color-primary;
             }
 
             span:first-child {

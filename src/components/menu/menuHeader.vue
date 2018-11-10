@@ -20,9 +20,10 @@ export default {
 .menu-header {
   background-image: linear-gradient(45deg, $color-fourth, $color-primary);
   position: fixed;
-  height: 6rem;
+  height: 12rem;
+  padding-top: 6rem;
   width: 100%;
-  top: 0;
+  top: -6rem;
   display: none;
   // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
   z-index: 10000;

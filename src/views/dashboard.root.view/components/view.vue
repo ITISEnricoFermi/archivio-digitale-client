@@ -156,14 +156,18 @@ export default {
 
         .tags {
             text-align: left;
-            margin-top: 2rem;
+            margin-top: 1.75rem;
+            // display: flex;
+            // flex-wrap: wrap;
+            // justify-content: space-between;
 
             li {
+                margin-top: 0.25rem;
                 padding: 0.5rem 1rem;
                 border-radius: 0.3rem;
-                display: inline-block;
                 text-overflow: ellipsis;
                 overflow: hidden;
+                display: inline-block;
                 white-space: nowrap;
                 color: $color-white;
                 background-color: #d8e5d7!important;
@@ -177,8 +181,8 @@ export default {
                     transform: scale(1.02);
                 }
 
-                &:not(:first-child) {
-                    margin-left: 0.5rem;
+                &:not(:last-child) {
+                    margin-right: 0.5rem;
                 }
 
                 .icon {

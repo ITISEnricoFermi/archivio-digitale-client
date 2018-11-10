@@ -123,7 +123,7 @@ export default {
     margin: 0!important;
     border-bottom: 1px solid $color-white-5;
 
-    &:hover {
+    &:hover, &--selected {
         background-color: #f3f5f2;
     }
 

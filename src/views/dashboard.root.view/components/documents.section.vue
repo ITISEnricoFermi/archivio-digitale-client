@@ -43,19 +43,21 @@ export default {
     async page (value) {
       const news = await this.getDocuments(value)
       this.documents = [...this.documents, ...news]
-      window.scrollTo(0, document.body.scrollHeight)
+
+      const documents = document.getElementsByClassName('documents')[0]
+      window.scrollTo({
+        top: documents.offsetHeight,
+        behavior: 'smooth'
+      })
     }
   },
   methods: {
     async getDocuments (page) {
       try {
         const response = await v1.get(`/documents/recent/${page}/5`)
-        if (response) {
-          this.newDocuments = true
-          return response.data
-        }
+        this.newDocuments = true
+        return response.data
       } catch (e) {
-        console.log(e)
         this.newDocuments = false
         this.response = true
         this.responseMessage = e.response.data.messages[0]

@@ -47,7 +47,7 @@ export default {
     width: 100%;
     position: fixed;
     top: 6rem;
-    z-index: 10000;
+    z-index: 12222;
     overflow: hidden;
     display: none;
 

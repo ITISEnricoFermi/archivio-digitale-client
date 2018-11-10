@@ -61,9 +61,13 @@ export default {
         z-index: 100;
 
         @include respond (tab-lan) {
-          width: 100%;
+          width: calc(100vw / 100 * 60);
           position: absolute;
           // margin: 0;
+        }
+
+        @include respond (tab-por) {
+          width: 100%;
         }
 
         .module {
@@ -80,9 +84,13 @@ export default {
 
       @include respond (tab-lan) {
         position: absolute;
-        width: 100%;
+        width: calc(100vw / 100 * 60);
         margin: 0;
         z-index: 110;
+      }
+
+      @include respond (tab-por) {
+        width: 100%;
       }
 
     }
@@ -97,9 +105,13 @@ export default {
 
       @include respond (tab-lan) {
         // display: none;
-        width: 100%;
+        width: calc(100vw / 100 * 40);
         height: calc(100vh - 6rem);
         top: 6rem;
+        // display: none;
+      }
+
+      @include respond (tab-por) {
         display: none;
       }
 

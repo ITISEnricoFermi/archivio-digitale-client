@@ -36,7 +36,7 @@
   </ul>
   <footer class="menu-left__footer">
     Powered By
-    <a href="https://www.riccardosangiorgio.com" class="menu-left__footer--a" target="_blank">Riccardo Sangiorgio</a>
+    <a href="https://www.riccardosangiorgio.com" class="menu-left__footer--a" target="_blank" rel="noopener noreferrer">Riccardo Sangiorgio</a>
   </footer>
 </aside>
 </template>

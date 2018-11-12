@@ -80,7 +80,7 @@ export default {
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         return months[date.getMonth()]
       }
-      return date.getHours() + ':' + date.getMinutes() + ', ' + date.getDay() + ' ' + getMonth(date)
+      return ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ', ' + date.getDate() + ' ' + getMonth(date)
     }
   },
   methods: {

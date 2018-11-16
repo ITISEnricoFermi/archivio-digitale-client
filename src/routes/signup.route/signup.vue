@@ -34,7 +34,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/api/v1/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
+        <app-multiple-select :placeholder="'Autorizzazioni'" :selected.sync="user.accesses" :dbElements="['subject']" :url="'/subjects/search/partial/'" @update:selected="user.accesses = $event"></app-multiple-select>
       </div>
     </div>
     <div class="row" v-if="user.accesses.length !== 0">
@@ -94,14 +94,14 @@ export default {
     }
   },
   computed: {
-    computedAccesses () {
+    computedAccesses() {
       return {
         accesses: this.user.accesses.map(el => el._id)
       }
     }
   },
   methods: {
-    async signup () {
+    async signup() {
       if (!this.user.firstname && !this.user.lastname && !this.user.email && !this.user.password && !this.user.accesses) {
         return false
       }
@@ -148,6 +148,14 @@ export default {
         @include absCenter;
         width: 20vw!important;
 
+        @include respond(big-desktop) {
+            width: 15vw!important;
+        }
+
+        @include respond(tab-lan) {
+            width: 40vw!important;
+        }
+
         @include respond(tab-por) {
             width: 60vw!important;
         }
@@ -188,7 +196,12 @@ export default {
     .logo {
         width: 50%;
 
-        @include respond(tab-por) {
+        @include respond(big-desktop) {
+            width: 45%;
+            margin-bottom: 1rem;
+        }
+
+        @include respond(tab-lan) {
             width: 40%;
         }
 

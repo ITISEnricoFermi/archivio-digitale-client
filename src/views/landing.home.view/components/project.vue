@@ -12,7 +12,8 @@
   </div>
   <div class="row project__details">
     <div class="col-1-of-1">
-      <img class="author-img" sizes="5rem" :srcset="'/pics/' + project.author._id + '/xs.jpeg 100w, /pics/' + project.author._id + '/sm.jpeg 300w, /pics/' + project.author._id + '/md.jpeg 500w, /pics/' + project.author._id + '/lg.jpeg 800w, /pics/' + project.author._id + '/xlg.jpeg 1200w'" :alt="project.author.firstname + ' ' + project.author.lastname">
+      <img class="author-img" sizes="5rem" :srcset="'/pics/' + project.author._id + '/xs.jpeg 100w, /pics/' + project.author._id + '/sm.jpeg 300w, /pics/' + project.author._id + '/md.jpeg 500w, /pics/' + project.author._id + '/lg.jpeg 800w, /pics/' + project.author._id + '/xlg.jpeg 1200w'"
+        :alt="project.author.firstname + ' ' + project.author.lastname">
       <div>
         <p class="author-name">{{ project.author.firstname }} {{ project.author.lastname }}</p>
         <p class="project-date">{{ date }}</p>
@@ -29,7 +30,12 @@ export default {
   computed: {
     date: function () {
       let timestamp = this.project._id.toString().substring(0, 8)
-      return new Date(parseInt(timestamp, 16) * 1000).toUTCString()
+      let date = new Date(parseInt(timestamp, 16) * 1000)
+      let getMonth = (date) => {
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        return months[date.getMonth()]
+      }
+      return ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ', ' + date.getDate() + ' ' + getMonth(date)
     }
   }
 }
@@ -73,7 +79,7 @@ export default {
             }
 
             div {
-                margin-left: 1rem;
+                margin-left: 1.5rem;
                 display: inline-block;
                 vertical-align: middle;
                 text-align: left;

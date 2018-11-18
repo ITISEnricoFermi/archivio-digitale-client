@@ -105,8 +105,7 @@ main {
     }
 
     .top {
-        background-color: $color-fourth;
-        // background-image: linear-gradient(45deg, #1A8D4C 1%, lighten(#1A8D4C, 10%) 64%, #66BA6B 97%);
+        background-image: linear-gradient(45deg, #1A8D4C 1%, lighten(#1A8D4C, 10%) 64%, #66BA6B 97%);
         max-height: 100vh;
         overflow: hidden;
 

@@ -3,11 +3,11 @@
   <div class="section header">
     <p class="title heading-secondary">{{document.name}}</p>
     <div class="actions">
-      <button class="button">
+      <button class="button" @click="edit">
         <span class="icon">
           <i class="fas fa-edit"></i>
         </span>
-        <span class="crop" @click="edit">Modifica</span>
+        <span class="crop">Modifica</span>
       </button>
       <button class="button" @click="view">
         <span class="icon">

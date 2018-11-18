@@ -70,6 +70,14 @@ export default {
         header.style.position = 'absolute'
         header.style.backgroundImage = ''
       }
+
+      const [heading] = document.querySelectorAll('.heading')
+      const [screen] = document.querySelectorAll('.screen')
+      heading.style.top = `calc(${scroll / 5}rem + 35vh)`
+      screen.style.top = `calc(${scroll / 7}rem + 60vh)`
+
+      // heading.style.right = `-${scroll / 5}rem`
+      // screen.style.left = `-${scroll / 7}rem`
     })
   },
   components: {
@@ -97,12 +105,10 @@ main {
     }
 
     .top {
-        // background-color: $color-fourth;
-        // background-image: url('/layout/bg.jpg');
-        // background-size: cover;
-        // background-repeat: no-repeat;
-        // background-position: center;
-        background-image: linear-gradient(45deg, #1A8D4C 1%, lighten(#1A8D4C, 10%) 64%, #66BA6B 97%);
+        background-color: $color-fourth;
+        // background-image: linear-gradient(45deg, #1A8D4C 1%, lighten(#1A8D4C, 10%) 64%, #66BA6B 97%);
+        max-height: 100vh;
+        overflow: hidden;
 
         .content {
             height: 100vh;
@@ -115,18 +121,20 @@ main {
               width: 100%;
               height: 20rem;
               position: absolute;
-              top: 20rem;
+              top: 35vh;
 
               .title {
                 color: $color-white;
                 font-weight: bold;
                 font-size: 5rem;
                 text-shadow: 0rem 0rem 1rem rgba($color-black, 0.2);
+
+                @include respond(big-desktop) {
+                  margin-top: -1rem;
+                }
+
               }
 
-              .search {
-
-              }
             }
 
             .screen {
@@ -152,6 +160,7 @@ main {
     .projects {
         padding-top: 40rem;
         padding: 0;
+        background-color: $color-white-2;
 
         @include respond(tab-por) {
             padding: 0;

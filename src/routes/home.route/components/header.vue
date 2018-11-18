@@ -10,10 +10,10 @@
   <div class="menu">
     <ul class="buttons">
       <li>
-        <router-link to="/login" tag="a">Login</router-link>
+        <router-link to="/login" tag="a" class="login">Login</router-link>
       </li>
       <li>
-        <router-link to="/signup" tag="a">Registrati</router-link>
+        <router-link to="/signup" tag="a" class="signup">Registrati</router-link>
       </li>
     </ul>
   </div>
@@ -35,11 +35,12 @@ export default {
     height: 10rem;
     padding: 4vh 6vh;
     // background-image: linear-gradient($color-fourth, $color-primary);
-    background-color: $color-primary;
+    // background-color: $color-primary;
     display: table;
+    transition: all 0.2s ease-in-out;
 
     @include respond(phone) {
-      padding: 3vh;
+        padding: 3vh;
     }
 
     .logo {
@@ -100,72 +101,91 @@ export default {
             li {
                 display: inline-block;
 
+                &:not(:last-child) {
+                  margin-right: 1.5rem;
+                }
+
                 a,
                 a:link,
                 a:visited {
-                    text-transform: uppercase;
-                    padding: 0.7rem;
+                    // text-transform: uppercase;
+                    // padding: 0.7rem;
                     display: block;
                     text-decoration: none;
-                    font-size: 1.2rem;
+                    font-size: 1.4rem;
                 }
 
-                &:nth-child(1) {
-                    a {
-                        color: $color-white;
+                .login {
+
+                    padding: 1.2rem 1.5rem;
+                    font-weight: bold;
+                    color: $color-white;
+                    border-radius: 0.3rem;
+                    border: 1px solid rgba($color-white, 0.2);
+
+                    &:hover {
+                        background-color: rgba($color-white, 0.2);
                     }
                 }
 
-                &:nth-child(2) {
-                    a {
+                .signup {
 
-                        &,
-                        &:link,
-                        &:visited {
+                    padding: 1.2rem 1.5rem;
+                    font-weight: bold;
+                    color: $color-white;
+                    border-radius: 0.3rem;
+                    background-color: $color-primary;
 
-                            color: $color-fourth;
-                            border-radius: 2rem;
-                            background-color: $color-white;
-                            transition: all 0.2s;
-                            position: relative;
-                            border: none;
-                            cursor: pointer;
-                        }
-
-                        &:hover {
-                            transform: translateY(-0.2rem);
-                            box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
-
-                            &::after {
-                                transform: scaleX(1.4) scaleY(1.6);
-                                opacity: 0;
-                            }
-
-                        }
-
-                        &:active,
-                        &:focus {
-                            outline: none;
-                            transform: translateY(-0.1rem);
-                            box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
-                        }
-
-                        &::after {
-                            content: "";
-                            display: inline-block;
-                            height: 100%;
-                            width: 100%;
-                            border-radius: 10rem;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            z-index: -1;
-                            transition: all 0.4s;
-                            background-color: $color-white;
-                            color: $color-black;
-                        }
-
+                    &:hover {
+                        background-color: lighten(#1A8D4C, 2%);
                     }
+
+                    // &,
+                    // &:link,
+                    // &:visited {
+                    //
+                    //     color: $color-fourth;
+                    //     border-radius: 2rem;
+                    //     background-color: $color-white;
+                    //     transition: all 0.2s;
+                    //     position: relative;
+                    //     border: none;
+                    //     cursor: pointer;
+                    // }
+                    //
+                    // &:hover {
+                    //     transform: translateY(-0.2rem);
+                    //     box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+                    //
+                    //     &::after {
+                    //         transform: scaleX(1.4) scaleY(1.6);
+                    //         opacity: 0;
+                    //     }
+                    //
+                    // }
+                    //
+                    // &:active,
+                    // &:focus {
+                    //     outline: none;
+                    //     transform: translateY(-0.1rem);
+                    //     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+                    // }
+                    //
+                    // &::after {
+                    //     content: "";
+                    //     display: inline-block;
+                    //     height: 100%;
+                    //     width: 100%;
+                    //     border-radius: 10rem;
+                    //     position: absolute;
+                    //     top: 0;
+                    //     left: 0;
+                    //     z-index: -1;
+                    //     transition: all 0.4s;
+                    //     background-color: $color-white;
+                    //     color: $color-black;
+                    // }
+
                 }
 
             }

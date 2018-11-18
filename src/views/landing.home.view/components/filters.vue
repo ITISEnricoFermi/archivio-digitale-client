@@ -59,10 +59,14 @@ export default {
         padding: 0.7rem 1.2rem;
         border-radius: 1.5rem;
         margin: 0 0.7rem;
-        transition: all 0.2 ease-in-out;
+        transition: all 0.2s ease-in-out;
         color: $color-grey-2;
         font-size: $font-default-3;
         cursor: pointer;
+
+        &:active {
+            transform: scale(1.02);
+        }
 
         .tag {
 

@@ -1,8 +1,13 @@
 <template>
 <main>
+  <app-header></app-header>
   <section class="sections top">
     <div class="content">
-      <app-search></app-search>
+      <div class="heading">
+        <p class="title">Archivio Digitale</p>
+        <app-search></app-search>
+      </div>
+      <app-screen url="/layout/screen.png"></app-screen>
     </div>
   </section>
   <section class="sections projects">
@@ -19,7 +24,7 @@
       </div>
       <div class="no-projects" mode="out-in" v-else>
         <div class="module module--padded project">
-            <p>Nessun documento presente nella categoria selezionata.</p>
+          <p>Nessun documento presente nella categoria selezionata.</p>
         </div>
       </div>
     </div>
@@ -31,6 +36,9 @@
 import Search from './components/search'
 import Project from './components/project'
 import Filters from './components/filters'
+import Header from '@/routes/home.route/components/header'
+
+import Screen from './components/pc.screen/pc'
 
 export default {
   name: 'home',
@@ -39,10 +47,37 @@ export default {
       projects: []
     }
   },
+  created () {
+    window.addEventListener('scroll', () => {
+      const scale = 1
+      const height = window.innerHeight
+      const scroll = window.window.scrollY
+      const header = document.querySelectorAll('.header')[0]
+      const menu = 100 // 100px height
+
+      if (scroll >= menu && scroll <= height) {
+        header.style.top = '-10rem'
+
+        // const percentage = scroll * scale / height
+        //
+        // header.style.opacity = percentage < scale ? percentage : scale
+      } else if (scroll > height) {
+        header.style.position = 'fixed'
+        header.style.top = '0rem'
+        header.style.backgroundImage = 'linear-gradient(45deg, #1A8D4C 1%, #22B863 64%, #66BA6B 97%)'
+      } else if (scroll < menu) {
+        header.style.top = '0rem'
+        header.style.position = 'absolute'
+        header.style.backgroundImage = ''
+      }
+    })
+  },
   components: {
     appSearch: Search,
     appProject: Project,
-    appFilters: Filters
+    appFilters: Filters,
+    appScreen: Screen,
+    appHeader: Header
   }
 }
 </script>
@@ -50,6 +85,11 @@ export default {
 <style scoped lang="scss">
 
 main {
+
+    & > .header {
+      position: absolute;
+      top: 0;
+    }
 
     .sections {
         position: relative;
@@ -62,16 +102,60 @@ main {
         // background-size: cover;
         // background-repeat: no-repeat;
         // background-position: center;
+        background-image: linear-gradient(45deg, #1A8D4C 1%, lighten(#1A8D4C, 10%) 64%, #66BA6B 97%);
 
         .content {
-            height: 20vh;
+            height: 100vh;
             width: 100%;
             position: relative;
+            overflow: hidden;
+
+            .heading {
+              text-align: center;
+              width: 100%;
+              height: 20rem;
+              position: absolute;
+              top: 20rem;
+
+              .title {
+                color: $color-white;
+                font-weight: bold;
+                font-size: 5rem;
+                text-shadow: 0rem 0rem 1rem rgba($color-black, 0.2);
+              }
+
+              .search {
+
+              }
+            }
+
+            .screen {
+                position: absolute;
+                margin-left: 15%;
+                top: 60vh;
+                width: 70%;
+                box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
+
+                @include respond(tab-por) {
+                    width: 80%;
+                    margin-left: 10%;
+                }
+
+                @include respond(phone) {
+                  display: none;
+                }
+            }
         }
 
     }
 
     .projects {
+        padding-top: 40rem;
+        padding: 0;
+
+        @include respond(tab-por) {
+            padding: 0;
+        }
 
         .content {
             margin: 0 auto;
@@ -100,6 +184,10 @@ main {
                     color: $color-grey-2;
                     font-size: 2rem;
                     display: inline-block;
+
+                    @include respond(tab-por) {
+                        display: none;
+                    }
 
                 }
 

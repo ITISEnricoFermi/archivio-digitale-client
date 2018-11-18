@@ -6,9 +6,15 @@
       </div>
       <div class="footer-menu">
         <ul>
-          <li><a href="#">ITIS Enrico Fermi</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Registrati</a></li>
+          <li>
+            <a href="http://www.itisfermi.it" target="_blank" rel="noopener noreferrer">ITIS Enrico Fermi</a>
+          </li>
+          <li>
+            <router-link to="/login" tag="a">Login</router-link>
+          </li>
+          <li>
+            <router-link to="/signup" tag="a">Registrati</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -25,7 +31,6 @@ export default {
 .footer {
     background-color: $color-white-4;
     width: 100%;
-    position: absolute;
 
     @include respond(tab-por) {
       position: relative;

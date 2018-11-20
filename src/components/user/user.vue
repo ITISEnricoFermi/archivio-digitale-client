@@ -44,17 +44,18 @@ export default {
   props: ['user'],
   data () {
     return {
-      localUser: this.user,
       menu: false
     }
   },
-  created () {
-    this.localUser = this.user
+  computed: {
+    localUser () {
+      return this.user
+    }
   },
   sockets: {
     userUpdated (user) {
       if (user._id === this.user._id) {
-        this.localUser = user
+        this.localUser = user // TODO: verificare il funzionamento
       }
     }
   },

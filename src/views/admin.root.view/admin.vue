@@ -6,12 +6,12 @@
   <transition name="fade">
     <app-alert v-if="userAlert.messages" :alert="userAlert" @alert="userAlert = $event"></app-alert>
   </transition>
-  <app-search-users @searchUsers="users  = $event" @alert="searchUsersAlert = $event"></app-search-users>
+  <app-search-users @searchUsers="users = $event" @alert="searchUsersAlert = $event"></app-search-users>
   <transition name="fade">
     <app-alert v-if="!users" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
   </transition>
   <transition-group name="fade" mode="out-in">
-    <app-user v-if="users" v-for="(user, index) in users" :user="user" :key="index"></app-user>
+    <app-user v-for="(user, index) in users" :user="user" :key="index"></app-user>
   </transition-group>
 </main>
 </template>

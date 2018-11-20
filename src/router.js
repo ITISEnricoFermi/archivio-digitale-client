@@ -57,7 +57,7 @@ export default new Router({
   routes: [{
     path: '/root',
     alias: '/',
-    name: 'Root',
+    name: loadView('root.route/root'),
     component: Root,
     beforeEnter: auth,
     children: [{

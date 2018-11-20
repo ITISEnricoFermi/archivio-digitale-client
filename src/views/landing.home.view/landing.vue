@@ -71,10 +71,14 @@ export default {
         header.style.backgroundImage = ''
       }
 
+      // const percentage = scroll * 100 / height
+
       const [heading] = document.querySelectorAll('.heading')
       const [screen] = document.querySelectorAll('.screen')
+      // const [top] = document.querySelectorAll('.top')
       heading.style.top = `calc(${scroll / 5}rem + 35vh)`
       screen.style.top = `calc(${scroll / 7}rem + 60vh)`
+      // top.style.clipPath = `circle(${-percentage + 100}%)`
 
       // heading.style.right = `-${scroll / 5}rem`
       // screen.style.left = `-${scroll / 7}rem`
@@ -91,12 +95,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 main {
 
     & > .header {
-      position: absolute;
-      top: 0;
+        position: absolute;
+        top: 0;
     }
 
     .sections {
@@ -116,23 +119,23 @@ main {
             overflow: hidden;
 
             .heading {
-              text-align: center;
-              width: 100%;
-              height: 20rem;
-              position: absolute;
-              top: 35vh;
+                text-align: center;
+                width: 100%;
+                height: 20rem;
+                position: absolute;
+                top: 35vh;
 
-              .title {
-                color: $color-white;
-                font-weight: bold;
-                font-size: 5rem;
-                text-shadow: 0rem 0rem 1rem rgba($color-black, 0.2);
+                .title {
+                    color: $color-white;
+                    font-weight: bold;
+                    font-size: 5rem;
+                    text-shadow: 0 0 1rem rgba($color-black, 0.2);
 
-                @include respond(big-desktop) {
-                  margin-top: -1rem;
+                    @include respond(big-desktop) {
+                        margin-top: -1rem;
+                    }
+
                 }
-
-              }
 
             }
 
@@ -149,7 +152,7 @@ main {
                 }
 
                 @include respond(phone) {
-                  display: none;
+                    display: none;
                 }
             }
         }
@@ -157,7 +160,6 @@ main {
     }
 
     .projects {
-        padding-top: 40rem;
         padding: 0;
         background-color: $color-white-2;
 

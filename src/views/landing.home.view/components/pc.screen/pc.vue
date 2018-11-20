@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="content">
-      <img :src="url" alt="Application" class="img" v-if="url">
+      <img v-lazy="url" alt="Application" class="img" v-if="url">
     </div>
   </div>
 </template>

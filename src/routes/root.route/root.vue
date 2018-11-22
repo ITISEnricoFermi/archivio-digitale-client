@@ -250,18 +250,16 @@ export default {
 }
 
 #nprogress {
+  position: fixed;
+  top: 0;
+  z-index: 1000000;
+  width: 100vw;
+  outline: none;
 
   .bar {
     height: 0.4rem;
     background-image: linear-gradient($color-fourth, $color-primary);
-    position: fixed;
-    top: 0;
-    right: 0!important;
-    z-index: 1000000;
-
-    @include respond(tab-por) {
-        width: 100%;
-    }
+    outline: none;
   }
 
 }

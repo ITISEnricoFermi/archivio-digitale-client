@@ -1,25 +1,26 @@
 <template>
-<div class="module module--padded document">
+<div class="module module--padded document" @click="more">
   <div class="header">
     <p class="title heading-tertiary">{{ document.name }}</p>
     <p class="description heading-fourth"></p>
     <p class="date">{{ this.date }}</p>
     <div class="authors">
       <div class="author">
-        <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'" :alt="document.author.firstname + ' ' + document.author.lastname">
+        <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
+          :alt="document.author.firstname + ' ' + document.author.lastname">
       </div>
-      </div>
-              <div class="menu-container" @mouseleave="closeMenu">
-          <!-- <span class="u-noselect" @click="menu = !menu"> -->
-            <span class="u-noselect" @click="more">
-            <i class="fas fa-angle-right"></i>
-          </span>
-          <transition name="fade">
-            <app-menu v-if="menu" :own="document.own" @edit="edit" @download="download" @view="view"></app-menu>
-          </transition>
-        </div>
     </div>
-    <!-- <div class="row document-header">
+    <!-- <div class="menu-container" @mouseleave="closeMenu">
+      <span class="u-noselect" @click="menu = !menu">
+      <span class="u-noselect" @click="more">
+        <i class="fas fa-angle-right"></i>
+      </span>
+      <transition name="fade">
+        <app-menu v-if="menu" :own="document.own" @edit="edit" @download="download" @view="view"></app-menu>
+      </transition>
+    </div> -->
+  </div>
+  <!-- <div class="row document-header">
 
     <div class="col-1-of-1">
       <div class="document-header__img">
@@ -35,7 +36,7 @@
           </p>
         </div> -->
 
-      <!-- </div>
+  <!-- </div>
     </div>
     <div class="row document-info">
       <div class="col-1-of-1">
@@ -54,7 +55,7 @@
         </ul>
       </div>
     </div> -->
-  </div>
+</div>
 </template>
 
 <script>
@@ -67,13 +68,13 @@ import Menu from './menu'
 export default {
   name: 'document',
   props: ['document'],
-  data () {
+  data() {
     return {
       menu: false
     }
   },
   computed: {
-    date: function () {
+    date: function() {
       let timestamp = this.document._id.toString().substring(0, 8)
       let date = new Date(parseInt(timestamp, 16) * 1000)
       let getMonth = (date) => {
@@ -84,26 +85,26 @@ export default {
     }
   },
   methods: {
-    more () {
+    more() {
       this.$emit('click', this.document)
     },
-    edit () {
+    edit() {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
-    download () {
+    download() {
       let a = document.createElement('A')
       a.href = `/public/documents/${this.document.directory}`
       a.download = this.document.name
       a.click()
     },
-    view () {
+    view() {
       let type = this.document.mimetype.split('/')[0]
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
       window.open(`/public/documents/${this.document.directory}`, '_blank')
     },
-    closeMenu () {
+    closeMenu() {
       if (this.menu) {
         this.menu = false
       }
@@ -120,10 +121,12 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0!important;
+    margin: 0!important !important;
     border-bottom: 1px solid $color-white-5;
+    cursor: pointer;
 
-    &:hover, &--selected {
+    &--selected,
+    &:hover {
         background-color: #f3f5f2;
     }
 
@@ -158,24 +161,24 @@ export default {
             }
         }
     }
-        .menu-container {
-           position: absolute;
-            top: 0;
-            right: 0;
+    .menu-container {
+        position: absolute;
+        top: 0;
+        right: 0;
 
-            cursor: pointer;
-            z-index: 1000;
+        cursor: pointer;
+        z-index: 1000;
 
-            span {
-                display: block;
-                padding: 0.5rem 1rem;
-                transition: all 0.2s ease-in-out;
+        span {
+            display: block;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease-in-out;
 
-                // &:hover {
-                //     transform: rotate(180deg);
-                // }
+            // &:hover {
+            //     transform: rotate(180deg);
+            // }
 
-            }
+        }
 
         span:not(:nth-child(2)) {
             font-weight: 500;

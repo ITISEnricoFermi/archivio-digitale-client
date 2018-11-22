@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
+import NProgress from 'vue-nprogress'
 import './registerServiceWorker'
 
 // CUSTOM
@@ -11,6 +12,8 @@ import VueSocketIO from 'vue-socket.io'
 import axios from 'axios'
 
 Vue.config.productionTip = false
+
+// NProgress.configure({ showSpinner: false })
 
 export const SocketInstance = socketio('/', { secure: true, rejectUnauthorized: false, transports: ['websocket', 'flashsocket', 'polling'] })
 
@@ -68,13 +71,34 @@ if (env !== 'production') {
   path = host.remote
 }
 
-export const v1 = axios.create({
+const v1 = axios.create({
   baseURL: `${path}/api/v1`,
   withCredentials: true,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem('token')
   }
 })
+
+Vue.use(NProgress)
+
+const nprogress = new NProgress({ showSpinner: false, easing: 'ease', speed: 500 })
+
+// before a request is made start the nprogress
+v1.interceptors.request.use(config => {
+  nprogress.start()
+  return config
+})
+
+// before a response is returned stop nprogress
+v1.interceptors.response.use(response => {
+  nprogress.done()
+  return response
+})
+
+export {
+  v1,
+  nprogress
+}
 
 export const service = axios.create({
   baseURL: `${path}`,
@@ -90,5 +114,6 @@ Vue.use(VueLazyload)
 new Vue({
   router,
   store,
+  nprogress,
   render: h => h(App)
 }).$mount('#app')

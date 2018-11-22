@@ -94,24 +94,22 @@ export default {
     }
   },
   computed: {
-    computedAccesses() {
+    computedAccesses () {
       return {
         accesses: this.user.accesses.map(el => el._id)
       }
     }
   },
   methods: {
-    async signup() {
+    async signup () {
       if (!this.user.firstname && !this.user.lastname && !this.user.email && !this.user.password && !this.user.accesses) {
         return false
       }
 
       try {
         await service.put('/signup/', {
-          user: {
-            ...this.user,
-            ...this.computedAccesses
-          }
+          ...this.user,
+          ...this.computedAccesses
         })
         this.$socket.emit('newUser')
         this.signedUp = true

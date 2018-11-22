@@ -81,7 +81,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
 
-    .module:last-child {
+    .module {
       margin-bottom: 0!important;
     }
 

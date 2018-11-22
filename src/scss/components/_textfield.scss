@@ -15,6 +15,10 @@
     border-color: #00d1b2;
   }
 
+  &:invalid {
+    border-color: $color-button-red;
+  }
+
   & + .v-spinner {
     position: absolute;
     right: 1rem;

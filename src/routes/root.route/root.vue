@@ -1,5 +1,6 @@
 <template>
 <div id="app" class="main__root">
+  <nprogress-container></nprogress-container>
   <app-menu-header @changeMenu="menu = !menu"></app-menu-header>
   <keep-alive>
     <app-notifications></app-notifications>
@@ -32,6 +33,8 @@ import {
   eventBus,
   v1
 } from '@/main'
+
+import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 
 // VUE
 import Menu from '@/components/menu/menu.vue'
@@ -206,7 +209,8 @@ export default {
     appEditDocument: EditDocument,
     appEditCollection: EditCollection,
     appEditUser: EditUser,
-    appVideo: Video
+    appVideo: Video,
+    NprogressContainer
   }
 }
 </script>
@@ -243,5 +247,22 @@ export default {
   @include respond(tab-por) {
     border-radius: 0!important;
   }
+}
+
+#nprogress {
+
+  .bar {
+    height: 0.4rem;
+    background-image: linear-gradient($color-fourth, $color-primary);
+    position: fixed;
+    top: 0;
+    right: 0!important;
+    z-index: 1000000;
+
+    @include respond(tab-por) {
+        width: 100%;
+    }
+  }
+
 }
 </style>

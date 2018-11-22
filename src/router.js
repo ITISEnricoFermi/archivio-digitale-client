@@ -1,14 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import axios from 'axios'
 
 import {
   v1
+  // nprogress
 } from '@/main'
-
-// Video
-// import VueVideoPlayer from 'vue-video-player'
-// import 'video.js/dist/video-js.css'
 
 // Routes
 import Root from '@/routes/root.route/root'
@@ -28,6 +24,10 @@ import SearchHomeView from '@/views/search.home.view/search'
 
 // Errors
 import NotFoundComponent from '@/routes/404.error.route/404'
+
+// Video
+// import VueVideoPlayer from 'vue-video-player'
+// import 'video.js/dist/video-js.css'
 
 // axios.defaults.baseURL = 'https://archivio-fermi.herokuapp.com/'
 // axios.defaults.withCredentials = true
@@ -51,7 +51,7 @@ const auth = async (to, from, next) => {
   }
 }
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [{
@@ -119,3 +119,19 @@ export default new Router({
     component: NotFoundComponent
   }]
 })
+//
+// router.beforeResolve((to, from, next) => {
+//   // If this isn't an initial page load.
+//   if (to.name) {
+//     // Start the route progress bar.
+//     nprogress.start()
+//   }
+//   next()
+// })
+//
+// router.afterEach((to, from) => {
+//   // Complete the animation of the route progress bar.
+//   nprogress.done()
+// })
+
+export default router

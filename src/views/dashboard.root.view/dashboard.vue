@@ -2,8 +2,8 @@
 <main class="panel">
   <div class="content">
     <!-- <app-profile :user="user"></app-profile> -->
-    <app-header @loadmore="page = $event"></app-header>
-    <app-documents @document="document = $event" :page="page"></app-documents>
+    <app-header @action="action = $event"></app-header>
+    <app-documents @document="document = $event" :action="action"></app-documents>
     <app-view :document="document"></app-view>
   </div>
 </main>
@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       document: undefined,
-      page: 1
+      action: 'refresh'
     }
   },
   components: {

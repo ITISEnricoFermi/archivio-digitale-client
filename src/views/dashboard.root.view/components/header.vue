@@ -1,37 +1,36 @@
 <template>
   <div class="header">
     <p class="heading heading-primary">Dashboard</p>
-    <p class="more u-noselect" @click="loadmore">
-      <i class="far fa-caret-square-down"></i>
-    </p>
+    <div class="options">
+      <p class="option refresh u-noselect" @click="refresh">
+        <i class="fas fa-sync-alt"></i>
+      </p>
+      <p class="option more u-noselect" @click="loadmore">
+        <i class="far fa-caret-square-down"></i>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      page: 2
-    }
-  },
   methods: {
     loadmore () {
-      this.$emit('loadmore', this.page)
-      this.page++
+      this.$emit('action', 'loadmore')
+    },
+    refresh () {
+      this.$emit('action', 'refresh')
     }
   },
   sockets: {
-    async newDocument () {
-      this.page = 1
-      this.emit('loadmore', this.page)
+    newDocument () {
+      this.$emit('action', 'loadmore')
     },
-    async documentDeleted () {
-      this.page = 1
-      this.emit('loadmore', this.page)
+    documentDeleted () {
+      this.$emit('action', 'loadmore')
     },
-    async documentUpdated () {
-      this.page = 1
-      this.emit('loadmore', this.page)
+    documentUpdated () {
+      this.$emit('action', 'loadmore')
     }
   }
 }
@@ -50,16 +49,40 @@ export default {
       font-weight: bold;
     }
 
-    .more {
-      font-size: 2rem;
-      cursor: pointer;
-      text-shadow: 0 1px 2px rgba(10,10,10, 0.1);
-      transition: all 0.2s ease-in-out;
-      padding: 0.5rem 1rem;
-      //
-      // &:hover {
-      //   background-color: $color-white-2;
-      // }
+    .options {
+      .option {
+        display: inline-block;
+        text-align: right;
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+
+      .more {
+        font-size: 2rem;
+        cursor: pointer;
+        text-shadow: 0 1px 2px rgba(10,10,10, 0.1);
+        transition: all 0.2s ease-in-out;
+        padding: 0.5rem 1rem;
+        //
+        // &:hover {
+        //   background-color: $color-white-2;
+        // }
+      }
+
+      .refresh {
+        cursor: pointer;
+        text-shadow: 0 1px 2px rgba(10,10,10, 0.1);
+        transition: all 0.2s ease-in-out;
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+
+        &:active {
+          transform: rotate(360deg);
+        }
+      }
     }
+
   }
 </style>

@@ -13,20 +13,22 @@
 <script>
 import {
   eventBus,
-  v1
+  v1,
+  nprogress
 } from '@/main'
 
 import Document from './document/document'
 
 export default {
   name: 'documents',
-  props: ['page'],
+  props: ['action'],
   data () {
     return {
       documents: [],
       response: false,
       responseMessage: '',
-      newDocuments: false
+      newDocuments: false,
+      page: 1
     }
   },
   async created () {
@@ -40,15 +42,28 @@ export default {
     // })
   },
   watch: {
-    async page (value) {
-      const news = await this.getDocuments(value)
-      this.documents = [...this.documents, ...news]
+    async action (value) {
+      if (value === 'refresh') {
+        this.page = 1
+        const news = await this.getDocuments(this.page)
+        return this.documents = news
+      } else if (value === 'loadmore') {
+        this.page++
+        const news = await this.getDocuments(this.page)
 
-      const documents = document.getElementsByClassName('documents')[0]
-      window.scrollTo({
-        top: documents.offsetHeight,
-        behavior: 'smooth'
-      })
+        if (news) {
+          this.documents = [...this.documents, ...news]
+
+          const documents = document.getElementsByClassName('documents')[0]
+
+          return window.scrollTo({
+            top: documents.offsetHeight,
+            behavior: 'smooth'
+          })
+        }
+
+        nprogress.done()
+      }
     }
   },
   methods: {

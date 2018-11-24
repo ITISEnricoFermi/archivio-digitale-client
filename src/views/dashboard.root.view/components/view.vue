@@ -9,12 +9,18 @@
         </span>
         <span class="crop">Modifica</span>
       </button>
-      <button class="button" @click="view">
+      <router-link :to="'/files/' + document._id" class="button" target="_blank">
         <span class="icon">
           <i class="fas fa-eye"></i>
         </span>
         <span class="crop">Visualizza</span>
-      </button>
+      </router-link>
+      <!-- <button class="button" @click="view">
+        <span class="icon">
+          <i class="fas fa-eye"></i>
+        </span>
+        <span class="crop">Visualizza</span>
+      </button> -->
       <button class="button" @click="download">
         <span class="icon">
           <i class="fas fa-download"></i>
@@ -54,7 +60,7 @@
       </p>
       <ul class="collection__documents">
         <li v-for="(collecion_document, document_index) in collection.documents" :key="document_index">
-          <a :href="'/public/documents/' + collecion_document.directory" target="_blank">
+          <a :href="'/files/' + collecion_document._id" target="_blank">
             <span class="result">
               {{document_index}}. {{collecion_document.name}}
             </span>

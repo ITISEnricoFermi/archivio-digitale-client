@@ -27,6 +27,7 @@ export default {
 
 .header {
     position: fixed;
+    background-image: linear-gradient(45deg, #1A8D4C 1%, #22B863 64%, #66BA6B 97%);
 }
 
 .main {

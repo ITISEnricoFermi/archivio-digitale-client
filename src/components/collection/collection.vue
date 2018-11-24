@@ -29,7 +29,7 @@
       <p v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
       <ul v-else>
         <li v-for="(document, index) in collection.documents" :key="index">
-          <a :href="'/public/documents/' + document.directory" target="_blank">
+          <a :href="'/files/' + document._id" target="_blank">
             <span class="result">
                 {{index}}. {{document.name}}
             </span>

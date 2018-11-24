@@ -115,6 +115,10 @@ const router = new Router({
     name: 'SignUp',
     component: SignUp
   }, {
+    path: '/files/:id',
+    name: 'Files',
+    component: loadView('files.route/files')
+  }, {
     path: '*',
     component: NotFoundComponent
   }]

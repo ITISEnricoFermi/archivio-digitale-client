@@ -1,5 +1,6 @@
 <template>
   <main class="main">
+    <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
     <app-header :document="document"></app-header>
     <iframe :src="'/public/documents/' + document.directory" class="document" v-if="document"></iframe>
   </main>

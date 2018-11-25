@@ -127,6 +127,8 @@ main {
 
                 .title {
                     color: $color-white;
+                    font-weight: 400;
+                    font-family: 'Bitter';
                     font-weight: bold;
                     font-size: 5rem;
                     text-shadow: 0 0 1rem rgba($color-black, 0.2);
@@ -135,8 +137,26 @@ main {
                         margin-top: -1rem;
                     }
 
+                    @include respond(phone) {
+                      font-size: 3rem;
+                    }
+
                 }
 
+            }
+
+            .search {
+              position: absolute;
+              @include absCenter;
+
+              @include respond(tab-por) {
+                top: 50%!important;
+                width: 70%;
+              }
+
+              @include respond(phone) {
+                  top: 38%!important;
+              }
             }
 
             .screen {
@@ -152,7 +172,7 @@ main {
                 }
 
                 @include respond(phone) {
-                    display: none;
+                    width: 233%;
                 }
             }
         }

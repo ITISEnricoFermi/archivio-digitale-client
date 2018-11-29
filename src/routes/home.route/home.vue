@@ -30,6 +30,8 @@ body {
 
 .main__home {
     width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
     min-height: 100vh;
     height: auto;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);

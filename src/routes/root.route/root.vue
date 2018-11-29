@@ -225,6 +225,8 @@ export default {
     height: 100vh;
     background-color: $color-white-2;
     width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
     @include respond(tab-lan) {
         display: block;
         margin-top: 6rem;

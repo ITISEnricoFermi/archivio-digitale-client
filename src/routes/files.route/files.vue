@@ -47,6 +47,8 @@ export default {
 .main {
   display: grid;
   width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: 10rem auto;

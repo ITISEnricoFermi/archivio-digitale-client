@@ -2,7 +2,7 @@
 <div class="module module--padded">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" required v-model="document.name" @keyup.enter="upload">
+      <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" v-model="document.name" @keyup.enter="upload">
     </div>
   </div>
   <div class="row">

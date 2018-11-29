@@ -162,13 +162,13 @@ export default {
 
         .tags {
             text-align: left;
-            margin-top: 1.75rem;
+            margin-top: 1.5rem;
             // display: flex;
             // flex-wrap: wrap;
             // justify-content: space-between;
 
             li {
-                margin-top: 0.25rem;
+                margin-top: 0.5rem;
                 padding: 0.5rem 1rem;
                 border-radius: 0.3rem;
                 text-overflow: ellipsis;

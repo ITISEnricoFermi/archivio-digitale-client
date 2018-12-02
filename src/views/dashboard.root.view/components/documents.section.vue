@@ -1,10 +1,10 @@
 <template>
 <div class="documents">
-  <app-document :document="document" v-for="(document, index) in documents" :key="index" v-if="documents.length" @click="select(document)"></app-document>
-  <div class="module module--padded" v-else>
+  <app-document :document="document" v-for="(document, index) in documents" :key="index" @click="select(document)"></app-document>
+  <!-- <div class="module module--padded" v-if="!documents.length">
     <p>Non sono presenti documenti nell'archivio.</p>
-  </div>
-  <div class="module module--padded documents__error" v-if="response">
+  </div> -->
+  <div class="module module--padded documents__error" v-if="response || !documents.length">
     <p>{{ responseMessage }}</p>
   </div>
 </div>
@@ -34,7 +34,7 @@ export default {
   async created () {
     this.documents = await this.getDocuments(this.page)
 
-    if (this.documents.length) {
+    if (this.documents) {
       this.$emit('document', this.documents[0])
     }
     // eventBus.$on('documentDeleted', async () => {
@@ -46,7 +46,7 @@ export default {
       if (value === 'refresh') {
         this.page = 1
         const news = await this.getDocuments(this.page)
-        return this.documents = news
+        this.documents = news
       } else if (value === 'loadmore') {
         this.page++
         const news = await this.getDocuments(this.page)

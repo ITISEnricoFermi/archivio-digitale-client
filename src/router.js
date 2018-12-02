@@ -29,9 +29,6 @@ import NotFoundComponent from '@/routes/404.error.route/404'
 // import VueVideoPlayer from 'vue-video-player'
 // import 'video.js/dist/video-js.css'
 
-// axios.defaults.baseURL = 'https://archivio-fermi.herokuapp.com/'
-// axios.defaults.withCredentials = true
-
 Vue.use(Router)
 
 const loadView = view => () => import(/* webpackChunkName: "view-[request]" */ `@/routes/${view}.vue`)

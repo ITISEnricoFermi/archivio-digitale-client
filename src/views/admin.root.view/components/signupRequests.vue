@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="row" v-if="requests.length === 0">
+  <div class="row" v-if="!requests.length">
     <div class="col-1-of-1">
       <p>Nessuna richiesta di registrazione.</p>
     </div>
@@ -22,99 +22,106 @@
 </template>
 
 <script>
-
 import {
-  v1
+  v1,
+  eventBus
 } from '@/main'
 
 export default {
   name: 'signupRequests',
   data: () => {
     return {
-      requests: [],
-      response: false,
-      responseMessage: ''
+      requests: []
     }
   },
-  created () {
-    this.getRequests()
+  async created () {
+    this.requests = await this.getRequests()
   },
   sockets: {
-    newUser () {
-      this.getRequests()
+    async newUser () {
+      this.requests = await this.getRequests()
     }
   },
   methods: {
-    getRequests () {
-      v1.get('/admin/requests/')
-        .then((response) => {
-          this.requests = response.data
+    async getRequests () {
+      try {
+        const response = await v1.get('/admin/requests/')
+        return response.data
+      } catch (e) {
+        eventBus.notification({
+          title: 'Impossibile recuperare le richieste di iscrizione.',
+          temporary: true
         })
-        .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data
-        })
+      }
     },
-    acceptRequest (id) {
-      v1.post('admin/acceptRequestById', {
-        _id: id
-      })
-        .then((message) => {
-          this.getRequests()
+    async acceptRequest (id) {
+      try {
+        await v1.post('admin/acceptRequestById', {
+          _id: id
         })
-        .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data
+        this.requests = await this.getRequests()
+        eventBus.notification({
+          title: 'La richiesta di iscrizione è stata accettata.',
+          temporary: true
         })
+      } catch (e) {
+        eventBus.notification({
+          title: 'Impossibile accettare la richiesta di iscrizione.',
+          temporary: true
+        })
+      }
     },
-    refuseRequest (id) {
-      v1.post('admin/refuseRequestById', {
-        _id: id
-      })
-        .then((message) => {
-          this.getRequests()
+    async refuseRequest (id) {
+      try {
+        await v1.post('admin/refuseRequestById', {
+          _id: id
         })
-        .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data
+        this.requests = await this.getRequests()
+        eventBus.notification({
+          title: 'La richiesta di iscrizione è stata rifiutata.',
+          temporary: true
         })
+      } catch (e) {
+        eventBus.notification({
+          title: 'Impossibile rifiutare la richiesta di iscrizione.',
+          temporary: true
+        })
+      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
 .admin-request {
-  display: table;
-  width: 100%;
+    display: table;
+    width: 100%;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid $color-white-4;
-  }
-
-  &__name {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: left;
-    font-size: $font-default-1;
-  }
-
-  &__choice {
-    font-size: 2.5rem;
-    display: inline-block;
-    float: right;
-    margin: 10px;
-    cursor: pointer;
-
-    &--accept {
-      color: $color-button-green;
+    &:not(:last-child) {
+        border-bottom: 1px solid $color-white-4;
     }
 
-    &--refuse {
-      color: $color-button-red;
+    &__name {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: left;
+        font-size: $font-default-1;
     }
-  }
+
+    &__choice {
+        font-size: 2.5rem;
+        display: inline-block;
+        float: right;
+        margin: 10px;
+        cursor: pointer;
+
+        &--accept {
+            color: $color-button-green;
+        }
+
+        &--refuse {
+            color: $color-button-red;
+        }
+    }
 }
-
 </style>

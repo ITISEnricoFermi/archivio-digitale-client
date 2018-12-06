@@ -128,9 +128,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await v1.patch('/documents/' + id, {
-          document: this.documentToEdit
-        })
+        let response = await v1.patch('/documents/' + id, this.documentToEdit)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

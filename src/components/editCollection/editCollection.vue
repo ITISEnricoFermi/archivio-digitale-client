@@ -120,9 +120,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await v1.patch('/collections/' + id, {
-          collection: this.collectionToEdit
-        })
+        let response = await v1.patch('/collections/' + id, this.collectionToEdit)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

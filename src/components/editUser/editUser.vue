@@ -158,9 +158,7 @@ export default {
     },
     async edit () {
       try {
-        await v1.patch('/admin/users/' + this.entity._id, {
-          user: this.userToEdit
-        })
+        await v1.patch('/admin/users/' + this.entity._id, this.userToEdit)
         eventBus.notification({
           title: 'Utente modificato con successo.',
           temporary: true

@@ -36,7 +36,8 @@
         <span class="icon">
           <i class="fas fa-tag"></i>
         </span>
-        <span class="crop">{{document.subject.subject}}</span>
+        <span class="crop" v-if="document.subject.subject.length >= 30">{{document.subject._id | uppercase }}</span>
+        <span class="crop" v-else>{{document.subject.subject}}</span>
       </li>
       <li v-if="document.grade || document.section" class="u-noselect">
         <span class="icon">
@@ -92,6 +93,11 @@ export default {
     async document (value) {
       const response = await v1.get(`/documents/${value._id}/collections`)
       this.collections = response.data
+    }
+  },
+  filters: {
+    uppercase (value) {
+      return value.toUpperCase()
     }
   },
   methods: {

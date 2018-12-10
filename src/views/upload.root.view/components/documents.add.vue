@@ -117,12 +117,11 @@ export default {
         }
       }
 
-      let document = JSON.stringify(this.document)
-      let file = this.$refs.uploadFile.files[0]
-      Object.keys(document).forEach(key => {
-        console.log(key, ':', document[key])
-        formData.append(key, document[key])
+      Object.keys(this.document).forEach(key => {
+        formData.append(key, this.document[key])
       })
+
+      const file = this.$refs.uploadFile.files[0]
       formData.append('file', file)
 
       v1.put('/documents/', formData, config)

@@ -51,6 +51,11 @@ export default {
     overflow: hidden;
     display: none;
 
+    @include color-scheme(dark) {
+        background: $linear-gradient-primary--dark!important;
+        color: $color-white;
+    }
+
     @include respond(tab-lan) {
         display: block;
     }
@@ -76,6 +81,11 @@ export default {
         &--active,
         &:hover {
             background-color: $color-primary;
+
+            @include color-scheme(dark) {
+                background: rgba($color-white, 0.2);
+                color: $color-white;
+            }
         }
 
         span:first-child {

@@ -26,6 +26,11 @@ body {
   background-color: $color-white-2;
   height: 100%;
 
+  @include color-scheme(dark) {
+      background-color: #282828;
+      color: $color-white;
+  }
+
   @include respond(tab-por) {
     height: auto;
   }

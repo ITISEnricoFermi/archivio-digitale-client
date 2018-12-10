@@ -31,6 +31,20 @@
   -webkit-box-orient: vertical;
 }
 
+@mixin color-scheme($scheme) {
+  @if $scheme == dark {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  }
+
+  @if $scheme == light {
+    @media (prefers-color-scheme: light) {
+      @content;
+    }
+  }
+}
+
 // MEDIA QUERY MANAGER
 /*
  *  $breakpoint: {

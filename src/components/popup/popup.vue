@@ -62,6 +62,13 @@ export default {
             background-color: $color-white;
             border: 1px solid $color-white-3;
             padding: 3vh;
+            border-radius: 0.3rem;
+
+            @include color-scheme(dark) {
+                background-color: rgb(59, 57, 57);
+                color: $color-white;
+                border-color: lighten(rgb(59, 57, 57), 10%);
+            }
         }
 
     }

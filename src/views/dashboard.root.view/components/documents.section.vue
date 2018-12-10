@@ -98,6 +98,7 @@ export default {
 
     .module {
       margin-bottom: 0!important;
+      border-radius: 0!important;
     }
 
 }

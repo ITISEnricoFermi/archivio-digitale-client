@@ -1,0 +1,58 @@
+.list {
+  border-radius: 0.25rem;
+  background: $color-white-2;
+  border: 1px solid darken($color-white-5, 5%);
+  padding: 0;
+
+  @include color-scheme(dark) {
+    background: $linear-gradient-primary--dark!important;
+    border-color: rgba($color-white, 0.3);
+    color: $color-white;
+  }
+
+  &__element {
+    list-style: none;
+    font-size: $font-default-2;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    color: $color-tertiary;
+    display: block;
+    text-decoration: none;
+    padding: 0.9rem 0.8rem;
+
+    @include color-scheme(dark) {
+      color: $color-white;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid darken($color-white-5, 5%);
+      @include color-scheme(dark) {
+        border-color: rgba($color-white, 0.3);
+      }
+    }
+
+    &:hover {
+      background-color: $color-white-5;
+      @include color-scheme(dark) {
+        background-color: rgba($color-white, 0.2);
+      }
+    }
+
+    .crop {
+      max-width: calc(100% - 2rem);
+      display: inline-block;
+    }
+
+    .icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color-grey-1;
+      @include color-scheme(dark) {
+        color: $color-white-2;
+      }
+    }
+  }
+}

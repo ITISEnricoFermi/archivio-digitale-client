@@ -18,6 +18,9 @@ $color-white-6: #8C8C9C;
 $color-grey-1: #53585E;
 $color-grey-2: #677379;
 
+$linear-gradient-primary--light: linear-gradient($color-fourth, $color-primary);
+$linear-gradient-primary--dark: linear-gradient(#2F3D45,#14181C);
+
 // GRIDS
 $grid-width: 100%;
 $gutter-horizontal: 1rem;

@@ -227,6 +227,11 @@ export default {
     width: 100vw;
     max-width: 100vw;
     overflow-x: hidden;
+
+    @include color-scheme(dark) {
+        background: #282828!important;
+    }
+
     @include respond(tab-lan) {
         display: block;
         margin-top: 6rem;
@@ -237,6 +242,10 @@ export default {
         grid-area: main;
         font-size: $font-default-2;
         background-color: $color-white-2;
+
+        @include color-scheme(dark) {
+            background: #282828!important;
+        }
 
         @include respond(tab-por) {
             height: calc(100vh - 6rem);
@@ -260,8 +269,13 @@ export default {
 
   .bar {
     height: 0.4rem;
-    background-image: linear-gradient($color-fourth, $color-primary);
+    background-image: $linear-gradient-primary--light;
     outline: none;
+
+    @include color-scheme(dark) {
+        background: $linear-gradient-primary--dark!important;
+    }
+
   }
 
 }

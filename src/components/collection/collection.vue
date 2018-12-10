@@ -3,7 +3,8 @@
   <div class="row collection-header">
     <div class="col-1-of-1">
       <div class="collection-header__img">
-        <img sizes="5rem" :srcset="'/pics/' + collection.author._id + '/xs.jpeg 100w, /pics/' + collection.author._id + '/sm.jpeg 300w, /pics/' + collection.author._id + '/md.jpeg 500w, /pics/' + collection.author._id + '/lg.jpeg 800w, /pics/' + collection.author._id + '/xlg.jpeg 1200w'" :alt="collection.author.firstname + ' ' + collection.author.lastname">
+        <img sizes="5rem" :srcset="'/pics/' + collection.author._id + '/xs.jpeg 100w, /pics/' + collection.author._id + '/sm.jpeg 300w, /pics/' + collection.author._id + '/md.jpeg 500w, /pics/' + collection.author._id + '/lg.jpeg 800w, /pics/' + collection.author._id + '/xlg.jpeg 1200w'"
+          :alt="collection.author.firstname + ' ' + collection.author.lastname">
       </div>
       <div class="collection-header__info">
         <p class="collection-header__info--head heading-fourth">
@@ -24,22 +25,16 @@
       </div>
     </div>
   </div>
-  <div class="row collection-info">
-    <div class="col-1-of-1">
-      <p v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
-      <ul v-else>
-        <li v-for="(document, index) in collection.documents" :key="index">
-          <a :href="'/files/' + document._id" target="_blank">
-            <span class="result">
-                {{index}}. {{document.name}}
-            </span>
-            <span class="open">
-              <i class="fas fa-external-link-alt"></i>
-            </span>
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div class="list">
+    <p class="list__element" v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
+    <router-link class="list__element" v-for="(document, index) in collection.documents" :key="index" :to="'/files/' + document._id" tag="a" target="_blank">
+      <span class="crop">
+        {{index}}. {{document.name}}
+      </span>
+      <span class="icon">
+        <i class="fas fa-external-link-alt"></i>
+      </span>
+    </router-link>
   </div>
 </div>
 </template>
@@ -122,9 +117,9 @@ export default {
 
                 span {
 
-                  &:not(:nth-child(2)) {
-                      font-weight: 500;
-                  }
+                    &:not(:nth-child(2)) {
+                        font-weight: 500;
+                    }
 
                     &:nth-child(1),
                     &:nth-child(2) {
@@ -140,6 +135,10 @@ export default {
                 display: inline-block;
                 vertical-align: middle;
                 color: $color-grey-1;
+
+                @include color-scheme(dark) {
+                    color: $color-white-3;
+                }
             }
         }
 
@@ -161,56 +160,6 @@ export default {
             }
         }
 
-    }
-
-    &-info {
-        border-radius: 0.25rem;
-        background-color: $color-white-1;
-        border: 1px solid darken($color-white-5, 5%);
-
-        p {
-          padding: 0.9rem 0.8rem;
-        }
-
-        ul {
-            padding: 0;
-
-            li {
-                list-style: none;
-                font-size: $font-default-2;
-                cursor: pointer;
-                text-align: left;
-                position: relative;
-
-                &:not(:last-child) {
-                    border-bottom: 1px solid darken($color-white-5, 5%);
-                }
-
-                &:hover {
-                    background-color: $color-white-5;
-                }
-
-                a {
-                    text-align: none;
-                    color: $color-tertiary;
-                    display: block;
-                    padding: 0.9rem 0.8rem;
-
-                    .result {
-                        max-width: calc(100% - 2rem);
-                        display: inline-block;
-                    }
-
-                    .open {
-                        position: absolute;
-                        right: 1rem;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        color: $color-grey-1;
-                    }
-                }
-            }
-        }
     }
 }
 </style>

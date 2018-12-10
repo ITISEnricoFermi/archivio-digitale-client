@@ -48,10 +48,10 @@ export default {
   display: grid;
   width: 100vw;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 100vh;
   grid-template-columns: 1fr;
-  grid-template-rows: 10rem auto;
+  grid-template-rows: 10rem calc(100vh - 10rem);
   grid-template-areas: "header" "document";
 
   .header {
@@ -65,7 +65,6 @@ export default {
     border: none;
 
     body {
-
 
     }
 

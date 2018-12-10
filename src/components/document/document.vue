@@ -118,10 +118,17 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     margin: 0!important !important;
-    border-bottom: 1px solid $color-white-5;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-white-5;
+    }
 
     &:hover {
-        background-color: #f3fef2;
+        background-color: #f3f5f2;
+
+        @include color-scheme(dark) {
+            background-color: rgba($color-white, 0.2);
+        }
     }
 
     & > div {

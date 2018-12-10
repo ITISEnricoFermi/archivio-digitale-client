@@ -15,21 +15,21 @@
 <script>
 export default {
   methods: {
-    loadmore() {
+    loadmore () {
       this.$emit('action', 'loadmore')
     },
-    refresh() {
+    refresh () {
       this.$emit('action', 'refresh')
     }
   },
   sockets: {
-    newDocument() {
+    newDocument () {
       this.$emit('action', 'loadmore')
     },
-    documentDeleted() {
+    documentDeleted () {
       this.$emit('action', 'loadmore')
     },
-    documentUpdated() {
+    documentUpdated () {
       this.$emit('action', 'loadmore')
     }
   }
@@ -44,6 +44,11 @@ export default {
     align-items: center;
     background-color: #fcfcfc;
     padding: 3rem;
+
+    @include color-scheme(dark) {
+        background: rgba(41,45,48,1)!important;
+        color: $color-white!important;
+    }
 
     .heading {
         font-weight: bold;

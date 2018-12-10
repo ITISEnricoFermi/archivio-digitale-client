@@ -51,13 +51,18 @@ export default {
 
 <style scoped lang="scss">
 .menu-left {
-    background-image: linear-gradient($color-fourth, $color-primary);
+    background: $linear-gradient-primary--light;
     // background-image: linear-gradient(darken($color-fourth, 5%), $color-secondary);
     position: fixed;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
     width: 25rem;
     height: 100%;
     z-index: 9998;
+
+    @include color-scheme(dark) {
+        background: $linear-gradient-primary--dark!important;
+        color: $color-white;
+    }
 
     @include respond(tab-lan) {
         display: none;
@@ -92,6 +97,12 @@ export default {
             &--active,
             &:hover {
                 background-color: $color-primary;
+
+                @include color-scheme(dark) {
+                    background: rgba($color-white, 0.2);
+                    color: $color-white;
+                }
+
             }
 
             span:first-child {

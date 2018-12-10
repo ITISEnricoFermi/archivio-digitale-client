@@ -59,18 +59,16 @@
       <p class="collection__title">
         {{ collection.documentCollection }}
       </p>
-      <ul class="collection__documents">
-        <li v-for="(collecion_document, document_index) in collection.documents" :key="document_index">
-          <a :href="'/files/' + collecion_document._id" target="_blank">
-            <span class="result">
-              {{document_index}}. {{collecion_document.name}}
-            </span>
-            <span class="open">
-              <i class="fas fa-external-link-alt"></i>
-            </span>
-          </a>
-        </li>
-      </ul>
+      <div class="list">
+        <router-link class="list__element" v-for="(collecion_document, document_index) in collection.documents" tag="a" :key="document_index" :to="'/files/' + collecion_document._id" target="_blank">
+          <span class="crop">
+            {{document_index}}. {{collecion_document.name}}
+          </span>
+          <span class="icon">
+            <i class="fas fa-external-link-alt"></i>
+          </span>
+        </router-link>
+      </div>
     </div>
   </div>
 </section>
@@ -126,11 +124,19 @@ export default {
     background-color: $color-white-1!important;
     // overflow-y: scroll;
 
+    @include color-scheme(dark) {
+        background: $linear-gradient-primary--dark!important;
+    }
+
     .section {
         padding: 3rem;
 
         &:not(:last-child) {
             border-bottom: 1px solid $color-white-5;
+
+            @include color-scheme(dark) {
+                border-color: rgba($color-white, 0.3);
+            }
         }
 
     }
@@ -164,6 +170,10 @@ export default {
         .description {
             text-align: left;
             color: $color-grey-2;
+
+            @include color-scheme(dark) {
+                color: $color-white-3;
+            }
         }
 
         .tags {
@@ -211,9 +221,9 @@ export default {
 
         .collection {
 
-          &:not(:last-child) {
-            margin-bottom: 1.5rem;
-          }
+            &:not(:last-child) {
+                margin-bottom: 1.5rem;
+            }
 
             &__title {
                 text-align: left;

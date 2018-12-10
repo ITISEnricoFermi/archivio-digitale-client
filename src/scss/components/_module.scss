@@ -6,6 +6,11 @@
   width: 100%;
   // overflow: hidden;
 
+  @include color-scheme(dark) {
+      background-color: rgba($color-white,0.1);
+      color: $color-white;
+  }
+
   &--padded {
     padding: 3rem;
 

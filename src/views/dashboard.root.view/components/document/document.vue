@@ -68,13 +68,13 @@ import Menu from './menu'
 export default {
   name: 'document',
   props: ['document'],
-  data() {
+  data () {
     return {
       menu: false
     }
   },
   computed: {
-    date: function() {
+    date: function () {
       let timestamp = this.document._id.toString().substring(0, 8)
       let date = new Date(parseInt(timestamp, 16) * 1000)
       let getMonth = (date) => {
@@ -85,26 +85,26 @@ export default {
     }
   },
   methods: {
-    more() {
+    more () {
       this.$emit('click', this.document)
     },
-    edit() {
+    edit () {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
-    download() {
+    download () {
       let a = document.createElement('A')
       a.href = `/public/documents/${this.document.directory}`
       a.download = this.document.name
       a.click()
     },
-    view() {
+    view () {
       let type = this.document.mimetype.split('/')[0]
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
       window.open(`/public/documents/${this.document.directory}`, '_blank')
     },
-    closeMenu() {
+    closeMenu () {
       if (this.menu) {
         this.menu = false
       }
@@ -122,12 +122,27 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     margin: 0!important !important;
-    border-bottom: 1px solid $color-white-5;
     cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-white-5;
+    }
+
+    @include color-scheme(dark) {
+        border-color: rgba($color-white, 0.3);
+
+        &:not(:last-child) {
+          border-color: rgba($color-white, 0.3);
+        }
+    }
 
     &--selected,
     &:hover {
         background-color: #f3f5f2;
+
+        @include color-scheme(dark) {
+            background-color: rgba($color-white, 0.2);
+        }
     }
 
     & > div {
@@ -146,6 +161,10 @@ export default {
         .date {
             color: $color-white-6;
             margin-bottom: 1.5rem;
+
+            @include color-scheme(dark) {
+                color: $color-white-3;
+            }
         }
 
         .authors {

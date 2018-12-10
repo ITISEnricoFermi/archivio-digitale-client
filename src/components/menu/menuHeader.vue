@@ -28,6 +28,11 @@ export default {
   // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
   z-index: 10000;
 
+  @include color-scheme(dark) {
+      background: $linear-gradient-primary--dark!important;
+      color: $color-white;
+  }
+
   @include respond(tab-lan) {
     display: block;
   }

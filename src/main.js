@@ -11,7 +11,7 @@ import router from './router'
 import store from './store'
 
 // Imports
-import nprogress from './utils/v1'
+import { nprogress } from './utils/v1'
 
 // Exports
 export * from './utils/eventBus'

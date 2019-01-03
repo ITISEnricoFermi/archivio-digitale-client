@@ -34,10 +34,6 @@
 
 <script>
 
-import {
-  v1
-} from '@/main'
-
 export default {
   props: ['document'],
   methods: {

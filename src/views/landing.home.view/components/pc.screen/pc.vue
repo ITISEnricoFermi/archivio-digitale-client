@@ -21,41 +21,41 @@
 
 <script>
 export default {
-  props: ['url'],
-  created () {
-    window.addEventListener('scroll', () => {
-      const scale = 1
-      const height = window.innerHeight
-      const width = window.innerWidth
-      const scroll = window.window.scrollY
-      const screen = document.querySelectorAll('.screen')[0]
-      const offset = width / 100 * 50
-      const percentage = (-scroll + offset) * scale / height
-      //
-      // if (scroll >= (height / 100 * 20)) {
-      //   console.log(getComputedStyle(screen).top.split('p')[0] - 100)
-      //   screen.style.top = getComputedStyle(screen).top.split('p')[0] - 100
-      // } else {
-      // screen.style.transform = `scale(${percentage})`
-      // }
-
-      // if (scroll >= menu && scroll <= height) {
-      //   header.style.top = '-10rem'
-      //
-      //   // const percentage = (scroll * scale) / height
-      //   //
-      //   // header.style.opacity = percentage < scale ? percentage : scale
-      // } else if (scroll > height) {
-      //   header.style.position = 'fixed'
-      //   header.style.top = '0rem'
-      //   header.style.backgroundImage = 'linear-gradient(45deg, #1A8D4C 1%, #22B863 64%, #66BA6B 97%)'
-      // } else if (scroll < menu) {
-      //   header.style.top = '0rem'
-      //   header.style.position = 'absolute'
-      //   header.style.backgroundImage = ''
-      // }
-    })
-  }
+  props: ['url']
+  // created () {
+  //   window.addEventListener('scroll', () => {
+  //     const scale = 1
+  //     const height = window.innerHeight
+  //     const width = window.innerWidth
+  //     const scroll = window.window.scrollY
+  //     const screen = document.querySelectorAll('.screen')[0]
+  //     const offset = width / 100 * 50
+  //     const percentage = (-scroll + offset) * scale / height
+  //
+  //     if (scroll >= (height / 100 * 20)) {
+  //       console.log(getComputedStyle(screen).top.split('p')[0] - 100)
+  //       screen.style.top = getComputedStyle(screen).top.split('p')[0] - 100
+  //     } else {
+  //     screen.style.transform = `scale(${percentage})`
+  //     }
+  //
+  //     if (scroll >= menu && scroll <= height) {
+  //       header.style.top = '-10rem'
+  //
+  //       // const percentage = (scroll * scale) / height
+  //       //
+  //       // header.style.opacity = percentage < scale ? percentage : scale
+  //     } else if (scroll > height) {
+  //       header.style.position = 'fixed'
+  //       header.style.top = '0rem'
+  //       header.style.backgroundImage = 'linear-gradient(45deg, #1A8D4C 1%, #22B863 64%, #66BA6B 97%)'
+  //     } else if (scroll < menu) {
+  //       header.style.top = '0rem'
+  //       header.style.position = 'absolute'
+  //       header.style.backgroundImage = ''
+  //     }
+  //   })
+  // }
 }
 </script>
 

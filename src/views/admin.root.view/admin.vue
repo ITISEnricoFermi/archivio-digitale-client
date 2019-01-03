@@ -11,7 +11,7 @@
     <app-alert v-if="!users" :alert="searchUsersAlert" @alert="searchUsersAlert = $event"></app-alert>
   </transition>
   <transition-group name="fade" mode="out-in">
-    <app-user v-for="(user, index) in users" :user="user" :key="index"></app-user>
+    <app-user v-for="user in users" :user="user" :key="user._id"></app-user>
   </transition-group>
 </main>
 </template>

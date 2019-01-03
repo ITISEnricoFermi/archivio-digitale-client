@@ -29,7 +29,9 @@ export default {
       const response = await v1.get(`/documents/info/${id}`)
 
       document.title = response.data.name
-      next(vm => vm.document = response.data)
+      next(vm => {
+        vm.document = response.data
+      })
     } catch (e) {
       next({
         path: '404'

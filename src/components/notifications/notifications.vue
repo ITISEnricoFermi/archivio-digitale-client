@@ -2,7 +2,7 @@
 <div class="notifications">
   <div class="content">
     <transition-group name="slide">
-      <app-notification v-for="(notification, index) in notifications" :notification="notification" :key="index" @remove="remove($event)"></app-notification>
+      <app-notification v-for="notification in notifications" :notification="notification" :key="notification.id" @remove="remove($event)"></app-notification>
     </transition-group>
   </div>
 </div>

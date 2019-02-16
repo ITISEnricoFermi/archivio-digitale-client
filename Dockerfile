@@ -2,7 +2,8 @@ ARG API_HOSTNAME=localhost
 
 FROM node:10.15.1-jessie-slim as builder
 WORKDIR /tmp
-ENV API_URL=${API_HOSTNAME}
+ENV NODE_ENV=production
+ENV VUE_APP_REMOTE=${API_HOSTNAME}
 
 COPY . .
 RUN npm install && npm run build

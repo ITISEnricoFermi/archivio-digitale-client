@@ -4,6 +4,7 @@ services:
   frontend:
     build: .
     image: archivio-fermi-client
+    restart: always
     container_name: archivio-client
     ports:
       - 80:80
@@ -15,6 +16,7 @@ services:
   backend: # Usa sempre backend come nome del server api PS: se lo cambi cambia anche nginx.conf
     image: prons/archivio-fermi-server:latest
     container_name: archivio-server
+    restart: always
     environment:
       MONGODB_URI: "mongodb://database:27017/archivio"
       JWT_SECRET: 3xWXqcDzt86YGKr2zP

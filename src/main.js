@@ -12,7 +12,6 @@ import store from './store'
 
 // Imports
 import { nprogress } from './utils/v1'
-import getUrl from './utils/getUrl'
 
 // Exports
 export * from './utils/eventBus'

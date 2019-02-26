@@ -15,6 +15,6 @@ RUN node print.js && yarn build
 
 FROM nginx:latest
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-WORKDIR /usr/share/nginx/html
+WORKDIR /usr/nginx/html
 COPY --from=builder /tmp/dist .
 CMD ["nginx", "-g", "daemon off;"]

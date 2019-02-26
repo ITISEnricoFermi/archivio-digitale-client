@@ -5,31 +5,33 @@ services:
     build:
       context: .
       args:
-        - API_HOSTNAME:backend
+        API: "backend" # Usa sempre backend come nome del server api (non cambiare questo) PS: se lo cambi cambia anche nginx.conf
     image: archivio-fermi-client
+    container_name: archivio-client
     ports:
       - 80:80
     depends_on:
       - backend
+    networks:
+      - api-network
 
   backend:
-    image: prons/archivio-fermi-server
-    command: sh -c "npm run populate && node server/server.js"
+    image: prons/archivio-fermi-server:latest
+    container_name: archivio-server
     environment:
       MONGODB_URI: "mongodb://database:27017/archivio"
       JWT_SECRET: 3xWXqcDzt86YGKr2zP
       NODE_ENV: development
     volumes:
       - server-data:/usr/app/server/public
-    ports:
-      - 3000:3000
     depends_on:
       - database
     networks:
-      api-network:
+      - api-network
 
   database:
     image: mongo:3.4.19-jessie
+    container_name: archivio-db
     restart: always
     volumes:
       - database-data:/data/db
@@ -37,10 +39,11 @@ services:
     environment:
       MONGO_INITDB_DATABASE: archivio
     networks:
-      api-network:
+      - api-network
 
 networks:
   api-network:
+    driver: bridge
 
 volumes:
   database-data:

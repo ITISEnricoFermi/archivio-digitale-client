@@ -76,8 +76,8 @@ export default {
       const [heading] = document.querySelectorAll('.heading')
       const [screen] = document.querySelectorAll('.screen')
       // const [top] = document.querySelectorAll('.top')
-      heading.style.top = `calc(${scroll / 5}rem + 35vh)`
-      screen.style.top = `calc(${scroll / 7}rem + 60vh)`
+      heading.style.top = `calc(${scroll / 7}rem + 35vh)`
+      screen.style.top = `calc(${scroll / 9}rem + 60vh)`
       // top.style.clipPath = `circle(${-percentage + 100}%)`
 
       // heading.style.right = `-${scroll / 5}rem`

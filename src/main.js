@@ -21,11 +21,9 @@ export * from './utils/service'
 
 Vue.config.productionTip = false
 
-const env = process.env.NODE_ENV
-
 Vue.use(new VueSocketIO({
   debug: false,
-  connection: socketio(getUrl(env) + '/', {
+  connection: socketio('/', {
     secure: true,
     rejectUnauthorized: false,
     transports: ['websocket', 'flashsocket', 'polling']

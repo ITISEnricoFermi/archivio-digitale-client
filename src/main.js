@@ -12,6 +12,7 @@ import store from './store'
 
 // Imports
 import { nprogress } from './utils/v1'
+import getUrl from './utils/getUrl'
 
 // Exports
 export * from './utils/eventBus'
@@ -20,9 +21,11 @@ export * from './utils/service'
 
 Vue.config.productionTip = false
 
+const env = process.env.NODE_ENV
+
 Vue.use(new VueSocketIO({
   debug: false,
-  connection: socketio('/', {
+  connection: socketio(getUrl(env) + '/', {
     secure: true,
     rejectUnauthorized: false,
     transports: ['websocket', 'flashsocket', 'polling']

@@ -2,10 +2,7 @@ version: "2"
 
 services:
   frontend:
-    build:
-      context: .
-      args:
-        API: "backend" # Usa sempre backend come nome del server api (non cambiare questo) PS: se lo cambi cambia anche nginx.conf
+    build: .
     image: archivio-fermi-client
     container_name: archivio-client
     ports:
@@ -15,7 +12,7 @@ services:
     networks:
       - api-network
 
-  backend:
+  backend: # Usa sempre backend come nome del server api PS: se lo cambi cambia anche nginx.conf
     image: prons/archivio-fermi-server:latest
     container_name: archivio-server
     environment:

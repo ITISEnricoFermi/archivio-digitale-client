@@ -22,6 +22,8 @@ import SearchView from '@/views/search.root.view/search'
 import LandingHomeView from '@/views/landing.home.view/landing'
 import SearchHomeView from '@/views/search.home.view/search'
 
+import SendMailAdminView from '@/views/sendmail.admin.root.view/sendmail'
+
 // Errors
 import NotFoundComponent from '@/routes/404.error.route/404'
 
@@ -65,6 +67,10 @@ const router = new Router({
       path: 'admin',
       name: 'AdminView',
       component: AdminView
+    }, {
+      path: 'admin/sendmail',
+      name: 'SendMailAdminView',
+      component: SendMailAdminView
     }, {
       path: 'user',
       name: 'UserView',

@@ -74,9 +74,7 @@ export default {
         })
       }
       try {
-        let response = await v1.put('/collections/', {
-          collection: this.collection
-        })
+        let response = await v1.put('/collections/', this.collection)
         this.loading = false // Il caricamento è terminato
         this.collection.documentCollection = undefined
         this.collection.permissions = undefined

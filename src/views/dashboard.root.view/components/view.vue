@@ -29,6 +29,20 @@
       </button>
     </div>
   </div>
+  <div class="section profile">
+    <div class="authors">
+      <div class="author">
+        <div class="pic">
+          <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
+            :alt="document.author.firstname + ' ' + document.author.lastname">
+        </div>
+        <div class="info">
+          <p class="info__name heading-tertiary">{{document.author.firstname + ' ' + document.author.lastname}}</p>
+          <p class="info__privileges">{{document.author.privileges.privilege}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="section info">
     <p class="description">{{document.description}}</p>
     <ul class="tags">
@@ -215,6 +229,44 @@ export default {
             }
         }
 
+    }
+
+    .profile {
+      .authors {
+
+          .author {
+            text-align: left;
+
+            .pic {
+                border-radius: 100rem;
+                overflow: hidden;
+                height: 5rem;
+                width: 5rem;
+                display: inline-block;
+                vertical-align: middle;
+
+                img {
+                    height: 100%;
+                }
+            }
+          }
+
+          .info {
+            display: inline-block;
+            padding: 0 2rem;
+            vertical-align: middle;
+            text-align: left;
+
+            &__name {
+              font-weight: 400;
+            }
+
+            &__privileges {
+              margin-top: 0.4rem;
+              color: $color-grey-2;
+            }
+          }
+      }
     }
 
     .collections {

@@ -1,6 +1,5 @@
 <template>
 <div id="app" class="main__home">
-  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
   <router-view />
   <app-footer></app-footer>
 </div>

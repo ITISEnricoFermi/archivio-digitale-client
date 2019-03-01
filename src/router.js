@@ -12,17 +12,30 @@ import Login from '@/routes/login.route/login'
 import SignUp from '@/routes/signup.route/signup'
 
 // Views
-import DashboardView from '@/views/dashboard.root.view/dashboard'
-import AdminView from '@/views/admin.root.view/admin'
-import UserView from '@/views/user.root.view/user'
-import SettingsView from '@/views/settings.root.view/settings'
-import UploadView from '@/views/upload.root.view/upload'
-import SearchView from '@/views/search.root.view/search'
 
-import LandingHomeView from '@/views/landing.home.view/landing'
-import SearchHomeView from '@/views/search.home.view/search'
+// Home
+import LandingHomeView from '@/views/home/landing/landing'
+import SearchHomeView from '@/views/home/search/search'
 
-import SendMailAdminView from '@/views/sendmail.admin.root.view/sendmail'
+// Dashboard
+import DashboardView from '@/views/root/dashboard/dashboard'
+
+// Admin
+import SendMailAdminView from '@/views/root/admin/send.mails/send.mails'
+import CreateUserAdminView from '@/views/root/admin/users/create/create'
+import SearchUsersAdminView from '@/views/root/admin/users/search/search'
+import ServicesAdminView from '@/views/root/admin/services/services'
+
+// Search
+import DocumentsSearchView from '@/views/root/search/documents/documents'
+import CollectionsSearchView from '@/views/root/search/collections/collections'
+
+// Create
+import DocumentsCreateView from '@/views/root/create/documents/documents'
+import CollectionsCreateView from '@/views/root/create/collections/collections'
+
+import SettingsView from '@/views/root/settings/settings'
+import UserView from '@/views/root/user/user'
 
 // Errors
 import NotFoundComponent from '@/routes/404.error.route/404'
@@ -64,29 +77,45 @@ const router = new Router({
       name: 'DashboardView',
       component: DashboardView
     }, {
-      path: 'admin',
-      name: 'AdminView',
-      component: AdminView
+      path: '/admin/users/create/',
+      name: 'CreateUserAdminView',
+      component: CreateUserAdminView
     }, {
-      path: 'admin/sendmail',
+      path: '/admin/users/search/',
+      name: 'SearchUsersAdminView',
+      component: SearchUsersAdminView
+    }, {
+      path: '/admin/sendmail/',
       name: 'SendMailAdminView',
       component: SendMailAdminView
     }, {
-      path: 'user',
-      name: 'UserView',
-      component: UserView
+      path: '/admin/services/',
+      name: 'ServicesAdminView',
+      component: ServicesAdminView
     }, {
       path: 'settings',
       name: 'SettingsView',
       component: SettingsView
     }, {
-      path: 'upload',
-      name: 'UploadView',
-      component: UploadView
+      path: 'user',
+      name: 'UserView',
+      component: UserView
     }, {
-      path: 'search',
-      name: 'SearchView',
-      component: SearchView
+      path: '/create/documents/',
+      name: 'DocumentsCreateView',
+      component: DocumentsCreateView
+    }, {
+      path: '/create/collections/',
+      name: 'CollectionsCreateView',
+      component: CollectionsCreateView
+    }, {
+      path: '/search/documents/',
+      name: 'DocumentsSearchView',
+      component: DocumentsSearchView
+    }, {
+      path: '/search/collections/',
+      name: 'CollectionsSearchView',
+      component: CollectionsSearchView
     }, {
       path: '/logout',
       name: 'Logout',

@@ -56,7 +56,7 @@ export default {
     // }
 
     .documents {
-        width: calc((100vw - 25rem) / 100 * 60);
+        width: calc(100vw / 100 * 60);
         margin-top: 7rem;
         z-index: 100;
 
@@ -76,16 +76,17 @@ export default {
     }
 
     .header {
-      width: calc((100vw - 25rem) / 100 * 60);
+      width: calc(100vw / 100 * 60);
       height: 7rem;
-      top: 0;
-      z-index: 11111;
+      top: 6rem;
+      z-index: 1500;
       position: fixed;
 
       @include respond (tab-lan) {
         position: absolute;
         width: calc(100vw / 100 * 60);
         margin: 0;
+        top: 0;
         z-index: 110;
       }
 
@@ -96,12 +97,12 @@ export default {
     }
 
     .view {
-      width: calc((100vw - 25rem) / 100 * 40);
-      z-index: 11111;
+      width: calc(100vw / 100 * 40);
+      z-index: 1500;
       position: fixed;
       right: 0;
-      top: 0;
-      height: 100vh;
+      top: 6rem;
+      height: 100%;
 
       @include respond (tab-lan) {
         // display: none;

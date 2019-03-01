@@ -1,139 +1,264 @@
 <template>
-<aside class="menu-left">
-  <header class="menu-left__header">
-    <img src="/logo/itisFermi_white.svg" class="menu-left__logo" alt="ITIS Enrico Fermi">
-  </header>
-  <ul class="menu-left__main">
-    <router-link tag="li" class="menu-left__li" to="/dashboard/" active-class="menu-left__li--active">
-      <span><i class="fas fa-tachometer-alt"></i></span>
-      <span>Dashboard</span>
-      <!-- <span class="menu-left__li-tag u-bg-color-red">Disattivo</span> -->
+  <div class="menu">
+    <div class="menu__logo">
+      <a href="/home/" class="content">
+        <div class="fermi">
+          <div class="logo"></div>
+        </div>
+        <span class="archivio">
+          <div class="separator"></div>
+          <p class="text">Archivio Digitale</p>
+        </span>
+      </a>
+    </div>
+    <router-link tag="div" class="profile" :to="'/user/'" active-class="profile--active">
+      <img class="pic" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
+      <div class="info">
+        <p class="info__name">
+          <span class="info__name--firstname">{{ user.firstname }}</span>
+          <span class="info__name--lastname"> {{ user.lastname }}</span>
+        </p>
+        <p class="subtitle heading-fifth">View profile</p>
+      </div>
+      <div class="dropdown">
+        <app-dropdown to="/settings/" icon="fas fa-cog" text="Impostazioni"></app-dropdown>
+        <app-dropdown to="/logout/" icon="fas fa-sign-out-alt" text="Logout"></app-dropdown>
+      </div>
     </router-link>
-    <router-link tag="li" class="menu-left__li" to="/search/" active-class="menu-left__li--active">
-      <span><i class="fa fa-search" aria-hidden="true"></i></span>
-      <span>Ricerca</span>
-    </router-link>
-    <router-link tag="li" class="menu-left__li" to="/upload/" active-class="menu-left__li--active">
-      <span><i class="fas fa-pencil-alt"></i></span>
-      <span>Inserisci</span>
-    </router-link>
-    <router-link tag="li" class="menu-left__li" to="/admin/" active-class="menu-left__li--active" v-if="privileges._id == 'admin'">
-      <span><i class="fa fa-user-secret" aria-hidden="true"></i></span>
-      <span>Admin</span>
-    </router-link>
-    <router-link tag="li" class="menu-left__li" :to="'/user/'" active-class="menu-left__li--active">
-      <span><i class="fa fa-user" aria-hidden="true"></i></span>
-      <span>Profilo</span>
-    </router-link>
-    <router-link tag="li" class="menu-left__li" to="/settings/" active-class="menu-left__li--active">
-      <span><i class="fa fa-cog" aria-hidden="true"></i></span>
-      <span>Impostazioni</span>
-    </router-link>
-    <router-link tag="li" class="menu-left__li" to="/logout/">
-      <span><i class="fas fa-sign-out-alt"></i></span>
-      <span>Logout</span>
-    </router-link>
-  </ul>
-  <footer class="menu-left__footer">
-    Powered By
-    <a href="https://www.riccardosangiorgio.com" class="menu-left__footer--a" target="_blank" rel="noopener noreferrer">Riccardo Sangiorgio</a>
-  </footer>
-</aside>
+    <div class="menu__menu">
+      <router-link tag="div" class="link" to="/dashboard/" active-class="link--active">
+        <p class="link__text">
+          <span class="link__text--icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </span>
+          <span class="link__text--crop">Dashboard</span>
+        </p>
+      </router-link>
+      <div class="link">
+        <p class="link__text">
+          <span class="link__text--icon">
+            <i class="fas fa-pencil-alt"></i>
+          </span>
+          <span class="link__text--crop">Inserisci</span>
+        </p>
+        <div class="dropdown">
+          <app-dropdown to="/create/documents/" icon="fas fa-file-alt" text="Crea documenti"></app-dropdown>
+          <app-dropdown to="/create/collections/" icon="fas fa-folder" text="Crea collezioni"></app-dropdown>
+        </div>
+      </div>
+      <div class="link">
+        <p class="link__text">
+          <span class="link__text--icon">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+          <span class="link__text--crop">Ricerca</span>
+        </p>
+        <div class="dropdown">
+          <app-dropdown to="/search/documents/" icon="fas fa-file-alt" text="Cerca documenti"></app-dropdown>
+          <app-dropdown to="/search/collections/" icon="fas fa-folder" text="Cerca collezioni"></app-dropdown>
+        </div>
+      </div>
+      <div class="link">
+        <p class="link__text">
+          <span class="link__text--icon">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
+          </span>
+          <span class="link__text--crop">Admin</span>
+        </p>
+        <div class="dropdown">
+          <app-dropdown to="/admin/services/" icon="fas fa-rocket" text="Servizi"></app-dropdown>
+          <app-dropdown to="/admin/sendmail/" icon="fas fa-paper-plane" text="Invia email"></app-dropdown>
+          <app-dropdown to="/admin/users/create/" icon="fas fa-plus" text="Crea utente"></app-dropdown>
+          <app-dropdown to="/admin/users/search/" icon="fas fa-users" text="Cerca utenti"></app-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 
+import Dropdown from './components/dropdown'
+
 export default {
-  name: 'menuLeft',
-  props: ['privileges']
+  props: ['user'],
+  components: {
+    appDropdown: Dropdown
+  }
 }
 </script>
 
-<style scoped lang="scss">
-.menu-left {
-    background: $linear-gradient-primary--light;
-    // background-image: linear-gradient(darken($color-fourth, 5%), $color-secondary);
-    position: fixed;
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
-    width: 25rem;
-    height: 100%;
-    z-index: 9998;
+<style lang="scss" scoped>
+.menu {
+    background-color: #212121;
+    @include clearfix;
+    width: 100vw;
 
-    @include color-scheme(dark) {
-        background: $linear-gradient-primary--dark!important;
-        color: $color-white;
-    }
+    &__logo {
+        display: table-cell;
+        vertical-align: middle;
+        float: left;
 
-    @include respond(tab-lan) {
-        display: none;
-    }
-
-    &__header {
-        display: table;
-        width: 100%;
-        padding: 5rem;
-        .menu-left__logo {
-            width: 90%;
+        .content {
+            text-align: left;
             display: table-cell;
             vertical-align: middle;
-            margin: 0 auto;
-        }
-    }
-
-    &__main {
-        .menu-left__li {
-            color: $color-white;
-            padding: 2rem;
-            width: 100%;
-            display: block;
-            font-weight: bold;
-            cursor: pointer!important;
-            transition: all 0.1s;
+            text-decoration: none;
 
             * {
-                cursor: pointer;
+                display: inline-block;
+                vertical-align: middle;
             }
+
+            .fermi {
+                height: 6rem;
+                width: 6rem;
+                position: relative;
+                // background-color: #2F3D45;
+
+                .logo {
+                  position: absolute;
+                  @include absCenter;
+                  height: 4rem;
+                  width: 4rem;
+                  background-color: $color-white-6;
+                  mask-image: url("/logo/solo.svg");
+                  mask-size: cover;
+                  transition: all 0.2s ease-in-out;
+                  cursor: pointer;
+
+                  &:hover {
+                      background-color: $color-fourth;
+                  }
+                }
+            }
+
+            .archivio {
+              padding: 0 1rem;
+              .separator {
+                  height: 3rem;
+                  width: 0.05rem;
+                  background-color: $color-white;
+                  margin-right: 1rem;
+                  display: none;
+
+                  @include respond(phone) {
+                      display: none;
+                  }
+              }
+
+              .text {
+                  font-size: 2rem;
+                  color: $color-white;
+                  font-family: 'Bitter';
+
+                  @include respond(phone) {
+                      display: none;
+                  }
+              }
+            }
+
+        }
+
+    }
+
+    &__menu {
+        float: right;
+        .link {
+            padding: 1rem;
+            height: 6rem;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 2000000;
 
             &--active,
             &:hover {
-                background-color: $color-primary;
-
-                @include color-scheme(dark) {
-                    background: rgba($color-white, 0.2);
-                    color: $color-white;
-                }
-
+                background-color: #09090f;
             }
-
-            span:first-child {
-                margin: 1rem;
-            }
-
-            &-tag {
-                padding: 0.2rem 0.5rem;
-                border-radius: 10rem;
-                font-size: 1rem;
+            &__text {
                 color: $color-white;
-                margin-left: 1rem;
-                text-transform: uppercase;
+                &--icon {
+                    margin: 0.5rem;
+                }
+                &--crop {
+                    margin: 0.5rem;
+                    @include respond(tab-por) {
+                        display: none;
+                    }
+                }
+            }
+
+            .dropdown {
+              position: absolute;
+              background-color: $color-tertiary;
+              z-index: 2000000;
+              top: 6rem;
+              left: 0;
+              display: none;
+            }
+
+            &:hover .dropdown {
+              display: block;
             }
         }
     }
 
-    &__footer {
-        font-size: $font-default-3;
-        color: $color-white;
-        text-align: center;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 2rem;
-        width: 100%;
+    .profile {
+        padding: 1rem;
+        float: right;
+        grid-template-columns: 4rem auto;
+        grid-gap: 1rem;
+        cursor: pointer;
+        display: grid;
+        position: relative;
 
-        &--a {
-            color: $color-white;
+        @include respond(phone) {
+            grid-template-columns: 1fr;
+        }
+        &--active,
+        &:hover {
+            background-color: #09090f;
+        }
+        .pic {
+            width: 4rem;
+            border-radius: 0.25rem;
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            @include respond(phone) {
+                display: none;
+            }
+            .info__name {
+                color: $color-white-6;
+                margin-bottom: 0.4rem;
+            }
+            .subtitle {
+                color: $color-grey-2;
+            }
+        }
+
+        .dropdown {
+          position: absolute;
+          background-color: $color-tertiary;
+          z-index: 2000000;
+          top: 6rem;
+          left: 0;
+          width: 100%;
+          display: none;
+
+          .section {
+            width: 100%;
+          }
+        }
+
+        &:hover .dropdown {
+          display: block;
         }
     }
+
 }
 </style>

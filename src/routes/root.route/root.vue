@@ -1,27 +1,24 @@
 <template>
 <div id="app" class="main__root">
   <nprogress-container></nprogress-container>
-  <app-menu-header @changeMenu="menu = !menu"></app-menu-header>
+
+    <keep-alive>
+  <app-menu :user="user"></app-menu>
+    </keep-alive>
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
 
-  <keep-alive>
-    <app-menu @panelChanged="panel = $event" :privileges="user.privileges"></app-menu>
-  </keep-alive>
   <transition name="panel" mode="out-in">
-    <keep-alive>
-      <app-menu-mobile v-if="menu" @panelChanged="menuMobile($event)" :privileges="user.privileges"></app-menu-mobile>
-    </keep-alive>
-  </transition>
-
   <keep-alive>
-    <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions"/>
+    <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions" />
   </keep-alive>
+  </transition>
 
   <transition name="fade" mode="out-in">
     <app-popup v-if="popup.component" :width="popup.width + '%'">
-      <component v-if="popup.component" :is="popup.component" :entity="popup.entity" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :collectionsPermissions="collectionsPermissions" :privileges="privileges" :subjects="subjects">
+      <component v-if="popup.component" :is="popup.component" :entity="popup.entity" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :collectionsPermissions="collectionsPermissions"
+        :privileges="privileges" :subjects="subjects">
       </component>
     </app-popup>
   </transition>
@@ -37,9 +34,7 @@ import {
 import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 
 // VUE
-import Menu from '@/components/menu/menu.vue'
-import MenuMobile from '@/components/menu/menuMobile'
-import MenuHeader from '@/components/menu/menuHeader'
+import Menu from '@/components/menu/menu'
 import Notifications from '@/components/notifications/notifications'
 
 import PopUp from '@/components/popup/popup'
@@ -65,7 +60,6 @@ export default {
         privileges: '',
         img: '../elements/profile.svg'
       },
-      menu: false,
       popup: {
         entity: undefined,
         component: undefined,
@@ -183,10 +177,6 @@ export default {
     }
   },
   methods: {
-    menuMobile (e) {
-      this.panel = e
-      this.menu = false
-    },
     getUser () {
       v1.get('/users/me')
         .then((response) => {
@@ -202,8 +192,6 @@ export default {
   },
   components: {
     appMenu: Menu,
-    appMenuMobile: MenuMobile,
-    appMenuHeader: MenuHeader,
     appNotifications: Notifications,
     appPopup: PopUp,
     appEditDocument: EditDocument,
@@ -228,6 +216,10 @@ export default {
     max-width: 100vw;
     overflow-x: hidden;
 
+    grid-template-columns: 1fr;
+    grid-template-rows: 6rem auto;
+    grid-template-areas: "menu" "main";
+
     @include color-scheme(dark) {
         background: #282828!important;
     }
@@ -236,6 +228,14 @@ export default {
         display: block;
         margin-top: 6rem;
         height: auto;
+    }
+
+    .menu {
+      grid-area: menu;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2000;
     }
 
     main {
@@ -249,34 +249,34 @@ export default {
 
         @include respond(tab-por) {
             height: calc(100vh - 6rem);
-            padding: 3vh 0 0 0!important;
+            padding: 3vh 0 0 0!important !important;
         }
     }
 }
 
 .module {
-  @include respond(tab-por) {
-    border-radius: 0!important;
-  }
+    @include respond(tab-por) {
+        border-radius: 0!important;
+    }
 }
 
 #nprogress {
-  position: fixed;
-  top: 0;
-  z-index: 1000000;
-  width: 100vw;
-  outline: none;
-
-  .bar {
-    height: 0.4rem;
-    background-image: $linear-gradient-primary--light;
+    position: fixed;
+    top: 0;
+    z-index: 1000000;
+    width: 100vw;
     outline: none;
 
-    @include color-scheme(dark) {
-        background: $linear-gradient-primary--dark!important;
-    }
+    .bar {
+        height: 0.4rem;
+        background-image: $linear-gradient-primary--light;
+        outline: none;
 
-  }
+        @include color-scheme(dark) {
+            background: $linear-gradient-primary--dark!important;
+        }
+
+    }
 
 }
 </style>

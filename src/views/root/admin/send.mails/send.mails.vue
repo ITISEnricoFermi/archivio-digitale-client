@@ -35,10 +35,6 @@
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
-import {
-  v1
-} from '@/main'
-
 import marked from 'marked'
 
 marked.setOptions({

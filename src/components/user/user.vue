@@ -11,10 +11,25 @@
           <div class="info__content">
             <p class="name u-margin-bottom-small">{{localUser.firstname}} {{localUser.lastname}}</p>
             <p class="email u-margin-bottom-medium"><span></span>{{localUser.email}}</p>
-            <ul class="tag">
-              <li class="u-bg-color-blue">{{localUser.privileges.privilege}}</li>
-              <li class="u-bg-color-green">{{localUser.state === 'active' ? 'Attivo' : 'Disattivato'}}</li>
-              <li class="u-bg-color-yellow" v-for="(tag, index) in user.accesses.slice(0, 3)" :key="index">{{tag.subject}}</li>
+            <ul class="tags">
+              <li class="tag u-noselect">
+                <span class="icon">
+                  <i class="fas fa-tag"></i>
+                </span>
+                <span class="crop">{{localUser.privileges.privilege}}</span>
+              </li>
+              <li class="tag u-noselect">
+                <span class="icon">
+                  <i class="fas fa-tag"></i>
+                </span>
+                <span class="crop">{{localUser.state === 'active' ? 'Attivo' : 'Disattivato'}}</span>
+              </li>
+              <li class="tag u-noselect" v-for="(tag, index) in user.accesses.slice(0, 3)" :key="index">
+                <span class="icon">
+                  <i class="fas fa-tag"></i>
+                </span>
+                <span class="crop">{{tag.subject}}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -42,28 +57,28 @@ import Menu from './menu'
 export default {
   name: 'user',
   props: ['user'],
-  data () {
+  data() {
     return {
       menu: false
     }
   },
   computed: {
-    localUser () {
+    localUser() {
       return this.user
     }
   },
   sockets: {
-    userUpdated (user) {
+    userUpdated(user) {
       if (user._id === this.user._id) {
         this.localUser = user // TODO: verificare il funzionamento
       }
     }
   },
   methods: {
-    edit () {
+    edit() {
       eventBus.openPopUp(this.user, 'appEditUser', 80)
     },
-    closeMenu () {
+    closeMenu() {
       if (this.menu) {
         this.menu = false
       }
@@ -99,42 +114,28 @@ export default {
             align-items: center;
 
             &__content {
-              text-align: left;
-              width: 100%;
+                text-align: left;
+                width: 100%;
 
-              .name {
-                  font-size: 1.8rem;
-                  display: block;
-              }
+                .name {
+                    font-size: 1.8rem;
+                    display: block;
+                }
 
-              .email {
-                  display: block;
-                  text-decoration: none;
-                  color: $color-tertiary;
-                  font-size: $font-default-3;
-              }
+                .email {
+                    display: block;
+                    text-decoration: none;
+                    color: $color-tertiary;
+                    font-size: $font-default-3;
+                }
 
-              .tag {
-                  padding: 0;
-                  text-align: left;
-                  display: block;
-                  width: 100%;
-
-                  li {
-                      padding: 0.5rem 1rem;
-                      border-radius: 10rem;
-                      display: inline-block;
-                      text-overflow: ellipsis;
-                      overflow: hidden;
-                      white-space: nowrap;
-                      color: $color-white;
-                      max-width: 25%;
-
-                      &:not(:first-child) {
-                          margin-left: 0.5rem;
-                      }
-                  }
-              }
+                .tags {
+                    padding: 0;
+                    text-align: left;
+                    display: block;
+                    width: 100%;
+                    font-size: $font-default-2;
+                }
 
             }
 

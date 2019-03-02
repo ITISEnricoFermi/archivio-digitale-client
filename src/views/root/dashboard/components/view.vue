@@ -46,21 +46,21 @@
   <div class="section info">
     <p class="description">{{document.description}}</p>
     <ul class="tags">
-      <li v-if="document.subject" class="u-noselect">
+      <li v-if="document.subject" class="tag u-noselect">
         <span class="icon">
           <i class="fas fa-tag"></i>
         </span>
         <span class="crop" v-if="document.subject.subject.length >= 30">{{document.subject._id | uppercase }}</span>
         <span class="crop" v-else>{{document.subject.subject}}</span>
       </li>
-      <li v-if="document.grade || document.section" class="u-noselect">
+      <li v-if="document.grade || document.section" class="tag u-noselect">
         <span class="icon">
           <i class="fas fa-tag"></i>
         </span>
         <span v-if="document.grade" class="crop">{{document.grade.grade}}˚</span>
         <span v-if="document.section" class="crop">{{document.section.section}}</span>
       </li>
-      <li v-if="document.type" class="u-noselect">
+      <li v-if="document.type" class="tag u-noselect">
         <span class="icon">
           <i class="fas fa-tag"></i>
         </span>
@@ -196,77 +196,45 @@ export default {
             // display: flex;
             // flex-wrap: wrap;
             // justify-content: space-between;
-
-            li {
-                margin-top: 0.5rem;
-                padding: 0.5rem 1rem;
-                border-radius: 0.3rem;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                display: inline-block;
-                white-space: nowrap;
-                color: $color-white;
-                background-color: #d8e5d7!important;
-                border: 1px solid darken(#d8e5d7, 5%)!important;
-                color: $color-tertiary;
-                box-shadow: 0 1px 2px rgba(10,10,10,0.1);
-                cursor: pointer;
-                transition: all 0.2s ease-in-out;
-
-                &:active {
-                    transform: scale(1.02);
-                }
-
-                &:not(:last-child) {
-                    margin-right: 0.5rem;
-                }
-
-                .icon {
-                    color: darken(#d8e5d7, 20%);
-                    margin-right: 0.75rem;
-                }
-
-            }
         }
-
     }
 
     .profile {
-      .authors {
+        .authors {
 
-          .author {
-            text-align: left;
+            .author {
+                text-align: left;
 
-            .pic {
-                border-radius: 100rem;
-                overflow: hidden;
-                height: 5rem;
-                width: 5rem;
-                display: inline-block;
-                vertical-align: middle;
+                .pic {
+                    border-radius: 100rem;
+                    overflow: hidden;
+                    height: 5rem;
+                    width: 5rem;
+                    display: inline-block;
+                    vertical-align: middle;
 
-                img {
-                    height: 100%;
+                    img {
+                        height: 100%;
+                    }
                 }
             }
-          }
 
-          .info {
-            display: inline-block;
-            padding: 0 2rem;
-            vertical-align: middle;
-            text-align: left;
+            .info {
+                display: inline-block;
+                padding: 0 2rem;
+                vertical-align: middle;
+                text-align: left;
 
-            &__name {
-              font-weight: 400;
+                &__name {
+                    font-weight: 400;
+                }
+
+                &__privileges {
+                    margin-top: 0.4rem;
+                    color: $color-grey-2;
+                }
             }
-
-            &__privileges {
-              margin-top: 0.4rem;
-              color: $color-grey-2;
-            }
-          }
-      }
+        }
     }
 
     .collections {

@@ -55,6 +55,6 @@ module.exports = {
     name: 'Archivio Digitale',
     themeColor: '#1A8D4C',
     msTileColor: '#1A8D4C',
-    appleMobileWebAppStatusBarStyle: 'black-translucent'
+    appleMobileWebAppStatusBarStyle: 'black'
   }
 }

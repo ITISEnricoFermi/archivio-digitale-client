@@ -40,16 +40,19 @@ import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
 
 marked.setOptions({
-  renderer: new marked.Renderer(),
-  pedantic: false,
-  gfm: true,
   tables: true,
   breaks: false,
-  sanitize: false,
   smartLists: true,
-  smartypants: false,
-  xhtml: false
+  xhtml: true
 })
+
+// {
+//  "headerIds": true,
+//  "headerPrefix": "",
+//  "langPrefix": "language-",
+//  "mangle": true,
+//  "xhtml": false
+// }
 
 export default {
   data () {

@@ -77,9 +77,15 @@ export default {
         this.email.message = ''
         this.email.subject = ''
         this.email.recipients = []
-        eventBus.notification('Email inviata con successo.')
+        eventBus.notification({
+          title: 'Email inviata con successo.',
+          temporary: true
+        })
       } catch (e) {
-        console.log(e.message)
+        eventBus.notification({
+          title: 'Impossibile inviare l\'email.',
+          temporary: true
+        })
       }
     }
   },

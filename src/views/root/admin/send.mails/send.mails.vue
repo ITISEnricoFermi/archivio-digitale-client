@@ -37,6 +37,7 @@ import MultipleSelectResults from '@/components/multipleSelect/multipleSelectRes
 
 import marked from 'marked'
 import v1 from '@/utils/v1'
+import eventBus from '@/utils/eventBus'
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -68,12 +69,15 @@ export default {
   methods: {
     async send () {
       try {
-        const response = await v1.post('/admin/mails', {
+        await v1.post('/admin/mails', {
           subject: this.email.subject,
           message: this.email.message,
           recipients: this.email.recipients.map(el => el.email)
         })
-        console.log(response)
+        this.email.message = ''
+        this.email.subject = ''
+        this.email.recipients = []
+        eventBus.notification('Email inviata con successo.')
       } catch (e) {
         console.log(e.message)
       }

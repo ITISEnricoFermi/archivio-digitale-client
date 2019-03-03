@@ -64,14 +64,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-1-of-2">
-        <input type="file" class="file" id="upload-file" ref="uploadFile">
-        <label class="button button--blue" for="upload-file">
-          <span class="icon"><i class="fas fa-upload"></i></span>
-          <span class="crop">Carica file</span>
-        </label>
+      <div class="col-1-of-1">
+        <app-loader @file="file = $event" :file="file"></app-loader>
       </div>
-      <div class="col-1-of-2">
+    </div>
+    <div class="row">
+      <div class="col-1-of-1">
         <button class="button button--green" @click="upload">
           <span class="icon"><i class="fas fa-edit"></i></span>
           <span class="crop">Crea documento</span>
@@ -79,7 +77,7 @@
       </div>
     </div>
   </div>
-  <app-progress v-if="documentsProgress" :value="documentsProgress" :isStripped="true" :isAnimated="true"></app-progress>
+  <app-progress v-if="progress" :value="progress" :isStripped="true" :isAnimated="true"></app-progress>
   <transition name="fade">
     <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
   </transition>
@@ -89,6 +87,7 @@
 <script>
 import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
+import Loader from './components/loader'
 
 import {
   v1,
@@ -110,8 +109,8 @@ export default {
         visibility: 'pubblico',
         description: undefined
       },
-      documentsProgress: undefined,
-      progress: '',
+      file: undefined,
+      progress: 0,
       documentsAlert: {
         messages: undefined,
         color: undefined
@@ -136,8 +135,7 @@ export default {
         formData.append(key, this.document[key])
       })
 
-      const file = this.$refs.uploadFile.files[0]
-      formData.append('file', file)
+      formData.append('file', this.file)
 
       v1.put('/documents/', formData, config)
         .then((response) => {
@@ -149,6 +147,7 @@ export default {
           this.document.section = undefined
           this.document.visibility = 'pubblico'
           this.document.description = undefined
+          this.file = undefined
 
           this.$socket.emit('newDocument')
 
@@ -169,7 +168,8 @@ export default {
   },
   components: {
     appProgress: Progress,
-    appAlert: Alert
+    appAlert: Alert,
+    appLoader: Loader
   }
 }
 </script>

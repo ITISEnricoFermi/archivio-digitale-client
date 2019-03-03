@@ -71,7 +71,7 @@ export default {
       try {
         await v1.post('/admin/mails', {
           subject: this.email.subject,
-          message: this.email.message,
+          message: this.html,
           recipients: this.email.recipients.map(el => el.email)
         })
         this.email.message = ''

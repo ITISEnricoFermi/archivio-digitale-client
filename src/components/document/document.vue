@@ -58,9 +58,7 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from '@/main'
+import eventBus from '@/utils/eventBus'
 
 import Menu from './menu'
 

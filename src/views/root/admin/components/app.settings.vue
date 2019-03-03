@@ -25,9 +25,7 @@
 <script>
 import axios from 'axios'
 
-import {
-  service
-} from '@/main'
+import service from '@/utils/service'
 
 export default {
   data () {

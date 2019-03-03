@@ -5,18 +5,13 @@ import VueLazyload from 'vue-lazyload'
 import NProgress from 'vue-nprogress'
 
 // Vue
-import App from './App.vue'
-import './registerServiceWorker'
-import router from './router'
-import store from './store'
+import Home from './home.vue'
+import '@/registerServiceWorker'
+import router from '@/router'
+import store from '@/store'
 
 // Imports
-import { nprogress } from './utils/v1'
-
-// Exports
-export * from './utils/eventBus'
-export * from './utils/v1'
-export * from './utils/service'
+import nprogress from '@/utils/nprogress'
 
 Vue.config.productionTip = false
 
@@ -36,5 +31,5 @@ new Vue({
   router,
   store,
   nprogress,
-  render: h => h(App)
+  render: h => h(Home)
 }).$mount('#app')

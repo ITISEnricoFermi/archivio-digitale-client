@@ -30,7 +30,7 @@ export default {
       }
     },
     message () {
-      if (this.file == undefined) {
+      if (this.file === undefined) {
         return this.text
       } else {
         return this.file.name

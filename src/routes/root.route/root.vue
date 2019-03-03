@@ -26,10 +26,8 @@
 </template>
 
 <script>
-import {
-  eventBus,
-  v1
-} from '@/main'
+import eventBus from '@/utils/eventBus'
+import v1 from '@/utils/v1'
 
 import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 

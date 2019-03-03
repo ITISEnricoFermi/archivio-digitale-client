@@ -2,19 +2,19 @@
   <ul class="filters">
       <li class="selected u-noselect" @click.stop="getRecentProjects($event, 'appunti')">
           <span class="icon"><i class="far fa-file-alt"></i></span>
-          <span class="tag"> Appunti</span>
+          <span class="section"> Appunti</span>
       </li>
       <li class="u-noselect" @click.stop="getRecentProjects($event, 'videoLezione')">
           <span class="icon"><i class="fas fa-film"></i></span>
-          <span class="tag"> Video</span>
+          <span class="section"> Video</span>
       </li>
       <li class="u-noselect" @click.stop="getRecentProjects($event, 'audioLezione')">
           <span class="icon"><i class="fas fa-headphones"></i></span>
-          <span class="tag"> Audio</span>
+          <span class="section"> Audio</span>
       </li>
       <li class="u-noselect" @click.stop="getRecentProjects($event, 'progettiStudenti')">
           <span class="icon"><i class="fas fa-archive"></i></span>
-          <span class="tag"> Progetti</span>
+          <span class="section"> Progetti</span>
       </li>
   </ul>
 </template>
@@ -68,7 +68,7 @@ export default {
             transform: scale(1.02);
         }
 
-        .tag {
+        .section {
 
           @include respond(phone) {
             display: none;

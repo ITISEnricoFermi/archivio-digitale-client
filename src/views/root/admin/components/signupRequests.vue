@@ -22,10 +22,8 @@
 </template>
 
 <script>
-import {
-  v1,
-  eventBus
-} from '@/main'
+import eventBus from '@/utils/eventBus'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'signupRequests',

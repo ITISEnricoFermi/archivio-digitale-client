@@ -15,9 +15,7 @@
 
 <script>
 
-import {
-  v1
-} from '@/main'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'multipleSelect',

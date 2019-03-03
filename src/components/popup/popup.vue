@@ -9,9 +9,7 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from '@/main'
+import eventBus from '@/utils/eventBus'
 
 export default {
   name: 'popup',

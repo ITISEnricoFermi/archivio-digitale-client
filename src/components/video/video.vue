@@ -23,9 +23,7 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from '@/main'
+import eventBus from '@/utils/eventBus'
 
 import { videoPlayer } from 'vue-video-player'
 import 'video.js/dist/video-js.css'

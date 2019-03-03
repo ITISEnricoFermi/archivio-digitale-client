@@ -48,37 +48,35 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from '@/main'
+import eventBus from '@/utils/eventBus'
 
 import Menu from './menu'
 
 export default {
   name: 'user',
   props: ['user'],
-  data() {
+  data () {
     return {
       menu: false
     }
   },
   computed: {
-    localUser() {
+    localUser () {
       return this.user
     }
   },
   sockets: {
-    userUpdated(user) {
+    userUpdated (user) {
       if (user._id === this.user._id) {
         this.localUser = user // TODO: verificare il funzionamento
       }
     }
   },
   methods: {
-    edit() {
+    edit () {
       eventBus.openPopUp(this.user, 'appEditUser', 80)
     },
-    closeMenu() {
+    closeMenu () {
       if (this.menu) {
         this.menu = false
       }

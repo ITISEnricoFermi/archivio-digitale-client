@@ -50,9 +50,7 @@
 <script>
 import Document from '@/components/document/document'
 
-import {
-  v1
-} from '@/main'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'panelProfile',

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export const eventBus = new Vue({
+export default new Vue({
   methods: {
     openPopUp (entity, component, width) {
       this.$emit('openPopUp', entity, component, width)

@@ -66,9 +66,7 @@
 
 <script>
 
-import {
-  v1
-} from '@/main'
+import v1 from '@/utils/v1'
 
 import axios from 'axios'
 

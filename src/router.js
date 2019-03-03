@@ -1,17 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-import {
-  v1
-  // nprogress
-} from '@/main'
-
-// Routes
-import Root from '@/routes/root.route/root'
-import Login from '@/routes/login.route/login'
-import SignUp from '@/routes/signup.route/signup'
-
-// Views
+import v1 from '@/utils/v1'
 
 // Home
 import LandingHomeView from '@/views/home/landing/landing'
@@ -40,10 +29,6 @@ import UserView from '@/views/root/user/user'
 // Errors
 import NotFoundComponent from '@/routes/404.error.route/404'
 
-// Video
-// import VueVideoPlayer from 'vue-video-player'
-// import 'video.js/dist/video-js.css'
-
 Vue.use(Router)
 
 const loadView = view => () => import(/* webpackChunkName: "view-[request]" */ `@/routes/${view}.vue`)
@@ -55,11 +40,22 @@ const auth = async (to, from, next) => {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       }
     })
-    next()
+
+    if (to.name === 'Root' || to.name === 'Home' || to.name === 'Login' || to.name === 'SignUp') {
+      next({
+        path: '/dashboard/'
+      })
+    } else {
+      next()
+    }
   } catch (e) {
-    next({
-      path: '/home'
-    })
+    if (to.name === 'Login' || to.name === 'SignUp' || to.name === 'Home') {
+      next()
+    } else {
+      next({
+        path: '/home/'
+      })
+    }
   }
 }
 
@@ -67,10 +63,9 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [{
-    path: '/root',
-    alias: '/',
-    name: loadView('root.route/root'),
-    component: Root,
+    path: '/',
+    name: 'Root',
+    component: loadView('root.route/root'),
     beforeEnter: auth,
     children: [{
       path: 'dashboard',
@@ -123,15 +118,16 @@ const router = new Router({
         localStorage.removeItem('token')
         // let date = (new Date()).toUTCString()
         // document.cookie = `token=; expires=${date}; path=/;`
-        next({ name: 'Landing' })
+        next('/')
       }
     }]
   }, {
     path: '/home',
     component: loadView('home.route/home'),
+    beforeEnter: auth,
     children: [{
       path: '',
-      name: 'Landing',
+      name: 'Home',
       component: LandingHomeView
     }, {
       path: 'search',
@@ -141,11 +137,13 @@ const router = new Router({
   }, {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: loadView('login.route/login'),
+    beforeEnter: auth
   }, {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp
+    component: loadView('signup.route/signup'),
+    beforeEnter: auth
   }, {
     path: '/files/:id',
     name: 'Files',

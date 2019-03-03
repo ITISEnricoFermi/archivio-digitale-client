@@ -53,9 +53,7 @@ import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 import Alert from '@/components/alert/alert'
 
-import {
-  v1
-} from '@/main'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'createAccount',

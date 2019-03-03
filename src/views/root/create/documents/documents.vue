@@ -89,10 +89,8 @@ import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
 import Loader from './components/loader'
 
-import {
-  v1,
-  eventBus
-} from '@/main'
+import eventBus from '@/utils/eventBus'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'createDocument',

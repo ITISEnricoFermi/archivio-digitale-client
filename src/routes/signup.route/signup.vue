@@ -69,10 +69,8 @@
 </template>
 
 <script>
-import {
-  eventBus,
-  service
-} from '@/main'
+import eventBus from '@/utils/eventBus'
+import service from '@/utils/service'
 
 import FooterLight from '@/components/footer/light.footer'
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'

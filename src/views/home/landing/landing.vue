@@ -49,7 +49,7 @@ export default {
   },
   created () {
     window.addEventListener('scroll', () => {
-      const scale = 1
+      // const scale = 1
       const height = window.innerHeight
       const scroll = window.window.scrollY
       const header = document.querySelectorAll('.header')[0]

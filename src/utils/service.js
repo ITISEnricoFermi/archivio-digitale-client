@@ -4,7 +4,7 @@ import getUrl from './getUrl'
 
 const env = process.env.NODE_ENV
 
-export const service = axios.create({
+export default axios.create({
   baseURL: getUrl(env),
   withCredentials: true,
   headers: {

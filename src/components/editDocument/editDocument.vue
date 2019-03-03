@@ -86,10 +86,8 @@
 </template>
 
 <script>
-import {
-  eventBus,
-  v1
-} from '@/main'
+import eventBus from '@/utils/eventBus'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'editDocument',

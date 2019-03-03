@@ -65,7 +65,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-loader @file="file = $event" :file="file"></app-loader>
+        <app-loader @file="fileDrop($event)" :file="file"></app-loader>
       </div>
     </div>
     <div class="row">
@@ -118,6 +118,12 @@ export default {
     }
   },
   methods: {
+    fileDrop (file) {
+      this.file = file
+      if (!this.document.name) {
+        this.document.name = this.file.name
+      }
+    },
     upload () {
       let self = this
       let formData = new FormData()

@@ -84,11 +84,16 @@ export default {
             position: absolute;
             @include absCenter;
             color: $color-white-6;
+            width: 100%;
 
             &--icon {
                 font-size: 2rem;
                 vertical-align: middle;
                 padding-right: 0.5rem;
+
+                @include respond(phone) {
+                  display: none;
+                }
             }
 
             &--text {

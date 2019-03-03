@@ -127,7 +127,7 @@ export default {
           if (progress === 100) {
             progress = 0
           }
-          this.progress = progress
+          self.progress = progress
         }
       }
 

@@ -6,7 +6,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-multiple-select placeholder="Aggiungi un destinatario" :selected.sync="email.recipients" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="email.recipients = $event"></app-multiple-select>
+        <app-multiple-select placeholder="Aggiungi un destinatario" :selected.sync="email.recipients" :dbElements="['firstname', 'lastname']" :url="'/admin/users/search/'" @update:selected="email.recipients = $event"></app-multiple-select>
       </div>
     </div>
     <div class="row" v-if="email.recipients.length">
@@ -20,7 +20,7 @@
     <div class="row" v-if="email.message">
       <div class="markdown" v-html="html"></div>
     </div>
-    <button class="button button--green">
+    <button class="button button--green" @click="send">
       <span class="icon">
         <i class="fas fa-paper-plane"></i>
       </span>
@@ -36,6 +36,7 @@ import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 import marked from 'marked'
+import v1 from '@/utils/v1'
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -62,6 +63,20 @@ export default {
   computed: {
     html () {
       return marked(this.email.message)
+    }
+  },
+  methods: {
+    async send () {
+      try {
+        const response = await v1.post('/admin/mails', {
+          subject: this.email.subject,
+          message: this.email.message,
+          recipients: this.email.recipients.map(el => el.email)
+        })
+        console.log(response)
+      } catch (e) {
+        console.log(e.message)
+      }
     }
   },
   components: {

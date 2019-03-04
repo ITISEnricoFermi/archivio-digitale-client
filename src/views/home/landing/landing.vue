@@ -128,7 +128,7 @@ main {
                 .title {
                     color: $color-white;
                     font-weight: 400;
-                    font-family: 'Bitter';
+                    font-family: 'Bitter', sans-serif;
                     font-weight: bold;
                     font-size: 5rem;
                     text-shadow: 0 0 1rem rgba($color-black, 0.2);

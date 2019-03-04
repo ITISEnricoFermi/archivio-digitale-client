@@ -201,7 +201,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .main__root {
     display: grid;
     grid-template-rows: 1fr;

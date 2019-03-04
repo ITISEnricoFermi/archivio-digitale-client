@@ -49,7 +49,7 @@ const auth = async (to, from, next) => {
       next()
     }
   } catch (e) {
-    if (to.name === 'Login' || to.name === 'SignUp' || to.name === 'Home') {
+    if (to.name === 'Login' || to.name === 'SignUp' || to.name === 'Home' || to.name === 'Search') {
       next()
     } else {
       next({

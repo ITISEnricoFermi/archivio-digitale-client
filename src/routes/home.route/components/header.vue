@@ -78,7 +78,7 @@ export default {
             .archivio {
                 font-size: 2rem;
                 color: $color-white;
-                font-family: 'Bitter';
+                font-family: 'Bitter', sans-serif;
 
                 @include respond(phone) {
                     display: none;

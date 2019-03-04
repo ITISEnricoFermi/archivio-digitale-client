@@ -3,9 +3,9 @@ version: "2"
 services:
   frontend:
     build: .
-    image: richard1984/archivio-fermi-client
+    image: itisenricofermi/archivio-digitale-client
     restart: always
-    container_name: archivio-fermi-client
+    container_name: archivio-digitale-client
     ports:
       - 80:80
     depends_on:
@@ -14,8 +14,8 @@ services:
       - api-network
 
   backend: # Usa sempre backend come nome del server api PS: se lo cambi cambia anche nginx.conf
-    image: richard1984/archivio-fermi-server:latest
-    container_name: archivio-fermi-server
+    image: itisenricofermi/archivio-digitale-server:latest
+    container_name: archivio-digitale-server
     restart: always
     environment:
       MONGODB_URI: "mongodb://database:27017/archivio"
@@ -30,7 +30,7 @@ services:
 
   database:
     image: mongo:3.4.19-jessie
-    container_name: archivio-fermi-db
+    container_name: archivio-digitale-db
     restart: always
     volumes:
       - database-data:/data/db

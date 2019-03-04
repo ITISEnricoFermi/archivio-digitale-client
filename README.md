@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/Richard1984/archivio-fermi-client/81041b2932b032ead156777a6927efe1925b52ca/static/shortcut/safari-pinned-tab.svg?sanitize=true" height="100"><br/>
+  <img src="https://raw.githubusercontent.com/ITISEnricoFermi/archivio-digitale-client/81041b2932b032ead156777a6927efe1925b52ca/static/shortcut/safari-pinned-tab.svg?sanitize=true" height="100"><br/>
   📚 Archivio Digitale 📚
 </h1>
 <p align="center">
@@ -8,24 +8,24 @@
 
 ## Getting Started
 
-L'Archivio Digitale è suddiviso in due repository: [archivio-fermi-server](https://github.com/Richard1984/archivio-fermi-server) e [archivio-fermi-client](https://github.com/Richard1984/archivio-fermi-client).
+L'Archivio Digitale è suddiviso in due repository: [archivio-fermi-server](https://github.com/ITISEnricoFermi/archivio-digitale-server) e [archivio-fermi-client](https://github.com/ITISEnricoFermi/archivio-digitale-client).
 
 ### Prerequisiti
 
-* Il web client necessita dell'installazione del [server](https://github.com/Richard1984/archivio-fermi-server).
+* Il web client necessita dell'installazione del [server](https://github.com/ITISEnricoFermi/archivio-digitale-server).
 
 ### Installazione
 
 1. Clonare il repository nella destinazione desiderata
 
 ```shell
-$ git clone https://github.com/Richard1984/archivio-fermi-client/
+$ git clone https://github.com/ITISEnricoFermi/archivio-digitale-client/
 ```
 
 2. Installare le dipendenze
 
 ```shell
-$ cd archivio-fermi-client/
+$ cd archivio-digitale-client/
 $ npm install
 ```
 
@@ -39,10 +39,10 @@ $ npm run build
 
 ```shell
 $ cd ..
-$ mv archivio-fermi-client/dist/* archivio-fermi-server/server/public/
+$ mv archivio-digitale-client/dist/* archivio-digitale-server/server/public/
 ```
 
-**Per la configurazione del server consultare la pagina del repository: [archivio-fermi-server](https://github.com/Richard1984/archivio-fermi-server).**
+**Per la configurazione del server consultare la pagina del repository: [archivio-digitale-server](https://github.com/ITISEnricoFermi/archivio-digitale-server).**
 
 ## Authors
 

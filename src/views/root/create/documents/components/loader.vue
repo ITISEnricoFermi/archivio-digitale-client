@@ -1,6 +1,6 @@
 <template>
 <div class="loader">
-  <div class="content" @drop.prevent="drop($event)" @dragover.prevent="dragover($event)" @dragleave.prevent="dragleave($event)">
+  <div class="content" @click.prevent="select" @drop.prevent="drop($event)" @dragover.prevent="dragover($event)" @dragleave.prevent="dragleave($event)">
     <p class="text">
       <span class="text--icon">
         <i class="fas fa-file"></i>
@@ -52,6 +52,16 @@ export default {
     drop (ev) {
       const file = ev.dataTransfer.items ? ev.dataTransfer.items[0].getAsFile() : ev.dataTransfer.files[0].getAsFile()
       this.$emit('file', file)
+    },
+    select () {
+      const input = document.createElement('input')
+      input.type = 'file'
+
+      input.addEventListener('change', ({ target }) => {
+        this.$emit('file', target.files[0])
+      })
+
+      return input.click()
     }
   }
 }
@@ -66,6 +76,10 @@ export default {
     border-radius: 0.3rem;
     padding: 1rem;
     transition: all 0.2s ease-in-out;
+
+    &, & > * {
+      cursor: pointer;
+    }
 
     // &--drag {
     //   padding: 1.5rem;

@@ -2,17 +2,17 @@
 <div id="app" class="main__root">
   <nprogress-container></nprogress-container>
 
-    <keep-alive>
-  <app-menu :user="user"></app-menu>
-    </keep-alive>
+  <keep-alive>
+    <app-menu :user="user"></app-menu>
+  </keep-alive>
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
 
   <transition name="panel" mode="out-in">
-  <keep-alive>
-    <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions" />
-  </keep-alive>
+    <keep-alive>
+      <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions" />
+    </keep-alive>
   </transition>
 
   <transition name="fade" mode="out-in">
@@ -31,7 +31,6 @@ import v1 from '@/utils/v1'
 
 import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 
-// VUE
 import Menu from '@/components/menu/menu'
 import Notifications from '@/components/notifications/notifications'
 
@@ -45,7 +44,6 @@ export default {
   name: 'root',
   data: () => {
     return {
-      panel: 'appPanelDashboard',
       types: [],
       faculties: [],
       subjects: [],
@@ -66,11 +64,11 @@ export default {
     }
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       this.menu = false
     }
   },
-  created () {
+  async created() {
     eventBus.$on('openPopUp', (entity, component, width) => {
       this.popup.entity = entity
       this.popup.component = component
@@ -85,107 +83,56 @@ export default {
       }
     })
 
-    v1.get('/document_types/')
-      .then((response) => {
-        this.types = response.data
-      }).catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
+    try {
+      const [types,
+        subjects,
+        faculties,
+        visibilities,
+        sections,
+        grades,
+        privileges,
+        collectionsPermissions,
+        user
+      ] = await Promise.all([
+        v1.get('/document_types/'),
+        v1.get('/subjects/'),
+        v1.get('/faculties/'),
+        v1.get('/document_visibility/'),
+        v1.get('/sections/'),
+        v1.get('/grades/'),
+        v1.get('/privileges/'),
+        v1.get('/collection_permissions/'),
+        v1.get('/users/me')
+      ])
 
-    v1.get('/subjects/')
-      .then((response) => {
-        this.subjects = response.data
-      }).catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
+      this.types = types.data
+      this.subjects = subjects.data
+      this.faculties = faculties.data
+      this.visibilities = visibilities.data
+      this.sections = sections.data
+      this.grades = grades.data
+      this.privileges = privileges.data
+      this.collectionsPermissions = collectionsPermissions.data
+      this.user = user.data
+    } catch (e) {
+      eventBus.notification({
+        title: e.response.data.messages[0],
+        temporary: true
       })
-
-    v1.get('/faculties/')
-      .then((response) => {
-        this.faculties = response.data
-      }).catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
-
-    v1.get('/document_visibility/')
-      .then((response) => {
-        this.visibilities = response.data
-      }).catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
-
-    v1.get('/sections/')
-      .then((response) => {
-        this.sections = response.data
-      }).catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
-
-    v1.get('/grades/')
-      .then((response) => {
-        this.grades = response.data
-      }).catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
-
-    v1.get('/privileges/')
-      .then((response) => {
-        this.privileges = response.data
-      })
-      .catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
-
-    v1.get('/collection_permissions/')
-      .then((response) => {
-        this.collectionsPermissions = response.data
-      })
-      .catch((e) => {
-        eventBus.notification({
-          title: e.response.data.messages[0],
-          temporary: true
-        })
-      })
-
-    this.getUser()
-  },
-  sockets: {
-    newDocument () {
-      this.getUser()
     }
   },
-  methods: {
-    getUser () {
-      v1.get('/users/me')
-        .then((response) => {
-          this.user = response.data
+  sockets: {
+    async newDocument() {
+      try {
+        const response = await v1.get('/users/me')
+        this.user = response.data
+        await this.getUser()
+      } catch (e) {
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
         })
-        .catch((e) => {
-          eventBus.notification({
-            title: e.response.data.messages[0],
-            temporary: true
-          })
-        })
+      }
     }
   },
   components: {
@@ -203,41 +150,31 @@ export default {
 
 <style lang="scss" scoped>
 .main__root {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 25rem auto;
-    grid-template-areas: ". main";
-    min-height: calc(100vh - 6rem);
-    height: 100vh;
+    min-height: 100vh;
     background-color: $color-white-2;
     width: 100vw;
     max-width: 100vw;
     overflow-x: hidden;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: 6rem auto;
-    grid-template-areas: "menu" "main";
 
     @include color-scheme(dark) {
         background: #282828!important;
     }
 
     @include respond(tab-lan) {
-        display: block;
-        margin-top: 6rem;
         height: auto;
     }
 
     .menu {
-      grid-area: menu;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 2000;
+        grid-area: menu;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2000;
     }
 
-    main {
-        grid-area: main;
+    .panel {
+        min-height: calc(100vh - 6rem);
+        margin-top: 6rem;
         font-size: $font-default-2;
         background-color: $color-white-2;
 
@@ -246,7 +183,6 @@ export default {
         }
 
         @include respond(tab-por) {
-            height: calc(100vh - 6rem);
             padding: 3vh 0 0 0!important !important;
         }
     }

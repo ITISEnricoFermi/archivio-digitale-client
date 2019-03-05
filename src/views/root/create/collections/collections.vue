@@ -1,5 +1,5 @@
 <template>
-<div class="panel">
+<main class="panel">
   <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-2">
@@ -35,7 +35,7 @@
   <transition name="fade">
     <app-alert v-if="collectionsAlert.messages" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
   </transition>
-</div>
+</main>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-<div class="panel">
+<main class="panel">
   <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-1">
@@ -14,7 +14,7 @@
   <transition-group name="fade" mode="out-in">
     <app-user v-for="user in users" :user="user" :key="user._id"></app-user>
   </transition-group>
-</div>
+</main>
 </template>
 
 <script>

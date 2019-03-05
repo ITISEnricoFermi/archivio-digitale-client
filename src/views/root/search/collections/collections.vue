@@ -1,5 +1,5 @@
 <template>
-<div class="panel">
+<main class="panel">
   <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-2">
@@ -28,7 +28,7 @@
   <transition-group name="fade">
     <app-collection :collection="collection" v-for="collection in collections" :key="collection._id"></app-collection>
   </transition-group>
-</div>
+</main>
 </template>
 
 <script>

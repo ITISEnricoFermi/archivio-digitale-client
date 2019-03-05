@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import v1 from '@/utils/v1'
-import nprogress from '@/utils/nprogress'
 
 // Home
 import LandingHomeView from '@/views/home/landing/landing'
@@ -32,7 +31,7 @@ import NotFoundComponent from '@/routes/404.error.route/404'
 
 Vue.use(Router)
 
-const loadView = view => () => import(/* webpackChunkName: "view-[request]" */ `@/routes/${view}.vue`)
+const loadView = view => () => import(`@/routes/${view}.vue`)
 
 const auth = async (to, from, next) => {
   try {
@@ -119,7 +118,7 @@ const router = new Router({
         localStorage.removeItem('token')
         // let date = (new Date()).toUTCString()
         // document.cookie = `token=; expires=${date}; path=/;`
-        next('/')
+        next('/dashboard/')
       }
     }]
   }, {

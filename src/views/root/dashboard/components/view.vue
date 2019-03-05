@@ -9,18 +9,18 @@
         </span>
         <span class="crop">Modifica</span>
       </button>
-      <router-link :to="'/files/' + document._id" class="button" target="_blank">
+      <!-- <router-link :to="'/files/' + document._id" class="button" target="_blank">
         <span class="icon">
           <i class="fas fa-eye"></i>
         </span>
         <span class="crop">Visualizza</span>
-      </router-link>
-      <!-- <button class="button" @click="view">
+      </router-link> -->
+      <button class="button" @click="view">
         <span class="icon">
           <i class="fas fa-eye"></i>
         </span>
         <span class="crop">Visualizza</span>
-      </button> -->
+      </button>
       <button class="button" @click="download">
         <span class="icon">
           <i class="fas fa-download"></i>
@@ -125,7 +125,7 @@ export default {
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
-      window.open(`/public/documents/${this.document.directory}`, '_blank')
+      window.open(`/files/${this.document._id}`, '_blank')
     }
   }
 }

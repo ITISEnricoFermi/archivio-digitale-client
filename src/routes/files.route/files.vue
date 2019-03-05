@@ -50,7 +50,7 @@ export default {
   overflow: hidden;
   height: 100vh;
   grid-template-columns: 1fr;
-  grid-template-rows: 10rem calc(100vh - 10rem);
+  grid-template-rows: min-content auto;
   grid-template-areas: "header" "document";
 
   .header {

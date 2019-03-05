@@ -1,46 +1,57 @@
 <template>
-<header class="header">
-  <div class="logo">
-    <a href="/home/" class="logo__content">
-      <img src="/logo/itisFermi_white.svg" class="fermi" alt="ITIS Enrico Fermi">
-      <div class="separator"></div>
-      <p class="archivio">Archivio Digitale</p>
+<div class="header">
+  <div class="header__logo">
+    <a href="/home/" class="content">
+      <div class="fermi">
+        <div class="logo"></div>
+      </div>
+      <span class="archivio">
+        <div class="separator"></div>
+        <p class="text">Archivio Digitale</p>
+      </span>
     </a>
   </div>
-  <div class="menu">
-    <ul class="buttons">
-      <li>
-        <button class="back" @click="back">
-          <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-          </span>
-          <span class="crop">Torna indietro</span>
-        </button>
-      </li>
-      <li>
-        <button class="download" @click="download">
-          <span class="icon">
-            <i class="fas fa-download"></i>
-          </span>
-          <span class="crop">
-            Scarica
-          </span>
-        </button>
-      </li>
-    </ul>
+  <router-link tag="div" class="profile" :to="'/user/'" active-class="profile--active" v-if="document.author._id">
+    <img class="pic" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
+      :alt="document.author.firstname + ' ' + document.author.lastname">
+    <div class="info">
+      <p class="info__name">
+        <span class="info__name--firstname">{{ document.author.firstname }}</span>
+        <span class="info__name--lastname"> {{ document.author.lastname }}</span>
+      </p>
+      <p class="subtitle heading-fifth">View profile</p>
+    </div>
+
+  </router-link>
+  <div class="buttons">
+    <div class="content">
+      <button class="back" @click="back">
+        <span class="icon">
+          <i class="fas fa-chevron-left"></i>
+        </span>
+        <span class="crop">Torna indietro</span>
+      </button>
+      <button class="download" @click="download">
+        <span class="icon">
+          <i class="fas fa-download"></i>
+        </span>
+        <span class="crop">
+          Scarica
+        </span>
+      </button>
+    </div>
   </div>
-</header>
+</div>
 </template>
 
 <script>
-
 export default {
   props: ['document'],
   methods: {
-    back () {
+    back() {
       this.$router.push('/dashboard')
     },
-    download () {
+    download() {
       const path = this.document.directory
       let a = document.createElement('A')
       a.href = `/public/documents/${path}`
@@ -51,29 +62,19 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .header {
-    width: 100%;
-    text-align: center;
-    width: 100%;
-    z-index: 10000;
-    height: 10rem;
-    padding: 4vh 6vh;
-    background-image: linear-gradient(45deg, #1A8D4C 1%, #22B863 64%, #66BA6B 97%);
-    display: table;
-    transition: all 0.2s ease-in-out;
+    background-color: #212121;
+    @include clearfix;
+    width: 100vw;
 
-    @include respond(phone) {
-        padding: 3vh;
-    }
-
-    .logo {
+    &__logo {
         display: table-cell;
         vertical-align: middle;
+        float: left;
 
-        &__content {
+        .content {
             text-align: left;
-            height: 4.5rem;
             display: table-cell;
             vertical-align: middle;
             text-decoration: none;
@@ -84,28 +85,50 @@ export default {
             }
 
             .fermi {
-                height: 4.5rem;
-                // margin: 0.75rem 0.75rem 0.75rem 3vh;
-            }
+                height: 6rem;
+                width: 6rem;
+                position: relative;
+                // background-color: #2F3D45;
 
-            .separator {
-                height: 3rem;
-                width: 0.05rem;
-                background-color: $color-white;
-                margin: 0 1rem;
+                .logo {
+                    position: absolute;
+                    @include absCenter;
+                    height: 4rem;
+                    width: 4rem;
+                    background-color: $color-white-6;
+                    mask-image: url("/logo/solo.svg");
+                    mask-size: cover;
+                    transition: all 0.2s ease-in-out;
+                    cursor: pointer;
 
-                @include respond(phone) {
-                    display: none;
+                    &:hover {
+                        background-color: $color-fourth;
+                    }
                 }
             }
 
             .archivio {
-                font-size: 2rem;
-                color: $color-white;
-                font-family: 'Bitter';
-
-                @include respond(phone) {
+                padding: 0 1rem;
+                .separator {
+                    height: 3rem;
+                    width: 0.05rem;
+                    background-color: $color-white;
+                    margin-right: 1rem;
                     display: none;
+
+                    @include respond(phone) {
+                        display: none;
+                    }
+                }
+
+                .text {
+                    font-size: 2rem;
+                    color: $color-white;
+                    font-family: 'Bitter';
+
+                    @include respond(phone) {
+                        display: none;
+                    }
                 }
             }
 
@@ -113,75 +136,127 @@ export default {
 
     }
 
-    .menu {
-        display: table-cell;
-        vertical-align: middle;
+    .buttons {
+        float: right;
+        height: 100%;
+        height: 6rem;
+        display: table;
+        padding: 0 1rem;
 
-        .buttons {
-            text-align: right;
-            padding: 0;
-            float: right;
+        .content {
+            display: table-cell;
+            vertical-align: middle;
 
-            li {
+            button {
+                text-decoration: none;
+                font-size: 1.4rem;
+                outline: none;
+                cursor: pointer;
                 display: inline-block;
+                transition: all 0.2s ease-in-out;
 
                 &:not(:last-child) {
                     margin-right: 1.5rem;
                 }
 
-                button{
-                    // text-transform: uppercase;
-                    // padding: 0.7rem;
-                    display: block;
-                    text-decoration: none;
-                    font-size: 1.4rem;
-                    outline: none;
-                    cursor: pointer;
-
-                    span.icon {
-                      margin-right: 0.75rem;
-                      @include respond(tab-por) {
+                span.icon {
+                    margin-right: 0.75rem;
+                    @include respond(tab-por) {
                         margin: 0.5rem;
-                      }
                     }
+                }
 
-                    span.crop {
-                      @include respond(tab-por) {
+                span.crop {
+                    @include respond(tab-por) {
                         display: none;
-                      }
                     }
-                }
-
-                .back {
-                    padding: 1.2rem 1.5rem;
-                    font-weight: bold;
-                    color: $color-white;
-                    border-radius: 0.3rem;
-                    border: 1px solid rgba($color-white, 0.2);
-                    background: none;
-
-                    &:hover {
-                        background-color: rgba($color-white, 0.2);
-                    }
-                }
-
-                .download {
-                    border: none;
-                    padding: 1.2rem 1.5rem;
-                    font-weight: bold;
-                    color: $color-white;
-                    border-radius: 0.3rem;
-                    background-color: $color-primary;
-
-                    &:hover {
-                        background-color: lighten(#1A8D4C, 2%);
-                    }
-
                 }
 
             }
         }
 
+        .back {
+            padding: 1.2rem 1.5rem;
+            font-weight: bold;
+            color: $color-white;
+            border-radius: 0.3rem;
+            border: 1px solid rgba($color-white, 0.2);
+            background: none;
+
+            &:hover {
+                background-color: rgba($color-white, 0.2);
+            }
+        }
+
+        .download {
+            border: none;
+            padding: 1.2rem 1.5rem;
+            font-weight: bold;
+            color: $color-white;
+            border-radius: 0.3rem;
+            background-image: $linear-gradient-primary--light;
+
+            &:active {
+                box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2) inset;
+            }
+
+        }
+    }
+
+}
+
+.profile {
+    padding: 1rem;
+    float: right;
+    grid-template-columns: 4rem auto;
+    grid-gap: 1rem;
+    cursor: pointer;
+    display: grid;
+    position: relative;
+
+    @include respond(phone) {
+        grid-template-columns: 1fr;
+    }
+    &--active,
+    &:hover {
+        background-color: #09090f;
+    }
+    .pic {
+        width: 4rem;
+        border-radius: 0.25rem;
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include respond(phone) {
+            display: none;
+        }
+        .info__name {
+            color: $color-white-6;
+            margin-bottom: 0.4rem;
+        }
+        .subtitle {
+            color: $color-grey-2;
+        }
+    }
+
+    .dropdown {
+        position: absolute;
+        background-color: $color-tertiary;
+        z-index: 2000000;
+        top: 6rem;
+        left: 0;
+        width: 100%;
+        display: none;
+
+        .section {
+            width: 100%;
+        }
+    }
+
+    &:hover .dropdown {
+        display: block;
     }
 
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import getUrl from './getUrl'
-import nprogress from './nprogress'
+import nprogress from '@/utils/nprogress'
 
 const env = process.env.NODE_ENV
 

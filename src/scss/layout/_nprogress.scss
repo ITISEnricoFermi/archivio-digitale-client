@@ -1,0 +1,23 @@
+#nprogress {
+    position: fixed;
+    top: 0;
+    z-index: 100000000;
+    width: 100vw;
+    outline: none;
+
+    .bar {
+        height: 0.2rem;
+        background-image: $linear-gradient-primary--light;
+        outline: none;
+
+        @include color-scheme(dark) {
+            background: $linear-gradient-primary--dark!important;
+        }
+
+    }
+
+}
+
+.nprogress-container {
+  position: fixed;
+}

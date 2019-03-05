@@ -201,7 +201,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .main__root {
     display: grid;
     grid-template-rows: 1fr;
@@ -256,25 +256,5 @@ export default {
     @include respond(tab-por) {
         border-radius: 0!important;
     }
-}
-
-#nprogress {
-    position: fixed;
-    top: 0;
-    z-index: 1000000;
-    width: 100vw;
-    outline: none;
-
-    .bar {
-        height: 0.4rem;
-        background-image: $linear-gradient-primary--light;
-        outline: none;
-
-        @include color-scheme(dark) {
-            background: $linear-gradient-primary--dark!important;
-        }
-
-    }
-
 }
 </style>

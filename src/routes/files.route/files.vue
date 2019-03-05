@@ -1,13 +1,14 @@
 <template>
-  <main class="main">
-    <app-header :document="document"></app-header>
-    <iframe :src="'/public/documents/' + document.directory" class="document" v-if="document"></iframe>
-  </main>
+<main class="main">
+  <nprogress-container></nprogress-container>
+  <app-header :document="document"></app-header>
+  <iframe :src="'/public/documents/' + document.directory" class="document" v-if="document"></iframe>
+</main>
 </template>
 
 <script>
-
 import Header from './components/header'
+import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 
 import v1 from '@/utils/v1'
 
@@ -26,6 +27,7 @@ export default {
       const response = await v1.get(`/documents/info/${id}`)
 
       document.title = response.data.name
+
       next(vm => {
         vm.document = response.data
       })
@@ -36,41 +38,40 @@ export default {
     }
   },
   components: {
-    appHeader: Header
+    appHeader: Header,
+    NprogressContainer
   }
 }
 </script>
 
 <style lang="scss">
-
 .main {
-  display: grid;
-  width: 100vw;
-  max-width: 100vw;
-  overflow: hidden;
-  height: 100vh;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content auto;
-  grid-template-areas: "header" "document";
-
-  .header {
-    grid-area: header;
-  }
-
-  .document {
-    grid-area: document;
+    display: grid;
     width: 100vw;
-    height: 100%;
-    border: none;
+    max-width: 100vw;
+    overflow: hidden;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content auto;
+    grid-template-areas: "header" "document";
 
-    body {
-
+    .header {
+        grid-area: header;
     }
 
-    img {
-      width: 100%;
+    .document {
+        grid-area: document;
+        width: 100vw;
+        height: 100%;
+        border: none;
+
+        body {
+            }
+
+        img {
+            width: 100%;
+        }
     }
-  }
 
 }
 </style>

@@ -1,3 +1,7 @@
 import NProgress from 'vue-nprogress'
 
-export default new NProgress({ showSpinner: false, easing: 'ease', speed: 500 })
+export default new NProgress({
+  showSpinner: false,
+  easing: 'ease',
+  speed: 500
+})

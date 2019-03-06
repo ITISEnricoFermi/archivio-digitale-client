@@ -20,7 +20,7 @@
     <div class="row" v-if="email.message">
       <div class="markdown" v-html="html"></div>
     </div>
-    <button class="button button--green" @click="send(event)">
+    <button class="button button--green" @click="send($event)">
       <span class="icon">
         <i class="fas fa-paper-plane"></i>
       </span>

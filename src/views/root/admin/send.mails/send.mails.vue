@@ -20,7 +20,7 @@
     <div class="row" v-if="email.message">
       <div class="markdown" v-html="html"></div>
     </div>
-    <button class="button button--green" @click="send">
+    <button class="button button--green" @click="send(event)">
       <span class="icon">
         <i class="fas fa-paper-plane"></i>
       </span>
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
@@ -70,8 +69,11 @@ export default {
     }
   },
   methods: {
-    async send () {
+    async send ({
+      target
+    }) {
       try {
+        target.disabled = true
         await v1.post('/admin/mails', {
           subject: this.email.subject,
           message: this.html,
@@ -80,11 +82,13 @@ export default {
         this.email.message = ''
         this.email.subject = ''
         this.email.recipients = []
+        target.disabled = false
         eventBus.notification({
           title: 'Email inviata con successo.',
           temporary: true
         })
       } catch (e) {
+        target.disabled = false
         eventBus.notification({
           title: 'Impossibile inviare l\'email.',
           temporary: true

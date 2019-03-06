@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div class="menu__logo">
-      <a href="/home/" class="content">
+      <a href="/dashboard/" class="content">
         <div class="fermi">
           <div class="logo"></div>
         </div>

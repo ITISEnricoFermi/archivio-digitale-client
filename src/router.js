@@ -154,4 +154,8 @@ const router = new Router({
   }]
 })
 
+router.afterEach((to, from) => {
+  document.title = to.meta.title || 'Archivio Digitale - ITIS Enrico Fermi'
+})
+
 export default router

@@ -26,7 +26,7 @@ export default {
     try {
       const response = await v1.get(`/documents/info/${id}`)
 
-      document.title = response.data.name
+      to.meta.title = response.data.name
 
       next(vm => {
         vm.document = response.data

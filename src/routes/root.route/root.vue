@@ -63,12 +63,7 @@ export default {
       }
     }
   },
-  watch: {
-    $route(to, from) {
-      this.menu = false
-    }
-  },
-  async created() {
+  async created () {
     eventBus.$on('openPopUp', (entity, component, width) => {
       this.popup.entity = entity
       this.popup.component = component
@@ -102,7 +97,7 @@ export default {
         v1.get('/grades/'),
         v1.get('/privileges/'),
         v1.get('/collection_permissions/'),
-        v1.get('/users/me')
+        v1.get('/users/' + localStorage.getItem('id'))
       ])
 
       this.types = types.data
@@ -122,9 +117,9 @@ export default {
     }
   },
   sockets: {
-    async newDocument() {
+    async newDocument () {
       try {
-        const response = await v1.get('/users/me')
+        const response = await v1.get('/users/' + localStorage.getItem('id'))
         this.user = response.data
         await this.getUser()
       } catch (e) {

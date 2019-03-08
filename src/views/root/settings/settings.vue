@@ -11,12 +11,12 @@
         <input type="password" class="textfield" placeholder="Password attuale" autocomplete="off" v-model="local.passwords.old">
       </div>
       <div class="col-1-of-2">
-        <input type="password" class="textfield" placeholder="Nuova password" autocomplete="off" v-model="local.passwords.new">
+        <input type="password" class="textfield" placeholder="Nuova password" autocomplete="new-password" v-model="local.passwords.new">
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-2">
-        <input type="file" class="file" id="upload-img-profile" @change="uploadProfilePic" ref="settingsProfilePic">
+        <input type="file" class="file" id="upload-img-profile" @change="uploadProfilePic($event)">
         <label class="button button--blue" for="upload-img-profile">
           <span class="icon"><i class="fas fa-upload"></i></span>
           <span class="crop">Carica foto profilo</span>
@@ -58,7 +58,6 @@ import Alert from '@/components/alert/alert'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'panelSettings',
   props: ['user'],
   data: () => {
     return {
@@ -82,28 +81,29 @@ export default {
   methods: {
     async saveSettings () {
       try {
-        await v1.patch('/users/me/', {
+        await v1.patch('/users/' + localStorage.getItem('id'), {
           user: this.local
         })
         window.location.replace('/login')
       } catch (e) {
         this.settingsAlert = {
-          messages: e.response.data.messages,
+          messages: e.message,
           color: 'alert--red'
         }
       }
     },
-    async uploadProfilePic () {
-      let profilePic = this.$refs.settingsProfilePic.files[0]
+    async uploadProfilePic ({ target }) {
+      let profilePic = target.files[0]
 
       let formData = new FormData()
 
       formData.append('picToUpload', profilePic)
 
       try {
-        await v1.patch('/users/me/pic/', formData)
+        await v1.patch('/users/' + localStorage.getItem('id') + '/pic/', formData)
         window.location.reload()
       } catch (e) {
+        console.log(e)
         this.settingsAlert = {
           messages: e.response.data.messages,
           color: 'alert--red'
@@ -112,7 +112,7 @@ export default {
     },
     async disableAccount () {
       try {
-        await v1.delete('/users/me/')
+        await v1.delete('/users/' + localStorage.getItem('id'))
         window.location.replace('/')
       } catch (e) {
         this.settingsAlert = {

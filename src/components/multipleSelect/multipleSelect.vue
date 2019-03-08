@@ -63,9 +63,7 @@ export default {
       }
 
       try {
-        let response = await v1.post(this.url, {
-          query: this.query
-        })
+        let response = await v1.get(this.url + this.query)
 
         this.results = response.data.filter(e => this.selected.findIndex(b => b._id === e._id) === -1)
       } catch (e) {

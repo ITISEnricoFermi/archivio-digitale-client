@@ -35,7 +35,7 @@ const loadView = view => () => import(`@/routes/${view}.vue`)
 
 const auth = async (to, from, next) => {
   try {
-    await v1.post('/users/me/logged/')
+    await v1.get('/users/' + localStorage.getItem('id'))
     if (to.name === 'Root' || to.name === 'Home' || to.name === 'Login' || to.name === 'SignUp') {
       next({
         path: '/dashboard/'

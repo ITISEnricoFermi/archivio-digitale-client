@@ -54,9 +54,7 @@ export default {
     },
     async acceptRequest (id) {
       try {
-        await v1.post('admin/acceptRequestById', {
-          _id: id
-        })
+        await v1.patch('/admin/requests/' + id)
         this.requests = await this.getRequests()
         eventBus.notification({
           title: 'La richiesta di iscrizione è stata accettata.',
@@ -71,9 +69,7 @@ export default {
     },
     async refuseRequest (id) {
       try {
-        await v1.post('admin/refuseRequestById', {
-          _id: id
-        })
+        await v1.delete('/admin/requests/' + id)
         this.requests = await this.getRequests()
         eventBus.notification({
           title: 'La richiesta di iscrizione è stata rifiutata.',

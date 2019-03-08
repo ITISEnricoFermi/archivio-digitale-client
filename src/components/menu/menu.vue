@@ -58,7 +58,7 @@
           <app-dropdown to="/search/collections/" icon="fas fa-folder" text="Cerca collezioni"></app-dropdown>
         </div>
       </div>
-      <div class="link">
+      <div class="link" v-if="admin">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
@@ -82,6 +82,15 @@ import Dropdown from './components/dropdown'
 
 export default {
   props: ['user'],
+  computed: {
+    admin () {
+      if (this.user.privileges._id === 'admin') {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   components: {
     appDropdown: Dropdown
   }

@@ -84,7 +84,7 @@ export default {
   methods: {
     async createUser () {
       try {
-        await v1.put('/admin/users/', {
+        await v1.post('/admin/users/', {
           ...this.user,
           ...this.computedAccesses
         })

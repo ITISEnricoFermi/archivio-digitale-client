@@ -58,8 +58,11 @@ export default {
       }
 
       try {
-        const { token } = (await service.post('/login/', this.user)).data
+        const response = await service.post('/login/', this.user)
+        const { token } = response.data
+        const { _id } = JSON.parse(atob(token.split('.')[1]))
         localStorage.setItem('token', token)
+        localStorage.setItem('id', _id)
         // document.cookie = `token=${token}`
         window.location.replace('/dashboard')
       } catch (e) {

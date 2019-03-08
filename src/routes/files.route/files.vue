@@ -24,7 +24,7 @@ export default {
     if (!id) return
 
     try {
-      const response = await v1.get(`/documents/info/${id}`)
+      const response = await v1.get(`/documents/${id}`)
 
       to.meta.title = response.data.name
 

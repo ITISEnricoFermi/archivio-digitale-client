@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     edit () {
-      eventBus.openPopUp(this.user, 'appEditUser', 80)
+      eventBus.openPopUp(this.user._id, 'appEditUser', 80)
     },
     closeMenu () {
       if (this.menu) {

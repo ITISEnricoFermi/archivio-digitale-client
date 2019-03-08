@@ -65,7 +65,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-loader @file="fileDrop($event)" :file="file"></app-loader>
+        <app-file-loader @file="fileDrop($event)" :file="file" dragMessage="Trascina un file per caricarlo" dropMessage="Rilascia il file per caricarlo"></app-file-loader>
       </div>
     </div>
     <div class="row">
@@ -87,7 +87,7 @@
 <script>
 import Progress from '@/components/progress/progress'
 import Alert from '@/components/alert/alert'
-import Loader from './components/loader'
+import FileLoader from '@/components/fileLoader/fileLoader'
 
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
@@ -173,7 +173,7 @@ export default {
   components: {
     appProgress: Progress,
     appAlert: Alert,
-    appLoader: Loader
+    appFileLoader: FileLoader
   }
 }
 </script>

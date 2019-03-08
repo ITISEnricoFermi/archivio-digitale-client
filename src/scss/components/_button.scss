@@ -16,7 +16,7 @@
 
   &:disabled {
     background-color: $color-white-5!important;
-    border-color: $color-white-6!important;
+    border-color: darken($color-white-5, 10%)!important;
   }
 
 

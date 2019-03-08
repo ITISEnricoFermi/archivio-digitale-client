@@ -15,14 +15,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-1-of-2">
-        <input type="file" class="file" id="upload-img-profile" @change="uploadProfilePic($event)">
-        <label class="button button--blue" for="upload-img-profile">
-          <span class="icon"><i class="fas fa-upload"></i></span>
-          <span class="crop">Carica foto profilo</span>
-        </label>
+      <div class="col-1-of-1">
+        <app-file-loader @file="uploadProfilePic($event)" :file="file" dragMessage="Trascina una foto per impostare l'avatar." dropMessage="Rilascia la foto."></app-file-loader>
       </div>
-      <div class="col-1-of-2">
+    </div>
+    <div class="row">
+      <div class="col-1-of-1">
         <button class="button button--green" @click="saveSettings">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva <span class="crop">impostazioni</span></span>
@@ -30,7 +28,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-1-of-1">
+      <div class="col-1-of-2">
+        <button class="button button--yellow" @click="transferDocuments">
+          <span class="icon"><i class="fas fa-exchange-alt"></i></span>
+          <span class="crop">Trasferisci documenti</span>
+        </button>
+      </div>
+      <div class="col-1-of-2">
         <button class="button button--red" @click="disableAccount">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina account</span>
@@ -54,6 +58,7 @@
 
 <script>
 import Alert from '@/components/alert/alert'
+import FileLoader from '@/components/fileLoader/fileLoader'
 
 import v1 from '@/utils/v1'
 
@@ -72,13 +77,29 @@ export default {
       settingsAlert: {
         messages: undefined,
         color: undefined
-      }
+      },
+      file: undefined
     }
   },
   created () {
     this.local.email = this.user.email
   },
   methods: {
+    async uploadProfilePic (pic) {
+      const formData = new FormData()
+
+      formData.append('picToUpload', pic)
+
+      try {
+        await v1.patch('/users/' + localStorage.getItem('id') + '/pic/', formData)
+        window.location.reload()
+      } catch (e) {
+        this.settingsAlert = {
+          messages: e.response.data.messages,
+          color: 'alert--red'
+        }
+      }
+    },
     async saveSettings () {
       try {
         await v1.patch('/users/' + localStorage.getItem('id'), {
@@ -88,24 +109,6 @@ export default {
       } catch (e) {
         this.settingsAlert = {
           messages: e.message,
-          color: 'alert--red'
-        }
-      }
-    },
-    async uploadProfilePic ({ target }) {
-      let profilePic = target.files[0]
-
-      let formData = new FormData()
-
-      formData.append('picToUpload', profilePic)
-
-      try {
-        await v1.patch('/users/' + localStorage.getItem('id') + '/pic/', formData)
-        window.location.reload()
-      } catch (e) {
-        console.log(e)
-        this.settingsAlert = {
-          messages: e.response.data.messages,
           color: 'alert--red'
         }
       }
@@ -120,10 +123,14 @@ export default {
           color: 'alert--red'
         }
       }
+    },
+    async transferDocuments () {
+
     }
   },
   components: {
-    appAlert: Alert
+    appAlert: Alert,
+    appFileLoader: FileLoader
   }
 }
 </script>

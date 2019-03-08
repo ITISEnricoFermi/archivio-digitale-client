@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  props: ['file'],
+  props: ['file', 'dragMessage', 'dropMessage'],
   data () {
     return {
       over: false
@@ -24,9 +24,9 @@ export default {
   computed: {
     text () {
       if (this.over) {
-        return 'Rilascia il file per caricarlo'
+        return this.dropMessage
       } else {
-        return 'Trascina un file per caricarlo'
+        return this.dragMessage
       }
     },
     message () {

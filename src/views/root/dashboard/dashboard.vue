@@ -44,15 +44,15 @@ export default {
     .documents {
         width: 60%;
         margin-top: calc(6rem + 7rem);
-        // z-index: 100;
-        //
-        // @include respond (tab-por) {
-        //   width: 100%;
-        // }
-        //
-        // .module {
-        //     margin: 0;
-        // }
+        z-index: 100;
+
+        @include respond (tab-por) {
+          width: 100%;
+        }
+
+        .module {
+            margin: 0;
+        }
     }
 
     .header {

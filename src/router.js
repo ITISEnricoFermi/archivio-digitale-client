@@ -110,10 +110,10 @@ const router = new Router({
       path: '/logout',
       name: 'Logout',
       beforeEnter (to, from, next) {
-        localStorage.removeItem('token')
+        localStorage.clear()
         // let date = (new Date()).toUTCString()
         // document.cookie = `token=; expires=${date}; path=/;`
-        next('/dashboard/')
+        next('/home/')
       }
     }]
   }, {

@@ -1,5 +1,5 @@
 <template>
-<main id="app" class="main__login">
+<main class="main">
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
@@ -77,9 +77,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
-.main__login {
+.main {
   position: relative;
   width: 100vw;
   max-width: 100vw;

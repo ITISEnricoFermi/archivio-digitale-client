@@ -1,8 +1,8 @@
 <template>
-<div id="app" class="main__home">
+<main class="main">
   <router-view />
   <app-footer></app-footer>
-</div>
+</main>
 </template>
 
 <script>
@@ -27,7 +27,7 @@ body {
     height: auto!important;
 }
 
-.main__home {
+.main {
     width: 100vw;
     max-width: 100vw;
     overflow-x: hidden;

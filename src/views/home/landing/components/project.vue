@@ -1,5 +1,5 @@
 <template>
-<a :href="'/files/' + project._id" class="module module--padded project" target="_blank">
+<router-link :to="{name: 'Files', params: { id: project._id }}" class="module module--padded project" target="_blank">
   <div class="row">
     <div class="col-1-of-1">
       <p class="project-name">{{ project.name }}</p>
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-</a>
+</router-link>
 </template>
 
 <script>
@@ -28,8 +28,8 @@ export default {
   name: 'project',
   props: ['project'],
   computed: {
-    date: function () {
-      let timestamp = this.project._id.toString().substring(0, 8)
+    date () {
+      const timestamp = this.project._id.toString().substring(0, 8)
       let date = new Date(parseInt(timestamp, 16) * 1000)
       let getMonth = (date) => {
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']

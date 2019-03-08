@@ -35,12 +35,7 @@ const loadView = view => () => import(`@/routes/${view}.vue`)
 
 const auth = async (to, from, next) => {
   try {
-    await v1.post('/users/me/logged', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }
-    })
-
+    await v1.post('/users/me/logged/')
     if (to.name === 'Root' || to.name === 'Home' || to.name === 'Login' || to.name === 'SignUp') {
       next({
         path: '/dashboard/'

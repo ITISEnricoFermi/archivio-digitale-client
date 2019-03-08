@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .main {
     display: grid;
     width: 100vw;

@@ -1,5 +1,5 @@
 <template>
-<main id="app" class="main__signup">
+<main class="main">
   <keep-alive>
     <app-notifications></app-notifications>
   </keep-alive>
@@ -133,8 +133,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.main__signup {
+<style scoped lang="scss">
+.main {
     position: relative;
     width: 100vw;
     max-width: 100vw;

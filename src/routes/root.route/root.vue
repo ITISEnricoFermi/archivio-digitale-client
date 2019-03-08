@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="main__root">
+<div class="main__root">
   <nprogress-container></nprogress-container>
 
   <keep-alive>
@@ -148,7 +148,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .main__root {
     min-height: 100vh;
     background-color: $color-white-2;

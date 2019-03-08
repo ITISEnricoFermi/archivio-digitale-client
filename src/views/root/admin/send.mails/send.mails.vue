@@ -6,7 +6,7 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-multiple-select placeholder="Aggiungi un destinatario" :selected.sync="email.recipients" :dbElements="['firstname', 'lastname']" :url="'/admin/users/search/'" @update:selected="email.recipients = $event"></app-multiple-select>
+        <app-multiple-select placeholder="Aggiungi un destinatario" :selected.sync="email.recipients" :dbElements="['firstname', 'lastname']" :url="'/users/search/partial/'" @update:selected="email.recipients = $event"></app-multiple-select>
       </div>
     </div>
     <div class="row" v-if="email.recipients.length">
@@ -74,7 +74,7 @@ export default {
     }) {
       try {
         target.disabled = true
-        await v1.post('/admin/mails', {
+        await v1.post('/admin/mails/', {
           subject: this.email.subject,
           message: this.html,
           recipients: this.email.recipients.map(el => el.email)

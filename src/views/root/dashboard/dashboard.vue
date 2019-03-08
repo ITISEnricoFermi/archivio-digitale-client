@@ -42,21 +42,21 @@ export default {
     position: relative;
 
     .documents {
-        width: 60vw;
+        width: 60%;
         margin-top: calc(6rem + 7rem);
-        z-index: 100;
-
-        @include respond (tab-por) {
-          width: 100%;
-        }
-
-        .module {
-            margin: 0;
-        }
+        // z-index: 100;
+        //
+        // @include respond (tab-por) {
+        //   width: 100%;
+        // }
+        //
+        // .module {
+        //     margin: 0;
+        // }
     }
 
     .header {
-      width: 60vw;
+      width: 60%;
       height: 7rem;
       top: 6rem;
       z-index: 1500;
@@ -69,17 +69,12 @@ export default {
     }
 
     .view {
-      width: 40vw;
+      width: 40%;
       z-index: 1500;
       position: fixed;
       right: 0;
       top: 6rem;
       height: 100%;
-
-      @include respond (tab-lan) {
-        height: calc(100vh - 6rem);
-        top: 6rem;
-      }
 
       @include respond (tab-por) {
         display: none;

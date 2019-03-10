@@ -48,10 +48,10 @@
 export default {
   props: ['document'],
   methods: {
-    back() {
+    back () {
       this.$router.push('/dashboard')
     },
-    download() {
+    download () {
       const path = this.document.directory
       let a = document.createElement('A')
       a.href = `/public/documents/${path}`

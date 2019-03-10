@@ -54,6 +54,8 @@ import MultipleSelectResults from '@/components/multipleSelect/multipleSelectRes
 import Alert from '@/components/alert/alert'
 
 import v1 from '@/utils/v1'
+import eventBus from '@/utils/eventBus'
+import nprogress from '@/utils/nprogress'
 
 export default {
   name: 'createAccount',
@@ -101,10 +103,11 @@ export default {
           color: 'alert--green'
         }
       } catch (e) {
-        this.userAlert = {
-          messages: e.response.data.messages,
-          color: 'alert--red'
-        }
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
+        return nprogress.done()
       }
     }
   },

@@ -37,6 +37,7 @@ import MultipleSelectResults from '@/components/multipleSelect/multipleSelectRes
 import marked from 'marked'
 import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
+import nprogress from '@/utils/nprogress'
 
 marked.setOptions({
   tables: true,
@@ -93,6 +94,7 @@ export default {
           title: 'Impossibile inviare l\'email.',
           temporary: true
         })
+        return nprogress.done()
       }
     }
   },

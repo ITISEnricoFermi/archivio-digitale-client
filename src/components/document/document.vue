@@ -15,7 +15,7 @@
         <i class="fas fa-ellipsis-h"></i>
       </span>
       <transition name="fade">
-        <app-menu v-if="menu" :own="document.own" @edit="edit" @download="download" @view="view"></app-menu>
+        <app-menu v-if="menu" :editable="document.editable" @edit="edit" @download="download" @view="view"></app-menu>
       </transition>
     </div>
   </div>

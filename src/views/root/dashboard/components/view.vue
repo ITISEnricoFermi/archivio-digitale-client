@@ -3,7 +3,7 @@
   <div class="section header">
     <p class="title heading-secondary">{{document.name}}</p>
     <div class="actions">
-      <button class="button" @click="edit">
+      <button class="button" @click="edit" v-if="document.editable">
         <span class="icon">
           <i class="fas fa-edit"></i>
         </span>
@@ -31,7 +31,7 @@
   </div>
   <div class="section profile">
     <div class="authors">
-      <div class="author">
+      <router-link class="author" :to="'/user/' + document.author._id" tag="div">
         <div class="pic">
           <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
             :alt="document.author.firstname + ' ' + document.author.lastname">
@@ -40,7 +40,7 @@
           <p class="info__name heading-tertiary">{{document.author.firstname + ' ' + document.author.lastname}}</p>
           <p class="info__privileges">{{document.author.privileges.privilege}}</p>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
   <div class="section info">
@@ -198,6 +198,13 @@ export default {
     }
 
     .profile {
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-white-2!important;
+      }
+
         .authors {
 
             .author {

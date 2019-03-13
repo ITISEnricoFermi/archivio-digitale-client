@@ -87,7 +87,7 @@ const router = new Router({
       name: 'SettingsView',
       component: SettingsView
     }, {
-      path: 'user',
+      path: '/user/:id',
       name: 'UserView',
       component: UserView
     }, {

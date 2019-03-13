@@ -49,7 +49,7 @@ export default {
   props: ['document'],
   methods: {
     back () {
-      this.$router.push('/dashboard')
+      window.close()
     },
     download () {
       const path = this.document.directory

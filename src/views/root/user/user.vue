@@ -3,7 +3,7 @@
   <div class="profile">
     <div class="profile-cover">
       <div class="profile-img">
-        <div class="profile-cover__content">
+        <div class="profile-cover__content" v-if="user">
           <img class="profile-cover__pic" sizes="36vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
           <div class="profile-cover__info">
             <p class="profile-cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
@@ -51,73 +51,98 @@
 import Document from '@/components/document/document'
 
 import v1 from '@/utils/v1'
+import nprogress from '@/utils/nprogress'
 
 export default {
-  name: 'panelProfile',
-  props: ['user'],
-  data: () => {
+  data () {
     return {
       tab: 'pubblico',
-      response: false,
-      responseMessage: '',
       documents: [],
       count: {
         pubblico: '',
         areariservata: '',
         materia: ''
-      }
+      },
+      user: undefined,
+      id: this.$route.params.id
+    }
+  },
+  watch: {
+    async $route (to, from) {
+      this.id = to.params.id
+
+      const [user] = await Promise.all([
+        this.getUser(),
+        this.showTab('pubblico')
+      ])
+
+      const [pubblico, areariservata, materia] = await Promise.all([
+        v1.get(`/users/${this.id}/documents/count/pubblico`),
+        v1.get(`/users/${this.id}/documents/count/areariservata`),
+        v1.get(`/users/${this.id}/documents/count/materia`)
+      ])
+
+      this.count.pubblico = pubblico.data
+      this.count.areariservata = areariservata.data
+      this.count.materia = materia.data
+
+      this.user = user
     }
   },
   sockets: {
-    newDocument () {
-      this.getDocuments(this.tab)
+    async newDocument () {
+      this.documents = await this.getDocuments(this.tab)
     }
   },
-  created () {
-    this.getDocuments('pubblico')
-    const id = localStorage.getItem('id')
-    v1.get(`/users/${id}/documents/count/pubblico`)
-      .then((response) => {
-        this.count.pubblico = response.data
-      })
-      .catch((e) => {
-        this.response = true
-        this.responseMessage = ''
-      })
+  async created () {
+    try {
+      if (this.id) {
+        const promises = [
+          this.getUser(),
+          this.getDocuments('pubblico')
+        ]
 
-    v1.get(`/users/${id}/documents/count/areariservata`)
-      .then((response) => {
-        this.count.areariservata = response.data
-      })
-      .catch((e) => {
-        this.response = true
-        this.responseMessage = ''
-      })
+        const [user, documents] = await Promise.all(promises)
 
-    v1.get(`/users/${id}/documents/count/materia`)
-      .then((response) => {
-        this.count.materia = response.data
+        this.user = user
+        this.documents = documents
+      }
+    } catch (e) {
+      eventBus.notification({
+        title: 'Impossibile reperire informazioni sull\'utente.',
+        temporary: true
       })
-      .catch((e) => {
-        this.response = true
-        this.responseMessage = ''
+    }
+
+    try {
+      const [pubblico, areariservata, materia] = await Promise.all([
+        v1.get(`/users/${this.id}/documents/count/pubblico`),
+        v1.get(`/users/${this.id}/documents/count/areariservata`),
+        v1.get(`/users/${this.id}/documents/count/materia`)
+      ])
+
+      this.count.pubblico = pubblico.data
+      this.count.areariservata = areariservata.data
+      this.count.materia = materia.data
+    } catch (e) {
+      eventBus.notification({
+        title: 'Impossibile reperire il numero di documenti.',
+        temporary: true
       })
+    }
   },
   methods: {
-    showTab (privileges) {
+    async showTab (privileges) {
       this.tab = privileges
-      this.getDocuments(privileges)
+      this.documents = await this.getDocuments(privileges)
     },
-    getDocuments (tab) {
-      const id = localStorage.getItem('id')
-      v1.get(`/users/${id}/documents/${tab}`)
-        .then((response) => {
-          this.documents = response.data
-        })
-        .catch((e) => {
-          this.response = true
-          this.responseMessage = e.response.data
-        })
+    async getDocuments (tab) {
+      const response = await v1.get(`/users/${this.id}/documents/${tab}`)
+      return response.data
+    },
+    async getUser () {
+      const response = await v1.get(`/users/${this.id}`)
+      return response.data
     }
   },
   components: {

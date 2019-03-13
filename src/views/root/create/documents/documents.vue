@@ -141,7 +141,7 @@ export default {
 
       formData.append('file', this.file)
 
-      v1.put('/documents/', formData, config)
+      v1.post('/documents/', formData, config)
         .then((response) => {
           this.document.name = undefined
           this.document.type = undefined

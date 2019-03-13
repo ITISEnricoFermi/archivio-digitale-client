@@ -11,7 +11,7 @@
         </span>
       </a>
     </div>
-    <router-link tag="div" class="profile" :to="'/user/'" active-class="profile--active" v-if="user._id">
+    <router-link tag="div" class="profile" :to="'/user/' + user._id" active-class="profile--active" v-if="user._id">
       <img class="pic" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
       <div class="info">
         <p class="info__name">
@@ -222,6 +222,7 @@ export default {
         cursor: pointer;
         display: grid;
         position: relative;
+        cursor: pointer;
 
         @include respond(phone) {
             grid-template-columns: 1fr;
@@ -230,17 +231,21 @@ export default {
         &:hover {
             background-color: #09090f;
         }
+
         .pic {
             width: 4rem;
             border-radius: 0.25rem;
         }
+        
         .info {
             display: flex;
             flex-direction: column;
             justify-content: center;
+
             @include respond(phone) {
                 display: none;
             }
+
             .info__name {
                 color: $color-white-6;
                 margin-bottom: 0.4rem;

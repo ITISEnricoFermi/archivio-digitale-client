@@ -24,6 +24,7 @@
 
 <script>
 import eventBus from '@/utils/eventBus'
+import service from '@/utils/service'
 
 import { videoPlayer } from 'vue-video-player'
 import 'video.js/dist/video-js.css'
@@ -47,7 +48,7 @@ export default {
     }
   },
   async created () {
-    this.playerOptions.sources[0].src = '/public/documents/' + this.entity.directory
+    this.playerOptions.sources[0].src = service.defaults.baseURL + '/public/documents/' + this.entity.directory
   },
   mounted () {
     // console.log('This is current player instance object', this.player)

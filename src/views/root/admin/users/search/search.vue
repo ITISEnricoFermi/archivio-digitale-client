@@ -3,7 +3,7 @@
   <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-1">
-        <input type="text" class="textfield" placeholder="Cerca utenti" autocomplete="off" v-model="query" @keyup="search">
+        <input type="text" class="textfield" placeholder="Cerca utenti" autocomplete="off" v-model.trim="query" @keyup="search">
         <moon-loader :loading="true" :color="'#000'" :size="'20px'" v-if="loading"></moon-loader>
       </div>
     </div>

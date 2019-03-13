@@ -28,7 +28,7 @@ module.exports = {
         changeOrigin: true,
         logLevel: 'debug'
       },
-      '/public': {
+      '/public/*': {
         target: {
           protocol: 'http:',
           host: 'localhost',

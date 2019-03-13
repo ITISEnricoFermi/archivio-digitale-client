@@ -16,11 +16,11 @@
         </p>
       </div>
       <div class="collection-header__menu" @mouseleave="closeMenu">
-        <span class="u-noselect" @click="menu = !menu">
+        <span class="u-noselect" @click="menu = !menu" v-if="collection.editable">
           <i class="fas fa-ellipsis-h"></i>
         </span>
         <transition name="fade">
-          <app-menu v-if="menu" :own="collection.own" @edit="edit"></app-menu>
+          <app-menu v-if="menu" @edit="edit"></app-menu>
         </transition>
       </div>
     </div>
@@ -45,7 +45,6 @@ import eventBus from '@/utils/eventBus'
 import Menu from './menu'
 
 export default {
-  name: 'collection',
   props: ['collection'],
   data () {
     return {

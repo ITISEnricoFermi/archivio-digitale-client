@@ -1,15 +1,13 @@
 <template>
 <div class="menu">
   <ul>
-    <li class="u-noselect" v-if="own" @click="edit"><span><i class="fas fa-edit"></i></span>Modifica</li>
+    <li class="u-noselect"  @click="edit"><span><i class="fas fa-edit"></i></span>Modifica</li>
   </ul>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'actionsMenu',
-  props: ['own'],
   methods: {
     edit () {
       this.$emit('edit')

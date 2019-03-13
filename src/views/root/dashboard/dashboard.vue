@@ -75,9 +75,10 @@ export default {
       right: 0;
       top: 6rem;
       height: 100%;
+      touch-action: pan-down;
 
       @include respond (tab-por) {
-        display: none;
+        width: 100%;
       }
 
     }

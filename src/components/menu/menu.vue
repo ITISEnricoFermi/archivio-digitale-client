@@ -208,7 +208,8 @@ export default {
               display: none;
             }
 
-            &:hover .dropdown {
+            &:hover .dropdown,
+            &:active .dropdown {
               display: block;
             }
         }
@@ -236,7 +237,7 @@ export default {
             width: 4rem;
             border-radius: 0.25rem;
         }
-        
+
         .info {
             display: flex;
             flex-direction: column;

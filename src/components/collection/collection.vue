@@ -2,10 +2,10 @@
 <div class="module module--padded collection">
   <div class="row collection-header">
     <div class="col-1-of-1">
-      <div class="collection-header__img">
+      <router-link :to="'/user/' + collection.author._id" tag="div" class="collection-header__img">
         <img sizes="5rem" :srcset="'/pics/' + collection.author._id + '/xs.jpeg 100w, /pics/' + collection.author._id + '/sm.jpeg 300w, /pics/' + collection.author._id + '/md.jpeg 500w, /pics/' + collection.author._id + '/lg.jpeg 800w, /pics/' + collection.author._id + '/xlg.jpeg 1200w'"
           :alt="collection.author.firstname + ' ' + collection.author.lastname">
-      </div>
+      </router-link>
       <div class="collection-header__info">
         <p class="collection-header__info--head heading-fourth">
           <span>{{collection.author.firstname}} {{collection.author.lastname}}</span>
@@ -94,6 +94,7 @@ export default {
             border-radius: 0.25rem;
             overflow: hidden;
             vertical-align: middle;
+            cursor:pointer;
 
             img {
                 height: 100%;

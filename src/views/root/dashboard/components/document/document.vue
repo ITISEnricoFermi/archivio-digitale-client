@@ -5,10 +5,10 @@
     <p class="description heading-fourth"></p>
     <p class="date">{{ this.date }}</p>
     <div class="authors">
-      <div class="author">
+      <router-link :to="'/user/' + document.author._id" tag="div" class="author">
         <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
           :alt="document.author.firstname + ' ' + document.author.lastname">
-      </div>
+      </router-link>
     </div>
     <!-- <div class="menu-container" @mouseleave="closeMenu">
       <span class="u-noselect" @click="menu = !menu">

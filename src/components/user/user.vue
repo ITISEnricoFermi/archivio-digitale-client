@@ -3,10 +3,10 @@
   <div class="row">
     <div class="col-1-of-1">
       <div class="content">
-        <div class="img">
+        <router-link :to="'/user/' + localUser._id" tag="div" class="img">
           <img class="author-img" sizes="8rem" :srcset="'/pics/' + localUser._id + '/xs.jpeg 100w, /pics/' + localUser._id + '/sm.jpeg 300w, /pics/' + localUser._id + '/md.jpeg 500w, /pics/' + localUser._id + '/lg.jpeg 800w, /pics/' + localUser._id + '/xlg.jpeg 1200w'"
             :alt="localUser.firstname + ' ' + localUser.lastname">
-        </div>
+        </router-link>
         <div class="info">
           <div class="info__content">
             <p class="name u-margin-bottom-small">{{localUser.firstname}} {{localUser.lastname}}</p>
@@ -100,6 +100,10 @@ export default {
         grid-template-columns: 12rem auto;
         grid-template-rows: 12rem;
         grid-gap: 2rem;
+
+        .img {
+          cursor: pointer;
+        }
 
         .img > img {
             height: 100%;

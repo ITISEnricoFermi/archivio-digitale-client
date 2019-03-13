@@ -24,11 +24,11 @@
                 </span>
                 <span class="crop">{{localUser.state === 'active' ? 'Attivo' : 'Disattivato'}}</span>
               </li>
-              <li class="tag u-noselect" v-for="(tag, index) in user.accesses.slice(0, 3)" :key="index">
+              <li class="tag u-noselect accesses" v-for="(tag, index) in user.accesses.slice(0, 3)" :key="index">
                 <span class="icon">
                   <i class="fas fa-tag"></i>
                 </span>
-                <span class="crop">{{tag.subject}}</span>
+                <span class="crop">{{ user.accesses.length > 2 ? tag._id.toUpperCase() : tag.subject}}</span>
               </li>
             </ul>
           </div>
@@ -137,6 +137,13 @@ export default {
                     display: block;
                     width: 100%;
                     font-size: $font-default-2;
+
+                    .accesses {
+
+                      @include respond (tab-por) {
+                        display: none;
+                      }
+                    }
                 }
 
             }

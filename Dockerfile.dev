@@ -1,0 +1,9 @@
+FROM node:10.15.1-jessie-slim
+
+WORKDIR /app
+COPY package.json package.json
+RUN yarn
+EXPOSE 8080
+COPY . .
+
+CMD yarn serve

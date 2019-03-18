@@ -1,7 +1,6 @@
-
 FROM node:10.15.1-jessie-slim as builder
 
-WORKDIR /tmp
+WORKDIR /app
 COPY package.json package.json
 RUN yarn
 
@@ -9,7 +8,10 @@ COPY . .
 RUN yarn build
 
 FROM nginx:latest
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-WORKDIR /usr/nginx/html
-COPY --from=builder /tmp/dist .
-CMD ["nginx", "-g", "daemon off;"]
+COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+ENV PORT=80
+EXPOSE 80
+
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'

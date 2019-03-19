@@ -11,7 +11,7 @@
       </span>
     </a>
   </div>
-  <router-link v-if="document" tag="div" class="profile" :to="'/user/'" active-class="profile--active">
+  <router-link v-if="document" tag="div" class="profile" :to="'/user/' + document.author._id" active-class="profile--active">
     <img class="pic" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
       :alt="document.author.firstname + ' ' + document.author.lastname">
     <div class="info">
@@ -54,7 +54,7 @@ export default {
     download () {
       const path = this.document.directory
       let a = document.createElement('A')
-      a.href = `/public/documents/${path}`
+      a.href = `/static/documents/${path}`
       a.download = this.document.name
       a.click()
     }

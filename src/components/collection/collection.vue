@@ -27,7 +27,7 @@
   </div>
   <div class="list">
     <p class="list__element" v-if="collection.documents.length === 0">Nessun documento nella collezione.</p>
-    <router-link class="list__element" v-for="(document, index) in collection.documents" :key="index" :to="'/files/' + document._id" tag="a" target="_blank">
+    <router-link class="list__element" v-for="(document, index) in collection.documents" :key="index" :to="'/static/documents/' + document._id" tag="a" target="_blank">
       <span class="crop">
         {{index}}. {{document.name}}
       </span>

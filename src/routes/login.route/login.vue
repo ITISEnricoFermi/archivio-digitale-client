@@ -36,7 +36,7 @@
 <script>
 
 import eventBus from '@/utils/eventBus'
-import service from '@/utils/service'
+import v1 from '@/utils/v1'
 
 import FooterLight from '@/components/footer/light.footer'
 import Notifications from '@/components/notifications/notifications'
@@ -58,7 +58,7 @@ export default {
       }
 
       try {
-        const response = await service.post('/login/', this.user)
+        const response = await v1.post('/login/', this.user)
         const { token } = response.data
         const { _id } = JSON.parse(atob(token.split('.')[1]))
         localStorage.setItem('token', token)

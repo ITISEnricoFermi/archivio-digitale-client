@@ -17,7 +17,7 @@ module.exports = {
     }
   },
   devServer: {
-  // https : true,
+    // https: true,
     proxy: {
       '/pics': {
         target: {
@@ -28,7 +28,7 @@ module.exports = {
         changeOrigin: true,
         logLevel: 'debug'
       },
-      '/public/*': {
+      '/static': {
         target: {
           protocol: 'http:',
           host: 'localhost',

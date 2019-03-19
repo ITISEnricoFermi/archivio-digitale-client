@@ -70,7 +70,7 @@
 
 <script>
 import eventBus from '@/utils/eventBus'
-import service from '@/utils/service'
+import v1 from '@/utils/v1'
 
 import FooterLight from '@/components/footer/light.footer'
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
@@ -105,7 +105,7 @@ export default {
       }
 
       try {
-        await service.put('/signup/', {
+        await v1.post('/signup/', {
           ...this.user,
           ...this.computedAccesses
         })

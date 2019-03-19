@@ -35,6 +35,9 @@ const loadView = view => () => import(`@/routes/${view}.vue`)
 
 const auth = async (to, from, next) => {
   try {
+    if (!localStorage.getItem('id')) {
+      throw new Error('Non si detengono i privilegi necessari.')
+    }
     await v1.get('/users/' + localStorage.getItem('id'))
     if (to.name === 'Root' || to.name === 'Home' || to.name === 'Login' || to.name === 'SignUp') {
       next({

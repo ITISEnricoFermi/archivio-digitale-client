@@ -116,7 +116,7 @@ export default {
     },
     download () {
       let a = document.createElement('A')
-      a.href = `/public/documents/${this.document.directory}`
+      a.href = `/static/documents/${this.document.directory}`
       a.download = this.document.name
       a.click()
     },

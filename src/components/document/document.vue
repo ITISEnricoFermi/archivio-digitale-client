@@ -87,7 +87,7 @@ export default {
     },
     download () {
       let a = document.createElement('A')
-      a.href = `/public/documents/${this.document.directory}`
+      a.href = `/static/documents/${this.document.directory}`
       a.download = this.document.name
       a.click()
     },
@@ -96,7 +96,7 @@ export default {
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
-      window.open(`/files/${this.document._id}`, '_blank')
+      window.open(`/static/documents/${this.document.directory}`, '_blank')
     },
     closeMenu () {
       if (this.menu) {

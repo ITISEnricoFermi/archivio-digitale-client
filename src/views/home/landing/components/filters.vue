@@ -21,7 +21,7 @@
 
 <script>
 
-import axios from 'axios'
+import v1 from '@/utils/v1'
 
 export default {
   name: 'filters',
@@ -36,11 +36,10 @@ export default {
       }
 
       try {
-        let response = await axios.get('/public/recent/' + type)
+        let response = await v1.get('/documents/recent/1/9/' + type)
         this.$emit('filter', response.data)
       } catch (e) {
         this.$emit('filter', [])
-        console.log(e)
       }
     }
   }

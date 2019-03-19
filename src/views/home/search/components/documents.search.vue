@@ -113,7 +113,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('/public/search/documents/', this.query)
+        const response = await v1.post('/documents/search/', this.query)
         let documents = response.data
 
         for (let i = 0; i < documents.length; i++) {

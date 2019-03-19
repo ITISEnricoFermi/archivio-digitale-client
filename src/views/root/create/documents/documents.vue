@@ -91,7 +91,7 @@ import FileLoader from '@/components/fileLoader/fileLoader'
 
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
-import nprogress from '@/utils/v1'
+import nprogress from '@/utils/nprogress'
 
 export default {
   name: 'createDocument',

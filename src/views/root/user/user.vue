@@ -51,7 +51,7 @@
 import Document from '@/components/document/document'
 
 import v1 from '@/utils/v1'
-import nprogress from '@/utils/nprogress'
+import eventBus from '@/utils/eventBus'
 
 export default {
   data () {

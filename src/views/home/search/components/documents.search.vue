@@ -68,8 +68,6 @@
 
 import v1 from '@/utils/v1'
 
-import axios from 'axios'
-
 export default {
   name: 'searchDocuments',
   data: () => {

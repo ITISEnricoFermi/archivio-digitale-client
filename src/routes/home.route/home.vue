@@ -10,7 +10,7 @@ import Footer from './components/footer'
 
 export default {
   name: 'home',
-  data: () => {
+  data () {
     return {
       projects: []
     }

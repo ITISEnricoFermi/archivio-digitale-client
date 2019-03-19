@@ -1,8 +1,8 @@
 FROM node:10.15.1-jessie-slim
 
 WORKDIR /app
-COPY package.json package.json
-RUN yarn
+COPY package*.json .
+RUN npm install
 EXPOSE 8080
 COPY . .
 

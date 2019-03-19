@@ -1,11 +1,11 @@
 FROM node:10.15.1-jessie-slim as builder
 
 WORKDIR /app
-COPY package.json package.json
-RUN yarn
+COPY package*.json .
+RUN npm install
 
 COPY . .
-RUN yarn build
+RUN npm run build
 
 FROM nginx:latest
 COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template

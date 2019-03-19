@@ -96,7 +96,7 @@ export default {
       if (type === 'video') {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
-      window.open(`/static/documents/${this.document.directory}`, '_blank')
+      window.open(`/files/${this.document._id}`, '_blank')
     },
     closeMenu () {
       if (this.menu) {

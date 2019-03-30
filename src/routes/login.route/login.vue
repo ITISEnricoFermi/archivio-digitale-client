@@ -29,12 +29,11 @@
       </div>
     </div>
   </div>
-<app-footer-light></app-footer-light>
+  <app-footer-light></app-footer-light>
 </main>
 </template>
 
 <script>
-
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
@@ -59,8 +58,12 @@ export default {
 
       try {
         const response = await v1.post('/login/', this.user)
-        const { token } = response.data
-        const { _id } = JSON.parse(atob(token.split('.')[1]))
+        const {
+          token
+        } = response.data
+        const {
+          _id
+        } = JSON.parse(atob(token.split('.')[1]))
         localStorage.setItem('token', token)
         localStorage.setItem('id', _id)
         // document.cookie = `token=${token}`
@@ -81,54 +84,48 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .main {
-  position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  overflow-x: hidden;
-  min-height: 100vh;
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
 
-  .login-box {
-    position: absolute;
-    @include absCenter;
-    width: 20vw!important;
+    .login-box {
+        position: absolute;
+        @include absCenter;
+        width: 20vw!important;
 
-    @include respond(big-desktop) {
-      width: 15vw!important;
+        @include respond(big-desktop) {
+            width: 15vw!important;
+        }
+
+        @include respond(tab-lan) {
+            width: 40vw!important;
+        }
+
+        @include respond(tab-por) {
+            width: 60vw!important;
+        }
+
+        @include respond(phone) {
+            width: 80vw!important;
+        }
+
+        .logo {
+            width: 50%;
+
+            @include respond(big-desktop) {
+                width: 45%;
+                margin-bottom: 1rem;
+            }
+
+            @include respond(tab-lan) {
+                width: 40%;
+            }
+
+        }
+
     }
-
-    @include respond(tab-lan) {
-      width: 40vw!important;
-    }
-
-    @include respond(tab-por) {
-      width: 60vw!important;
-    }
-
-    @include respond(phone) {
-      width: 80vw!important;
-    }
-
-    .logo {
-      width: 50%;
-
-      @include respond(big-desktop) {
-        width: 45%;
-        margin-bottom: 1rem;
-      }
-
-      @include respond(tab-lan) {
-        width: 40%;
-      }
-
-    }
-
-    .error {
-      font-size: 1.2rem;
-    }
-
-  }
 }
-
 </style>

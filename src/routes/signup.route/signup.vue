@@ -49,6 +49,15 @@
         </button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-1-of-1">
+        <p class="legal">Iscrivendoti, accetti le nostre
+          <span class="terms" @click="openPopUp">
+            Condizioni.
+          </span>
+        </p>
+      </div>
+    </div>
   </div>
 
   <div class="success-box module module--padded" v-else>
@@ -65,6 +74,12 @@
     </div>
   </div>
   <app-footer-light></app-footer-light>
+  <transition name="fade" mode="out-in">
+    <app-popup v-if="popup.component" :width="popup.width + '%'">
+      <component v-if="popup.component" :is="popup.component" :entity="popup.entity">
+      </component>
+    </app-popup>
+  </transition>
 </main>
 </template>
 
@@ -76,6 +91,8 @@ import FooterLight from '@/components/footer/light.footer'
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 import Notifications from '@/components/notifications/notifications'
+import PopUp from '@/components/popup/popup'
+import LegalTerms from '@/components/legalTerms/legalTerms'
 
 export default {
   name: 'signup',
@@ -88,6 +105,11 @@ export default {
         email: '',
         password: '',
         accesses: []
+      },
+      popup: {
+        entity: undefined,
+        component: undefined,
+        width: 80
       }
     }
   },
@@ -97,6 +119,21 @@ export default {
         accesses: this.user.accesses.map(el => el._id)
       }
     }
+  },
+  created () {
+    eventBus.$on('openPopUp', (entity, component, width) => {
+      this.popup.entity = entity
+      this.popup.component = component
+      this.popup.width = width
+    })
+
+    eventBus.$on('closePopUp', () => {
+      this.popup = {
+        entity: undefined,
+        component: undefined,
+        width: undefined
+      }
+    })
   },
   methods: {
     async signup () {
@@ -122,13 +159,18 @@ export default {
           temporary: true
         })
       }
+    },
+    openPopUp () {
+      eventBus.openPopUp(undefined, 'appLegalTerms', 80)
     }
   },
   components: {
     appMultipleSelect: MultipleSelect,
     appMultipleSelectResults: MultipleSelectResults,
     appFooterLight: FooterLight,
-    appNotifications: Notifications
+    appNotifications: Notifications,
+    appPopup: PopUp,
+    appLegalTerms: LegalTerms
   }
 }
 </script>
@@ -205,8 +247,16 @@ export default {
 
     }
 
-    .error {
-        font-size: 1.2rem;
+    .legal {
+      font-size: 1.2rem;
+
+      .terms {
+        font-weight: bold;
+        color: $color-grey-1;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
     }
 
 }

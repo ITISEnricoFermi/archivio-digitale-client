@@ -16,15 +16,17 @@
     </div>
     <div class="row">
       <div class="col-1-of-1">
-        <app-file-loader @file="uploadProfilePic($event)" :file="file" dragMessage="Trascina una foto per impostare l'avatar." dropMessage="Rilascia la foto."></app-file-loader>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1-of-1">
         <button class="button button--green" @click="saveSettings">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva <span class="crop">impostazioni</span></span>
         </button>
+      </div>
+    </div>
+  </div>
+  <div class="module module--padded">
+    <div class="row">
+      <div class="col-1-of-1">
+        <app-file-loader @file="uploadProfilePic($event)" :file="file" dragMessage="Trascina una foto per impostare l'avatar." dropMessage="Rilascia la foto."></app-file-loader>
       </div>
     </div>
     <div class="row">
@@ -45,7 +47,7 @@
       <div class="col-1-of-1">
         <p class="module__info">
           <span>L'account verrà disattivato. Puoi riattivarlo in qualunque momento contattando l'amministratore.</span>
-          <br/><span>Le tue pubblicazioni rimarranno sulla piattaforma.</span>
+          <br /><span>Le tue pubblicazioni rimarranno sulla piattaforma.</span>
         </p>
       </div>
     </div>
@@ -81,11 +83,11 @@ export default {
       file: undefined
     }
   },
-  created () {
+  created() {
     this.local.email = this.user.email
   },
   methods: {
-    async uploadProfilePic (pic) {
+    async uploadProfilePic(pic) {
       const formData = new FormData()
 
       formData.append('picToUpload', pic)
@@ -100,7 +102,7 @@ export default {
         }
       }
     },
-    async saveSettings () {
+    async saveSettings() {
       try {
         await v1.patch('/users/' + localStorage.getItem('id'), {
           user: this.local
@@ -113,7 +115,7 @@ export default {
         }
       }
     },
-    async disableAccount () {
+    async disableAccount() {
       try {
         await v1.delete('/users/' + localStorage.getItem('id'))
         window.location.replace('/')
@@ -124,7 +126,7 @@ export default {
         }
       }
     },
-    async transferDocuments () {
+    async transferDocuments() {
 
     }
   },
@@ -136,7 +138,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .panel {
+.panel {
     padding: 3vh;
-  }
+}
 </style>

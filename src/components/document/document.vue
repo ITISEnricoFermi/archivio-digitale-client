@@ -87,7 +87,7 @@ export default {
     },
     download () {
       let a = document.createElement('A')
-      a.href = `/static/documents/${this.document.directory}`
+      a.href = `/static/documents/${this.document._id}`
       a.download = this.document.name
       a.click()
     },

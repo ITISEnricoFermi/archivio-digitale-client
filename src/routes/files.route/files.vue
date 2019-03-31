@@ -2,7 +2,7 @@
 <main class="main">
   <nprogress-container></nprogress-container>
   <app-header :document="document"></app-header>
-  <iframe :src="'/static/documents/' + document.directory" class="document" v-if="document"></iframe>
+  <iframe :src="'/static/documents/' + document._id" class="document" v-if="document"></iframe>
 </main>
 </template>
 
@@ -32,7 +32,6 @@ export default {
         vm.document = response.data
       })
     } catch (e) {
-      console.log(e)
       next({
         path: '404'
       })

@@ -48,7 +48,7 @@ export default {
     }
   },
   async created () {
-    this.playerOptions.sources[0].src = service.defaults.baseURL + '/public/documents/' + this.entity.directory
+    this.playerOptions.sources[0].src = service.defaults.baseURL + '/static/documents/' + this.entity._id
   },
   mounted () {
     // console.log('This is current player instance object', this.player)

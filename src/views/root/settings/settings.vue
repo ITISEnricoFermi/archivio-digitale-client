@@ -83,14 +83,14 @@ export default {
       file: undefined
     }
   },
-  created() {
+  created () {
     this.local.email = this.user.email
   },
   methods: {
-    async uploadProfilePic(pic) {
+    async uploadProfilePic (pic) {
       const formData = new FormData()
 
-      formData.append('picToUpload', pic)
+      formData.append('file', pic)
 
       try {
         await v1.patch('/users/' + localStorage.getItem('id') + '/pic/', formData)
@@ -102,7 +102,7 @@ export default {
         }
       }
     },
-    async saveSettings() {
+    async saveSettings () {
       try {
         await v1.patch('/users/' + localStorage.getItem('id'), {
           user: this.local
@@ -115,7 +115,7 @@ export default {
         }
       }
     },
-    async disableAccount() {
+    async disableAccount () {
       try {
         await v1.delete('/users/' + localStorage.getItem('id'))
         window.location.replace('/')
@@ -126,7 +126,7 @@ export default {
         }
       }
     },
-    async transferDocuments() {
+    async transferDocuments () {
 
     }
   },

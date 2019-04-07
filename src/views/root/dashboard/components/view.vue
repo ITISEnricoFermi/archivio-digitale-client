@@ -137,7 +137,8 @@ export default {
     // overflow-y: scroll;
 
     @include color-scheme(dark) {
-        background: $linear-gradient-primary--dark!important;
+        background: rgba(41,45,48,1)!important;
+        color: $color-white!important;
     }
 
     .section {
@@ -203,6 +204,10 @@ export default {
 
       &:hover {
         background-color: $color-white-2!important;
+
+        @include color-scheme(dark) {
+            background: rgba($color-white,0.05)!important;
+        }
       }
 
         .authors {

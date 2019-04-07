@@ -1,4 +1,5 @@
 server {
+  # Remove all inherited headers
   listen $PORT default_server;
 
   location / {

@@ -1,6 +1,5 @@
 server {
   # Remove all inherited headers
-  add_header X-Ciao hola;
   listen $PORT default_server;
 
   location / {

@@ -123,7 +123,7 @@ export default {
         this.document.name = this.file.name
       }
     },
-    upload () {
+    async upload () {
       let self = this
       let formData = new FormData()
       let config = {
@@ -142,35 +142,34 @@ export default {
 
       formData.append('file', this.file)
 
-      v1.post('/documents/', formData, config)
-        .then((response) => {
-          this.document.name = undefined
-          this.document.type = undefined
-          this.document.faculty = undefined
-          this.document.subject = undefined
-          this.document.grade = '0'
-          this.document.section = undefined
-          this.document.visibility = 'pubblico'
-          this.document.description = undefined
-          this.file = undefined
+      try {
+        const response = await v1.post('/documents/', formData, config)
+        this.document.name = undefined
+        this.document.type = undefined
+        this.document.faculty = undefined
+        this.document.subject = undefined
+        this.document.grade = '0'
+        this.document.section = undefined
+        this.document.visibility = 'pubblico'
+        this.document.description = undefined
+        this.file = undefined
 
-          this.$socket.emit('newDocument')
+        this.$socket.emit('newDocument')
 
-          this.documentsAlert = {
-            messages: ['Documento caricato con successo.'],
-            color: 'alert--blue'
-          }
+        this.documentsAlert = {
+          messages: ['Documento caricato con successo.'],
+          color: 'alert--blue'
+        }
 
-          eventBus.push('Documento caricato con successo.', response.data.name)
-        })
-        .catch((e) => {
-          this.documentsAlert = {
-            messages: e.response.data.messages,
-            color: 'alert--red'
-          }
+        eventBus.push('Documento caricato con successo.', response.data.name)
+      } catch (e) {
+        this.documentsAlert = {
+          messages: e.response.data.messages,
+          color: 'alert--red'
+        }
 
-          return nprogress.done()
-        })
+        return nprogress.done()
+      }
     }
   },
   components: {

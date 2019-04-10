@@ -186,8 +186,14 @@ export default {
             &:hover {
                 background-color: #09090f;
             }
+
+            &:hover * {
+              color: $color-fourth!important;
+            }
+
             &__text {
                 color: $color-white;
+
                 &--icon {
                     margin: 0.5rem;
                 }

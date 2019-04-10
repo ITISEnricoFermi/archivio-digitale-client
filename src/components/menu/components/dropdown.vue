@@ -27,6 +27,10 @@ export default {
         background-color: #09090f;
     }
 
+    &:hover * {
+      color: $color-fourth!important;
+    }
+
     .content {
         padding: 1rem;
         height: 6rem;

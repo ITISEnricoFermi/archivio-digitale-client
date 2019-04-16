@@ -19,16 +19,7 @@ module.exports = {
   devServer: {
     // https: true,
     proxy: {
-      '/pics': {
-        target: {
-          protocol: 'http:',
-          host: 'localhost',
-          port: 3000
-        },
-        changeOrigin: true,
-        logLevel: 'debug'
-      },
-      '/static': {
+      '/static/*': {
         target: {
           protocol: 'http:',
           host: 'localhost',

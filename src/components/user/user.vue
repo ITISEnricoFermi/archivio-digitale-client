@@ -4,7 +4,7 @@
     <div class="col-1-of-1">
       <div class="content">
         <router-link :to="'/user/' + localUser._id" tag="div" class="img">
-          <img class="author-img" sizes="8rem" :srcset="'/pics/' + localUser._id + '/xs.jpeg 100w, /pics/' + localUser._id + '/sm.jpeg 300w, /pics/' + localUser._id + '/md.jpeg 500w, /pics/' + localUser._id + '/lg.jpeg 800w, /pics/' + localUser._id + '/xlg.jpeg 1200w'"
+          <img class="author-img" sizes="8rem" :srcset="'/static/pics/' + localUser._id + '/xs 100w, /static/pics/' + localUser._id + '/sm 300w, /static/pics/' + localUser._id + '/md 500w, /static/pics/' + localUser._id + '/lg 800w, /static/pics/' + localUser._id + '/xlg 1200w'"
             :alt="localUser.firstname + ' ' + localUser.lastname">
         </router-link>
         <div class="info">

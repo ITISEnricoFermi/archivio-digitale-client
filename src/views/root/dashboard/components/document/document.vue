@@ -6,7 +6,7 @@
     <p class="date">{{ this.date }}</p>
     <div class="authors">
       <router-link :to="'/user/' + document.author._id" tag="div" class="author">
-        <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
+        <img sizes="5rem" :srcset="'/static/pics/' + document.author._id + '/xs 100w, /static/pics/' + document.author._id + '/sm 300w, /static/pics/' + document.author._id + '/md 500w, /static/pics/' + document.author._id + '/lg 800w, /static/pics/' + document.author._id + '/xlg 1200w'"
           :alt="document.author.firstname + ' ' + document.author.lastname">
       </router-link>
     </div>

@@ -4,7 +4,7 @@
     <div class="profile-cover">
       <div class="profile-img">
         <div class="profile-cover__content" v-if="user">
-          <img class="profile-cover__pic" sizes="36vh" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
+          <img class="profile-cover__pic" sizes="36vh" :srcset="'/static/pics/' + user._id + '/xs 100w, /static/pics/' + user._id + '/sm 300w, /static/pics/' + user._id + '/md 500w, /static/pics/' + user._id + '/lg 800w, /static/pics/' + user._id + '/xlg 1200w'" :alt="user.firstname + ' ' + user.lastname">
           <div class="profile-cover__info">
             <p class="profile-cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
           </div>

@@ -12,7 +12,7 @@
       </a>
     </div>
     <router-link tag="div" class="profile" :to="'/user/' + user._id" active-class="profile--active" v-if="user._id">
-      <img class="pic" :srcset="'/pics/' + user._id + '/xs.jpeg 100w, /pics/' + user._id + '/sm.jpeg 300w, /pics/' + user._id + '/md.jpeg 500w, /pics/' + user._id + '/lg.jpeg 800w, /pics/' + user._id + '/xlg.jpeg 1200w'" :alt="user.firstname + ' ' + user.lastname">
+      <img class="pic" :srcset="'/static/pics/' + user._id + '/xs 100w, /static/pics/' + user._id + '/sm 300w, /static/pics/' + user._id + '/md 500w, /static/pics/' + user._id + '/lg 800w, /static/pics/' + user._id + '/xlg 1200w'" :alt="user.firstname + ' ' + user.lastname">
       <div class="info">
         <p class="info__name">
           <span class="info__name--firstname">{{ user.firstname }}</span>

@@ -12,7 +12,7 @@
     </a>
   </div>
   <router-link v-if="document" tag="div" class="profile" :to="'/user/' + document.author._id" active-class="profile--active">
-    <img class="pic" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'"
+    <img class="pic" :srcset="'/static/pics/' + document.author._id + '/xs 100w, /static/pics/' + document.author._id + '/sm 300w, /static/pics/' + document.author._id + '/md 500w, /static/pics/' + document.author._id + '/lg 800w, /static/pics/' + document.author._id + '/xlg 1200w'"
       :alt="document.author.firstname + ' ' + document.author.lastname">
     <div class="info">
       <p class="info__name">

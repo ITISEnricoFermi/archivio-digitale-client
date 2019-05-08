@@ -1,18 +1,18 @@
 <template>
 <main class="panel">
   <app-settings></app-settings>
-  <app-signup-requests></app-signup-requests>
+  <app-requests></app-requests>
 </main>
 </template>
 
 <script>
 
-import signupRequests from './../components/signupRequests'
-import Settings from './../components/app.settings'
+import Requests from './components/requests'
+import Settings from './components/app.settings'
 
 export default {
   components: {
-    appSignupRequests: signupRequests,
+    appRequests: Requests,
     appSettings: Settings
   }
 }

@@ -10,8 +10,9 @@
     </button>
     <p class="message">È possibile scaricare la nuova versione del client: {{ updates.client.tag }}.</p>
   </div>
-  <div class="update server" v-if="updates.server.tag !== undefined">
-    <button class="button button--yellow">
+  <div class="update server">
+  <!-- <div class="update server" v-if="updates.server.tag !== undefined"> -->
+    <button class="button button--yellow" @click="updateBackend">
       <span class="icon">
         <i class="fas fa-sync"></i>
       </span>
@@ -26,6 +27,7 @@
 import axios from 'axios'
 
 import service from '@/utils/service'
+import v1 from '@/utils/v1'
 
 export default {
   data () {
@@ -81,6 +83,15 @@ export default {
     async getClientLastVersion () {
       const response = await axios.get(`${this.url}/repos/${this.username}/${this.repos.client}/tags`)
       return response.data[0]
+    },
+    async updateBackend (tag = 'latest') {
+      const response = await v1.post('/admin/update', {
+        project: 'archivio',
+        service: 'backend',
+        image: 'itisenricofermi/archivio-digitale-server',
+        tag
+      })
+      console.log('Backend agiornato con successo.')
     }
   }
 }

@@ -26,14 +26,20 @@ import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'signupRequests',
-  data: () => {
+  data () {
     return {
       requests: []
     }
   },
   async created () {
-    this.requests = await this.getRequests()
+    try {
+      this.requests = await this.getRequests()
+    } catch (e) {
+      eventBus.notification({
+        title: 'Impossibile reperire le richieste di iscrizione.',
+        temporary: true
+      })
+    }
   },
   sockets: {
     async newUser () {
@@ -42,15 +48,8 @@ export default {
   },
   methods: {
     async getRequests () {
-      try {
-        const response = await v1.get('/admin/requests/')
-        return response.data
-      } catch (e) {
-        eventBus.notification({
-          title: 'Impossibile recuperare le richieste di iscrizione.',
-          temporary: true
-        })
-      }
+      const response = await v1.get('/admin/requests/')
+      return response.data
     },
     async acceptRequest (id) {
       try {

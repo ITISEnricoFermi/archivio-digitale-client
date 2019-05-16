@@ -86,12 +86,19 @@ export default {
     },
     async updateBackend (tag = 'latest') {
       const response = await v1.post('/admin/update', {
-        project: 'archivio',
         service: 'backend',
-        image: 'itisenricofermi/archivio-digitale-server',
         tag
       })
       console.log('Backend agiornato con successo.')
+      window.location.reload()
+    },
+    async updateFrontend (tag = 'latest') {
+      const response = await v1.post('/admin/update', {
+        service: 'frontend',
+        tag
+      })
+      console.log('Frontend agiornato con successo.')
+      window.location.reload()
     }
   }
 }

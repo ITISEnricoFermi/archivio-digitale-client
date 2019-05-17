@@ -2,12 +2,12 @@
   <section class="footer">
     <div class="content">
       <div class="footer-info">
-        <p class="powered">Powered By <a href="https://www.riccardosangiorgio.com">Riccardo Sangiorgio</a></p>
+        <p class="powered">Powered By <a href="https://riccardosangiorgio.com">Riccardo Sangiorgio</a></p>
       </div>
       <div class="footer-menu">
         <ul>
           <li>
-            <a href="http://www.itisfermi.it" target="_blank" rel="noopener noreferrer">ITIS Enrico Fermi</a>
+            <a href="https://itisfermi.edu.it" target="_blank" rel="noopener noreferrer">ITIS Enrico Fermi</a>
           </li>
           <li>
             <router-link to="/login" tag="a">Login</router-link>

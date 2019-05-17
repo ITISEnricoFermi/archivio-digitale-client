@@ -14,7 +14,6 @@ import Header from './components/header'
 import View from './components/view'
 
 export default {
-  name: 'dashboard',
   props: ['user'],
   data () {
     return {

@@ -14,12 +14,10 @@
 
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
-import nprogress from '@/utils/nprogress'
 
 import Document from './document/document'
 
 export default {
-  name: 'documents',
   props: ['action'],
   data () {
     return {
@@ -60,8 +58,6 @@ export default {
             behavior: 'smooth'
           })
         }
-
-        nprogress.done()
       }
     }
   },

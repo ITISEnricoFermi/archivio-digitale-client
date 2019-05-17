@@ -62,9 +62,9 @@
 
   <div class="success-box module module--padded" v-else>
     <div class="row">
-      <div class="col-1-of-1">
+      <a href="/home/">
         <img src="/logo/itisFermi.svg" class="logo" alt="ITIS Enrico Fermi">
-      </div>
+      </a>
     </div>
     <div class="row">
       <div class="col-1-of-1">

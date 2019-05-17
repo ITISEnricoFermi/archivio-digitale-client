@@ -7,7 +7,7 @@
     <li>
       <router-link to="/signup" tag="a">Registrati</router-link>
     </li>
-    <li><a href="https://www.riccardosangiorgio.com">Riccardo Sangiorgio</a></li>
+    <li><a href="https://riccardosangiorgio.com">Riccardo Sangiorgio</a></li>
   </ul>
 </footer>
 </template>

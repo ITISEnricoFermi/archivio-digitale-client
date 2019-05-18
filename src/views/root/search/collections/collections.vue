@@ -40,7 +40,6 @@ import Alert from '@/components/alert/alert'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'searchCollections',
   props: ['collectionsPermissions'],
   data: () => {
     return {

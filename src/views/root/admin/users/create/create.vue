@@ -42,22 +42,17 @@
       </div>
     </div>
   </div>
-  <transition name="fade">
-    <app-alert v-if="userAlert.messages" :alert="userAlert" @alert="userAlert = $event"></app-alert>
-  </transition>
 </main>
 </template>
 
 <script>
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
-import Alert from '@/components/alert/alert'
 
 import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
 
 export default {
-  name: 'createAccount',
   props: ['privileges', 'subjects'],
   data: () => {
     return {
@@ -68,10 +63,6 @@ export default {
         password: undefined,
         privileges: undefined,
         accesses: []
-      },
-      userAlert: {
-        messages: undefined,
-        color: undefined
       }
     }
   },
@@ -97,13 +88,13 @@ export default {
         this.user.privileges = undefined
         this.user.accesses = []
 
-        this.userAlert = {
-          messages: ['Utente creato correttamente.'],
-          color: 'alert--green'
-        }
-      } catch (e) {
         eventBus.notification({
-          title: e.response.data.messages[0],
+          title: 'Utente creato correttamente.',
+          temporary: true
+        })
+      } catch ({ response: { data: { messages: [title] } } }) {
+        eventBus.notification({
+          title,
           temporary: true
         })
       }
@@ -111,8 +102,7 @@ export default {
   },
   components: {
     appMultipleSelect: MultipleSelect,
-    appMultipleSelectResults: MultipleSelectResults,
-    appAlert: Alert
+    appMultipleSelectResults: MultipleSelectResults
   }
 
 }

@@ -52,17 +52,14 @@
       </div>
     </div>
   </div>
-  <transition name="fade">
-    <app-alert v-if="settingsAlert.messages" :alert="settingsAlert" @alert="settingsAlert = $event"></app-alert>
-  </transition>
 </main>
 </template>
 
 <script>
-import Alert from '@/components/alert/alert'
 import FileLoader from '@/components/fileLoader/fileLoader'
 
 import v1 from '@/utils/v1'
+import eventBus from '@/utils/eventBus'
 
 export default {
   props: ['user'],
@@ -76,10 +73,6 @@ export default {
         }
       },
       profilePic: '',
-      settingsAlert: {
-        messages: undefined,
-        color: undefined
-      },
       file: undefined
     }
   },
@@ -95,35 +88,33 @@ export default {
       try {
         await v1.patch('/users/' + localStorage.getItem('id') + '/pic/', formData)
         window.location.reload()
-      } catch (e) {
-        this.settingsAlert = {
-          messages: e.response.data.messages,
-          color: 'alert--red'
-        }
+      } catch ({ response: { data: { messages: [title] } } }) {
+        eventBus.notification({
+          title,
+          temporary: true
+        })
       }
     },
     async saveSettings () {
       try {
-        await v1.patch('/users/' + localStorage.getItem('id'), {
-          user: this.local
-        })
+        await v1.patch('/users/' + localStorage.getItem('id'), this.local)
         window.location.replace('/login')
-      } catch (e) {
-        this.settingsAlert = {
-          messages: e.message,
-          color: 'alert--red'
-        }
+      } catch ({ response: { data: { messages: [title] } } }) {
+        eventBus.notification({
+          title,
+          temporary: true
+        })
       }
     },
     async disableAccount () {
       try {
         await v1.delete('/users/' + localStorage.getItem('id'))
         window.location.replace('/')
-      } catch (e) {
-        this.settingsAlert = {
-          messages: e.response.data.messages,
-          color: 'alert--red'
-        }
+      } catch ({ response: { data: { messages: [title] } } }) {
+        eventBus.notification({
+          title,
+          temporary: true
+        })
       }
     },
     async transferDocuments () {
@@ -131,7 +122,6 @@ export default {
     }
   },
   components: {
-    appAlert: Alert,
     appFileLoader: FileLoader
   }
 }

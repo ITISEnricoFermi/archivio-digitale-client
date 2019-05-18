@@ -87,7 +87,6 @@ import Alert from '@/components/alert/alert'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'searchDocuments',
   props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
   data: () => {
     return {

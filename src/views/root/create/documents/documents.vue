@@ -78,24 +78,19 @@
     </div>
   </div>
   <app-progress v-if="progress" :value="progress" :isStripped="true" :isAnimated="true"></app-progress>
-  <transition name="fade">
-    <app-alert v-if="documentsAlert.messages" :alert="documentsAlert" @alert="documentsAlert = $event"></app-alert>
-  </transition>
 </main>
 </template>
 
 <script>
 import Progress from '@/components/progress/progress'
-import Alert from '@/components/alert/alert'
 import FileLoader from '@/components/fileLoader/fileLoader'
 
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'createDocument',
   props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
-  data: () => {
+  data () {
     return {
       document: {
         name: undefined,
@@ -108,11 +103,7 @@ export default {
         description: undefined
       },
       file: undefined,
-      progress: 0,
-      documentsAlert: {
-        messages: undefined,
-        color: undefined
-      }
+      progress: 0
     }
   },
   methods: {
@@ -155,23 +146,22 @@ export default {
 
         this.$socket.emit('newDocument')
 
-        this.documentsAlert = {
-          messages: ['Documento caricato con successo.'],
-          color: 'alert--blue'
-        }
+        eventBus.notification({
+          title: 'Documento caricato con successo.',
+          temporary: true
+        })
 
         eventBus.push('Documento caricato con successo.', response.data.name)
       } catch (e) {
-        this.documentsAlert = {
-          messages: e.response.data.messages,
-          color: 'alert--red'
-        }
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       }
     }
   },
   components: {
     appProgress: Progress,
-    appAlert: Alert,
     appFileLoader: FileLoader
   }
 }

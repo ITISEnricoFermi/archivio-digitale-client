@@ -32,9 +32,6 @@
       </div>
     </div>
   </div>
-  <transition name="fade">
-    <app-alert v-if="collectionsAlert.messages" :alert="collectionsAlert" @alert="collectionsAlert = $event"></app-alert>
-  </transition>
 </main>
 </template>
 
@@ -43,26 +40,20 @@ import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
-import Alert from '@/components/alert/alert'
 
+import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'createCollection',
   props: ['collectionsPermissions'],
-  data: () => {
+  data () {
     return {
       collection: {
         documentCollection: undefined,
         permissions: undefined,
         authorizations: []
       },
-      loading: false,
-      collectionResponse: '',
-      collectionsAlert: {
-        messages: undefined,
-        color: undefined
-      }
+      loading: false
     }
   },
   computed: {
@@ -76,38 +67,32 @@ export default {
   methods: {
     async createCollection () {
       this.loading = true // Parte il caricamento
-      if (!this.collection.documentCollection) {
-        this.collectionsAlert = {
-          messages: ['Il campo del nome della collezione è vuoto.'],
-          color: 'alert--red'
-        }
-        return
-      }
+
       try {
-        let response = await v1.post('/collections/', this.collection)
+        let { data: { messages } } = await v1.post('/collections/', this.collection)
         this.loading = false // Il caricamento è terminato
         this.collection.documentCollection = undefined
         this.collection.permissions = undefined
         this.collection.authorizations = []
 
-        this.collectionsAlert = {
-          messages: response.data.messages,
-          color: 'alert--blue'
-        }
+        eventBus.notification({
+          title: messages[0],
+          temporary: true
+        })
       } catch (e) {
         this.loading = false
-        this.collectionsAlert = {
-          messages: e.response.data.messages,
-          color: 'alert--red'
-        }
+
+        eventBus.notification({
+          title: e.response.data.messages[0],
+          temporary: true
+        })
       }
     }
   },
   components: {
     appMultipleSelect: MultipleSelect,
     appMultipleSelectResults: MultipleSelectResults,
-    MoonLoader: MoonLoader,
-    appAlert: Alert
+    MoonLoader: MoonLoader
   }
 }
 </script>

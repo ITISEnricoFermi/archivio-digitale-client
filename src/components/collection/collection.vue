@@ -3,7 +3,7 @@
   <div class="row collection-header">
     <div class="col-1-of-1">
       <router-link :to="'/user/' + collection.author._id" tag="div" class="collection-header__img">
-        <img sizes="5rem" :srcset="'/pics/' + collection.author._id + '/xs.jpeg 100w, /pics/' + collection.author._id + '/sm.jpeg 300w, /pics/' + collection.author._id + '/md.jpeg 500w, /pics/' + collection.author._id + '/lg.jpeg 800w, /pics/' + collection.author._id + '/xlg.jpeg 1200w'"
+        <img sizes="5rem" :srcset="'/static/pics/' + collection.author._id + '/xs 100w, /static/pics/' + collection.author._id + '/sm 300w, /static/pics/' + collection.author._id + '/md 500w, /static/pics/' + collection.author._id + '/lg 800w, /static/pics/' + collection.author._id + '/xlg 1200w'"
           :alt="collection.author.firstname + ' ' + collection.author.lastname">
       </router-link>
       <div class="collection-header__info">

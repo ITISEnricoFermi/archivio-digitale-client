@@ -63,7 +63,6 @@ import eventBus from '@/utils/eventBus'
 import Menu from './menu'
 
 export default {
-  name: 'document',
   props: ['document'],
   data () {
     return {
@@ -71,7 +70,7 @@ export default {
     }
   },
   computed: {
-    date: function () {
+    date () {
       let timestamp = this.document._id.toString().substring(0, 8)
       let date = new Date(parseInt(timestamp, 16) * 1000)
       let getMonth = (date) => {

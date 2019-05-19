@@ -43,14 +43,6 @@
         </button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-1-of-1">
-        <p class="module__info">
-          <span>L'account verrà disattivato. Puoi riattivarlo in qualunque momento contattando l'amministratore.</span>
-          <br /><span>Le tue pubblicazioni rimarranno sulla piattaforma.</span>
-        </p>
-      </div>
-    </div>
   </div>
 </main>
 </template>
@@ -118,7 +110,7 @@ export default {
       }
     },
     async transferDocuments () {
-
+      eventBus.openPopUp(this.user, 'appTransferDocuments', 80)
     }
   },
   components: {

@@ -77,9 +77,8 @@ import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 export default {
-  name: 'editCollection',
   props: ['entity', 'collectionsPermissions'],
-  data: () => {
+  data () {
     return {
       collectionToEdit: {
         documentCollection: '',

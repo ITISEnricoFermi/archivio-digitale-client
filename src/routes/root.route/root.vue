@@ -148,7 +148,7 @@ export default {
 .main__root {
     min-height: 100vh;
     background-color: $color-white-2;
-    width: 100vw;
+    width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
 

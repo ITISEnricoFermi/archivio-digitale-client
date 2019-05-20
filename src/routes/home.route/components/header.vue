@@ -30,7 +30,6 @@ export default {
 .header {
     width: 100%;
     text-align: center;
-    width: 100%;
     z-index: 10000;
     height: 10rem;
     padding: 4vh 6vh;

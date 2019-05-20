@@ -47,10 +47,10 @@ export default {
 <style scoped lang="scss">
 .main {
     display: grid;
-    width: 100vw;
+    width: 100%;
     max-width: 100vw;
     overflow: hidden;
-    height: 100vh;
+    min-height: 100vh;
     grid-template-columns: 1fr;
     grid-template-rows: min-content auto;
     grid-template-areas: "header" "document";

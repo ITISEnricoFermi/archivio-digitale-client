@@ -1,17 +1,30 @@
 <template>
 <main class="panel">
   <div class="module module--padded">
+    <div class="row section-title">
+      <div class="col-1-of-1">
+        <label for="email">Email principale</label>
+      </div>
+    </div>
     <div class="row">
       <div class="col-1-of-1">
-        <input type="text" class="textfield" placeholder="Email" autocomplete="off" v-model="local.email">
+        <input type="text" id="email" class="textfield" placeholder="Email" autocomplete="off" v-model="local.email">
+      </div>
+    </div>
+    <div class="row section-title">
+      <div class="col-1-of-2">
+        <label for="new-password">Nuova password</label>
+      </div>
+      <div class="col-1-of-2">
+        <label for="old-password">Password attuale</label>
       </div>
     </div>
     <div class="row">
       <div class="col-1-of-2">
-        <input type="password" class="textfield" placeholder="Password attuale" autocomplete="off" v-model="local.passwords.old">
+        <input type="password" id="new-password" class="textfield" placeholder="Password attuale" autocomplete="off" v-model="local.passwords.old">
       </div>
       <div class="col-1-of-2">
-        <input type="password" class="textfield" placeholder="Nuova password" autocomplete="new-password" v-model="local.passwords.new">
+        <input type="password" id="old-password" class="textfield" placeholder="Nuova password" autocomplete="new-password" v-model="local.passwords.new">
       </div>
     </div>
     <div class="row">
@@ -122,5 +135,12 @@ export default {
 <style scoped lang="scss">
 .panel {
     padding: 3vh;
+}
+
+.section-title {
+    font-size: $font-default-2;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: $gutter-vertical-1!important;
 }
 </style>

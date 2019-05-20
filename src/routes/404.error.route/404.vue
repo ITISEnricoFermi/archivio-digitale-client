@@ -34,6 +34,7 @@ export default {
 
 .main {
     height: 100vh;
+    width: 100%;
     .content {
         height: 100%;
         width: 100%;

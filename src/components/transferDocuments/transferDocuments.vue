@@ -22,7 +22,7 @@
   </div>
   <div class="row">
     <div class="col-1-of-1">
-      <select class="select" v-model="type" name="type">
+      <select class="select" v-model="type" id="type">
         <option value="all" selected>Tutti i miei documenti</option>
         <option value="selected">I documenti selezionati</option>
       </select>

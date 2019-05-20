@@ -101,7 +101,7 @@ export default {
 .menu {
     background-color: #212121;
     @include clearfix;
-    width: 100vw;
+    width: 100%;
 
     &__logo {
         display: table-cell;

@@ -85,7 +85,7 @@ export default {
       return response.data[0]
     },
     async updateBackend (tag = 'latest') {
-      const response = await v1.post('/admin/update', {
+      await v1.post('/admin/update', {
         service: 'backend',
         tag
       })
@@ -93,7 +93,7 @@ export default {
       window.location.reload()
     },
     async updateFrontend (tag = 'latest') {
-      const response = await v1.post('/admin/update', {
+      await v1.post('/admin/update', {
         service: 'frontend',
         tag
       })

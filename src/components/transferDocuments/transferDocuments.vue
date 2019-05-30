@@ -57,7 +57,6 @@
 
 <script>
 import eventBus from '@/utils/eventBus'
-import v1 from '@/utils/v1'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'

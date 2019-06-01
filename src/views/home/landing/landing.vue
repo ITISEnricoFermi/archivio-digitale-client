@@ -73,11 +73,15 @@ export default {
 
       // const percentage = scroll * 100 / height
 
-      const [heading] = document.querySelectorAll('.heading')
-      const [screen] = document.querySelectorAll('.screen')
+      /* Funzionante */
+      // const [heading] = document.querySelectorAll('.heading')
+      // const [screen] = document.querySelectorAll('.screen')
+      // heading.style.top = `calc(${scroll / 7}rem + 35vh)`
+      // screen.style.top = `calc(${scroll / 9}rem + 60vh)`
+      /* Funzionante */
+
       // const [top] = document.querySelectorAll('.top')
-      heading.style.top = `calc(${scroll / 7}rem + 35vh)`
-      screen.style.top = `calc(${scroll / 9}rem + 60vh)`
+
       // top.style.clipPath = `circle(${-percentage + 100}%)`
 
       // heading.style.right = `-${scroll / 5}rem`

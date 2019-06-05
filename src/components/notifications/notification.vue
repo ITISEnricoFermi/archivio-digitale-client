@@ -11,7 +11,7 @@
 export default {
   name: 'notification',
   props: ['notification'],
-  data: () => {
+  data () {
     return {
       timeout: undefined
     }

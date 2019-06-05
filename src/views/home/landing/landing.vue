@@ -42,7 +42,7 @@ import Screen from './components/pc.screen/pc'
 
 export default {
   name: 'home',
-  data: () => {
+  data () {
     return {
       projects: []
     }

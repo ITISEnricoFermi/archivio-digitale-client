@@ -231,7 +231,7 @@ export default {
         position: relative;
         cursor: pointer;
 
-        @include respond(phone) {
+        @include respond(tab-por) {
             grid-template-columns: 1fr;
         }
         &--active,
@@ -249,7 +249,7 @@ export default {
             flex-direction: column;
             justify-content: center;
 
-            @include respond(phone) {
+            @include respond(tab-por) {
                 display: none;
             }
 

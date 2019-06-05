@@ -88,7 +88,7 @@ import v1 from '@/utils/v1'
 
 export default {
   props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
-  data: () => {
+  data () {
     return {
       subjects: '',
       query: {

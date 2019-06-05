@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'search',
-  data: () => {
+  data () {
     return {
       query: undefined
     }

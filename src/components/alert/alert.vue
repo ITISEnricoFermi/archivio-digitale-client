@@ -8,7 +8,7 @@
 export default {
   name: 'error',
   props: ['alert'],
-  data: () => {
+  data () {
     return {
       timeout: undefined
     }

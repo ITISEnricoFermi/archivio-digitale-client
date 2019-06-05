@@ -92,7 +92,7 @@ import v1 from '@/utils/v1'
 export default {
   name: 'editDocument',
   props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'grades'],
-  data: () => {
+  data () {
     return {
       progress: 0,
       uploading: false,

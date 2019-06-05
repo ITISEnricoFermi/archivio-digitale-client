@@ -54,7 +54,7 @@ import eventBus from '@/utils/eventBus'
 
 export default {
   props: ['privileges', 'subjects'],
-  data: () => {
+  data () {
     return {
       user: {
         firstname: undefined,

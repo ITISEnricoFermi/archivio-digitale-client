@@ -42,7 +42,7 @@ import Notifications from '@/components/notifications/notifications'
 
 export default {
   name: 'login',
-  data: () => {
+  data () {
     return {
       user: {
         email: '',

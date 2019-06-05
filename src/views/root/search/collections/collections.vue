@@ -41,7 +41,7 @@ import v1 from '@/utils/v1'
 
 export default {
   props: ['collectionsPermissions'],
-  data: () => {
+  data () {
     return {
       query: {
         fulltext: '',

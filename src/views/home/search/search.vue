@@ -21,7 +21,7 @@ import Header from '@/routes/home.route/components/header'
 
 export default {
   name: 'search',
-  data: () => {
+  data () {
     return {
       documents: [],
       documentsAlert: {

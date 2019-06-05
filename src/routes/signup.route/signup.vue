@@ -96,7 +96,7 @@ import LegalTerms from '@/components/legalTerms/legalTerms'
 
 export default {
   name: 'signup',
-  data: () => {
+  data () {
     return {
       signedUp: false,
       user: {

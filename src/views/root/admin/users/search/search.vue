@@ -27,7 +27,7 @@ import v1 from '@/utils/v1'
 
 export default {
   name: 'searchUsers',
-  data: () => {
+  data () {
     return {
       query: undefined,
       loading: false,

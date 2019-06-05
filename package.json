@@ -1,6 +1,6 @@
 {
   "name": "archivio-digitale-client",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,7 +13,7 @@
     "url": "https://riccardosangiorgio.com"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "compression-webpack-plugin": "^2.0.0",
     "marked": "^0.6.2",
     "register-service-worker": "^1.6.2",

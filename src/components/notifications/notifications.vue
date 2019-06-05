@@ -15,7 +15,7 @@ import Notification from './notification'
 
 export default {
   name: 'notifications',
-  data: () => {
+  data () {
     return {
       notifications: []
     }

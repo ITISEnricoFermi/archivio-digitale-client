@@ -30,7 +30,7 @@ export default {
     },
     url: String
   },
-  data: () => {
+  data () {
     return {
       query: undefined,
       results: [],

@@ -70,7 +70,7 @@ import v1 from '@/utils/v1'
 
 export default {
   name: 'searchDocuments',
-  data: () => {
+  data () {
     return {
       subjects: '',
       types: [],

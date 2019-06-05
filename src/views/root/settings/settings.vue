@@ -68,7 +68,7 @@ import eventBus from '@/utils/eventBus'
 
 export default {
   props: ['user'],
-  data: () => {
+  data () {
     return {
       local: {
         email: undefined,

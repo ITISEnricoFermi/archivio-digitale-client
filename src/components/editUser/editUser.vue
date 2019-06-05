@@ -83,7 +83,7 @@ import MultipleSelectResults from '@/components/multipleSelect/multipleSelectRes
 
 export default {
   props: ['entity', 'privileges'],
-  data: () => {
+  data () {
     return {
       user: {
         firstname: undefined,

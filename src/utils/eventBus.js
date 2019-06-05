@@ -21,7 +21,7 @@ export default new Vue({
         /* eslint no-unused-vars: "off" */
         let notification = new Notification(message, {
           body,
-          icon: '/shortcut/android-chrome-512x512.png'
+          icon: '/img/icons/android-chrome-512x512.png'
         })
       } else if (Notification.permission !== 'denied') { // Altrimenti chiede il permesso
         Notification.requestPermission((permission) => {
@@ -29,7 +29,7 @@ export default new Vue({
             /* eslint no-unused-vars: "off" */
             let notification = new Notification(message, {
               body,
-              icon: '/shortcut/android-chrome-512x512.png'
+              icon: '/img/icons/android-chrome-512x512.png'
             })
           }
         })

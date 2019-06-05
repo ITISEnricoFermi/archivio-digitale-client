@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
@@ -75,7 +76,26 @@ export default {
       eventBus.closePopUp()
     },
     async transfer () {
-
+      try {
+        const response = await v1.post('/documents/transfer', {
+          documents: this.documents,
+          to: this.to,
+          type: this.type
+        })
+        this.documents = []
+        this.to = []
+        this.type = 'all'
+        this.closePopUp()
+        eventBus.notification({
+          title: response.data.messages[0],
+          temporary: true
+        })
+      } catch (e) {
+        eventBus.notification({
+          title: e,
+          temporary: true
+        })
+      }
     }
   },
   components: {

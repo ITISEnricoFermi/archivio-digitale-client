@@ -39,7 +39,6 @@ import EditDocument from '@/components/editDocument/editDocument'
 import EditCollection from '@/components/editCollection/editCollection'
 import EditUser from '@/components/editUser/editUser'
 import Video from '@/components/video/video'
-import TransferDocuments from '@/components/transferDocuments/transferDocuments'
 
 export default {
   data () {
@@ -138,7 +137,6 @@ export default {
     appEditCollection: EditCollection,
     appEditUser: EditUser,
     appVideo: Video,
-    appTransferDocuments: TransferDocuments,
     NprogressContainer
   }
 }

@@ -18,7 +18,7 @@
           <span class="info__name--firstname">{{ user.firstname }}</span>
           <span class="info__name--lastname"> {{ user.lastname }}</span>
         </p>
-        <p class="subtitle heading-fifth">View profile</p>
+        <p class="subtitle heading-fifth">Visualizza profilo</p>
       </div>
       <div class="dropdown">
         <app-dropdown to="/settings/" icon="fas fa-cog" text="Impostazioni"></app-dropdown>
@@ -37,25 +37,26 @@
       <div class="link">
         <p class="link__text">
           <span class="link__text--icon">
-            <i class="fas fa-pencil-alt"></i>
+            <i class="fas fa-file-alt"></i>
           </span>
-          <span class="link__text--crop">Inserisci</span>
+          <span class="link__text--crop">Documenti</span>
         </p>
         <div class="dropdown">
-          <app-dropdown to="/create/documents/" icon="fas fa-file-alt" text="Crea documento"></app-dropdown>
-          <app-dropdown to="/create/collections/" icon="fas fa-folder" text="Crea collezione"></app-dropdown>
+          <app-dropdown to="/documents/create/" icon="fas fa-pencil-alt" text="Crea documento"></app-dropdown>
+          <app-dropdown to="/documents/search/" icon="fa fa-search" text="Cerca documento"></app-dropdown>
+          <app-dropdown to="/documents/transfer/" icon="fas fa-exchange-alt" text="Trasferisci documenti"></app-dropdown>
         </div>
       </div>
       <div class="link">
         <p class="link__text">
           <span class="link__text--icon">
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <i class="fas fa-folder" aria-hidden="true"></i>
           </span>
-          <span class="link__text--crop">Ricerca</span>
+          <span class="link__text--crop">Collezioni</span>
         </p>
         <div class="dropdown">
-          <app-dropdown to="/search/documents/" icon="fas fa-file-alt" text="Cerca documenti"></app-dropdown>
-          <app-dropdown to="/search/collections/" icon="fas fa-folder" text="Cerca collezioni"></app-dropdown>
+          <app-dropdown to="/collections/create" icon="fas fa-pencil-alt" text="Crea collezioni"></app-dropdown>
+          <app-dropdown to="/collections/search" icon="fa fa-search" text="Cerca collezioni"></app-dropdown>
         </div>
       </div>
       <div class="link" v-if="admin">

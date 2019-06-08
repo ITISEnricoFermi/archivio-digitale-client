@@ -15,13 +15,14 @@ import CreateUserAdminView from '@/views/root/admin/users/create/create'
 import SearchUsersAdminView from '@/views/root/admin/users/search/search'
 import ServicesAdminView from '@/views/root/admin/services/services'
 
-// Search
-import DocumentsSearchView from '@/views/root/search/documents/documents'
-import CollectionsSearchView from '@/views/root/search/collections/collections'
+// Documents
+import DocumentsCreateView from '@/views/root/documents/create/create'
+import DocumentsSearchView from '@/views/root/documents/search/search'
+import DocumentsTransferView from '@/views/root/documents/transfer/transfer'
 
-// Create
-import DocumentsCreateView from '@/views/root/create/documents/documents'
-import CollectionsCreateView from '@/views/root/create/collections/collections'
+// Collections
+import CollectionsCreateView from '@/views/root/collections/create/create'
+import CollectionsSearchView from '@/views/root/collections/search/search'
 
 import SettingsView from '@/views/root/settings/settings'
 import UserView from '@/views/root/user/user'
@@ -94,19 +95,23 @@ const router = new Router({
       name: 'UserView',
       component: UserView
     }, {
-      path: '/create/documents/',
+      path: '/documents/create',
       name: 'DocumentsCreateView',
       component: DocumentsCreateView
     }, {
-      path: '/create/collections/',
-      name: 'CollectionsCreateView',
-      component: CollectionsCreateView
-    }, {
-      path: '/search/documents/',
+      path: '/documents/search',
       name: 'DocumentsSearchView',
       component: DocumentsSearchView
     }, {
-      path: '/search/collections/',
+      path: '/documents/transfer',
+      name: 'DocumentsTransferView',
+      component: DocumentsTransferView
+    }, {
+      path: '/collections/create/',
+      name: 'CollectionsCreateView',
+      component: CollectionsCreateView
+    }, {
+      path: '/collections/search/',
       name: 'CollectionsSearchView',
       component: CollectionsSearchView
     }, {
@@ -153,7 +158,7 @@ const router = new Router({
 })
 
 router.afterEach((to, from) => {
-  document.title = to.meta.title || 'Archivio Digitale - ITIS Enrico Fermi'
+  document.title = to.meta.title || 'Archivio Digitale | ITIS Enrico Fermi'
 })
 
 export default router

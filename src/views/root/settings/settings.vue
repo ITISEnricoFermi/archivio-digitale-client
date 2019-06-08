@@ -43,13 +43,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-1-of-2">
-        <button class="button button--yellow" @click="transferDocuments">
-          <span class="icon"><i class="fas fa-exchange-alt"></i></span>
-          <span class="crop">Trasferisci documenti</span>
-        </button>
-      </div>
-      <div class="col-1-of-2">
+      <div class="col-1-of-1">
         <button class="button button--red" @click="disableAccount">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina account</span>
@@ -121,9 +115,6 @@ export default {
           temporary: true
         })
       }
-    },
-    async transferDocuments () {
-      eventBus.openPopUp(this.user, 'appTransferDocuments', 80)
     }
   },
   components: {

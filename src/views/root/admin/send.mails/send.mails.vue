@@ -1,5 +1,5 @@
 <template>
-<main class="panel">
+<main>
   <div class="module module--padded">
     <div class="row">
       <input type="text" class="textfield" placeholder="Oggetto" v-model="email.subject">
@@ -54,7 +54,7 @@ marked.setOptions({
 // }
 
 export default {
-  data () {
+  data() {
     return {
       email: {
         message: '',
@@ -64,12 +64,12 @@ export default {
     }
   },
   computed: {
-    html () {
+    html() {
       return marked(this.email.message)
     }
   },
   methods: {
-    async send ({
+    async send({
       target
     }) {
       try {
@@ -104,23 +104,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.panel {
-    padding: 3vh;
+.markdown {
+    border-radius: 0.25rem;
+    background: $color-white-1;
+    border: 1px solid darken($color-white-5, 5%);
+    font-size: $font-default-2;
+    cursor: pointer;
+    text-align: left;
+    color: $color-tertiary;
+    display: block;
+    text-decoration: none;
+    padding: 0.9rem 0.8rem;
+    list-style-position: inside;
+    line-height: 3rem;
 
-    .markdown {
-        border-radius: 0.25rem;
-        background: $color-white-1;
-        border: 1px solid darken($color-white-5, 5%);
-        font-size: $font-default-2;
-        cursor: pointer;
-        text-align: left;
-        color: $color-tertiary;
-        display: block;
-        text-decoration: none;
-        padding: 0.9rem 0.8rem;
-        list-style-position: inside;
-        line-height: 3rem;
-
-    }
 }
 </style>

@@ -59,20 +59,14 @@
           <app-dropdown to="/collections/search" icon="fa fa-search" text="Cerca collezioni"></app-dropdown>
         </div>
       </div>
-      <div class="link" v-if="admin">
+      <router-link to="/admin/services" tag="div" active-class="link--active" class="link" v-if="admin">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
           </span>
           <span class="link__text--crop">Admin</span>
         </p>
-        <div class="dropdown">
-          <app-dropdown to="/admin/services/" icon="fas fa-rocket" text="Servizi"></app-dropdown>
-          <app-dropdown to="/admin/sendmail/" icon="fas fa-paper-plane" text="Invia email"></app-dropdown>
-          <app-dropdown to="/admin/users/create/" icon="fas fa-plus" text="Crea utente"></app-dropdown>
-          <app-dropdown to="/admin/users/search/" icon="fas fa-users" text="Cerca utenti"></app-dropdown>
-        </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

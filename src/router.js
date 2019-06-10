@@ -10,6 +10,7 @@ import SearchHomeView from '@/views/home/search/search'
 import DashboardView from '@/views/root/dashboard/dashboard'
 
 // Admin
+import AdminView from '@/views/root/admin/admin'
 import SendMailAdminView from '@/views/root/admin/send.mails/send.mails'
 import CreateUserAdminView from '@/views/root/admin/users/create/create'
 import SearchUsersAdminView from '@/views/root/admin/users/search/search'
@@ -71,21 +72,26 @@ const router = new Router({
       name: 'DashboardView',
       component: DashboardView
     }, {
-      path: '/admin/users/create/',
-      name: 'CreateUserAdminView',
-      component: CreateUserAdminView
-    }, {
-      path: '/admin/users/search/',
-      name: 'SearchUsersAdminView',
-      component: SearchUsersAdminView
-    }, {
-      path: '/admin/sendmail/',
-      name: 'SendMailAdminView',
-      component: SendMailAdminView
-    }, {
-      path: '/admin/services/',
-      name: 'ServicesAdminView',
-      component: ServicesAdminView
+      path: '/admin/*',
+      name: 'AdminView',
+      component: AdminView,
+      children: [{
+        path: '/admin/users/create/',
+        name: 'CreateUserAdminView',
+        component: CreateUserAdminView
+      }, {
+        path: '/admin/users/search/',
+        name: 'SearchUsersAdminView',
+        component: SearchUsersAdminView
+      }, {
+        path: '/admin/sendmail/',
+        name: 'SendMailAdminView',
+        component: SendMailAdminView
+      }, {
+        path: '/admin/services/',
+        name: 'ServicesAdminView',
+        component: ServicesAdminView
+      }]
     }, {
       path: 'settings',
       name: 'SettingsView',

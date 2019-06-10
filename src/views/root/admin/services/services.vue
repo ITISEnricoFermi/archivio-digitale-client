@@ -1,25 +1,18 @@
 <template>
-<main class="panel">
-  <app-settings></app-settings>
+<main>
   <app-requests></app-requests>
 </main>
 </template>
 
 <script>
-
 import Requests from './components/requests'
-import Settings from './components/app.settings'
 
 export default {
   components: {
-    appRequests: Requests,
-    appSettings: Settings
+    appRequests: Requests
   }
 }
 </script>
 
 <style scoped lang="scss">
-  .panel {
-    padding: 3vh;
-  }
 </style>

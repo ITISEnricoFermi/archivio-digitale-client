@@ -2,7 +2,7 @@
 <main class="main">
   <nprogress-container></nprogress-container>
   <app-header :document="document"></app-header>
-  <iframe :src="'https://docs.google.com/a/archivio.itisfermi.edu.it/viewer?url=' + origin + '/static/documents/' + document._id" class="document" v-if="document"></iframe>
+  <iframe :src="'https://drive.google.com/viewer?url=' + origin + '/static/documents/' + document._id + '&embedded=true'" class="document" v-if="document"></iframe>
 </main>
 </template>
 

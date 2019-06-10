@@ -12,7 +12,7 @@
     </div>
     <div class="options__content">
       <ul>
-        <router-link class="option" :to="option.link" tag="li" active-class="option--active" v-for="(option, index) in options" v-key="index">
+        <router-link class="option" :to="option.link" tag="li" active-class="option--active" v-for="(option, index) in options" :key="index">
           <span class="icon">
             <i :class="option.icon"></i>
           </span>

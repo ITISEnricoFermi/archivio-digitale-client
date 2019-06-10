@@ -54,7 +54,7 @@ marked.setOptions({
 // }
 
 export default {
-  data() {
+  data () {
     return {
       email: {
         message: '',
@@ -64,12 +64,12 @@ export default {
     }
   },
   computed: {
-    html() {
+    html () {
       return marked(this.email.message)
     }
   },
   methods: {
-    async send({
+    async send ({
       target
     }) {
       try {

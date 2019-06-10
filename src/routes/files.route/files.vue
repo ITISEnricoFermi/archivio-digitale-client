@@ -2,7 +2,7 @@
 <main class="main">
   <nprogress-container></nprogress-container>
   <app-header :document="document"></app-header>
-  <iframe :src="'/static/documents/' + document._id" class="document" v-if="document"></iframe>
+  <iframe :src="'https://docs.google.com/a/archivio.itisfermi.edu.it/viewer?url=' + origin + '/static/documents/' + document._id" class="document" v-if="document"></iframe>
 </main>
 </template>
 
@@ -15,7 +15,8 @@ import v1 from '@/utils/v1'
 export default {
   data () {
     return {
-      document: undefined
+      document: undefined,
+      origin: window.location.origin
     }
   },
   async beforeRouteEnter (to, from, next) {

@@ -23,6 +23,7 @@ import DocumentsSearchView from '@/views/root/documents/search/search'
 import DocumentsTransferView from '@/views/root/documents/transfer/transfer'
 
 // Collections
+import CollectionsView from '@/views/root/collections/collections'
 import CollectionsCreateView from '@/views/root/collections/create/create'
 import CollectionsSearchView from '@/views/root/collections/search/search'
 
@@ -120,12 +121,17 @@ const router = new Router({
       }]
     }, {
       path: '/collections/create/',
-      name: 'CollectionsCreateView',
-      component: CollectionsCreateView
-    }, {
-      path: '/collections/search/',
-      name: 'CollectionsSearchView',
-      component: CollectionsSearchView
+      name: 'CollectionsView',
+      component: CollectionsView,
+      children: [{
+        path: '/collections/create/',
+        name: 'CollectionsCreateView',
+        component: CollectionsCreateView
+      }, {
+        path: '/collections/search/',
+        name: 'CollectionsSearchView',
+        component: CollectionsSearchView
+      }]
     }, {
       path: '/logout',
       name: 'Logout',

@@ -42,18 +42,14 @@
           <span class="link__text--crop">Documenti</span>
         </p>
       </router-link>
-      <div class="link">
+      <router-link class="link" to="/collections/create/" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fas fa-folder" aria-hidden="true"></i>
           </span>
           <span class="link__text--crop">Collezioni</span>
         </p>
-        <div class="dropdown">
-          <app-dropdown to="/collections/create" icon="fas fa-pencil-alt" text="Crea collezioni"></app-dropdown>
-          <app-dropdown to="/collections/search" icon="fa fa-search" text="Cerca collezioni"></app-dropdown>
-        </div>
-      </div>
+      </router-link>
       <router-link class="link" v-if="admin" to="/admin/services" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">

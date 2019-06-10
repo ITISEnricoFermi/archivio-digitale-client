@@ -1,5 +1,5 @@
 <template>
-<main class="panel">
+<main>
   <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-2">
@@ -89,7 +89,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.panel {
-  padding: 3vh;
-}
 </style>

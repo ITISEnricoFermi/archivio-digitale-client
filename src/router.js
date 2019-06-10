@@ -17,6 +17,7 @@ import SearchUsersAdminView from '@/views/root/admin/users/search/search'
 import ServicesAdminView from '@/views/root/admin/services/services'
 
 // Documents
+import DocumentsView from '@/views/root/documents/documents'
 import DocumentsCreateView from '@/views/root/documents/create/create'
 import DocumentsSearchView from '@/views/root/documents/search/search'
 import DocumentsTransferView from '@/views/root/documents/transfer/transfer'
@@ -101,17 +102,22 @@ const router = new Router({
       name: 'UserView',
       component: UserView
     }, {
-      path: '/documents/create',
-      name: 'DocumentsCreateView',
-      component: DocumentsCreateView
-    }, {
-      path: '/documents/search',
-      name: 'DocumentsSearchView',
-      component: DocumentsSearchView
-    }, {
-      path: '/documents/transfer',
-      name: 'DocumentsTransferView',
-      component: DocumentsTransferView
+      path: '/documents/*',
+      name: 'DocumentsView',
+      component: DocumentsView,
+      children: [{
+        path: '/documents/create',
+        name: 'DocumentsCreateView',
+        component: DocumentsCreateView
+      }, {
+        path: '/documents/search',
+        name: 'DocumentsSearchView',
+        component: DocumentsSearchView
+      }, {
+        path: '/documents/transfer',
+        name: 'DocumentsTransferView',
+        component: DocumentsTransferView
+      }]
     }, {
       path: '/collections/create/',
       name: 'CollectionsCreateView',

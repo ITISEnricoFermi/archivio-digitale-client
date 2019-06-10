@@ -8,7 +8,6 @@
   </div>
 </main>
 </template>
-
 <script>
 
 import Options from '@/components/options/options'
@@ -17,25 +16,17 @@ export default {
   data () {
     return {
       options: [{
-        crop: 'Richieste di iscrizione',
-        icon: 'fas fa-tasks',
-        link: '/admin/services/'
+        crop: 'Crea documento',
+        icon: 'fas fa-pencil-alt',
+        link: '/documents/create/'
       }, {
-        crop: 'Invia email',
-        icon: 'fas fa-paper-plane',
-        link: '/admin/sendmail/'
+        crop: 'Cerca documento',
+        icon: 'fa fa-search',
+        link: '/documents/search/'
       }, {
-        crop: 'Entità',
-        icon: 'fas fa-stream',
-        link: '/admin/entities/'
-      }, {
-        crop: 'Crea utente',
-        icon: 'fas fa-plus',
-        link: '/admin/users/create/'
-      }, {
-        crop: 'Cerca utenti',
-        icon: 'fas fa-users',
-        link: '/admin/users/search/'
+        crop: 'Trasferisci documenti',
+        icon: 'fas fa-exchange-alt',
+        link: '/documents/transfer/'
       }],
       title: {
         crop: 'Servizi',

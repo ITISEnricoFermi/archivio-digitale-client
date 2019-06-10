@@ -34,19 +34,14 @@
           <span class="link__text--crop">Dashboard</span>
         </p>
       </router-link>
-      <div class="link">
+      <router-link class="link" to="/documents/create/" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fas fa-file-alt"></i>
           </span>
           <span class="link__text--crop">Documenti</span>
         </p>
-        <div class="dropdown">
-          <app-dropdown to="/documents/create/" icon="fas fa-pencil-alt" text="Crea documento"></app-dropdown>
-          <app-dropdown to="/documents/search/" icon="fa fa-search" text="Cerca documento"></app-dropdown>
-          <app-dropdown to="/documents/transfer/" icon="fas fa-exchange-alt" text="Trasferisci documenti"></app-dropdown>
-        </div>
-      </div>
+      </router-link>
       <div class="link">
         <p class="link__text">
           <span class="link__text--icon">
@@ -59,7 +54,7 @@
           <app-dropdown to="/collections/search" icon="fa fa-search" text="Cerca collezioni"></app-dropdown>
         </div>
       </div>
-      <router-link to="/admin/services" tag="div" active-class="link--active" class="link" v-if="admin">
+      <router-link class="link" v-if="admin" to="/admin/services" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fa fa-user-secret" aria-hidden="true"></i>

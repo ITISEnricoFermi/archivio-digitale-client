@@ -1,5 +1,5 @@
 <template>
-<main class="panel">
+<main>
   <div class="module module--padded">
     <div class="row section-title">
       <div class="col-1-of-1">
@@ -98,10 +98,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.panel {
-  padding: 3vh;
-}
-
 .section-title {
     font-size: $font-default-2;
     font-weight: bold;

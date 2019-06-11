@@ -4,7 +4,7 @@
     <app-options :title="title" :options="options"></app-options>
   </div>
   <div class="center">
-    <router-view></router-view>
+    <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades"></router-view>
   </div>
 </main>
 </template>
@@ -13,6 +13,7 @@
 import Options from '@/components/options/options'
 
 export default {
+  props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
   data () {
     return {
       options: [{

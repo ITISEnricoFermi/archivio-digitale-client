@@ -53,7 +53,7 @@ import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
 
 export default {
-  props: ['privileges', 'subjects'],
+  props: ['privileges'],
   data () {
     return {
       user: {

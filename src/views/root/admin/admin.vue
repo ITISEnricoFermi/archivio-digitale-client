@@ -4,7 +4,7 @@
     <app-options :title="title" :options="options"></app-options>
   </div>
   <div class="center">
-    <router-view></router-view>
+    <router-view :privileges="privileges"></router-view>
   </div>
 </main>
 </template>
@@ -14,6 +14,10 @@
 import Options from '@/components/options/options'
 
 export default {
+  props: ['privileges'],
+  mounted () {
+    console.log(this.privileges, this.subjects)
+  },
   data () {
     return {
       options: [{

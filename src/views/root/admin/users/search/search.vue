@@ -26,7 +26,6 @@ import Alert from '@/components/alert/alert'
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'searchUsers',
   data () {
     return {
       query: undefined,

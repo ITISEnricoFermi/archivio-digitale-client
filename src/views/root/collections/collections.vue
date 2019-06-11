@@ -4,7 +4,7 @@
     <app-options :title="title" :options="options"></app-options>
   </div>
   <div class="center">
-    <router-view></router-view>
+    <router-view :collectionsPermissions="collectionsPermissions"></router-view>
   </div>
 </main>
 </template>
@@ -13,6 +13,7 @@
 import Options from '@/components/options/options'
 
 export default {
+  props: ['collectionsPermissions'],
   data () {
     return {
       options: [{

@@ -34,7 +34,7 @@
           <span class="link__text--crop">Dashboard</span>
         </p>
       </router-link>
-      <router-link class="link" to="/documents/create/" tag="div" active-class="link--active">
+      <router-link class="link" to="/documents/" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fas fa-file-alt"></i>
@@ -42,7 +42,7 @@
           <span class="link__text--crop">Documenti</span>
         </p>
       </router-link>
-      <router-link class="link" to="/collections/create/" tag="div" active-class="link--active">
+      <router-link class="link" to="/collections/" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fas fa-folder" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
           <span class="link__text--crop">Collezioni</span>
         </p>
       </router-link>
-      <router-link class="link" v-if="admin" to="/admin/services" tag="div" active-class="link--active">
+      <router-link class="link" v-if="admin" to="/admin/" tag="div" active-class="link--active">
         <p class="link__text">
           <span class="link__text--icon">
             <i class="fa fa-user-secret" aria-hidden="true"></i>

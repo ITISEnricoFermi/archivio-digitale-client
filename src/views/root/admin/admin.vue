@@ -15,9 +15,6 @@ import Options from '@/components/options/options'
 
 export default {
   props: ['privileges'],
-  mounted () {
-    console.log(this.privileges, this.subjects)
-  },
   data () {
     return {
       options: [{

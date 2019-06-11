@@ -70,14 +70,26 @@ const router = new Router({
     component: loadView('root.route/root'),
     beforeEnter: auth,
     children: [{
+      path: '',
+      name: 'root',
+      redirect: {
+        path: '/dashboard/'
+      }
+    }, {
       path: 'dashboard',
       name: 'DashboardView',
       component: DashboardView
     }, {
-      path: '/admin/*',
+      path: '/admin/',
       name: 'AdminView',
       component: AdminView,
       children: [{
+        path: '',
+        name: 'admin',
+        redirect: {
+          path: '/admin/services/'
+        }
+      }, {
         path: '/admin/users/create/',
         name: 'CreateUserAdminView',
         component: CreateUserAdminView
@@ -103,10 +115,16 @@ const router = new Router({
       name: 'UserView',
       component: UserView
     }, {
-      path: '/documents/*',
+      path: '/documents/',
       name: 'DocumentsView',
       component: DocumentsView,
       children: [{
+        path: '',
+        name: 'documents',
+        redirect: {
+          path: '/documents/create/'
+        }
+      }, {
         path: '/documents/create',
         name: 'DocumentsCreateView',
         component: DocumentsCreateView
@@ -120,10 +138,16 @@ const router = new Router({
         component: DocumentsTransferView
       }]
     }, {
-      path: '/collections/create/',
+      path: '/collections/',
       name: 'CollectionsView',
       component: CollectionsView,
       children: [{
+        path: '',
+        name: 'collections',
+        redirect: {
+          path: '/collections/create/'
+        }
+      }, {
         path: '/collections/create/',
         name: 'CollectionsCreateView',
         component: CollectionsCreateView

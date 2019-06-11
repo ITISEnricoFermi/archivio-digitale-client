@@ -4,13 +4,16 @@
     <app-options :title="title" :options="options"></app-options>
   </div>
   <div class="center">
-    <router-view :privileges="privileges"></router-view>
+    <transition name="panel" mode="out-in">
+      <keep-alive>
+        <router-view :privileges="privileges"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </main>
 </template>
 
 <script>
-
 import Options from '@/components/options/options'
 
 export default {
@@ -64,12 +67,12 @@ export default {
 
     .left-sidebar {
 
-      @include respond(tab-por) {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          left: 0;
-      }
+        @include respond(tab-por) {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+        }
 
     }
 }

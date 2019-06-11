@@ -4,7 +4,11 @@
     <app-options :title="title" :options="options"></app-options>
   </div>
   <div class="center">
-    <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades"></router-view>
+    <transition name="panel" mode="out-in">
+      <keep-alive>
+        <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </main>
 </template>

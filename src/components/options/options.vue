@@ -37,6 +37,12 @@ export default {
     border-radius: 0.3rem;
     border: 1px solid $color-white-5;
 
+    @include respond(tab-por) {
+        border: none;
+        border-top: 1px solid $color-white-5;
+        border-radius: 0rem;
+    }
+
     .option {
         transition: background-color 0.2s ease-in-out;
         cursor: pointer;

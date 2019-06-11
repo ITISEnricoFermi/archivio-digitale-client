@@ -79,6 +79,7 @@ export default {
 
       @include respond (tab-por) {
         width: 100%;
+        display: none;
       }
 
     }

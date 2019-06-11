@@ -15,7 +15,7 @@
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
-import Document from './document/document'
+import Document from '@/components/document/document'
 
 export default {
   props: ['action'],
@@ -91,10 +91,9 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
 
-    .module {
+    .document {
       margin-bottom: 0!important;
       border-radius: 0!important;
     }
-
 }
 </style>

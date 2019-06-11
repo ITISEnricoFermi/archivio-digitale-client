@@ -1,5 +1,5 @@
 <template>
-<div class="module module--padded document">
+<div class="module module--padded document" @click="more">
   <div class="header">
     <p class="title heading-tertiary">{{ document.name }}</p>
     <p class="description heading-fourth"></p>
@@ -19,41 +19,6 @@
       </transition>
     </div>
   </div>
-  <!-- <div class="row document-header">
-
-    <div class="col-1-of-1">
-      <div class="document-header__img">
-        <img sizes="5rem" :srcset="'/pics/' + document.author._id + '/xs.jpeg 100w, /pics/' + document.author._id + '/sm.jpeg 300w, /pics/' + document.author._id + '/md.jpeg 500w, /pics/' + document.author._id + '/lg.jpeg 800w, /pics/' + document.author._id + '/xlg.jpeg 1200w'" :alt="document.author.firstname + ' ' + document.author.lastname">
-      </div>
-        <div class="document-header__info">
-          <p class="document-header__info--head heading-fourth">
-            <span>{{document.author.firstname}} {{document.author.lastname}}</span>
-            <span> ha pubblicato</span>
-            <span> {{document.name}}</span>.
-          </p>
-          <p class="document-header__info--date heading-fifth">{{ this.date }}
-          </p>
-        </div> -->
-
-  <!-- </div>
-    </div>
-    <div class="row document-info">
-      <div class="col-1-of-1">
-        <p class="document-info__description">{{document.description}}</p>
-      </div>
-    </div>
-    <div class="row document-footer">
-      <div class="col-1-of-1">
-        <ul class="document-footer__info">
-          <li v-if="document.subject" class="u-bg-color-blue">{{document.subject.subject}}</li>
-          <li v-if="document.grade || document.section" class="u-bg-color-yellow">
-            <span v-if="document.grade">{{document.grade.grade}}˚</span>
-            <span v-if="document.section">{{document.section.section}}</span>
-          </li>
-          <li v-if="document.type" class="u-bg-color-green">{{document.type.type}}</li>
-        </ul>
-      </div>
-    </div> -->
 </div>
 </template>
 
@@ -81,6 +46,9 @@ export default {
     }
   },
   methods: {
+    more () {
+      this.$emit('click', this.document)
+    },
     edit () {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },

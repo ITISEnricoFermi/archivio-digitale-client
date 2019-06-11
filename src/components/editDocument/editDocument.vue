@@ -70,13 +70,13 @@
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--red" @click="remove(entity._id)">
+      <button class="button button--red" @click="remove">
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina il documento</span>
         </button>
     </div>
     <div class="col-1-of-3">
-      <button class="button button--green" @click="edit(entity._id)">
+      <button class="button button--green" @click="edit">
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva documento</span>
         </button>
@@ -124,9 +124,10 @@ export default {
     closePopUp () {
       eventBus.closePopUp()
     },
-    async edit (id) {
+    async edit () {
+      const id = this.entity._id
       try {
-        let response = await v1.patch('/documents/' + id, this.documentToEdit)
+        const response = await v1.patch('/documents/' + id, this.documentToEdit)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true
@@ -140,9 +141,10 @@ export default {
         })
       }
     },
-    async remove (id) {
+    async remove () {
+      const id = this.entity._id
       try {
-        let response = await v1.delete('/documents/' + id)
+        const response = await v1.delete('/documents/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true

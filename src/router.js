@@ -66,12 +66,11 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [{
     path: '/',
-    name: 'Root',
     component: loadView('root.route/root'),
     beforeEnter: auth,
     children: [{
       path: '',
-      name: 'root',
+      name: 'Root',
       redirect: {
         path: '/dashboard/'
       }
@@ -81,11 +80,10 @@ const router = new Router({
       component: DashboardView
     }, {
       path: '/admin/',
-      name: 'AdminView',
       component: AdminView,
       children: [{
         path: '',
-        name: 'admin',
+        name: 'AdminView',
         redirect: {
           path: '/admin/services/'
         }
@@ -116,11 +114,10 @@ const router = new Router({
       component: UserView
     }, {
       path: '/documents/',
-      name: 'DocumentsView',
       component: DocumentsView,
       children: [{
         path: '',
-        name: 'documents',
+        name: 'DocumentsView',
         redirect: {
           path: '/documents/create/'
         }
@@ -139,11 +136,10 @@ const router = new Router({
       }]
     }, {
       path: '/collections/',
-      name: 'CollectionsView',
       component: CollectionsView,
       children: [{
         path: '',
-        name: 'collections',
+        name: 'CollectionsView',
         redirect: {
           path: '/collections/create/'
         }

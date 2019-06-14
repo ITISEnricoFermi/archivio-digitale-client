@@ -46,6 +46,7 @@ export default {
             width: 100%;
             margin: 0;
             display: table;
+            padding: 6vh 3vh;
 
             .footer-info,
             .footer-menu {
@@ -66,11 +67,9 @@ export default {
             float: left;
 
             .powered {
-                font-size: $font-default-3;
                 color: $color-grey-2;
 
                 a {
-                    font-size: $font-default-3;
                     color: $color-tertiary;
                     text-decoration: none;
                 }
@@ -90,7 +89,6 @@ export default {
                     margin-left: 2rem;
 
                     a {
-                        font-size: $font-default-3;
                         color: $color-tertiary;
                         text-decoration: none;
                     }
@@ -98,25 +96,24 @@ export default {
             }
 
         }
-        .row {
-            display: table-cell;
-            vertical-align: middle;
-            width: 80%!important;
-
-            .col-1-of-2 {
-                font-size: $font-default-3;
-                color: $color-grey-2;
-
-                &:first-child {
-                    text-align: left;
-                }
-
-                &:last-child {
-                    text-align: right;
-                }
-
-            }
-        }
+        // .row {
+        //     display: table-cell;
+        //     vertical-align: middle;
+        //     width: 80%!important;
+        //
+        //     .col-1-of-2 {
+        //         color: $color-grey-2;
+        //
+        //         &:first-child {
+        //             text-align: left;
+        //         }
+        //
+        //         &:last-child {
+        //             text-align: right;
+        //         }
+        //
+        //     }
+        // }
 
     }
 }

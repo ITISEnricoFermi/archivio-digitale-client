@@ -229,8 +229,12 @@ main {
                     font-size: 1.8rem;
                     margin-top: 2rem;
 
-                    @include respond(phone) {
+                    @include respond(tab-por) {
                         width: 40rem;
+                    }
+
+                    @include respond(phone) {
+                        width: 30rem;
                     }
                 }
 
@@ -281,7 +285,7 @@ main {
         // clip-path: polygon(0 0, 100% 50%, 100% 100%, 0% 100%);
 
         @include respond(phone) {
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .content {

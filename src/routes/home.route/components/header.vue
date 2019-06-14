@@ -1,12 +1,7 @@
 <template>
 <header class="header">
-  <div class="logo">
-    <a href="/home/" class="logo__content">
-      <img src="/logo/itisFermi_white.svg" class="fermi" alt="ITIS Enrico Fermi">
-      <div class="separator"></div>
-      <p class="archivio">Archivio Digitale</p>
-    </a>
-  </div>
+    <a href="/home/" class="logo"></a>
+  <app-search></app-search>
   <div class="menu">
     <ul class="buttons">
       <li>
@@ -21,106 +16,76 @@
 </template>
 
 <script>
+import Search from './search.vue'
+
 export default {
-  name: 'headerMenu'
+  components: {
+    appSearch: Search
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .header {
     width: 100%;
-    text-align: center;
     z-index: 10000;
-    height: 10rem;
-    padding: 4vh 6vh;
-    // background-image: linear-gradient($color-fourth, $color-primary);
-    // background-color: $color-primary;
-    display: table;
+    padding: 1.5rem;
+    background-color: #282828;
+    display: grid;
     transition: all 0.2s ease-in-out;
+    grid-template-columns: 8rem auto max-content;
+    grid-gap: 1.5rem;
+    align-items: center;
 
     @include respond(phone) {
         padding: 3vh;
     }
 
     .logo {
-        display: table-cell;
-        vertical-align: middle;
+        height: 4.5rem;
+        background-color: $color-white-6;
+        mask-image: url("/logo/itisFermi_white.svg");
+        mask-size: cover;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
 
-        &__content {
-            text-align: left;
-            height: 4.5rem;
-            display: table-cell;
-            vertical-align: middle;
-            text-decoration: none;
-
-            * {
-                display: inline-block;
-                vertical-align: middle;
-            }
-
-            .fermi {
-                height: 4.5rem;
-                // margin: 0.75rem 0.75rem 0.75rem 3vh;
-            }
-
-            .separator {
-                height: 3rem;
-                width: 0.05rem;
-                background-color: $color-white;
-                margin: 0 1rem;
-
-                @include respond(phone) {
-                    display: none;
-                }
-            }
-
-            .archivio {
-                font-size: 2rem;
-                color: $color-white;
-                font-family: 'Bitter', sans-serif;
-
-                @include respond(phone) {
-                    display: none;
-                }
-            }
-
+        &:hover {
+            background-color: $color-palette-green;
         }
 
     }
 
+    .search {
+        width: 100%;
+    }
+
     .menu {
-        display: table-cell;
-        vertical-align: middle;
 
         .buttons {
             text-align: right;
             padding: 0;
-            float: right;
 
             li {
                 display: inline-block;
 
                 &:not(:last-child) {
-                  margin-right: 1.5rem;
+                    margin-right: 1.5rem;
                 }
 
                 a,
                 a:link,
                 a:visited {
-                    // text-transform: uppercase;
-                    // padding: 0.7rem;
                     display: block;
                     text-decoration: none;
                     font-size: 1.4rem;
                 }
 
                 .login {
-
                     padding: 1.2rem 1.5rem;
                     font-weight: bold;
                     color: $color-white;
                     border-radius: 0.3rem;
-                    border: 1px solid rgba($color-white, 0.2);
+                    background-color: $color-palette-green;
 
                     &:hover {
                         background-color: rgba($color-white, 0.2);
@@ -133,57 +98,11 @@ export default {
                     font-weight: bold;
                     color: $color-white;
                     border-radius: 0.3rem;
-                    background-color: $color-primary;
+                    background-color: lighten(#2d303a, 5%);
 
                     &:hover {
-                        background-color: lighten(#1A8D4C, 2%);
+                        background-color: lighten($color-fourth, 2%);
                     }
-
-                    // &,
-                    // &:link,
-                    // &:visited {
-                    //
-                    //     color: $color-fourth;
-                    //     border-radius: 2rem;
-                    //     background-color: $color-white;
-                    //     transition: all 0.2s;
-                    //     position: relative;
-                    //     border: none;
-                    //     cursor: pointer;
-                    // }
-                    //
-                    // &:hover {
-                    //     transform: translateY(-0.2rem);
-                    //     box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
-                    //
-                    //     &::after {
-                    //         transform: scaleX(1.4) scaleY(1.6);
-                    //         opacity: 0;
-                    //     }
-                    //
-                    // }
-                    //
-                    // &:active,
-                    // &:focus {
-                    //     outline: none;
-                    //     transform: translateY(-0.1rem);
-                    //     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
-                    // }
-                    //
-                    // &::after {
-                    //     content: "";
-                    //     display: inline-block;
-                    //     height: 100%;
-                    //     width: 100%;
-                    //     border-radius: 10rem;
-                    //     position: absolute;
-                    //     top: 0;
-                    //     left: 0;
-                    //     z-index: -1;
-                    //     transition: all 0.4s;
-                    //     background-color: $color-white;
-                    //     color: $color-black;
-                    // }
 
                 }
 

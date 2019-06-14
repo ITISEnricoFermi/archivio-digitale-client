@@ -83,4 +83,14 @@
     //   box-shadow: 0 0.5rem 1rem rgba($color-button-yellow, 0.7);
     // }
   }
+
+  &--black {
+    // background-color: #fcd680;
+    // color: $color-white;
+    // border: 1px solid darken(#fcd680, 10%);
+
+    background-color: $color-grey-1;
+    color: $color-white;
+    border: 1px solid darken($color-grey-1, 10%);
+  }
 }

@@ -2,7 +2,7 @@
 <div class="module module--padded">
   <div class="row">
     <div class="col-1-of-1">
-      <input type="text" class="textfield" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="search">
+      <input type="text" class="textfield" placeholder="Cerca un documento" autocomplete="off" v-model="query.fulltext" @keyup.enter="go">
     </div>
   </div>
   <div class="row">
@@ -53,7 +53,7 @@
   </div>
   <div class="row">
     <div clas="col-1-of-1">
-      <button class="button button--green" @click="search">
+      <button class="button button--green" @click="go">
         <span class="icon">
           <i class="fas fa-search"></i>
         </span>
@@ -69,7 +69,6 @@
 import v1 from '@/utils/v1'
 
 export default {
-  name: 'searchDocuments',
   data () {
     return {
       subjects: '',
@@ -93,8 +92,19 @@ export default {
     this.faculties = await this.getFaculties()
     this.sections = await this.getSections()
     this.grades = await this.getGrades()
+  },
+  mounted () {
+    this.query.fulltext = this.$route.query.fulltext
+    this.query.type = this.$route.query.type
+    this.query.faculty = this.$route.query.faculty
+    this.query.subject = this.$route.query.subject
+    this.query.grade = this.$route.query.grade
+    this.query.section = this.$route.query.section
 
-    this.query.fulltext = this.$route.query.q
+    if (Object.values(this.query).every(el => el === undefined || el === '')) {
+      return this.$router.push({ path: '/' })
+    }
+
     this.search()
   },
   sockets: {
@@ -103,6 +113,10 @@ export default {
     }
   },
   methods: {
+    go () {
+      this.$router.push({ path: 'search', query: this.query })
+      return window.location.reload()
+    },
     async search () {
       for (let i = 0; i < this.query.length; i++) {
         if (Object.keys(this.query)[i] !== '') {
@@ -113,11 +127,6 @@ export default {
       try {
         const response = await v1.post('/documents/search/', this.query)
         let documents = response.data
-
-        for (let i = 0; i < documents.length; i++) {
-          documents[i].own = false
-        }
-
         this.$emit('searchDocuments', documents)
       } catch (e) {
         this.$emit('searchDocuments', [])

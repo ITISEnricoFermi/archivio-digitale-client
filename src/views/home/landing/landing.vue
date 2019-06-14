@@ -5,9 +5,63 @@
     <div class="content">
       <div class="heading">
         <p class="title">Archivio Digitale</p>
-        <app-search></app-search>
+        <p class="subtitle">L’Archivio Digitale ha lo scopo di conservare, e quindi valorizzare, ogni tipologia di materiale didattico prodotto dagli studenti del nostro istituto nel corso degli anni.</p>
+        <a href="https://github.com/ITISEnricoFermi/archivio-digitale-server" class="readmore">
+          <span class="crop">
+            Scopri di più
+          </span>
+          <span class="icon">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+
+        </a>
+      </div>
+      <div class="posts">
+        <div class="post first"></div>
+        <div class="post second"></div>
+        <div class="post third"></div>
+        <div class="post fourth"></div>
       </div>
       <app-screen url="/layout/screen.png"></app-screen>
+    </div>
+  </section>
+  <section class="sections feautures">
+    <div class="content">
+      <div class="feautures-list">
+        <div class="feauture">
+          <div class="feauture__logo">
+            <i class="fas fa-upload"></i>
+          </div>
+          <p class="feauture__title">
+            Caricamento di documenti
+          </p>
+          <p class="feauture__description">
+            L'Archivio Digitale è un raccoglitore di materiale multimediale con fini didattici, suddiviso in numerose categorie.
+          </p>
+        </div>
+        <div class="feauture">
+          <div class="feauture__logo">
+            <i class="fas fa-folder-open"></i>
+          </div>
+          <p class="feauture__title">
+            Raccolta in collezioni
+          </p>
+          <p class="feauture__description">
+            I documenti caricati possono essere raggruppati in una o più collezioni che possono identificare aree tematiche comuni o progetti.
+          </p>
+        </div>
+        <div class="feauture">
+          <div class="feauture__logo">
+            <i class="fas fa-search"></i>
+          </div>
+          <p class="feauture__title">
+            Ricerca dei documenti
+          </p>
+          <p class="feauture__description">
+            I documenti possono essere trovati con velocità grazie alla ricerca fulltext e se necessario con una ricerca avanzata.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
   <section class="sections projects">
@@ -18,7 +72,7 @@
       </div>
       <app-filters @filter="projects = $event"></app-filters>
       <div class="projects-list" v-if="projects.length">
-        <transition name="scale" v-for="(project, index) in projects" :key="index">
+        <transition name="panel" mode="out-in" v-for="(project, index) in projects" :key="index">
           <app-project :project="project"></app-project>
         </transition>
       </div>
@@ -49,43 +103,20 @@ export default {
   },
   created () {
     window.addEventListener('scroll', () => {
-      // const scale = 1
       const height = window.innerHeight
       const scroll = window.window.scrollY
       const header = document.querySelectorAll('.header')[0]
       const menu = 100 // 100px height
-
       if (scroll >= menu && scroll <= height) {
         header.style.top = '-10rem'
-
-        // const percentage = scroll * scale / height
-        //
-        // header.style.opacity = percentage < scale ? percentage : scale
       } else if (scroll > height) {
         header.style.position = 'fixed'
         header.style.top = '0rem'
-        header.style.backgroundImage = 'linear-gradient(45deg, #1A8D4C 1%, #22B863 64%, #66BA6B 97%)'
       } else if (scroll < menu) {
         header.style.top = '0rem'
         header.style.position = 'absolute'
         header.style.backgroundImage = ''
       }
-
-      // const percentage = scroll * 100 / height
-
-      /* Funzionante */
-      // const [heading] = document.querySelectorAll('.heading')
-      // const [screen] = document.querySelectorAll('.screen')
-      // heading.style.top = `calc(${scroll / 7}rem + 35vh)`
-      // screen.style.top = `calc(${scroll / 9}rem + 60vh)`
-      /* Funzionante */
-
-      // const [top] = document.querySelectorAll('.top')
-
-      // top.style.clipPath = `circle(${-percentage + 100}%)`
-
-      // heading.style.right = `-${scroll / 5}rem`
-      // screen.style.left = `-${scroll / 7}rem`
     })
   },
   components: {
@@ -100,7 +131,7 @@ export default {
 
 <style scoped lang="scss">
 main {
-
+    overflow: hidden;
     & > .header {
         position: absolute;
         top: 0;
@@ -112,71 +143,191 @@ main {
     }
 
     .top {
-        background-image: linear-gradient(45deg, #1A8D4C 1%, lighten(#1A8D4C, 10%) 64%, #66BA6B 97%);
-        max-height: 100vh;
+        height: 100vh;
         overflow: hidden;
+        background-color: #282828;
+        position: relative;
+
+        @keyframes slide {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(calc(-4000px/3), 0, 0);
+            }
+        }
+
+        @keyframes slideInverted {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(calc(4000px/3), 0, 0);
+            }
+        }
+
+        .posts {
+            overflow: hidden;
+            position: absolute;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            grid-gap: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 8rem;
+
+            .post {
+                height: 15rem;
+                background-repeat: repeat-x;
+                background-size: contain;
+                width: 400rem;
+                background-image: url("/layout/post.svg");
+            }
+
+            .first,
+            .third {
+                animation: slide 60s linear infinite;
+            }
+
+            .fourth,
+            .second {
+                animation: slideInverted 60s linear infinite;
+            }
+        }
 
         .content {
             height: 100vh;
             width: 100%;
             position: relative;
-            overflow: hidden;
 
             .heading {
-                text-align: center;
+                padding: 0 5rem;
                 width: 100%;
                 height: 20rem;
                 position: absolute;
-                top: 35vh;
+                top: 50%;
+                left: 10rem;
+                transform: translateY(-50%);
+                z-index: 100000;
+                color: $color-white;
+
+                @include respond(tab-por) {
+                    @include absCenter;
+                }
 
                 .title {
-                    color: $color-white;
                     font-weight: 400;
                     font-family: 'Bitter', sans-serif;
                     font-weight: bold;
                     font-size: 5rem;
                     text-shadow: 0 0 1rem rgba($color-black, 0.2);
-
-                    @include respond(big-desktop) {
-                        margin-top: -1rem;
-                    }
-
-                    @include respond(phone) {
-                      font-size: 3rem;
-                    }
-
                 }
 
-            }
+                .subtitle {
+                    font-weight: 500;
+                    width: 50rem;
+                    font-size: 1.8rem;
+                    margin-top: 2rem;
 
-            .search {
-              position: absolute;
-              @include absCenter;
+                    @include respond(phone) {
+                        width: 40rem;
+                    }
+                }
 
-              @include respond(tab-por) {
-                top: 50%!important;
-                width: 70%;
-              }
+                .readmore {
+                    padding: 1.2rem 1.5rem;
+                    font-weight: bold;
+                    color: $color-white;
+                    border-radius: 0.3rem;
+                    background-color: $color-palette-green;
+                    text-decoration: none;
+                    margin-top: 2rem;
+                    display: inline-block;
 
-              @include respond(phone) {
-                  top: 38%!important;
-              }
+                    span.icon {
+                        margin: 0 0.5rem;
+                    }
+
+                    &:hover {
+                        background-color: rgba($color-white, 0.2);
+                    }
+                }
+
             }
 
             .screen {
                 position: absolute;
-                margin-left: 15%;
-                top: 60vh;
-                width: 70%;
+                right: 5rem;
+                top: 25vh;
+                z-index: 1000000;
+                width: 70rem;
                 box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
+                display: none;
+
+                @include respond(tab-lan) {
+                    display: none;
+                }
+            }
+
+        }
+
+    }
+
+    .feautures {
+        background-color: $color-fourth;
+        overflow: hidden;
+        padding: 5vh 3vh;
+        // top: -30rem;
+        // clip-path: polygon(0 0, 100% 50%, 100% 100%, 0% 100%);
+
+        @include respond(phone) {
+            height: 100vh;
+        }
+
+        .content {
+            width: 100%;
+
+            .feautures-list {
+                display: flex;
 
                 @include respond(tab-por) {
-                    width: 80%;
-                    margin-left: 10%;
+                    display: block;
                 }
 
-                @include respond(phone) {
-                    width: 233%;
+                *:not(:last-child) {
+                    margin-bottom: 1rem;
+                }
+
+                .feauture {
+                    text-align: center;
+                    color: $color-white;
+                    flex: 1 1 100%;
+                    padding: 2rem 4rem;
+
+                    &__logo {
+                        display: block;
+                        font-size: 5rem;
+                        display: block;
+                    }
+
+                    &__title {
+                        font-weight: 500;
+                        font-size: 2rem;
+                    }
+
+                    &__description {
+                        font-size: 1.6rem;
+                        text-align: center;
+                        margin: 0 auto;
+
+                        @include respond(tab-por) {
+                            width: 50%;
+                        }
+
+                        @include respond(phone) {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
@@ -186,6 +337,7 @@ main {
     .projects {
         padding: 0;
         background-color: $color-white-2;
+        min-height: 100vh;
 
         @include respond(tab-por) {
             padding: 0;

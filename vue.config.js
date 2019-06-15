@@ -44,8 +44,8 @@ module.exports = {
   },
   pwa: {
     name: 'Archivio Digitale',
-    themeColor: '#1A8D4C',
-    msTileColor: '#1A8D4C',
+    themeColor: '#282828',
+    msTileColor: '#13AA52',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {

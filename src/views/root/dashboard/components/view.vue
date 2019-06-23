@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="section info">
-    <p class="description">{{document.description}}</p>
+    <p class="description" v-if="document.description">{{document.description}}</p>
     <ul class="tags">
       <li v-if="document.subject" class="tag u-noselect">
         <span class="icon">

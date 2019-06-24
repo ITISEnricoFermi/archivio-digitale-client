@@ -93,14 +93,14 @@ export default {
   data () {
     return {
       document: {
-        name: undefined,
+        name: '',
         type: undefined,
         faculty: undefined,
         subject: undefined,
         grade: '0',
         section: undefined,
         visibility: 'pubblico',
-        description: undefined
+        description: ''
       },
       file: undefined,
       progress: 0
@@ -134,14 +134,14 @@ export default {
 
       try {
         const response = await v1.post('/documents/', formData, config)
-        this.document.name = undefined
+        this.document.name = ''
         this.document.type = undefined
         this.document.faculty = undefined
         this.document.subject = undefined
         this.document.grade = '0'
         this.document.section = undefined
         this.document.visibility = 'pubblico'
-        this.document.description = undefined
+        this.document.description = ''
         this.file = undefined
 
         this.$socket.emit('newDocument')

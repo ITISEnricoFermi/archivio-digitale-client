@@ -46,6 +46,10 @@ export default {
         padding-top: 7rem;
         z-index: 100;
 
+        @include respond (tab-lan) {
+          width: 55%;
+        }
+
         @include respond (tab-por) {
           width: 100%;
         }
@@ -62,6 +66,10 @@ export default {
       z-index: 1500;
       position: fixed;
 
+      @include respond (tab-lan) {
+        width: 55%;
+      }
+
       @include respond (tab-por) {
         width: 100%;
       }
@@ -76,6 +84,10 @@ export default {
       top: 6rem;
       height: 100%;
       touch-action: pan-down;
+
+      @include respond (tab-lan) {
+        width: 45%;
+      }
 
       @include respond (tab-por) {
         width: 100%;

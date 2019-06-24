@@ -180,6 +180,10 @@ export default {
 
     .info {
 
+      & > *:not(:first-child) {
+        margin-top: 1.5rem;
+      }
+
         .description {
             text-align: left;
             color: $color-grey-2;
@@ -191,7 +195,6 @@ export default {
 
         .tags {
             text-align: left;
-            margin-top: 1.5rem;
             // display: flex;
             // flex-wrap: wrap;
             // justify-content: space-between;

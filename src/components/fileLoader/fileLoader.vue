@@ -55,11 +55,12 @@ export default {
     },
     select () {
       const input = document.createElement('input')
-      input.type = 'file'
 
       input.addEventListener('change', ({ target }) => {
         this.$emit('file', target.files[0])
       })
+
+      input.type = 'file'
 
       return input.click()
     }

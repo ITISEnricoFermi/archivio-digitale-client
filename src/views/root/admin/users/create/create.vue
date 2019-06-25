@@ -57,10 +57,10 @@ export default {
   data () {
     return {
       user: {
-        firstname: undefined,
-        lastname: undefined,
-        email: undefined,
-        password: undefined,
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
         privileges: undefined,
         accesses: []
       }
@@ -81,10 +81,10 @@ export default {
           ...this.computedAccesses
         })
 
-        this.user.firstname = undefined
-        this.user.lastname = undefined
-        this.user.email = undefined
-        this.user.password = undefined
+        this.user.firstname = ''
+        this.user.lastname = ''
+        this.user.email = ''
+        this.user.password = ''
         this.user.privileges = undefined
         this.user.accesses = []
 

@@ -86,9 +86,9 @@ export default {
   data () {
     return {
       user: {
-        firstname: undefined,
-        lastname: undefined,
-        email: undefined,
+        firstname: '',
+        lastname: '',
+        email: '',
         state: undefined,
         privileges: undefined,
         accesses: []

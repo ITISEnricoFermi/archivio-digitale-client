@@ -65,7 +65,7 @@ export default {
   data () {
     return {
       local: {
-        email: undefined,
+        email: '',
         passwords: {
           new: '',
           old: ''

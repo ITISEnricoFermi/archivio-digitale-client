@@ -77,7 +77,7 @@ export default {
       sections: [],
       grades: [],
       query: {
-        fulltext: undefined,
+        fulltext: '',
         type: undefined,
         faculty: undefined,
         subject: undefined,

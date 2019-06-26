@@ -22,6 +22,7 @@
       </div>
       <div class="dropdown">
         <app-dropdown to="/settings/" icon="fas fa-cog" text="Impostazioni"></app-dropdown>
+        <app-dropdown to="/docs/" icon="far fa-question-circle" text="Aiuto"></app-dropdown>
         <app-dropdown to="/logout/" icon="fas fa-sign-out-alt" text="Logout"></app-dropdown>
       </div>
     </router-link>

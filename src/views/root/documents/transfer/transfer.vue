@@ -31,12 +31,7 @@
     </div>
     <div class="row" v-if="type === 'selected'">
       <div class="col-1-of-1">
-        <app-multiple-select :placeholder="'Aggiungi un documento da trasferire'" :selected.sync="documents" :dbElements="['name']" :url="'/documents/search/partial/'" @update:selected="documents = $event"></app-multiple-select>
-      </div>
-    </div>
-    <div class="row" v-if="type === 'selected' && documents.length">
-      <div class="col-1-of-1">
-        <app-multiple-select-results :selected.sync="documents" :dbElements="['name']" @update:selected="documents = $event"></app-multiple-select-results>
+        <app-selector @selected="documents = $event" endpoint="/documents/search/partial/" :dbElements="['name']"></app-selector>
       </div>
     </div>
     <div class="row">
@@ -55,8 +50,7 @@
 import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
 
-import MultipleSelect from '@/components/multipleSelect/multipleSelect'
-import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
+import Selector from '@/components/selector/selector'
 
 export default {
   props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'grades'],
@@ -91,8 +85,7 @@ export default {
     }
   },
   components: {
-    appMultipleSelect: MultipleSelect,
-    appMultipleSelectResults: MultipleSelectResults
+    appSelector: Selector
   }
 }
 </script>

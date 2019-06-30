@@ -12,9 +12,12 @@
     </div>
     <div class="selector__selected" v-if="selected.length">
       <div class="list">
-        <div class="list__element" v-for="(element, index) in selected" :key="index" @click="remove(element)">
-          <span class="crop">
-            {{ index + 1 + '. ' + element.name }}
+        <div class="list__element" v-for="(entity, index) in selected" :key="index" @click="remove(entity)">
+          <span class="number">
+            {{ index + 1 + '. ' }}
+          </span>
+          <span class="crop" v-for="(element, index) in dbElements" :key="index">
+            {{ entity[element] }}
           </span>
           <span class="icon">
             <i class="fas fa-times-circle"></i>
@@ -29,8 +32,8 @@
           <span class="icon">
             {{ page * perPage - perPage + index + 1 + '.' }}
           </span>
-          <span class="crop">
-            {{ entity.name }}
+          <span class="crop" v-for="(element, index) in dbElements" :key="index">
+            {{ entity[element] }}
           </span>
         </li>
         <!-- </transition-group> -->
@@ -43,29 +46,8 @@
             <i class="fas fa-chevron-left" />
           </p>
         </div>
-        <!-- <div v-for="(step, index) in pages" :key="index" class="pages__step u-noselect" :class="{ 'pages__step--active': step === page }" @click="move(step)">
-            <p>{{ step }}</p>
-          </div> -->
-        <div class="pages__step u-noselect" v-if="condition !== 1">
-          <p>...</p>
-        </div>
-
-        <!-- <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-
-                  <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                      <% if (i == current) { %>
-                          <li class="active"><a><%= i %></a></li>
-                      <% } else { %>
-                          <li><a href="/products/<%= i %>"><%= i %></a></li>
-                      <% } %>
-                  <% } %> -->
-
         <div v-for="(step, index) in pages" :key="index" class="pages__step u-noselect" :class="{ 'pages__step--active': step === page }" @click="move(step)">
           <p>{{ step }}</p>
-        </div>
-
-        <div class="pages__step u-noselect" v-if="condition === page + 4 && condition < pages">
-          <p>...</p>
         </div>
         <div class="pages__arrow u-noselect" @click="next" :class="{ 'pages__arrow--disabled': page === pages }">
           <p>
@@ -95,6 +77,12 @@ export default {
       default () {
         return []
       }
+    },
+    dbElements: {
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
   data () {
@@ -106,15 +94,9 @@ export default {
       selected: [],
       page: 1,
       pages: 1,
-      perPage: 5,
-      condition: this.page > 5 ? this.page - 4 : 1
+      perPage: 5
     }
   },
-  // computed: {
-  //   hey () {
-  //     return this.pages.filter(el => this.condition <= (this.page + 4) && this.condition <= this.pages)
-  //   }
-  // },
   watch: {
     selected () {
       this.$emit('selected', this.selected)
@@ -226,7 +208,7 @@ export default {
         }
 
         &:first-child,
-        &:not(:last-child) {
+        &:not(:nth-child(5)) {
             border-bottom: 1px solid $color-white-5;
         }
 
@@ -240,13 +222,6 @@ export default {
                 margin: 0.5rem;
             }
         }
-    }
-
-    &__content,
-    &__footer,
-    &__header,
-    c &__selected {
-        // width: 100%;
     }
 
     &__header {
@@ -287,18 +262,11 @@ export default {
     &__selected {
         padding: 1rem;
         border-bottom: 1px solid $color-white-5;
-
-        .list {
-
-            // &__element {
-            //   display: inline-block;
-            // }
-        }
     }
 
     &__content {
-      // border-left: 1px solid $color-white-5;
-      min-height: 24.9rem;
+        min-height: 23.4rem;
+
         ul {
             padding: 0;
         }

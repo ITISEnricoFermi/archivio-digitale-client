@@ -50,6 +50,8 @@
 import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
 
+import MultipleSelect from '@/components/multipleSelect/multipleSelect'
+import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 import Selector from '@/components/selector/selector'
 
 export default {
@@ -85,7 +87,9 @@ export default {
     }
   },
   components: {
-    appSelector: Selector
+    appSelector: Selector,
+    appMultipleSelect: MultipleSelect,
+    appMultipleSelectResults: MultipleSelectResults
   }
 }
 </script>

@@ -190,6 +190,11 @@ const router = new Router({
     name: 'Files',
     component: loadView('files.route/files')
   }, {
+    path: '/docs/',
+    beforeEnter (to, from, next) {
+      window.location = 'https://itisenricofermi.github.io/archivio-digitale-docs/'
+    }
+  }, {
     path: '*',
     component: NotFoundComponent
   }]

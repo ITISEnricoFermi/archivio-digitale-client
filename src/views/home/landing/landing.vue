@@ -13,7 +13,9 @@
           <span class="icon">
             <i class="fas fa-arrow-right"></i>
           </span>
-
+          <!-- <span class="crop">
+            👉 Scopri di più
+          </span> -->
         </a>
       </div>
       <div class="posts">
@@ -21,6 +23,8 @@
         <div class="post second"></div>
         <div class="post third"></div>
         <div class="post fourth"></div>
+        <div class="post fifth"></div>
+        <div class="post sixth"></div>
       </div>
       <app-screen url="/layout/screen.png"></app-screen>
     </div>
@@ -185,12 +189,14 @@ main {
             }
 
             .first,
-            .third {
+            .third,
+            .fifth {
                 animation: slide 60s linear infinite;
             }
 
+            .second,
             .fourth,
-            .second {
+            .sixth {
                 animation: slideInverted 60s linear infinite;
             }
         }

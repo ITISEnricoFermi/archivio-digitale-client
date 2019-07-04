@@ -26,7 +26,6 @@
         <div class="post fifth"></div>
         <div class="post sixth"></div>
       </div>
-      <app-screen url="/layout/screen.png"></app-screen>
     </div>
   </section>
   <!-- <section class="sections feautures">
@@ -96,8 +95,6 @@ import Project from './components/project'
 import Filters from './components/filters'
 import Header from '@/routes/home.route/components/header'
 
-import Screen from './components/pc.screen/pc'
-
 export default {
   name: 'home',
   data () {
@@ -127,7 +124,6 @@ export default {
     appSearch: Search,
     appProject: Project,
     appFilters: Filters,
-    appScreen: Screen,
     appHeader: Header
   }
 }
@@ -263,20 +259,6 @@ main {
                     }
                 }
 
-            }
-
-            .screen {
-                position: absolute;
-                right: 5rem;
-                top: 25vh;
-                z-index: 1000000;
-                width: 70rem;
-                box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
-                display: none;
-
-                @include respond(tab-lan) {
-                    display: none;
-                }
             }
 
         }

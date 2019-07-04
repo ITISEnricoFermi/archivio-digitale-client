@@ -29,7 +29,7 @@
       <app-screen url="/layout/screen.png"></app-screen>
     </div>
   </section>
-  <section class="sections feautures">
+  <!-- <section class="sections feautures">
     <div class="content">
       <div class="feautures-list">
         <div class="feauture">
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </main>
 </template>
 

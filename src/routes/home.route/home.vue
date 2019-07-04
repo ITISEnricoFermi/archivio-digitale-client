@@ -29,10 +29,10 @@ body {
 
 .main {
     width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    min-height: 100vh;
     height: auto;
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
     box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
     display: grid;
     grid-template-columns: 1fr;

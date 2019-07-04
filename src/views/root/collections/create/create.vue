@@ -3,7 +3,7 @@
   <div class="module module--padded">
     <div class="row">
       <div class="col-1-of-2">
-        <input type="text" class="textfield" placeholder="Collezione" v-model="collection.documentCollection" @keyup.enter="createCollection">
+        <input type="text" class="textfield" placeholder="Collezione" v-model="collection.documentCollection" @keyup.enter="createCollection" />
         <moon-loader :loading="true" :color="'#000'" :size="'20px'" v-if="loading"></moon-loader>
       </div>
       <div class="col-1-of-2">
@@ -26,7 +26,9 @@
     <div class="row">
       <div class="col-1-of-1">
         <button class="button button--green" @click="createCollection">
-          <span class="icon"><i class="fas fa-edit"></i></span>
+          <span class="icon">
+            <i class="fas fa-edit"></i>
+          </span>
           <span class="crop">Crea collezione</span>
         </button>
       </div>
@@ -69,7 +71,11 @@ export default {
       this.loading = true // Parte il caricamento
 
       try {
-        let { data: { messages } } = await v1.post('/collections/', this.collection)
+        let {
+          data: {
+            messages
+          }
+        } = await v1.post('/collections/', this.collection)
         this.loading = false // Il caricamento è terminato
         this.collection.documentCollection = undefined
         this.collection.permissions = undefined

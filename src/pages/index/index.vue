@@ -17,10 +17,10 @@ export default {
 
 <style scoped lang="scss">
 #app {
+    width: 100%;
+    max-width: 100vw;
     min-height: 100vh;
     background-color: $color-white-2;
-    width: 100vw;
-    max-width: 100vw;
     overflow-x: hidden;
 
     @include color-scheme(dark) {

@@ -17,6 +17,12 @@
             <i class="fab fa-github"></i>
           </a>
         </li>
+        <li>
+          <a href="https://t.me/itisfermi">
+            <!-- <i class="fab fa-telegram"></i> -->
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+        </li>
       </ul>
     </div>
   </section>

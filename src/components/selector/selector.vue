@@ -192,38 +192,6 @@ export default {
     border-radius: 0.3rem;
     border: 1px solid $color-white-5;
 
-    .option {
-        transition: background-color 0.2s ease-in-out;
-        cursor: pointer;
-        padding: 1.5rem;
-        text-align: left;
-        list-style: none;
-
-        &--selected {
-            background: $color-white-2;
-
-            &:hover {
-                background: $color-white-2!important;
-            }
-        }
-
-        &:first-child,
-        &:not(:nth-child(5)) {
-            border-bottom: 1px solid $color-white-5;
-        }
-
-        &:hover {
-            background-color: $color-white-1;
-        }
-
-        span.icon {
-            margin: 0 0.5rem;
-            @include respond(tab-por) {
-                margin: 0.5rem;
-            }
-        }
-    }
-
     &__header {
         display: grid;
         grid-template-columns: auto auto;
@@ -269,6 +237,42 @@ export default {
 
         ul {
             padding: 0;
+
+            .option {
+                transition: background-color 0.2s ease-in-out;
+                cursor: pointer;
+                padding: 1.5rem;
+                text-align: left;
+                list-style: none;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &--selected {
+                    background: $color-white-2;
+
+                    &:hover {
+                        background: $color-white-2!important;
+                    }
+                }
+
+                &:first-child,
+                &:not(:nth-child(5)) {
+                    border-bottom: 1px solid $color-white-5;
+                }
+
+                &:hover {
+                    background-color: $color-white-1;
+                }
+
+                span.icon {
+                    margin: 0 0.5rem;
+                    @include respond(tab-por) {
+                        margin: 0.5rem;
+                    }
+                }
+            }
+
         }
     }
 

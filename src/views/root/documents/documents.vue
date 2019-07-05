@@ -49,11 +49,11 @@ export default {
 .panel {
     padding: 3vh;
     display: grid;
-    grid-template-columns: 30rem auto;
+    grid-template-columns: 30rem minmax(0, 1fr);
     grid-gap: 3vh;
 
     @include respond(tab-por) {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         grid-template-rows: 6rem auto;
     }
 

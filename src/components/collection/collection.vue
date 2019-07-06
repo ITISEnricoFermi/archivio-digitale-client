@@ -4,7 +4,7 @@
     <div class="col-1-of-1">
       <router-link :to="'/user/' + collection.author._id" tag="div" class="collection-header__img">
         <img sizes="5rem" :srcset="'/static/pics/' + collection.author._id + '/xs 100w, /static/pics/' + collection.author._id + '/sm 300w, /static/pics/' + collection.author._id + '/md 500w, /static/pics/' + collection.author._id + '/lg 800w, /static/pics/' + collection.author._id + '/xlg 1200w'"
-          :alt="collection.author.firstname + ' ' + collection.author.lastname">
+          :alt="collection.author.firstname + ' ' + collection.author.lastname"/>
       </router-link>
       <div class="collection-header__info">
         <p class="collection-header__info--head heading-fourth">
@@ -52,9 +52,14 @@ export default {
     }
   },
   computed: {
-    date: function () {
+    date () {
       let timestamp = this.collection._id.toString().substring(0, 8)
-      return new Date(parseInt(timestamp, 16) * 1000).toUTCString()
+      let date = new Date(parseInt(timestamp, 16) * 1000)
+      let getMonth = (date) => {
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        return months[date.getMonth()]
+      }
+      return ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ', ' + date.getDate() + ' ' + getMonth(date)
     }
   },
   methods: {

@@ -1,5 +1,4 @@
 <template>
-<main>
   <div class="selector module">
     <div class="selector__header">
       <p class="title">
@@ -60,7 +59,6 @@
       </div>
     </div>
   </div>
-</main>
 </template>
 
 <script>

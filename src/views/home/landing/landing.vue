@@ -3,21 +3,7 @@
   <app-header></app-header>
   <section class="sections top">
     <div class="content">
-      <div class="heading">
-        <p class="title">Archivio Digitale</p>
-        <p class="subtitle">L’Archivio Digitale ha lo scopo di conservare, e quindi valorizzare, ogni tipologia di materiale didattico prodotto dagli studenti del nostro istituto nel corso degli anni.</p>
-        <a href="https://github.com/ITISEnricoFermi/archivio-digitale-server" class="readmore">
-          <span class="crop">
-            Scopri di più
-          </span>
-          <span class="icon">
-            <i class="fas fa-arrow-right"></i>
-          </span>
-          <!-- <span class="crop">
-            👉 Scopri di più
-          </span> -->
-        </a>
-      </div>
+      <app-heading></app-heading>
       <div class="posts">
         <div class="post first"></div>
         <div class="post second"></div>
@@ -94,6 +80,7 @@ import Search from './components/search'
 import Project from './components/project'
 import Filters from './components/filters'
 import Header from '@/routes/home.route/components/header'
+import Heading from './components/heading.vue'
 
 export default {
   name: 'home',
@@ -124,7 +111,8 @@ export default {
     appSearch: Search,
     appProject: Project,
     appFilters: Filters,
-    appHeader: Header
+    appHeader: Header,
+    appHeading: Heading
   }
 }
 </script>
@@ -203,61 +191,9 @@ main {
             position: relative;
 
             .heading {
-                padding: 0 5rem;
-                width: 100%;
-                height: 20rem;
-                position: absolute;
-                top: 50%;
-                left: 10rem;
-                transform: translateY(-50%);
-                z-index: 100000;
-                color: $color-white;
 
-                @include respond(tab-por) {
-                    @include absCenter;
-                }
 
-                .title {
-                    font-weight: 400;
-                    font-family: 'Bitter', sans-serif;
-                    font-weight: bold;
-                    font-size: 5rem;
-                    text-shadow: 0 0 1rem rgba($color-black, 0.2);
-                }
 
-                .subtitle {
-                    font-weight: 500;
-                    width: 50rem;
-                    font-size: 1.8rem;
-                    margin-top: 2rem;
-
-                    @include respond(tab-por) {
-                        width: 40rem;
-                    }
-
-                    @include respond(phone) {
-                        width: 30rem;
-                    }
-                }
-
-                .readmore {
-                    padding: 1.2rem 1.5rem;
-                    font-weight: bold;
-                    color: $color-white;
-                    border-radius: 0.3rem;
-                    background-color: $color-palette-green;
-                    text-decoration: none;
-                    margin-top: 2rem;
-                    display: inline-block;
-
-                    span.icon {
-                        margin: 0 0.5rem;
-                    }
-
-                    &:hover {
-                        background-color: rgba($color-white, 0.2);
-                    }
-                }
 
             }
 

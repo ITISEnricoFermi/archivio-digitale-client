@@ -90,6 +90,7 @@ export default {
         })
 
         await this.getKeys()
+        this.keyname = ''
         return eventBus.notification({
           title: 'Registrazione avvenuta con successo.',
           temporary: true

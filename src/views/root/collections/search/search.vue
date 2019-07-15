@@ -89,4 +89,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.module {
+  &:not(:last-child) {
+    margin-bottom: 3vh;
+  }
+}
 </style>

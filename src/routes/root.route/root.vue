@@ -144,10 +144,10 @@ export default {
 
 <style scoped lang="scss">
 .main__root {
-    min-height: 100vh;
-    background-color: $color-white-2;
     width: 100%;
     max-width: 100vw;
+    min-height: 100vh;
+    background-color: $color-white-2;
     overflow-x: hidden;
 
     @include color-scheme(dark) {

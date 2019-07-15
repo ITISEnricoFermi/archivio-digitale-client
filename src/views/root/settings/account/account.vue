@@ -131,4 +131,10 @@ export default {
     text-align: left;
     margin-bottom: $gutter-vertical-1!important;
 }
+
+.module {
+  &:not(:last-child) {
+    margin-bottom: 3vh;
+  }
+}
 </style>

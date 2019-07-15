@@ -1,37 +1,52 @@
 <template>
-<div class="module module--padded document" @click="more">
+<article class="module module--padded document" @click="more">
   <div class="header">
-    <p class="title heading-tertiary">{{ document.name }}</p>
-    <p class="description heading-fourth"></p>
-    <p class="date">{{ this.date }}</p>
-    <div class="authors">
-      <router-link :to="'/user/' + document.author._id" tag="div" class="author">
-        <img sizes="5rem" :srcset="'/static/pics/' + document.author._id + '/xs 100w, /static/pics/' + document.author._id + '/sm 300w, /static/pics/' + document.author._id + '/md 500w, /static/pics/' + document.author._id + '/lg 800w, /static/pics/' + document.author._id + '/xlg 1200w'"
-          :alt="document.author.firstname + ' ' + document.author.lastname">
-      </router-link>
-    </div>
-    <div class="menu-container" @mouseleave="closeMenu">
-      <span class="u-noselect" @click="menu = !menu">
-        <i class="fas fa-ellipsis-h"></i>
-      </span>
-      <transition name="fade">
-        <app-menu v-if="menu" :editable="document.editable" @edit="edit" @download="download" @view="view"></app-menu>
-      </transition>
+    <router-link :to="'/user/' + document.author._id" tag="div" class="author">
+      <img sizes="5rem" :srcset="'/static/pics/' + document.author._id + '/xs 100w, /static/pics/' + document.author._id + '/sm 300w, /static/pics/' + document.author._id + '/md 500w, /static/pics/' + document.author._id + '/lg 800w, /static/pics/' + document.author._id + '/xlg 1200w'"
+        :alt="document.author.firstname + ' ' + document.author.lastname">
+    </router-link>
+    <div class="info">
+      <p class="title">{{ document.name }}</p>
+      <p class="date">{{ this.date }}</p>
     </div>
   </div>
-</div>
+  <div class="content">
+    <p class="description heading-fourth">
+      {{ document.description }}
+    </p>
+  </div>
+  <div class="bottom">
+    <ul class="actions">
+      <li class="action u-noselect" @click="edit" v-if="document.editable">
+        <span class="icon">
+          <i class="fas fa-edit"></i>
+        </span>
+        <span class="crop">Modifica</span>
+      </li>
+      <li class="action u-noselect" @click="download">
+        <span class="icon">
+          <i class="fas fa-download"></i>
+        </span>
+        <span class="crop">Scarica</span>
+      </li>
+      <li class="action u-noselect" @click="view">
+        <span class="icon">
+          <i class="fas fa-eye"></i>
+        </span>
+        <span class="crop">Visualizza</span>
+      </li>
+    </ul>
+  </div>
+</article>
 </template>
 
 <script>
 import eventBus from '@/utils/eventBus'
 
-import Menu from './menu'
-
 export default {
-  props: ['document'],
-  data () {
-    return {
-      menu: false
+  props: {
+    document: {
+      type: Object
     }
   },
   computed: {
@@ -64,201 +79,98 @@ export default {
         return eventBus.openPopUp(this.document, 'appVideo', 70)
       }
       window.open(`/files/${this.document._id}`, '_blank')
-    },
-    closeMenu () {
-      if (this.menu) {
-        this.menu = false
-      }
     }
-  },
-  components: {
-    appMenu: Menu
   }
 }
 </script>
 
 <style scoped lang="scss">
 .document {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0!important !important;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid $color-white-5;
-    }
-
-    &:hover {
-        background-color: #f3f5f2;
-
-        @include color-scheme(dark) {
-            background-color: rgba($color-white, 0.2);
-        }
-    }
-
-    & > div {
-        width: 100%;
-    }
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  grid-gap: 2rem;
+  padding-bottom: 0.5rem!important;
 
     .header {
-        text-align: left;
-        position: relative;
+        display: grid;
+        grid-template-columns: 5rem auto;
+        grid-gap: 2rem;
 
-        .title {
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-        }
-
-        .date {
-            color: $color-white-6;
-            margin-bottom: 1.5rem;
-        }
-
-        .authors {
-            .author {
-                border-radius: 100rem;
-                overflow: hidden;
-                height: 5rem;
-                width: 5rem;
-                cursor:pointer;
-
-                img {
-                    height: 100%;
-                }
-            }
-        }
-    }
-
-    // &-header {
-    //     text-align: left;
-    //     display: table;
-    //     width: 100%;
-    //     float: right;
-    //      position: absolute;
-    //         top: 0;
-    //         right: 0;
-
-    .menu-container {
-        position: absolute;
-        top: 0;
-        right: 0;
-
-        cursor: pointer;
-        z-index: 1000;
-
-        span {
-            display: block;
-            padding: 0.5rem 1rem;
-            transition: all 0.2s ease-in-out;
-
-            &:hover {
-                transform: rotate(180deg);
-            }
-
-        }
-        // }
-
-        span:not(:nth-child(2)) {
-            font-weight: 500;
-        }
-
-        &__img {
-            display: inline-block;
+        .author {
+            border-radius: 100rem;
+            // border-radius: 0.3rem;
+            overflow: hidden;
             height: 5rem;
             width: 5rem;
-            // border-radius: 100%;
-            border-radius: 0.25rem;
-            overflow: hidden;
-            vertical-align: middle;
+            cursor: pointer;
 
             img {
                 height: 100%;
             }
         }
 
-        &__info {
-            display: inline-block;
-            vertical-align: middle;
-            width: calc(100% - 10rem);
-            padding-left: 1.5rem;
+        .info {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: left;
 
-            &--head {
-                vertical-align: middle;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-                margin-bottom: 0.5rem;
-
-                span {
-                    font-weight: 400;
-
-                    &:nth-child(1),
-                    &:nth-child(2) {
-
-                        @include respond(phone) {
-                            display: none;
-                        }
-
-                    }
-
-                }
+            .title {
+                font-weight: bold;
+                font-size: 1.6rem;
+                margin-bottom: 0.75rem;
             }
 
-            &--date {
+            .date {
+                color: $color-white-6;
+            }
+        }
+
+    }
+
+    .content {
+      .description {
+        text-align: left;
+      }
+    }
+
+    .bottom {
+        border-top: 1px solid $color-white-5;
+        padding-top: 0.5rem;
+
+        .actions {
+            text-align: right;
+            padding: 0;
+
+            @include respond(phone) {
+              display: flex;
+              justify-content: space-between;
+            }
+
+            .action {
                 display: inline-block;
-                vertical-align: middle;
+                font-weight: bold;
+                margin-left: 1.5rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                padding: 1rem;
+                border-radius: 0.2rem;
                 color: $color-grey-1;
-            }
-        }
-    }
 
-    &-info {
-        text-align: justify;
+                @include respond(phone) {
+                  margin: 0;
+                  padding: 1rem 0.5rem;
+                }
 
-        &__description {
-            color: $color-grey-1;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            display: -webkit-box;
-            height: $font-default-3*$line-height-default*$lines-to-show;
-            font-size: $font-default-3;
-            line-height: $line-height-default;
-            -webkit-line-clamp: $lines-to-show;
-            -webkit-box-orient: vertical;
-            // padding-right: 2rem;
-            // padding-left: 6.5rem;
-            // @include respond(phone) {
-            //     padding-left: 0;
-            // }
-            @include respond(tab-lan) {
-                height: auto;
-            }
-        }
-    }
+                &:hover {
+                  background-color: $color-white-3;
+                }
 
-    &-footer {
-
-        &__info {
-            text-align: left;
-            // padding-left: 6.5rem;
-            // @include respond(phone) {
-            //     padding-left: 0;
-            // }
-
-            li {
-                padding: 0.5rem 1rem;
-                border-radius: 10rem;
-                display: inline-block;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                max-width: 30%;
-                white-space: nowrap;
-                color: $color-white;
-
-                &:not(:first-child) {
-                    margin-left: 0.5rem;
+                span.icon {
+                  margin: 0 0.5rem;
                 }
             }
+
         }
     }
 

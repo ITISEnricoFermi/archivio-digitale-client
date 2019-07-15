@@ -12,7 +12,8 @@
           <span> ha creato</span>
           <span> {{collection.documentCollection}}</span>.
         </p>
-        <p class="collection-header__info--date heading-fifth">{{ this.date }}
+        <p class="collection-header__info--date">
+          {{ this.date }}
         </p>
       </div>
       <div class="collection-header__menu" @mouseleave="closeMenu">

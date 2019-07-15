@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
@@ -89,11 +88,26 @@ export default {
 <style scoped lang="scss">
 .documents {
     display: grid;
+    grid-gap: 2rem;
+    padding: 2rem;
     grid-template-columns: 1fr;
 
+    @include respond(tab-lan) {
+        padding-right: 0!important;
+        padding-left: 0!important;
+    }
+
     .document {
-      margin-bottom: 0!important;
-      border-radius: 0!important;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f3f5f2;
+
+            @include color-scheme(dark) {
+                background-color: rgba($color-white, 0.2);
+            }
+        }
+
     }
 }
 </style>

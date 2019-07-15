@@ -1,12 +1,12 @@
 <template>
 <main class="panel">
   <div class="profile">
-    <div class="profile-cover">
+    <div class="cover">
       <div class="profile-img">
-        <div class="profile-cover__content" v-if="user">
-          <img class="profile-cover__pic" sizes="36vh" :srcset="'/static/pics/' + user._id + '/xs 100w, /static/pics/' + user._id + '/sm 300w, /static/pics/' + user._id + '/md 500w, /static/pics/' + user._id + '/lg 800w, /static/pics/' + user._id + '/xlg 1200w'" :alt="user.firstname + ' ' + user.lastname">
-          <div class="profile-cover__info">
-            <p class="profile-cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
+        <div class="cover__content" v-if="user">
+          <img class="cover__pic" sizes="36vh" :srcset="'/static/pics/' + user._id + '/xs 100w, /static/pics/' + user._id + '/sm 300w, /static/pics/' + user._id + '/md 500w, /static/pics/' + user._id + '/lg 800w, /static/pics/' + user._id + '/xlg 1200w'" :alt="user.firstname + ' ' + user.lastname">
+          <div class="cover__info">
+            <p class="cover__info--name heading-primary">{{user.firstname}} {{user.lastname}}</p>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
         </ul>
       </div>
     </div>
-    <div class="profile-documents">
+    <div class="documents">
       <div class="module module--padded" v-if="documents.messages">
         <div class="row">
           <div class="col-1-of-1">
@@ -162,8 +162,17 @@ export default {
 
 }
 
+.module {
+  &:not(:last-child) {
+    margin-bottom: 3vh;
+  }
+}
+
 .profile {
-    .profile-cover {
+  display: grid;
+  grid-gap: 3vh;
+
+    .cover {
         width: 100%;
         height: 45vh;
         background-image: url("/layout/pattern3.svg");
@@ -264,10 +273,6 @@ export default {
                 }
             }
         }
-    }
-
-    .profile-documents {
-        padding: 3vh 0 0;
     }
 }
 </style>

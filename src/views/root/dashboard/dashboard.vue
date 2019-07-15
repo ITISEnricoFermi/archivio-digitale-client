@@ -43,7 +43,7 @@ export default {
     .documents {
         width: 60%;
         margin-top: 6rem;
-        padding-top: 7rem;
+        padding-top: 9rem;
         z-index: 100;
 
         @include respond (tab-lan) {

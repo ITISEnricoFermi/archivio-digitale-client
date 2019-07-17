@@ -34,14 +34,14 @@
       </div>
     </div>
     <div class="documents">
-      <div class="module module--padded" v-if="documents.messages">
+      <div class="module module--padded" v-if="!documents || !documents.length">
         <div class="row">
           <div class="col-1-of-1">
             <p>Nessun documento nella scheda selezioanata.</p>
           </div>
         </div>
       </div>
-      <app-document :document="document" v-for="document in documents" :key="document._id" v-else></app-document>
+      <app-document :document="document" v-for="(document, index) in documents" :key="index" v-else></app-document>
     </div>
   </div>
 </main>
@@ -69,6 +69,11 @@ export default {
   },
   watch: {
     async $route (to, from) {
+      // TODO: Modificare questo sitema, watch viene eseguito sempre
+      if (to.name !== 'UserView') {
+        return
+      }
+
       this.id = to.params.id
 
       const [user] = await Promise.all([
@@ -77,14 +82,14 @@ export default {
       ])
 
       const [pubblico, areariservata, materia] = await Promise.all([
-        v1.get(`/users/${this.id}/documents/count/pubblico`),
-        v1.get(`/users/${this.id}/documents/count/areariservata`),
-        v1.get(`/users/${this.id}/documents/count/materia`)
+        this.getCount('pubblico'),
+        this.getCount('areariservata'),
+        this.getCount('materia')
       ])
 
-      this.count.pubblico = pubblico.data
-      this.count.areariservata = areariservata.data
-      this.count.materia = materia.data
+      this.count.pubblico = pubblico
+      this.count.areariservata = areariservata
+      this.count.materia = materia
 
       this.user = user
     }
@@ -97,12 +102,10 @@ export default {
   async created () {
     try {
       if (this.id) {
-        const promises = [
+        const [user, documents] = await Promise.all([
           this.getUser(),
           this.getDocuments('pubblico')
-        ]
-
-        const [user, documents] = await Promise.all(promises)
+        ])
 
         this.user = user
         this.documents = documents
@@ -116,14 +119,14 @@ export default {
 
     try {
       const [pubblico, areariservata, materia] = await Promise.all([
-        v1.get(`/users/${this.id}/documents/count/pubblico`),
-        v1.get(`/users/${this.id}/documents/count/areariservata`),
-        v1.get(`/users/${this.id}/documents/count/materia`)
+        this.getCount('pubblico'),
+        this.getCount('areariservata'),
+        this.getCount('materia')
       ])
 
-      this.count.pubblico = pubblico.data
-      this.count.areariservata = areariservata.data
-      this.count.materia = materia.data
+      this.count.pubblico = pubblico
+      this.count.areariservata = areariservata
+      this.count.materia = materia
     } catch (e) {
       eventBus.notification({
         title: 'Impossibile reperire il numero di documenti.',
@@ -138,6 +141,10 @@ export default {
     },
     async getDocuments (tab) {
       const response = await v1.get(`/users/${this.id}/documents/${tab}`)
+      return response.data.documents
+    },
+    async getCount (tab) {
+      const response = await v1.get(`/users/${this.id}/documents/count/${tab}`)
       return response.data
     },
     async getUser () {

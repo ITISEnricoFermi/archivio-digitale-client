@@ -117,6 +117,18 @@ export default {}
 .footer {
     width: 100%;
 
+    // TEXT COLORS
+    --color-text-primary: #212121;
+    --color-text-secondary: #53585E;
+    --color-text-tertiary: #677379;
+
+    // NEUTRAL COLORS
+    --color-neutral-primary: #FFFFFF;
+    --color-neutral-secondary: #EAEAEA; // $color-white-3: #EAEAEA;
+    --color-neutral-third: #D4D4D4; // $color-white-5: #D4D4D4;
+    --color-neutral-fourth: #8C8C9C; // $color-white-6: #8C8C9C;
+
+
     .bottom,
     .top {
         padding-left: 15rem;
@@ -152,7 +164,7 @@ export default {}
         .legal {
 
             .copyright {
-                color: $color-white-5;
+                color: var(--color-neutral-third);
                 margin-bottom: 0.5rem;
 
                 a {
@@ -162,10 +174,10 @@ export default {}
             }
 
             .powered {
-                color: $color-grey-2;
+                color: var(--color-text-tertiary);
 
                 a {
-                    color: $color-white-5;
+                    color: var(--color-neutral-third);
                     text-decoration: none;
                 }
             }
@@ -183,12 +195,12 @@ export default {}
 
                     a {
                         padding: 0 1rem;
-                        color: $color-white-5;
+                        color: var(--color-neutral-third);
                         text-decoration: none;
                         transition: all 0.2s ease-in-out;
 
                         &:hover {
-                            color: $color-white;
+                            color: white;
                         }
                     }
                 }
@@ -201,8 +213,8 @@ export default {}
     .bottom {
         padding-top: 5rem;
         padding-bottom: 5rem;
-        background-color: #212121;
-        color: $color-white-5;
+        background-color: var(--color-primary);
+        color: var(--color-neutral-third);
         font-size: 1.4rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -232,7 +244,7 @@ export default {}
 
                     display: inline-block;
                     padding-bottom: 1rem;
-                    border-bottom: 0.3rem solid $color-palette-green;
+                    border-bottom: 0.3rem solid var(--color-secondary);
                 }
 
             }
@@ -250,7 +262,7 @@ export default {}
                         }
 
                         a {
-                            color: $color-white-5;
+                            color: var(--color-neutral-third);
                             text-decoration: none;
 
                             span.icon {

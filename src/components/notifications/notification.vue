@@ -26,12 +26,12 @@ export default {
 
 <style scoped lang="scss">
 .notification {
-  background-color: rgba($color-tertiary, 0.8);
+  background-color: rgba(var(--color-primary), 0.8);
   border-radius: 0.25rem;
   padding-right: 3rem;
   padding: 2vh 4vh 2vh 2vh;
   font-size: $font-default-3;
-  color: $color-white;
+  color: white;
   position: relative;
   display: block;
 

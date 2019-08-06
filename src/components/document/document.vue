@@ -119,10 +119,11 @@ export default {
                 font-weight: bold;
                 font-size: 1.6rem;
                 margin-bottom: 0.75rem;
+                color: var(--color-text-primary);
             }
 
             .date {
-                color: $color-white-6;
+                color: var(--color-text-tertiary);
             }
         }
 
@@ -131,11 +132,12 @@ export default {
     .content {
       .description {
         text-align: left;
+        color: var(--color-text-primary);
       }
     }
 
     .bottom {
-        border-top: 1px solid $color-white-5;
+        border-top: 1px solid var(--color-neutral-third);
         padding-top: 0.5rem;
 
         .actions {
@@ -155,7 +157,7 @@ export default {
                 transition: all 0.2s ease-in-out;
                 padding: 1rem;
                 border-radius: 0.2rem;
-                color: $color-grey-1;
+                color: var(--color-text-secondary);
 
                 @include respond(phone) {
                   margin: 0;
@@ -163,7 +165,8 @@ export default {
                 }
 
                 &:hover {
-                  background-color: $color-white-3;
+                  color: var(--color-secondary);
+                  background-color: var(--color-neutral-secondary);
                 }
 
                 span.icon {

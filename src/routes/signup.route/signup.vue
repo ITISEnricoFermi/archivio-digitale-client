@@ -252,7 +252,7 @@ export default {
 
       .terms {
         font-weight: bold;
-        color: $color-grey-1;
+        color: var(--color-text-secondary);
         text-decoration: none;
         cursor: pointer;
       }

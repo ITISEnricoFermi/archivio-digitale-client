@@ -118,6 +118,7 @@ export default {
                 overflow: hidden;
                 white-space: nowrap;
                 margin-bottom: 0.5rem;
+                color: var(--color-text-primary);
 
                 span {
 
@@ -138,11 +139,7 @@ export default {
             &--date {
                 display: inline-block;
                 vertical-align: middle;
-                color: $color-grey-1;
-
-                @include color-scheme(dark) {
-                    color: $color-white-3;
-                }
+                color: var(--color-text-secondary);
             }
         }
 
@@ -151,6 +148,7 @@ export default {
             cursor: pointer;
             top: 0;
             right: 0;
+            color: var(--color-text-primary);
 
             span {
                 display: block;

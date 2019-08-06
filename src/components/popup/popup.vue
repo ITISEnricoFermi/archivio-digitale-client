@@ -35,38 +35,35 @@ export default {
 
 <style scoped lang="scss">
 .popup {
-    background-color: rgba($color-black, 0.75);
+    background-color: rgba(black, 0.75);
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 20000;
     cursor: pointer;
+    overflow: scroll!important;
 
     .content {
         height: auto;
         max-width: 90%;
         border-radius: 0.3rem;
         position: absolute;
-        overflow: hidden;
-        @include absCenter;
+        padding: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
 
         @include respond(phone) {
             width: 90%!important;
         }
 
         .edit {
-            background-color: $color-white;
-            border: 1px solid $color-white-3;
+            background-color: var(--color-surface-primary);
+            border: 1px solid var(--color-neutral-secondary);
             padding: 3vh;
             border-radius: 0.3rem;
-
-            @include color-scheme(dark) {
-                background-color: rgb(59, 57, 57);
-                color: $color-white;
-                border-color: lighten(rgb(59, 57, 57), 10%);
-            }
         }
 
     }

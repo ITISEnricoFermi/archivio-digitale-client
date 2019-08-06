@@ -50,7 +50,7 @@ export default {
         cursor: pointer;
 
         &:hover {
-            background-color: $color-palette-green;
+            background-color: var(--color-secondary);
         }
 
     }
@@ -83,12 +83,12 @@ export default {
                 .login {
                     padding: 1.2rem 1.5rem;
                     font-weight: bold;
-                    color: $color-white;
+                    color: white;
                     border-radius: 0.3rem;
-                    background-color: $color-palette-green;
+                    background-color: var(--color-secondary);
 
                     &:hover {
-                        background-color: rgba($color-white, 0.2);
+                        background-color: rgba(white, 0.2);
                     }
                 }
 
@@ -96,12 +96,12 @@ export default {
 
                     padding: 1.2rem 1.5rem;
                     font-weight: bold;
-                    color: $color-white;
+                    color: white;
                     border-radius: 0.3rem;
                     background-color: lighten(#2d303a, 5%);
 
                     &:hover {
-                        background-color: lighten($color-fourth, 2%);
+                        background-color: var(--color-secondary);
                     }
 
                 }

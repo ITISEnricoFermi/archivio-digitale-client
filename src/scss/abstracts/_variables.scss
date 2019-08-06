@@ -1,26 +1,6 @@
-// BASE COLORS
-$color-white: #FFFFFF;
-$color-black: #000000;
+@import "colors";
 
-// COLORS
-$color-primary: #1A8D4C;
-$color-secondary: #166c43;
-$color-tertiary: #151A22;
-$color-fourth: #66BA6B;
-
-$color-palette-green: #13AA52;
-
-$color-white-1: #F5F5F5;
-$color-white-2: #E9EBEE;
-$color-white-3: #EAEAEA;
-$color-white-4: #DBDBDB;
-$color-white-5: #D4D4D4;
-$color-white-6: #8C8C9C;
-
-$color-grey-1: #53585E;
-$color-grey-2: #677379;
-
-$linear-gradient-primary--light: linear-gradient($color-fourth, $color-primary);
+$linear-gradient-primary--light: linear-gradient(#66BA6B, #1A8D4C);
 $linear-gradient-primary--dark: linear-gradient(#2F3D45,#14181C);
 
 // GRIDS
@@ -29,19 +9,12 @@ $gutter-horizontal: 1rem;
 $gutter-vertical: 1rem;
 $gutter-vertical-1: 0.7rem;
 
-// BUTTONS
-$color-button-green: #0FC47A;
-$color-button-blue: #3897f0;
-$color-button-red: #FF4447;
-$color-button-yellow: #F3A32A;
-
 // FONTS
 $font-default-1: 1.6rem;
 $font-default-2: 1.4rem;
 $font-default-3: 1.3rem;
 
 $line-height-default: 1.4;
-
 
 // DASHBOARD, RECENT POSTS
 $lines-to-show: 3;

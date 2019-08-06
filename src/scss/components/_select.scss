@@ -4,9 +4,10 @@
   background-size: 4rem;
   background-repeat: no-repeat;
   background-position: right;
-  border: 0.1rem solid $color-white-4;
+  background-color: var(--color-neutral-primary);
+  color: var(--color-text-primary);
+  border: 0.1rem solid var(--color-neutral-third);
   border-radius: 0.3rem;
-  color: $color-tertiary;
   font-size: $font-default-2;
   padding: 0.9rem 0.8rem;
   outline: none;
@@ -15,22 +16,15 @@
   transition: all 0.3s ease-in-out;
   box-shadow: 0 1px 2px rgba(10,10,10,0.1);
 
-  @include color-scheme(dark) {
-      background: #282828!important;
-      border-color: $color-tertiary!important;
-      color: $color-white!important;
-  }
-
   @include respond(phone) {
     background-image: none;
   }
 
   &:focus {
-    border-color: #00d1b2;
+    border-color: var(--color-semantic-green);
 
     @include color-scheme(dark) {
-        background: #282828!important;
-        border-color: $color-grey-1!important;
+        border-color: var(--color-neutral-secondary)!important;
     }
 
   }

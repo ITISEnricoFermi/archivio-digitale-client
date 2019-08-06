@@ -33,7 +33,7 @@ body {
     max-width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
+    box-shadow: 0 0.25rem 0.75rem rgba(black, 0.05);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(10rem, min-content);

@@ -38,16 +38,16 @@ export default {
 
 <style scoped lang="scss">
 .header {
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
+    box-shadow: 0 0.25rem 0.75rem rgba(black, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fcfcfc;
     padding: 3rem;
+    color: var(--color-text-primary);
 
     @include color-scheme(dark) {
         background: rgba(41,45,48,1)!important;
-        color: $color-white!important;
     }
 
     .heading {
@@ -72,7 +72,7 @@ export default {
             padding: 0.5rem 1rem;
             //
             // &:hover {
-            //   background-color: $color-white-2;
+            //   background-color: var(--color-background);
             // }
         }
 

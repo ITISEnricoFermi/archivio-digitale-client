@@ -32,8 +32,8 @@ export default {
 <style scoped lang="scss">
 .multiple-select-results {
   border-radius: 0.25rem;
-  background-color: $color-white-1;
-  border: 1px solid darken($color-white-5, 5%);
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-neutral-third);
 
   ul {
     padding: 0;
@@ -45,13 +45,14 @@ export default {
       cursor: pointer;
       text-align: left;
       position: relative;
+      color: var(--color-text-primary);
 
       &:not(:last-child) {
         border-bottom: 1px solid darken($color-white-5, 5%);
       }
 
       &:hover {
-        background-color: $color-white-5;
+        background-color: var(--color-neutral-third);
       }
 
       .result {
@@ -64,7 +65,7 @@ export default {
         right: 1rem;
         top: 50%;
         transform: translateY(-50%);
-        color: $color-grey-1;
+        color: var(--color-text-secondary);
       }
     }
   }

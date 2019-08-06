@@ -28,7 +28,7 @@ export default {
     }
 
     &:hover * {
-      color: $color-fourth!important;
+      color: var(--color-accent)!important;
     }
 
     .content {
@@ -47,10 +47,12 @@ export default {
     }
 
     .text {
-        color: $color-white;
+        color: white;
+
         &--icon {
             margin: 0.5rem;
         }
+
         &--crop {
             margin: 0.5rem;
             @include respond(tab-por) {

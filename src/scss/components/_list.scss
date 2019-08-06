@@ -1,14 +1,8 @@
 .list {
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-neutral-third);
   border-radius: 0.25rem;
-  background: $color-white-2;
-  border: 1px solid darken($color-white-5, 5%);
   padding: 0;
-
-  @include color-scheme(dark) {
-    background: $linear-gradient-primary--dark!important;
-    border-color: rgba($color-white, 0.3);
-    color: $color-white;
-  }
 
   &__element {
     list-style: none;
@@ -16,27 +10,17 @@
     cursor: pointer;
     text-align: left;
     position: relative;
-    color: $color-tertiary;
+    color: var(--color-text-primary);
     display: block;
     text-decoration: none;
     padding: 0.9rem 0.8rem;
 
-    @include color-scheme(dark) {
-      color: $color-white;
-    }
-
     &:not(:last-child) {
-      border-bottom: 1px solid darken($color-white-5, 5%);
-      @include color-scheme(dark) {
-        border-color: rgba($color-white, 0.3);
-      }
+      border-bottom: 1px solid var(--color-neutral-third);
     }
 
     &:hover {
-      background-color: $color-white-5;
-      @include color-scheme(dark) {
-        background-color: rgba($color-white, 0.2);
-      }
+      background-color: var(--color-neutral-third);
     }
 
     .crop {
@@ -49,10 +33,7 @@
       right: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      color: $color-grey-1;
-      @include color-scheme(dark) {
-        color: $color-white-2;
-      }
+      color: var(--color-text-secondary);
     }
   }
 }

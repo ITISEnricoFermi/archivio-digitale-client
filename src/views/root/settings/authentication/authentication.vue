@@ -109,7 +109,7 @@ export default {
 <style lang="scss" scoped>
 .selector {
     border-radius: 0.3rem;
-    border: 1px solid $color-white-5;
+    border: 1px solid var(--color-neutral-third);
 
     &__header {
         display: grid;
@@ -118,12 +118,12 @@ export default {
         padding: 1.5rem;
         text-align: left;
         list-style: none;
-        background-color: $color-white-1;
+        background-color: var(--color-surface-secondary);
         align-items: center;
-        border-bottom: 1px solid $color-white-5;
+        border-bottom: 1px solid var(--color-neutral-third);
 
         p {
-            color: $color-grey-1;
+            color: var(--color-text-secondary);
             font-weight: bold;
 
             span.icon {
@@ -158,24 +158,24 @@ export default {
                 text-overflow: ellipsis;
 
                 &--selected {
-                    background: $color-white-2;
+                    background: var(--color-background);
 
                     &:hover {
-                        background: $color-white-2!important;
+                        background: var(--color-background)!important;
                     }
                 }
 
                 &:not(:last-child) {
-                    border-bottom: 1px solid $color-white-5;
+                    border-bottom: 1px solid var(--color-neutral-third);
                 }
 
                 &:hover {
-                    background-color: $color-white-1;
+                    background-color: var(--color-surface-secondary);
                 }
 
                 span.icon {
                     margin: 0 0.5rem;
-                    color: $color-palette-green;
+                    color: var(--color-secondary);
 
                     @include respond(tab-por) {
                         margin: 0.5rem;
@@ -185,8 +185,8 @@ export default {
                 span.name {
                   font-weight: bold;
                   padding: 0.45rem;
-                  background-color: $color-white-2;
-                  border: 1px solid darken($color-white-5, 5%);
+                  background-color: var(--color-background);
+                  border: 1px solid var(--color-neutral-third);
                   border-radius: 0.3rem;
                   margin: 0 0.5rem;
                 }
@@ -204,8 +204,8 @@ export default {
         display: grid;
         grid-gap: 1rem;
         grid-template-columns: auto 12rem;
-        background-color: $color-white-1;
-        border-top: 1px solid $color-white-5;
+        background-color: var(--color-surface-secondary);
+        border-top: 1px solid var(--color-neutral-third);
     }
 }
 </style>

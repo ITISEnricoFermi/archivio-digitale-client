@@ -35,11 +35,11 @@ export default {
 
 .options {
     border-radius: 0.3rem;
-    border: 1px solid $color-white-5;
+    border: 1px solid var(--color-neutral-third);
 
     @include respond(tab-por) {
         border: none;
-        border-top: 1px solid $color-white-5;
+        border-top: 1px solid var(--color-neutral-third);
         border-radius: 0rem;
     }
 
@@ -49,23 +49,24 @@ export default {
         padding: 1.5rem;
         text-align: left;
         list-style: none;
+        color: var(--color-text-primary);
 
         &--active {
-          border-left: 2px solid $color-fourth;
+          border-left: 2px solid var(--color-accent);
 
           @include respond(tab-por) {
             border-left: none;
-              border-bottom: 2px solid $color-fourth!important;
+              border-bottom: 2px solid var(--color-accent)!important;
           }
         }
 
         &:first-child,
         &:not(:last-child) {
-            border-bottom: 1px solid $color-white-5;
+            border-bottom: 1px solid var(--color-neutral-third);
 
             @include respond(tab-por) {
                 border-bottom: none;
-                border-right: 1px solid $color-white-5;
+                border-right: 1px solid var(--color-neutral-third);
             }
 
         }
@@ -76,7 +77,7 @@ export default {
         }
 
         &:hover {
-            background-color: $color-white-1;
+            background-color: var(--color-surface-secondary);
         }
 
         span.icon {
@@ -101,8 +102,8 @@ export default {
     &__header {
 
         p {
-            background-color: $color-white-1;
-            color: $color-grey-1;
+            background-color: var(--color-surface-secondary);
+            color: var(--color-text-secondary);
             font-weight: bold;
         }
 

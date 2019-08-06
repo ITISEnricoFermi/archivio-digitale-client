@@ -1,43 +1,35 @@
 .textarea {
-  resize: none;
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-primary);
+  width: 100%;
   min-height: 10rem;
   font-family: inherit;
-  color: $color-tertiary;
-  padding: 0.9rem 0.8rem;
-  outline: none;
   font-size: $font-default-2;
-  transition: all 0.3s;
-  background-color: $color-white;
-  appearance: none;
-  box-align: center;
-  align-items: center;
-  border: none;
-  border-radius: 0.3rem;
-  box-shadow: none;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  box-pack: start;
   justify-content: flex-start;
-  position: relative;
+  align-items: center;
   vertical-align: top;
-  border: 1px solid $color-white-4;
+  box-pack: start;
+  box-align: center;
+  position: relative;
+  padding: 0.9rem 0.8rem;
+  appearance: none;
+  outline: none;
+  resize: none;
+  border: none;
+  border-radius: 0.3rem;
+  border: 1px solid var(--color-neutral-third);
   box-shadow: inset 0 1px 2px rgba(10,10,10,0.1);
-  width: 100%;
-
-  @include color-scheme(dark) {
-      background: #282828!important;
-      border-color: $color-tertiary!important;
-      color: $color-white!important;
-  }
+  transition: all 0.3s;
 
   &:focus {
-    border-color: #00d1b2;
+    border-color: var(--color-semantic-green);
 
     @include color-scheme(dark) {
-        background: #282828!important;
-        border-color: $color-grey-1!important;
+        border-color: var(--color-neutral-secondary)!important;
     }
-    
+
   }
 }

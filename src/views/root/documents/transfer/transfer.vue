@@ -100,5 +100,6 @@ export default {
     font-weight: bold;
     text-align: left;
     margin-bottom: $gutter-vertical-1!important;
+    color: var(--color-text-primary);
 }
 </style>

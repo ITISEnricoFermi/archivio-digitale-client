@@ -216,8 +216,8 @@ export default {
             width: 25vh;
             height: 25vh;
             border-radius: 100%;
-            border: 0.5rem solid $color-white;
-            box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+            border: 0.5rem solid white;
+            box-shadow: 0 0.25rem 0.75rem rgba(black, 0.5);
             margin: 0 auto;
             transition: transform 0.2s;
             cursor: pointer;
@@ -233,7 +233,7 @@ export default {
     }
 
     .profile-menu {
-        color: $color-white;
+        color: white;
         position: absolute;
         width: 100%;
         bottom: 0;
@@ -250,7 +250,7 @@ export default {
             background-size: 250%;
             transition: all 0.4s;
             cursor: pointer;
-            background-color: rgba($color-black, 0.5);
+            background-color: rgba(black, 0.5);
             padding: 2vh;
             list-style: none;
             display: inline-table;
@@ -263,7 +263,7 @@ export default {
             }
 
             &:hover {
-                background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgba($color-white, 0.3) 50%);
+                background-image: linear-gradient(120deg, transparent 0%, transparent 50%, rgba(white, 0.3) 50%);
                 background-position: 100%;
             }
 

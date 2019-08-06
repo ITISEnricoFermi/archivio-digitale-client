@@ -188,7 +188,7 @@ export default {
 <style scoped lang="scss">
 .selector {
     border-radius: 0.3rem;
-    border: 1px solid $color-white-5;
+    border: 1px solid var(--color-neutral-third);
 
     &__header {
         display: grid;
@@ -197,12 +197,12 @@ export default {
         padding: 1.5rem;
         text-align: left;
         list-style: none;
-        background-color: $color-white-1;
+        background-color: var(--color-surface-secondary);
         align-items: center;
-        border-bottom: 1px solid $color-white-5;
+        border-bottom: 1px solid var(--color-neutral-third);
 
         p {
-            color: $color-grey-1;
+            color: var(--color-text-secondary);
             font-weight: bold;
 
             span.icon {
@@ -227,7 +227,7 @@ export default {
 
     &__selected {
         padding: 1rem;
-        border-bottom: 1px solid $color-white-5;
+        border-bottom: 1px solid var(--color-neutral-third);
     }
 
     &__content {
@@ -245,22 +245,23 @@ export default {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                color: var(--color-text-primary);
 
                 &--selected {
-                    background: $color-white-2;
+                    background: var(--color-background);
 
                     &:hover {
-                        background: $color-white-2!important;
+                        background: var(--color-background)!important;
                     }
                 }
 
                 &:first-child,
                 &:not(:nth-child(5)) {
-                    border-bottom: 1px solid $color-white-5;
+                    border-bottom: 1px solid var(--color-neutral-third);
                 }
 
                 &:hover {
-                    background-color: $color-white-1;
+                    background-color: var(--color-surface-secondary);
                 }
 
                 span.icon {
@@ -276,12 +277,12 @@ export default {
 
     &__footer {
         padding: 1rem;
-        background-color: $color-white-1;
+        background-color: var(--color-surface-secondary);
         display: grid;
         text-align: left;
         grid-template-columns: auto min-content;
         justify-content: space-between;
-        border-top: 1px solid $color-white-5;
+        border-top: 1px solid var(--color-neutral-third);
 
         .pages {
             width: 100%;
@@ -294,17 +295,17 @@ export default {
             &__step {
                 width: 3rem;
                 height: 3rem;
-                background-color: $color-white-2;
+                background-color: var(--color-background);
                 border-radius: 0.3rem;
                 position: relative;
-                border: 1px solid $color-white-5;
-                color: $color-grey-1;
+                border: 1px solid var(--color-neutral-third);
+                color: var(--color-text-secondary);
                 display: inline-block;
                 cursor: pointer;
 
                 &--active,
                 &:hover {
-                    background-color: $color-white-3;
+                    background-color: var(--color-neutral-secondary);
 
                     p {
                         text-decoration: underline;
@@ -322,11 +323,11 @@ export default {
             &__arrow {
                 width: 3rem;
                 height: 3rem;
-                background-color: $color-white-3;
+                background-color: var(--color-neutral-secondary);
                 border-radius: 0.3rem;
                 position: relative;
-                border: 1px solid $color-white-5;
-                color: $color-grey-1;
+                border: 1px solid var(--color-neutral-third);
+                color: var(--color-text-secondary);
                 display: inline-block;
                 cursor: pointer;
 
@@ -344,11 +345,11 @@ export default {
         .counter {
             width: 3rem;
             height: 3rem;
-            background-color: $color-white-3;
+            background-color: var(--color-neutral-secondary);
             border-radius: 0.3rem;
             position: relative;
-            border: 1px solid $color-white-5;
-            color: $color-grey-1;
+            border: 1px solid var(--color-neutral-third);
+            color: var(--color-text-secondary);
             display: inline-block;
             cursor: pointer;
 

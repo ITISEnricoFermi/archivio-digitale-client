@@ -1,7 +1,7 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: $font-default-1;
-  color: $color-tertiary;
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased; // se si vuole
 }
 

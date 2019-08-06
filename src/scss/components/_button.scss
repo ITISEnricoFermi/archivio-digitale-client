@@ -2,37 +2,32 @@
   appearance: none;
   border-radius: 3px;
   border: none;
-  font-weight: bold;
-  color: $color-white;
+  color: white;
   padding: 0.9rem 0.8rem;
   font-size: $font-default-2;
+  font-weight: bold;
   width: 100%;
   display: block;
   cursor: pointer;
   outline: none;
   transition: all 0.1s ease-in-out;
-  background-color: $color-white-5;
+  background-color: var(--color-neutral-third);
   text-decoration: none;
 
   &:disabled {
-    background-color: $color-white-5!important;
-    border-color: darken($color-white-5, 10%)!important;
+    background-color: var(--color-neutral-third)!important;
+    border-color: var(--color-neutral-fourth)!important;
   }
-
-
-  // @include color-scheme(dark) {
-  //     background: $color-button-blue!important;
-  //     color: $color-white!important;
-  // }
 
   // &:hover {
   //     transform: translateY(-0.2rem);
-  //     box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  //     box-shadow: 0 1rem 2rem rgba(black, 0.2);
   // }
+
   &:active {
     outline: none;
     transform: scale(1.01);
-    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(black, 0.2);
   }
 
   span.icon {
@@ -49,39 +44,23 @@
   }
 
   &--green {
-    background-color: $color-button-green;
-    border: 1px solid darken($color-button-green, 3%);
-
-    // &:focus {
-    //   box-shadow: 0 0.5rem 1rem rgba($color-button-green, 0.7);
-    // }
+    background-color: $color-palette-green;
+    border: 1px solid darken($color-palette-green, 3%);
   }
 
   &--blue {
-    background-color: $color-button-blue;
-    border: 1px solid darken($color-button-blue, 3%);
-
-    // &:focus {
-    //   box-shadow: 0 0.5rem 1rem rgba($color-button-blue, 0.7);
-    // }
+    background-color: $color-palette-blue;
+    border: 1px solid darken($color-palette-blue, 3%);
   }
 
   &--red {
-    background-color: $color-button-red;
-    border: 1px solid darken($color-button-red, 3%);
-
-    // &:focus {
-    //   box-shadow: 0 0.5rem 1rem rgba($color-button-red, 0.7);
-    // }
+    background-color: $color-palette-red;
+    border: 1px solid darken($color-palette-red, 3%);
   }
 
   &--yellow {
-    background-color: $color-button-yellow;
-    border: 1px solid darken($color-button-yellow, 3%);
-
-    // &:focus {
-    //   box-shadow: 0 0.5rem 1rem rgba($color-button-yellow, 0.7);
-    // }
+    background-color: $color-palette-yellow;
+    border: 1px solid darken($color-palette-yellow, 3%);
   }
 
   &--black {
@@ -89,8 +68,8 @@
     // color: $color-white;
     // border: 1px solid darken(#fcd680, 10%);
 
-    background-color: $color-grey-1;
-    color: $color-white;
-    border: 1px solid darken($color-grey-1, 10%);
+    background-color: var(--color-text-secondary);
+    color: white;
+    border: 1px solid var(--color-text-tertiary);
   }
 }

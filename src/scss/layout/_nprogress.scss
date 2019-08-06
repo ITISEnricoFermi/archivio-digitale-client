@@ -9,11 +9,6 @@
         height: 0.2rem;
         background-image: $linear-gradient-primary--light;
         outline: none;
-
-        @include color-scheme(dark) {
-            background: $linear-gradient-primary--dark!important;
-        }
-
     }
 
 }

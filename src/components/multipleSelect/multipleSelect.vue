@@ -109,13 +109,13 @@ export default {
 
         .result {
             padding: 9px 8px;
-            background: $color-white;
+            background-color: var(--color-surface-primary);
             width: 100%;
-            border-color: $color-white-5;
+            border-color: var(--color-neutral-third);
             border-style: solid;
             border-width: 0 1px 1px 1px;
             border-radius: 0;
-            color: $color-tertiary;
+            color: var(--color-text-primary);
             font-family: sans-serif;
             font-size: 14px;
             display: block;
@@ -123,7 +123,7 @@ export default {
             text-align: left;
 
             &:hover, &--selected {
-                background: $color-white-2;
+                background-color: var(--color-surface-secondary);
             }
 
             &:last-child {

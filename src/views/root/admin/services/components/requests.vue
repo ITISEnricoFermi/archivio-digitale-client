@@ -91,7 +91,7 @@ export default {
     width: 100%;
 
     &:not(:last-child) {
-        border-bottom: 1px solid $color-white-4;
+        border-bottom: 1px solid var(--color-neutral-third);
     }
 
     &__name {
@@ -109,11 +109,11 @@ export default {
         cursor: pointer;
 
         &--accept {
-            color: $color-button-green;
+            color: var(--color-semantic-green);
         }
 
         &--refuse {
-            color: $color-button-red;
+            color: var(--color-semantic-red);
         }
     }
 }

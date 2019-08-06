@@ -59,7 +59,7 @@ export default {
         border-radius: 1.5rem;
         margin: 0 0.7rem;
         transition: all 0.2s ease-in-out;
-        color: $color-grey-2;
+        color: var(--color-text-tertiary);
         font-size: $font-default-3;
         cursor: pointer;
 
@@ -76,7 +76,7 @@ export default {
         }
 
         &.selected, &:hover {
-          background-color: $color-white-4;
+          background-color: var(--color-neutral-third);
         }
 
     }

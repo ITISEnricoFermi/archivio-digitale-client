@@ -37,16 +37,16 @@ export default {
         border: none;
         border-radius: 0.25rem;
         background-color: lighten(#2d303a, 5%);
-        box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.1);
+        box-shadow: 0 0.25rem 0.75rem rgba(black, 0.1);
         width: 100%;
         outline: none;
         font-size: 2rem;
         font-weight: 700;
-        color: $color-white;
+        color: white;
         padding-left: 4.5rem;
 
         &:focus {
-            box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.1);
+            box-shadow: 0 0.25rem 0.75rem rgba(black, 0.1);
 
         }
 

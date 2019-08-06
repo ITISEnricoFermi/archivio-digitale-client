@@ -104,7 +104,7 @@ export default {
             background-color: #f3f5f2;
 
             @include color-scheme(dark) {
-                background-color: rgba($color-white, 0.2);
+                background-color: rgba(white, 0.2);
             }
         }
 

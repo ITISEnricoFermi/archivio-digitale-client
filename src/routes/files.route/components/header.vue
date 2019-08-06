@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-    background-color: #212121;
+    background-color: var(--color-primary);
     @include clearfix;
     width: 100vw;
 
@@ -102,7 +102,7 @@ export default {
                     cursor: pointer;
 
                     &:hover {
-                        background-color: $color-fourth;
+                        background-color: var(--color-accent);
                     }
                 }
             }
@@ -112,7 +112,7 @@ export default {
                 .separator {
                     height: 3rem;
                     width: 0.05rem;
-                    background-color: $color-white;
+                    background-color: white;
                     margin-right: 1rem;
                     display: none;
 
@@ -123,7 +123,7 @@ export default {
 
                 .text {
                     font-size: 2rem;
-                    color: $color-white;
+                    color: white;
                     font-family: 'Bitter';
 
                     @include respond(phone) {
@@ -178,13 +178,13 @@ export default {
         .back {
             padding: 1.2rem 1.5rem;
             font-weight: bold;
-            color: $color-white;
+            color: white;
             border-radius: 0.3rem;
-            border: 1px solid rgba($color-white, 0.2);
+            border: 1px solid rgba(white, 0.2);
             background: none;
 
             &:hover {
-                background-color: rgba($color-white, 0.2);
+                background-color: rgba(white, 0.2);
             }
         }
 
@@ -192,12 +192,12 @@ export default {
             border: none;
             padding: 1.2rem 1.5rem;
             font-weight: bold;
-            color: $color-white;
+            color: white;
             border-radius: 0.3rem;
             background-image: $linear-gradient-primary--light;
 
             &:active {
-                box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2) inset;
+                box-shadow: 0 0.5rem 1rem rgba(black, 0.2) inset;
             }
 
         }
@@ -237,13 +237,13 @@ export default {
             margin-bottom: 0.4rem;
         }
         .subtitle {
-            color: $color-grey-2;
+            color: var(--color-text-tertiary);
         }
     }
 
     .dropdown {
         position: absolute;
-        background-color: $color-tertiary;
+        background-color: var(--color-primary);
         z-index: 2000000;
         top: 6rem;
         left: 0;

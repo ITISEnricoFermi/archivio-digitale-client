@@ -31,7 +31,7 @@ export default {
     left: 10rem;
     transform: translateY(-50%);
     z-index: 100000;
-    color: $color-white;
+    color: white;
 
     @include respond(tab-por) {
         @include absCenter;
@@ -42,7 +42,7 @@ export default {
         font-family: 'Bitter', sans-serif;
         font-weight: bold;
         font-size: 5rem;
-        text-shadow: 0 0 1rem rgba($color-black, 0.2);
+        text-shadow: 0 0 1rem rgba(black, 0.2);
     }
 
     .subtitle {
@@ -63,9 +63,9 @@ export default {
     .readmore {
         padding: 1.2rem 1.5rem;
         font-weight: bold;
-        color: $color-white;
+        color: white;
         border-radius: 0.3rem;
-        background-color: $color-palette-green;
+        background-color: var(--color-secondary);
         text-decoration: none;
         margin-top: 2rem;
         display: inline-block;
@@ -75,7 +75,7 @@ export default {
         }
 
         &:hover {
-            background-color: rgba($color-white, 0.2);
+            background-color: rgba(white, 0.2);
         }
     }
 

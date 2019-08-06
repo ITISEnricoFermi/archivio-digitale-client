@@ -49,18 +49,18 @@ export default {
 
     &:hover {
         transform: scale(1.1);
-        box-shadow: 0 0.25rem 1rem rgba($color-black, 0.20);
+        box-shadow: 0 0.25rem 1rem rgba(black, 0.20);
     }
 
     .project-name {
         text-align: left;
-        color: $color-grey-1;
+        color: var(--color-text-secondary);
         @include ellipsis($font-default-1, $line-height-default,1);
     }
 
     .project-description {
         text-align: justify;
-        color: $color-grey-2;
+        color: var(--color-text-tertiary);
         @include ellipsis($font-default-3, $line-height-default, $lines-to-show);
     }
 
@@ -72,7 +72,7 @@ export default {
 
             .author-img {
                 border-radius: 0.25rem;
-                box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.05);
+                box-shadow: 0 0.25rem 0.75rem rgba(black, 0.05);
                 height: 5rem;
                 vertical-align: middle;
                 display: inline-block;
@@ -87,14 +87,14 @@ export default {
                 .author-name {
                     display: block;
                     font-size: $font-default-2;
-                    color: $color-grey-1;
+                    color: var(--color-text-secondary);
                     margin-bottom: 0.5rem;
                 }
 
                 .project-date {
                     display: block;
                     font-size: $font-default-3;
-                    color: $color-grey-1;
+                    color: var(--color-text-secondary);
                 }
             }
 

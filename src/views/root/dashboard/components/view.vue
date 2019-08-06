@@ -133,22 +133,17 @@ export default {
 
 <style scoped lang="scss">
 .view {
-    background-color: $color-white-1!important;
+    background-color: var(--color-surface-secondary)!important;
     // overflow-y: scroll;
-
-    @include color-scheme(dark) {
-        background: rgba(41,45,48,1)!important;
-        color: $color-white!important;
-    }
 
     .section {
         padding: 3rem;
 
         &:not(:last-child) {
-            border-bottom: 1px solid $color-white-5;
+            border-bottom: 1px solid var(--color-neutral-third);
 
             @include color-scheme(dark) {
-                border-color: rgba($color-white, 0.3);
+                border-color: rgba(white, 0.3);
             }
         }
 
@@ -159,6 +154,7 @@ export default {
         .title {
             font-weight: 400;
             text-align: left;
+            color: var(--color-text-primary);
         }
 
         .actions {
@@ -168,8 +164,8 @@ export default {
             .button {
                 display: inline-block;
                 width: auto;
-                color: $color-black;
                 font-weight: 400;
+                color: black;
 
                 &:not(:last-child) {
                     margin-right: 1rem;
@@ -186,11 +182,7 @@ export default {
 
         .description {
             text-align: left;
-            color: $color-grey-2;
-
-            @include color-scheme(dark) {
-                color: $color-white-3;
-            }
+            color: var(--color-text-tertiary);
         }
 
         .tags {
@@ -206,10 +198,10 @@ export default {
       cursor: pointer;
 
       &:hover {
-        background-color: $color-white-2!important;
+        background-color: var(--color-background)!important;
 
         @include color-scheme(dark) {
-            background: rgba($color-white,0.05)!important;
+            background: rgba(white,0.05)!important;
         }
       }
 
@@ -230,23 +222,26 @@ export default {
                         height: 100%;
                     }
                 }
-            }
 
-            .info {
-                display: inline-block;
-                padding: 0 2rem;
-                vertical-align: middle;
-                text-align: left;
+                .info {
+                    display: inline-block;
+                    padding: 0 2rem;
+                    vertical-align: middle;
+                    text-align: left;
 
-                &__name {
-                    font-weight: 400;
+                    &__name {
+                        font-weight: 400;
+                        color: var(--color-text-primary);
+                    }
+
+                    &__privileges {
+                        margin-top: 0.4rem;
+                        color: var(--color-text-tertiary);
+                    }
                 }
 
-                &__privileges {
-                    margin-top: 0.4rem;
-                    color: $color-grey-2;
-                }
             }
+
         }
     }
 
@@ -266,7 +261,7 @@ export default {
             &__documents {
                 padding: 0;
                 border-radius: 0.25rem;
-                background-color: $color-white-2;
+                background-color: var(--color-background);
                 border: 1px solid darken($color-white-5, 5%);
 
                 li {
@@ -281,12 +276,12 @@ export default {
                     }
 
                     &:hover {
-                        background-color: $color-white-5;
+                        background-color: var(--color-neutral-third);
                     }
 
                     a {
                         text-align: none;
-                        color: $color-tertiary;
+                        color: var(--color-primary);
                         display: block;
                         padding: 0.9rem 0.8rem;
 
@@ -300,7 +295,7 @@ export default {
                             right: 1rem;
                             top: 50%;
                             transform: translateY(-50%);
-                            color: $color-grey-1;
+                            color: var(--color-text-secondary);
                         }
                     }
                 }

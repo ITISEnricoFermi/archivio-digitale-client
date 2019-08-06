@@ -124,7 +124,7 @@ export default {
                   cursor: pointer;
 
                   &:hover {
-                      background-color: $color-fourth;
+                      background-color: var(--color-accent);
                   }
                 }
             }
@@ -134,7 +134,7 @@ export default {
               .separator {
                   height: 3rem;
                   width: 0.05rem;
-                  background-color: $color-white;
+                  background-color: white;
                   margin-right: 1rem;
                   display: none;
 
@@ -145,7 +145,7 @@ export default {
 
               .text {
                   font-size: 2rem;
-                  color: $color-white;
+                  color: white;
                   font-family: 'Bitter';
 
                   @include respond(phone) {
@@ -175,11 +175,11 @@ export default {
             }
 
             &:hover * {
-              color: $color-fourth!important;
+              color: var(--color-accent)!important;
             }
 
             &__text {
-                color: $color-white;
+                color: white;
 
                 &--icon {
                     margin: 0.5rem;
@@ -194,7 +194,7 @@ export default {
 
             .dropdown {
               position: absolute;
-              background-color: $color-tertiary;
+              background-color: var(--color-primary);
               z-index: 2000000;
               top: 6rem;
               left: 0;
@@ -245,13 +245,13 @@ export default {
                 margin-bottom: 0.4rem;
             }
             .subtitle {
-                color: $color-grey-2;
+                color: var(--color-text-tertiary);
             }
         }
 
         .dropdown {
           position: absolute;
-          background-color: $color-tertiary;
+          background-color: var(--color-primary);
           z-index: 2000000;
           top: 6rem;
           left: 0;

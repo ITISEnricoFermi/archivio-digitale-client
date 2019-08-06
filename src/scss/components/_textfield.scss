@@ -1,33 +1,26 @@
 .textfield {
-  color: $color-tertiary;
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-primary);
   padding: 0.9rem 0.8rem;
   outline: none;
   font-size: $font-default-2;
   transition: all 0.3s ease-in-out;
-  background-color: $color-white;
   appearance: none;
   border-radius: 0.3rem;
-  border: 1px solid $color-white-4;
+  border: 1px solid var(--color-neutral-third);
   box-shadow: inset 0 1px 2px rgba(10,10,10,0.1);
   width: 100%;
 
-  @include color-scheme(dark) {
-      background: #282828!important;
-      border-color: $color-tertiary!important;
-      color: $color-white!important;
-  }
-
   &:focus {
-    border-color: #00d1b2;
+    border-color: var(--color-semantic-green);
 
     @include color-scheme(dark) {
-        background: #282828!important;
-        border-color: $color-grey-1!important;
+        border-color: var(--color-neutral-secondary)!important;
     }
   }
 
   &:invalid {
-    border-color: $color-button-red;
+    border-color: var(--color-semantic-red);
   }
 
   & + .v-spinner {

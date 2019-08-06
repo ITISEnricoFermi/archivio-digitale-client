@@ -122,12 +122,13 @@ export default {
                 .name {
                     font-size: 1.8rem;
                     display: block;
+                    color: var(--color-text-primary);
                 }
 
                 .email {
                     display: block;
                     text-decoration: none;
-                    color: $color-tertiary;
+                    color: var(--color-text-primary);
                     font-size: $font-default-3;
                 }
 
@@ -155,6 +156,7 @@ export default {
             cursor: pointer;
             top: 1.5rem;
             right: 1.5rem;
+            color: var(--color-text-primary);
 
             span {
                 display: block;

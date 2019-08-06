@@ -30,14 +30,14 @@ export default {
         padding: 2vh;
         border: none;
         border-radius: 0.25rem;
-        background-color: $color-white;
-        box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.1);
+        background-color: white;
+        box-shadow: 0 0.25rem 0.75rem rgba(black, 0.1);
         width: 100%;
         outline: none;
         font-size: $font-default-3;
 
         &:focus {
-            box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.1);
+            box-shadow: 0 0.25rem 0.75rem rgba(black, 0.1);
 
         }
 

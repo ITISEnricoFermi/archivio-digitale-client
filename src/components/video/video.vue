@@ -114,7 +114,7 @@ export default {
     padding: 1.7rem;
 
     .title {
-      color: $color-white;
+      color: white;
     }
   }
 

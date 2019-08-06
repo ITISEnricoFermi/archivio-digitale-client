@@ -147,12 +147,8 @@ export default {
     width: 100%;
     max-width: 100vw;
     min-height: 100vh;
-    background-color: $color-white-2;
+    background-color: var(--color-background);
     overflow-x: hidden;
-
-    @include color-scheme(dark) {
-        background: #282828!important;
-    }
 
     @include respond(tab-lan) {
         height: auto;
@@ -170,11 +166,7 @@ export default {
         min-height: calc(100vh - 6rem);
         margin-top: 6rem;
         font-size: $font-default-2;
-        background-color: $color-white-2;
-
-        @include color-scheme(dark) {
-            background: #282828!important;
-        }
+        background-color: var(--color-background);
 
         @include respond(tab-por) {
             padding: 3vh 0 0 0!important !important;

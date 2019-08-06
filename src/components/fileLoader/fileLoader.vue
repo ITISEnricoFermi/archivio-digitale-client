@@ -70,19 +70,13 @@ export default {
 
 <style lang="scss" scoped>
 .loader {
-    background-color: $color-white-1;
-    border: 1px solid $color-white-4;
+    background-color: var(--color-surface-secondary);
+    border: 1px solid var(--color-neutral-third);
     width: 100%;
     height: 10rem;
     border-radius: 0.3rem;
     padding: 1rem;
     transition: all 0.2s ease-in-out;
-
-    @include color-scheme(dark) {
-        background: #282828!important;
-        border-color: $color-tertiary!important;
-        color: $color-white!important;
-    }
 
     &, & > * {
       cursor: pointer;
@@ -93,23 +87,22 @@ export default {
     // }
 
     .content {
-        border: 0.5rem dashed $color-white-4;
+        border: 0.5rem dashed var(--color-neutral-third);
         width: 100%;
         height: 100%;
         border-radius: 0.3rem;
         padding: 1rem;
         position: relative;
 
-        @include color-scheme(dark) {
-            border-color: $color-grey-2!important;
-            color: $color-white!important;
-        }
-
         .text {
             position: absolute;
             @include absCenter;
             color: $color-white-6;
             width: 100%;
+
+            @include color-scheme(dark) {
+                color: white!important;
+            }
 
             &--icon {
                 font-size: 2rem;

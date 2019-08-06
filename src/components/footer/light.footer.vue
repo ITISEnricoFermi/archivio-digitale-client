@@ -33,7 +33,7 @@ footer {
             list-style: none;
             a {
                 display: block;
-                color: $color-grey-1;
+                color: var(--color-text-secondary);
                 text-decoration: none;
                 text-transform: uppercase;
                 padding: 1rem 1.5rem;

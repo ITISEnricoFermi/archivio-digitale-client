@@ -27,8 +27,8 @@ export default {
 .menu {
     position: absolute;
     border-radius: 0.25rem;
-    background-color: $color-white;
-    box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+    background-color: var(--color-surface-primary);
+    box-shadow: 0 0.25rem 0.75rem rgba(black, 0.5);
     right: 0;
     width: 15rem;
     text-align: left;
@@ -41,11 +41,11 @@ export default {
             cursor: pointer;
 
             &:not(:last-child) {
-                border-bottom: 1px solid $color-white-5;
+                border-bottom: 1px solid var(--color-neutral-third);
             }
 
             &:hover {
-              background-color: $color-white-1;
+              background-color: var(--color-surface-secondary);
             }
 
             span {

@@ -8,7 +8,7 @@
       </div>
       <div class="row">
         <div class="col-1-of-1">
-          <input type="text" id="email" class="textfield" placeholder="Email" autocomplete="off" v-model="local.email">
+          <input type="text" id="email" disabled class="textfield" placeholder="Email" autocomplete="off" v-model="local.email">
         </div>
       </div>
       <div class="row section-title">

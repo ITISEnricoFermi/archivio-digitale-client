@@ -194,7 +194,7 @@ main {
     }
 
     .feautures {
-        background-color: $color-fourth;
+        background-color: var(--color-accent);
         overflow: hidden;
         padding: 5vh 3vh;
         // top: -30rem;
@@ -220,7 +220,7 @@ main {
 
                 .feauture {
                     text-align: center;
-                    color: $color-white;
+                    color: white;
                     flex: 1 1 100%;
                     padding: 2rem 4rem;
 
@@ -256,7 +256,7 @@ main {
 
     .projects {
         padding: 0;
-        background-color: $color-white-2;
+        background-color: var(--color-background);
         min-height: 100vh;
 
         @include respond(tab-por) {
@@ -287,7 +287,7 @@ main {
                 }
 
                 &__title {
-                    color: $color-grey-2;
+                    color: var(--color-text-tertiary);
                     font-size: 2rem;
                     display: inline-block;
 

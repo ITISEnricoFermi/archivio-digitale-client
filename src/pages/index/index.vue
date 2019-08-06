@@ -20,12 +20,12 @@ export default {
     width: 100%;
     max-width: 100vw;
     min-height: 100vh;
-    background-color: $color-white-2;
+    background-color: var(--color-background);
     overflow-x: hidden;
 
-    @include color-scheme(dark) {
-        background: #282828!important;
-    }
+    // @include color-scheme(dark) {
+    //     background: #282828!important;
+    // }
 
     @include respond(tab-lan) {
         height: auto;

@@ -28,7 +28,7 @@ export default {
     background-color: #e9ecef;
     border-radius: 0.25rem;
     height: 2rem;
-    // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5) inset;
+    // box-shadow: 0 0.25rem 0.75rem rgba(black, 0.5) inset;
 
     .bar {
         display: -webkit-box;
@@ -41,13 +41,13 @@ export default {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-        color: $color-white;
+        color: white;
         text-align: center;
         background-color: #007bff;
         transition: width 0.6s ease;
-        // box-shadow: 0 0.25rem 0.75rem rgba($color-black, 0.5);
+        // box-shadow: 0 0.25rem 0.75rem rgba(black, 0.5);
         &--stripped {
-            background-image: linear-gradient(45deg, rgba($color-white, .15) 25%, transparent 25%, transparent 50%, rgba($color-white, .15) 50%, rgba($color-white, .15) 75%, transparent 75%, transparent);
+            background-image: linear-gradient(45deg, rgba(white, .15) 25%, transparent 25%, transparent 50%, rgba(white, .15) 50%, rgba(white, .15) 75%, transparent 75%, transparent);
             background-size: 2rem 2rem;
         }
 

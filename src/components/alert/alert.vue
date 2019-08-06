@@ -30,19 +30,19 @@ export default {
 .alert {
 
     &--red {
-        @include alertColor($color-button-red);
+        @include alertColor($color-palette-red);
     }
 
     &--green {
-        @include alertColor($color-button-green);
+        @include alertColor($color-palette-green);
     }
 
     &--blue {
-        @include alertColor($color-button-blue);
+        @include alertColor($color-palette-blue);
     }
 
     &--yellow {
-        @include alertColor($color-button-yellow);
+        @include alertColor($color-palette-yellow);
     }
 
 }

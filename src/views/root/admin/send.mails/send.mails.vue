@@ -106,12 +106,12 @@ export default {
 <style lang="scss" scoped>
 .markdown {
     border-radius: 0.25rem;
-    background: $color-white-1;
-    border: 1px solid darken($color-white-5, 5%);
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-secondary);
+    border: 1px solid var(--color-neutral-third);
     font-size: $font-default-2;
     cursor: pointer;
     text-align: left;
-    color: $color-tertiary;
     display: block;
     text-decoration: none;
     padding: 0.9rem 0.8rem;

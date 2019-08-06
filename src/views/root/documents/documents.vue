@@ -21,13 +21,13 @@ export default {
   data () {
     return {
       options: [{
-        crop: 'Crea documento',
-        icon: 'fas fa-pencil-alt',
-        link: '/documents/create/'
-      }, {
         crop: 'Cerca documento',
         icon: 'fa fa-search',
         link: '/documents/search/'
+      }, {
+        crop: 'Crea documento',
+        icon: 'fas fa-pencil-alt',
+        link: '/documents/create/'
       }, {
         crop: 'Trasferisci documenti',
         icon: 'fas fa-exchange-alt',

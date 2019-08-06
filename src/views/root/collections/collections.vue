@@ -20,13 +20,13 @@ export default {
   data () {
     return {
       options: [{
-        crop: 'Crea collezioni',
-        icon: 'fas fa-pencil-alt',
-        link: '/collections/create/'
-      }, {
         crop: 'Cerca collezioni',
         icon: 'fa fa-search',
         link: '/collections/search/'
+      }, {
+        crop: 'Crea collezioni',
+        icon: 'fas fa-pencil-alt',
+        link: '/collections/create/'
       }],
       title: {
         crop: 'Servizi',

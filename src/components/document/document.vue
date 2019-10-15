@@ -74,10 +74,10 @@ export default {
       a.click()
     },
     view () {
-      let type = this.document.mimetype.split('/')[0]
-      if (type === 'video') {
-        return eventBus.openPopUp(this.document, 'appVideo', 70)
-      }
+      // let type = this.document.mimetype.split('/')[0]
+      // if (type === 'video') {
+      //   return eventBus.openPopUp(this.document, 'appVideo', 70)
+      // }
       window.open(`/files/${this.document._id}`, '_blank')
     }
   }

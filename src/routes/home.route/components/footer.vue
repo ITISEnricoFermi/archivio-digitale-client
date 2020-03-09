@@ -128,7 +128,6 @@ export default {}
     --color-neutral-third: #D4D4D4; // $color-white-5: #D4D4D4;
     --color-neutral-fourth: #8C8C9C; // $color-white-6: #8C8C9C;
 
-
     .bottom,
     .top {
         padding-left: 15rem;

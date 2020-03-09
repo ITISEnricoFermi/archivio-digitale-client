@@ -15,7 +15,7 @@ export default {
   },
   created () {
     clearTimeout(this.help)
-    let self = this
+    const self = this
     this.timeout = setTimeout(function () {
       self.$emit('alert', {
         messages: undefined,

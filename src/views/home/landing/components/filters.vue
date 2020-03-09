@@ -36,7 +36,7 @@ export default {
       }
 
       try {
-        let response = await v1.get('/documents/recent/1/9/' + type)
+        const response = await v1.get('/documents/recent/1/9/' + type)
         this.$emit('filter', response.data)
       } catch (e) {
         this.$emit('filter', [])

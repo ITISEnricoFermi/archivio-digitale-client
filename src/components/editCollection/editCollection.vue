@@ -36,7 +36,7 @@
       <p class="section-title">Documenti</p>
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-1-of-1">
       <app-multiple-select :placeholder="'Aggiungi un documento alla collezione'" :selected.sync="collectionToEdit.documents" :dbElements="['name']" :url="'/documents/search/partial/'" @update:selected="collectionToEdit.documents = $event"></app-multiple-select>
     </div>
@@ -44,6 +44,11 @@
   <div class="row" v-if="this.collectionToEdit.documents.length">
     <div class="col-1-of-1">
       <app-multiple-select-results :selected.sync="collectionToEdit.documents" :dbElements="['name']" @update:selected="collectionToEdit.documents = $event"></app-multiple-select-results>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-1-of-1">
+      <app-selector @selected="collectionToEdit.documents = $event" :current="collectionToEdit.documents" :dbElements="['name']" endpoint="/documents/search/partial/"></app-selector>
     </div>
   </div>
   <div class="row">
@@ -75,6 +80,7 @@ import v1 from '@/utils/v1'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
+import Selector from '@/components/selector/selector'
 
 export default {
   props: ['entity', 'collectionsPermissions'],
@@ -117,7 +123,7 @@ export default {
     },
     async edit (id) {
       try {
-        let response = await v1.patch('/collections/' + id, this.collectionToEdit)
+        const response = await v1.patch('/collections/' + id, this.collectionToEdit)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true
@@ -133,7 +139,7 @@ export default {
     },
     async remove (id) {
       try {
-        let response = await v1.delete('/collections/' + id)
+        const response = await v1.delete('/collections/' + id)
         eventBus.notification({
           title: response.data.messages[0],
           temporary: true
@@ -150,7 +156,8 @@ export default {
   },
   components: {
     appMultipleSelect: MultipleSelect,
-    appMultipleSelectResults: MultipleSelectResults
+    appMultipleSelectResults: MultipleSelectResults,
+    appSelector: Selector
   }
 }
 </script>

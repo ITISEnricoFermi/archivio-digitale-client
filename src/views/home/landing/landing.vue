@@ -76,9 +76,9 @@
 </template>
 
 <script>
-import Search from './components/search'
-import Project from './components/project'
-import Filters from './components/filters'
+// import Search from './components/search'
+// import Project from './components/project'
+// import Filters from './components/filters'
 import Header from '@/routes/home.route/components/header'
 import Heading from './components/heading.vue'
 
@@ -108,9 +108,9 @@ export default {
     })
   },
   components: {
-    appSearch: Search,
-    appProject: Project,
-    appFilters: Filters,
+    // appSearch: Search,
+    // appProject: Project,
+    // appFilters: Filters,
     appHeader: Header,
     appHeading: Heading
   }

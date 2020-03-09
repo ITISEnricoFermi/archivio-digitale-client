@@ -5,6 +5,9 @@
 </template>
 
 <script>
+
+import '@fortawesome/fontawesome-free/js/all.js'
+
 export default {
   name: 'app',
   sockets: {

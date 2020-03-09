@@ -126,7 +126,7 @@ export default {
 
       try {
         const response = await v1.post('/documents/search/', this.query)
-        let documents = response.data
+        const documents = response.data
         this.$emit('searchDocuments', documents)
       } catch (e) {
         this.$emit('searchDocuments', [])

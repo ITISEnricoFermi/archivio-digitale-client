@@ -22,7 +22,7 @@ export default {
     })
   },
   mounted () {
-    let popup = (document.querySelectorAll('.popup'))[0]
+    const popup = (document.querySelectorAll('.popup'))[0]
     popup.addEventListener('click', (e) => {
       if (e.target !== popup) {
         return

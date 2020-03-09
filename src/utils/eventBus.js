@@ -19,7 +19,7 @@ export default new Vue({
         alert('This browser does not support desktop notification')
       } else if (Notification.permission === 'granted') { // Verifica che ci siano i permessi per le notifiche
         /* eslint no-unused-vars: "off" */
-        let notification = new Notification(message, {
+        const notification = new Notification(message, {
           body,
           icon: '/img/icons/android-chrome-512x512.png'
         })
@@ -27,7 +27,7 @@ export default new Vue({
         Notification.requestPermission((permission) => {
           if (permission === 'granted') { // Se l'utente accetta
             /* eslint no-unused-vars: "off" */
-            let notification = new Notification(message, {
+            const notification = new Notification(message, {
               body,
               icon: '/img/icons/android-chrome-512x512.png'
             })

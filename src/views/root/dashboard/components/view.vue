@@ -115,7 +115,7 @@ export default {
       eventBus.openPopUp(this.document, 'appEditDocument', 80)
     },
     download () {
-      let a = document.createElement('A')
+      const a = document.createElement('A')
       a.href = `/static/documents/${this.document._id}`
       a.download = this.document.name
       a.click()

@@ -67,7 +67,7 @@ export default {
     async search () {
       this.loading = true
       try {
-        let response = await v1.post('/collections/search/', this.query)
+        const response = await v1.post('/collections/search/', this.query)
         this.loading = false
         this.collections = response.data
       } catch (e) {

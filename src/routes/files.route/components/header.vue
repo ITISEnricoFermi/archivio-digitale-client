@@ -53,7 +53,7 @@ export default {
     },
     download () {
       const id = this.document._id
-      let a = document.createElement('A')
+      const a = document.createElement('A')
       a.href = `/static/documents/${id}`
       a.download = this.document.name
       a.click()

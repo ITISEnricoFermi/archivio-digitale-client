@@ -7,38 +7,32 @@ module.exports = {
       entry: './src/pages/index/index.js',
       template: './public/index.html',
       filename: 'index.html',
+      title: 'Archivio Digitale | ITIS Enrico Fermi',
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
     home: {
       entry: './src/pages/home/home.js',
       template: './public/index.html',
       filename: 'home/index.html',
+      title: 'Archivio Digitale | ITIS Enrico Fermi',
       chunks: ['chunk-vendors', 'chunk-common', 'home']
     }
   },
-  devServer: {
-    // https: true,
-    proxy: {
-      '/static/*': {
-        target: {
-          protocol: 'http:',
-          host: 'localhost',
-          port: 3000
-        },
-        changeOrigin: true,
-        logLevel: 'debug'
-      }
-    }
-  },
-  configureWebpack: {
-    plugins: [
-      new CompressionWebpackPlugin()
-    ]
+  chainWebpack (config) {
+    // config
+    //   .plugin('html')
+    //   .tap(args => {
+    //     console.log(args)
+    //     args[0].title = 'Archivio Digitale | ITIS Enrico Fermi'
+    //     return args
+    //   })
+    // config.plugins.delete('prefetch');
+    config.plugin('compression').use(CompressionWebpackPlugin)
   },
   css: {
     loaderOptions: {
       sass: {
-        data: `@import "@/scss/main.scss";`
+        prependData: '@import "~@/scss/main.scss";'
       }
     }
   },
@@ -48,8 +42,9 @@ module.exports = {
     msTileColor: '#13AA52',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
+    workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-
+      swSrc: './src/service-worker.js'
     }
   }
 }

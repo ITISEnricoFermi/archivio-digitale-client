@@ -117,7 +117,7 @@ export default {
     async getUser () {
       try {
         const response = await v1.get('/users/' + this.id)
-        let {
+        const {
           firstname,
           lastname,
           email,
@@ -143,7 +143,7 @@ export default {
     },
     async reset () {
       try {
-        let response = await v1.patch('/admin/users/' + this.id + '/password/', {
+        const response = await v1.patch('/admin/users/' + this.id + '/password/', {
           _id: this.id
         })
 
@@ -178,7 +178,7 @@ export default {
     },
     async toggleState () {
       try {
-        let user = await v1.patch('/admin/users/' + this.id + '/state/', {
+        const user = await v1.patch('/admin/users/' + this.id + '/state/', {
           state: this.user.state
         })
         eventBus.notification({

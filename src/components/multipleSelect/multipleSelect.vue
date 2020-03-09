@@ -40,20 +40,20 @@ export default {
   methods: {
     async selectUp () {
       switch (this.pointer) {
-        case 0:
-          this.pointer = this.results.length - 1
-          break
-        default:
-          this.pointer = this.pointer - 1
+      case 0:
+        this.pointer = this.results.length - 1
+        break
+      default:
+        this.pointer = this.pointer - 1
       }
     },
     async selectDown () {
       switch (this.pointer) {
-        case this.results.length - 1:
-          this.pointer = 0
-          break
-        default:
-          this.pointer = this.pointer + 1
+      case this.results.length - 1:
+        this.pointer = 0
+        break
+      default:
+        this.pointer = this.pointer + 1
       }
     },
     async search (event) {
@@ -63,7 +63,7 @@ export default {
       }
 
       try {
-        let response = await v1.get(this.url + this.query)
+        const response = await v1.get(this.url + this.query)
 
         this.results = response.data.filter(e => this.selected.findIndex(b => b._id === e._id) === -1)
       } catch (e) {

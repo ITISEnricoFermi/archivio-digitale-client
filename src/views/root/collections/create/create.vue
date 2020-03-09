@@ -71,7 +71,7 @@ export default {
       this.loading = true // Parte il caricamento
 
       try {
-        let {
+        const {
           data: {
             messages
           }

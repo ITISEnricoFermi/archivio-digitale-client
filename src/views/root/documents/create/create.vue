@@ -114,9 +114,9 @@ export default {
       }
     },
     async upload () {
-      let self = this
-      let formData = new FormData()
-      let config = {
+      const self = this
+      const formData = new FormData()
+      const config = {
         onUploadProgress (progressEvent) {
           let progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
           if (progress === 100) {

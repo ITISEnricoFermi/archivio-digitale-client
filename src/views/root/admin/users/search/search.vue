@@ -55,7 +55,7 @@ export default {
       }
 
       try {
-        let response = await v1.get('/users/search/partial/' + this.query)
+        const response = await v1.get('/users/search/partial/' + this.query)
         this.loading = false
         this.users = response.data
       } catch (e) {

@@ -17,7 +17,7 @@
       </router-link>
       <div class="info">
         <p class="title">{{ document.name }}</p>
-        <p class="date">{{ this.date }}</p>
+        <p class="date">{{ date }}</p>
       </div>
     </div>
     <div class="content">
@@ -61,7 +61,8 @@
 </template>
 
 <script>
-import eventBus from '@/utils/eventBus'
+import documentMixin from '@/mixins/document.js'
+import dateMixin from '@/mixins/date.js'
 
 export default {
   props: {
@@ -69,40 +70,10 @@ export default {
       type: Object
     }
   },
-  computed: {
-    date () {
-      const timestamp = this.document._id.toString().substring(0, 8)
-      const date = new Date(parseInt(timestamp, 16) * 1000)
-
-      return new Intl.DateTimeFormat('it-IT', {
-        hour: 'numeric',
-        minute: 'numeric',
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      }).format(date)
-    }
-  },
+  mixins: [documentMixin, dateMixin],
   methods: {
     more () {
       this.$emit('click', this.document)
-    },
-    edit () {
-      eventBus.openPopUp(this.document, 'appEditDocument', 80)
-    },
-    download () {
-      const a = document.createElement('A')
-      a.href = `/static/documents/${this.document._id}`
-      a.download = this.document.name
-      a.click()
-    },
-    view () {
-      // let type = this.document.mimetype.split('/')[0]
-      // if (type === 'video') {
-      //   return eventBus.openPopUp(this.document, 'appVideo', 70)
-      // }
-      window.open(`/files/${this.document._id}`, '_blank')
     }
   }
 }

@@ -20,7 +20,7 @@
             <span> {{collection.documentCollection}}</span>.
           </p>
           <p class="collection-header__info--date">
-            {{ this.date }}
+            {{ date }}
           </p>
         </div>
         <div
@@ -72,6 +72,8 @@ import eventBus from '@/utils/eventBus'
 
 import Menu from './menu'
 
+import dateMixin from '@/mixins/date.js'
+
 export default {
   props: ['collection'],
   data () {
@@ -79,21 +81,7 @@ export default {
       menu: false
     }
   },
-  computed: {
-    date () {
-      const timestamp = this.collection._id.toString().substring(0, 8)
-      const date = new Date(parseInt(timestamp, 16) * 1000)
-
-      return new Intl.DateTimeFormat('it-IT', {
-        hour: 'numeric',
-        minute: 'numeric',
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      }).format(date)
-    }
-  },
+  mixins: [dateMixin],
   methods: {
     edit () {
       eventBus.openPopUp(this.collection, 'appEditCollection', 80)

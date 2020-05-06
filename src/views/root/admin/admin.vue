@@ -1,23 +1,24 @@
 <template>
-<main class="panel">
-  <div class="left-sidebar">
-    <app-options :title="title" :options="options"></app-options>
-  </div>
-  <div class="center">
-    <transition name="panel" mode="out-in">
-      <keep-alive>
-        <router-view :privileges="privileges"></router-view>
-      </keep-alive>
-    </transition>
-  </div>
-</main>
+  <main class="panel">
+    <div class="left-sidebar">
+        <app-options :title="title" :options="options" />
+    </div>
+    <div class="center">
+      <transition name="panel" mode="out-in">
+        <keep-alive>
+          <router-view :privileges="privileges" :subjects="subjects" :types="types" />
+        </keep-alive>
+      </transition>
+    </div>
+  </main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Options from '@/components/options/options'
 
 export default {
-  props: ['privileges'],
   data () {
     return {
       options: [{
@@ -47,6 +48,13 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      privileges: 'getPrivileges',
+      subjects: 'getSubjects',
+      types: 'getTypes'
+    })
+  },
   components: {
     appOptions: Options
   }
@@ -55,25 +63,23 @@ export default {
 
 <style scoped lang="scss">
 .panel {
-    padding: 3vh;
-    display: grid;
-    grid-template-columns: 30rem auto;
-    grid-gap: 3vh;
+  padding: 3vh;
+  display: grid;
+  grid-template-columns: 30rem auto;
+  grid-gap: 3vh;
 
+  @include respond(tab-por) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 6rem auto;
+  }
+
+  .left-sidebar {
     @include respond(tab-por) {
-        grid-template-columns: 1fr;
-        grid-template-rows: 6rem auto;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      left: 0;
     }
-
-    .left-sidebar {
-
-        @include respond(tab-por) {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            left: 0;
-        }
-
-    }
+  }
 }
 </style>

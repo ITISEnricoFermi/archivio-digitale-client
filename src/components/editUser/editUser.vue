@@ -77,12 +77,13 @@
 <script>
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
+import { mapGetters } from 'vuex'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 export default {
-  props: ['entity', 'privileges'],
+  props: ['entity'],
   data () {
     return {
       user: {
@@ -96,6 +97,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      privileges: 'getPrivileges'
+    }),
     id () {
       return this.entity
     }

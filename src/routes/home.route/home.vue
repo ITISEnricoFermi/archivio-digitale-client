@@ -1,21 +1,24 @@
 <template>
-<main class="main">
+<div class="box">
+  <app-header></app-header>
   <router-view />
   <app-footer></app-footer>
-</main>
+</div>
 </template>
 
 <script>
+
+import Header from './components/header'
 import Footer from './components/footer'
 
 export default {
-  name: 'home',
   data () {
     return {
       projects: []
     }
   },
   components: {
+    appHeader: Header,
     appFooter: Footer
   }
 }
@@ -27,15 +30,15 @@ body {
     height: auto!important;
 }
 
-.main {
+.box {
     width: 100%;
     height: auto;
     max-width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
     box-shadow: 0 0.25rem 0.75rem rgba(black, 0.05);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(10rem, min-content);
+    // display: grid;
+    // grid-template-columns: 1fr;
+    // grid-template-rows: auto minmax(10rem, min-content);
 }
 </style>

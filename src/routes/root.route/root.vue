@@ -11,14 +11,13 @@
 
   <transition name="panel" mode="out-in">
     <keep-alive>
-      <router-view :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :privileges="privileges" :user="user" :collectionsPermissions="collectionsPermissions" />
+      <router-view :user="user"/>
     </keep-alive>
   </transition>
 
   <transition name="fade" mode="out-in">
     <app-popup v-if="popup.component" :width="popup.width + '%'">
-      <component v-if="popup.component" :is="popup.component" :entity="popup.entity" :types="types" :faculties="faculties" :visibilities="visibilities" :sections="sections" :grades="grades" :collectionsPermissions="collectionsPermissions"
-        :privileges="privileges" :subjects="subjects">
+      <component v-if="popup.component" :is="popup.component" :entity="popup.entity">
       </component>
     </app-popup>
   </transition>
@@ -43,14 +42,6 @@ import Video from '@/components/video/video'
 export default {
   data () {
     return {
-      types: [],
-      faculties: [],
-      subjects: [],
-      visibilities: [],
-      sections: [],
-      grades: [],
-      privileges: [],
-      collectionsPermissions: [],
       user: {
         privileges: '',
         img: '../elements/profile.svg'
@@ -63,6 +54,15 @@ export default {
     }
   },
   async created () {
+    this.$store.dispatch('fetchTypes')
+    this.$store.dispatch('fetchFaculties')
+    this.$store.dispatch('fetchSubjects')
+    this.$store.dispatch('fetchGrades')
+    this.$store.dispatch('fetchSections')
+    this.$store.dispatch('fetchVisibilities')
+    this.$store.dispatch('fetchPrivileges')
+    this.$store.dispatch('fetchCollectionPermissions')
+
     eventBus.$on('openPopUp', (entity, component, width) => {
       this.popup.entity = entity
       this.popup.component = component
@@ -78,35 +78,7 @@ export default {
     })
 
     try {
-      const [types,
-        subjects,
-        faculties,
-        visibilities,
-        sections,
-        grades,
-        privileges,
-        collectionsPermissions,
-        user
-      ] = await Promise.all([
-        v1.get('/document_types/'),
-        v1.get('/subjects/'),
-        v1.get('/faculties/'),
-        v1.get('/document_visibility/'),
-        v1.get('/sections/'),
-        v1.get('/grades/'),
-        v1.get('/privileges/'),
-        v1.get('/collection_permissions/'),
-        v1.get('/users/' + localStorage.getItem('id'))
-      ])
-
-      this.types = types.data
-      this.subjects = subjects.data
-      this.faculties = faculties.data
-      this.visibilities = visibilities.data
-      this.sections = sections.data
-      this.grades = grades.data
-      this.privileges = privileges.data
-      this.collectionsPermissions = collectionsPermissions.data
+      const user = await v1.get('/users/' + localStorage.getItem('id'))
       this.user = user.data
     } catch (e) {
       eventBus.notification({

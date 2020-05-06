@@ -80,14 +80,14 @@
 </template>
 
 <script>
+import v1 from '@/utils/v1'
+import { mapGetters } from 'vuex'
+
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import Document from '@/components/document/document'
 import Alert from '@/components/alert/alert'
 
-import v1 from '@/utils/v1'
-
 export default {
-  props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
   data () {
     return {
       subjects: '',
@@ -108,6 +108,15 @@ export default {
         color: undefined
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      types: 'getTypes',
+      faculties: 'getFaculties',
+      visibilities: 'getVisibilities',
+      sections: 'getSections',
+      grades: 'getGrades'
+    })
   },
   sockets: {
     documentDeleted () {

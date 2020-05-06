@@ -82,14 +82,14 @@
 </template>
 
 <script>
+import eventBus from '@/utils/eventBus'
+import v1 from '@/utils/v1'
+import { mapGetters } from 'vuex'
+
 import Progress from '@/components/progress/progress'
 import FileLoader from '@/components/fileLoader/fileLoader'
 
-import eventBus from '@/utils/eventBus'
-import v1 from '@/utils/v1'
-
 export default {
-  props: ['types', 'faculties', 'visibilities', 'sections', 'grades'],
   data () {
     return {
       document: {
@@ -105,6 +105,15 @@ export default {
       file: undefined,
       progress: 0
     }
+  },
+  computed: {
+    ...mapGetters({
+      types: 'getTypes',
+      faculties: 'getFaculties',
+      visibilities: 'getVisibilities',
+      sections: 'getSections',
+      grades: 'getGrades'
+    })
   },
   methods: {
     fileDrop (file) {

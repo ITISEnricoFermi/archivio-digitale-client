@@ -36,10 +36,8 @@ export default {
     grid-template-columns: 8rem auto max-content;
     grid-gap: 1.5rem;
     align-items: center;
-
-    @include respond(phone) {
-        padding: 3vh;
-    }
+    position: sticky;
+    top: 0;
 
     .logo {
         height: 4.5rem;

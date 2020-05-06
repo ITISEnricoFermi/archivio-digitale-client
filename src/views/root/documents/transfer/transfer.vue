@@ -49,19 +49,29 @@
 <script>
 import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
+import { mapGetters } from 'vuex'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 import Selector from '@/components/selector/selector'
 
 export default {
-  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'grades'],
+  props: ['entity'],
   data () {
     return {
       documents: [],
       to: [],
       type: 'all'
     }
+  },
+  computed: {
+    ...mapGetters({
+      types: 'getTypes',
+      faculties: 'getFaculties',
+      visibilities: 'getVisibilities',
+      sections: 'getSections',
+      grades: 'getGrades'
+    })
   },
   methods: {
     async transfer () {

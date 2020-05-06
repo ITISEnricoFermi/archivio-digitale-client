@@ -9,7 +9,7 @@
       <div class="col-1-of-2">
         <select class="select" v-model="query.permissions">
               <option class="module-input-option" value="" selected>Permessi (modifica)</option>
-              <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{ permission.permission }}</option>
+              <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionPermissions" :key="index">{{ permission.permission }}</option>
           </select>
       </div>
     </div>
@@ -32,15 +32,14 @@
 </template>
 
 <script>
+import v1 from '@/utils/v1'
 
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import Collection from '@/components/collection/collection'
 import Alert from '@/components/alert/alert'
 
-import v1 from '@/utils/v1'
-
 export default {
-  props: ['collectionsPermissions'],
+  props: ['collectionPermissions'],
   data () {
     return {
       query: {

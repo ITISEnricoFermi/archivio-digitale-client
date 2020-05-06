@@ -1,97 +1,193 @@
 <template>
-<div class="edit">
-  <div class="row">
-    <div class="col-1-of-1">
-      <input type="text" class="textfield" placeholder="Titolo" autocomplete="off" required v-model="documentToEdit.name">
+  <div class="edit">
+    <div class="row">
+      <div class="col-1-of-1">
+        <input
+          type="text"
+          class="textfield"
+          placeholder="Titolo"
+          autocomplete="off"
+          required
+          v-model="documentToEdit.name"
+        >
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-1-of-1">
-      <textarea class="textarea" placeholder="Descrizione" v-model="documentToEdit.description"></textarea>
+    <div class="row">
+      <div class="col-1-of-1">
+        <textarea
+          class="textarea"
+          placeholder="Descrizione"
+          v-model="documentToEdit.description"
+        ></textarea>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.type" required>
-          <option class="module-input-option" value="" disabled>Tipo</option>
-          <option class="module-input-option" :value="type._id" v-for="(type, index) in types" :key="index">
+    <div class="row">
+      <div class="col-1-of-3">
+        <select
+          class="select"
+          v-model="documentToEdit.type"
+          required
+        >
+          <option
+            class="module-input-option"
+            value=""
+            disabled
+          >Tipo</option>
+          <option
+            class="module-input-option"
+            :value="type._id"
+            v-for="(type, index) in types"
+            :key="index"
+          >
             {{ type.type }}
           </option>
         </select>
-    </div>
-    <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.faculty">
-          <option class="module-input-option" value="" disabled>Specializzazione</option>
-          <option class="module-input-option" :value="faculty._id" v-for="(faculty, index) in faculties" :key="index">
+      </div>
+      <div class="col-1-of-3">
+        <select
+          class="select"
+          v-model="documentToEdit.faculty"
+        >
+          <option
+            class="module-input-option"
+            value=""
+            disabled
+          >Specializzazione</option>
+          <option
+            class="module-input-option"
+            :value="faculty._id"
+            v-for="(faculty, index) in faculties"
+            :key="index"
+          >
             {{ faculty.faculty }}
           </option>
         </select>
-    </div>
-    <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.subject" required>
-          <option class="module-input-option" value="" disabled>Materia</option>
-          <optgroup :label="faculty.faculty" v-for="(faculty, index) in faculties" :key="index">
-            <option class="module-input-option" :value="subject._id" v-for="(subject, index) in faculty.subjects" :key="index">
+      </div>
+      <div class="col-1-of-3">
+        <select
+          class="select"
+          v-model="documentToEdit.subject"
+          required
+        >
+          <option
+            class="module-input-option"
+            value=""
+            disabled
+          >Materia</option>
+          <optgroup
+            :label="faculty.faculty"
+            v-for="(faculty, index) in faculties"
+            :key="index"
+          >
+            <option
+              class="module-input-option"
+              :value="subject._id"
+              v-for="(subject, index) in faculty.subjects"
+              :key="index"
+            >
               {{ subject.subject }}
             </option>
           </optgroup>
         </select>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.grade">
-          <option class="module-input-option" value="0">Classe</option>
-          <option class="module-input-option" :value="grade._id" v-for="(grade, index) in grades" :key="index">
+    <div class="row">
+      <div class="col-1-of-3">
+        <select
+          class="select"
+          v-model="documentToEdit.grade"
+        >
+          <option
+            class="module-input-option"
+            value="0"
+          >Classe</option>
+          <option
+            class="module-input-option"
+            :value="grade._id"
+            v-for="(grade, index) in grades"
+            :key="index"
+          >
             {{ grade.grade }}
           </option>
         </select>
-    </div>
-    <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.section">
-          <option class="module-input-option" value="">Sezione</option>
-          <option class="module-input-option" :value="section._id" v-for="(section, index) in sections" :key="index">
+      </div>
+      <div class="col-1-of-3">
+        <select
+          class="select"
+          v-model="documentToEdit.section"
+        >
+          <option
+            class="module-input-option"
+            value=""
+          >Sezione</option>
+          <option
+            class="module-input-option"
+            :value="section._id"
+            v-for="(section, index) in sections"
+            :key="index"
+          >
             {{ section.section }}
           </option>
         </select>
-    </div>
-    <div class="col-1-of-3">
-      <select class="select" v-model="documentToEdit.visibility">
-          <option class="module-input-option" value="" disabled>Visibilità</option>
-          <option class="module-input-option" :value="visibility._id" v-for="(visibility, index) in visibilities" :key="index">{{visibility.visibility}}</option>
+      </div>
+      <div class="col-1-of-3">
+        <select
+          class="select"
+          v-model="documentToEdit.visibility"
+        >
+          <option
+            class="module-input-option"
+            value=""
+            disabled
+          >Visibilità</option>
+          <option
+            class="module-input-option"
+            :value="visibility._id"
+            v-for="(visibility, index) in visibilities"
+            :key="index"
+          >{{visibility.visibility}}</option>
         </select>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-1-of-3">
-      <button class="button button--yellow" @click="closePopUp">
+    <div class="row">
+      <div class="col-1-of-3">
+        <button
+          class="button button--yellow"
+          @click="closePopUp"
+        >
           <span class="icon"><i class="fas fa-ban"></i></span>
           <span class="crop">Annulla</span>
         </button>
-    </div>
-    <div class="col-1-of-3">
-      <button class="button button--red" @click="remove">
+      </div>
+      <div class="col-1-of-3">
+        <button
+          class="button button--red"
+          @click="remove"
+        >
           <span class="icon"><i class="fas fa-trash-alt"></i></span>
           <span class="crop">Elimina il documento</span>
         </button>
-    </div>
-    <div class="col-1-of-3">
-      <button class="button button--green" @click="edit">
+      </div>
+      <div class="col-1-of-3">
+        <button
+          class="button button--green"
+          @click="edit"
+        >
           <span class="icon"><i class="fas fa-save"></i></span>
           <span class="crop">Salva documento</span>
         </button>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'editDocument',
-  props: ['entity', 'types', 'faculties', 'visibilities', 'sections', 'grades'],
+  props: ['entity'],
   data () {
     return {
       progress: 0,
@@ -107,6 +203,15 @@ export default {
         description: ''
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      types: 'getTypes',
+      faculties: 'getFaculties',
+      grades: 'getGrades',
+      sections: 'getSections',
+      visibilities: 'getVisibilities'
+    })
   },
   async created () {
     this.documentToEdit = {
@@ -164,11 +269,11 @@ export default {
 
 <style scoped lang="scss">
 .section-title {
-    font-size: $font-default-2;
-    font-weight: bold;
+  font-size: $font-default-2;
+  font-weight: bold;
 }
 
 .row--title {
-    margin-bottom: $gutter-vertical-1!important;
+  margin-bottom: $gutter-vertical-1 !important;
 }
 </style>

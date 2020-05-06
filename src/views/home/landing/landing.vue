@@ -1,6 +1,5 @@
 <template>
 <main>
-  <app-header></app-header>
   <section class="sections top">
     <div class="content">
       <app-heading></app-heading>
@@ -79,7 +78,6 @@
 // import Search from './components/search'
 // import Project from './components/project'
 // import Filters from './components/filters'
-import Header from '@/routes/home.route/components/header'
 import Heading from './components/heading.vue'
 
 export default {
@@ -89,29 +87,10 @@ export default {
       projects: []
     }
   },
-  created () {
-    window.addEventListener('scroll', () => {
-      const height = window.innerHeight
-      const scroll = window.window.scrollY
-      const header = document.querySelectorAll('.header')[0]
-      const menu = 100 // 100px height
-      if (scroll >= menu && scroll <= height) {
-        header.style.top = '-10rem'
-      } else if (scroll > height) {
-        header.style.position = 'fixed'
-        header.style.top = '0rem'
-      } else if (scroll < menu) {
-        header.style.top = '0rem'
-        header.style.position = 'absolute'
-        header.style.backgroundImage = ''
-      }
-    })
-  },
   components: {
     // appSearch: Search,
     // appProject: Project,
     // appFilters: Filters,
-    appHeader: Header,
     appHeading: Heading
   }
 }
@@ -120,10 +99,10 @@ export default {
 <style scoped lang="scss">
 main {
     overflow: hidden;
-    & > .header {
-        position: absolute;
-        top: 0;
-    }
+    // & > .header {
+    //     position: absolute;
+    //     top: 0;
+    // }
 
     .sections {
         position: relative;
@@ -162,7 +141,7 @@ main {
             grid-gap: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            top: 8rem;
+            top: 0rem;
 
             .post {
                 height: 15rem;

@@ -95,7 +95,6 @@ import PopUp from '@/components/popup/popup'
 import LegalTerms from '@/components/legalTerms/legalTerms'
 
 export default {
-  name: 'signup',
   data () {
     return {
       signedUp: false,

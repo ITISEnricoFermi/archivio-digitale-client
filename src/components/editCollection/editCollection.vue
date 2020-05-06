@@ -19,7 +19,7 @@
     <div :class="{'col-1-of-2': toggleMultipleSelect}">
       <select class="select" v-model="collectionToEdit.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
-          <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionsPermissions" :key="index">{{permission.permission}}</option>
+          <option class="module-input-option" :value="permission._id" v-for="(permission, index) in collectionPermissions" :key="index">{{permission.permission}}</option>
       </select>
     </div>
     <div class="col-1-of-2" disabled v-if="toggleMultipleSelect">
@@ -77,13 +77,14 @@
 <script>
 import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
+import { mapGetters } from 'vuex'
 
 import MultipleSelect from '@/components/multipleSelect/multipleSelect'
 import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 import Selector from '@/components/selector/selector'
 
 export default {
-  props: ['entity', 'collectionsPermissions'],
+  props: ['entity'],
   data () {
     return {
       collectionToEdit: {
@@ -95,6 +96,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      collectionPermission: 'getCollectionPermissions'
+    }),
     toggleMultipleSelect () {
       if (this.collectionToEdit.permissions === 'utenti') {
         return true

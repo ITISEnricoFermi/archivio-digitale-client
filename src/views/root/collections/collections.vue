@@ -6,17 +6,18 @@
   <div class="center">
     <transition name="panel" mode="out-in">
       <keep-alive>
-        <router-view :collectionsPermissions="collectionsPermissions"></router-view>
+        <router-view :collectionPermissions="collectionPermissions"></router-view>
       </keep-alive>
     </transition>
   </div>
 </main>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 import Options from '@/components/options/options'
 
 export default {
-  props: ['collectionsPermissions'],
   data () {
     return {
       options: [{
@@ -33,6 +34,11 @@ export default {
         icon: 'fas fa-rocket'
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      collectionPermissions: 'getCollectionPermissions'
+    })
   },
   components: {
     appOptions: Options

@@ -18,12 +18,11 @@
 </template>
 
 <script>
+import v1 from '@/utils/v1'
 
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue'
 import User from '@/components/user/user'
 import Alert from '@/components/alert/alert'
-
-import v1 from '@/utils/v1'
 
 export default {
   data () {

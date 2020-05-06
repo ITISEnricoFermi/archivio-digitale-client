@@ -1,6 +1,5 @@
 <template>
 <main>
-  <app-header></app-header>
   <section class="sections search-documents">
     <div class="content">
       <app-search-documents @searchDocuments="documents = $event" @alert="documentsAlert = $event"></app-search-documents>
@@ -19,7 +18,6 @@
 import Document from '@/components/document/document'
 import SearchDocuments from './components/documents.search'
 import Alert from '@/components/alert/alert'
-import Header from '@/routes/home.route/components/header'
 
 export default {
   data () {
@@ -34,8 +32,7 @@ export default {
   components: {
     appDocument: Document,
     appSearchDocuments: SearchDocuments,
-    appAlert: Alert,
-    appHeader: Header
+    appAlert: Alert
   }
 }
 </script>

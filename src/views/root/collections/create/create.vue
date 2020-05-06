@@ -9,7 +9,7 @@
       <div class="col-1-of-2">
         <select class="select" v-model="collection.permissions">
           <option class="module-input-option" value="undefined" disabled selected>Permessi (modifica)</option>
-          <option class="module-input-option" v-for="(permission, index) in collectionsPermissions" :key="index" :value="permission._id">{{permission.permission}}</option>
+          <option class="module-input-option" v-for="(permission, index) in collectionPermissions" :key="index" :value="permission._id">{{permission.permission}}</option>
         </select>
       </div>
     </div>
@@ -47,7 +47,7 @@ import eventBus from '@/utils/eventBus'
 import v1 from '@/utils/v1'
 
 export default {
-  props: ['collectionsPermissions'],
+  props: ['collectionPermissions'],
   data () {
     return {
       collection: {

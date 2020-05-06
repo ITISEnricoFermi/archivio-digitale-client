@@ -46,11 +46,11 @@
 </template>
 
 <script>
-import MultipleSelect from '@/components/multipleSelect/multipleSelect'
-import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
-
 import v1 from '@/utils/v1'
 import eventBus from '@/utils/eventBus'
+
+import MultipleSelect from '@/components/multipleSelect/multipleSelect'
+import MultipleSelectResults from '@/components/multipleSelect/multipleSelectResults'
 
 export default {
   props: ['privileges'],
